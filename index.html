@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Intellumia — Applied AI, built out of Singapore</title>
-<meta name="description" content="Intellumia Pte. Ltd. is a Singapore-incorporated technology company building applied AI products. Anthrie is in development.">
+<meta name="description" content="Intellumia Pte. Ltd. is a Singapore-incorporated holding company. Its operating business, Anthrie, is a fractional AI operating partner for owner-led companies.">
 <link rel="canonical" href="https://intellumia.com/">
 <meta name="theme-color" content="#0F1D0A">
 
@@ -12,13 +12,13 @@
 <meta property="og:url" content="https://intellumia.com/">
 <meta property="og:site_name" content="Intellumia">
 <meta property="og:title" content="Intellumia — Applied AI, built out of Singapore">
-<meta property="og:description" content="A Singapore-incorporated technology company building applied AI products. Anthrie is in development.">
+<meta property="og:description" content="A Singapore holding company. Its operating business, Anthrie, is a fractional AI operating partner for owner-led companies.">
 <meta property="og:image" content="https://intellumia.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Intellumia — Applied AI, built out of Singapore">
-<meta name="twitter:description" content="A Singapore-incorporated technology company building applied AI products. Anthrie is in development.">
+<meta name="twitter:description" content="A Singapore holding company. Its operating business, Anthrie, is a fractional AI operating partner for owner-led companies.">
 <meta name="twitter:image" content="https://intellumia.com/og.png">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -37,6 +37,7 @@
   "logo": "https://intellumia.com/og.png",
   "email": "sundeep@intellumia.com",
   "foundingDate": "2025",
+  "subOrganization": {"@type":"Organization","name":"Anthrie","url":"https://anthrie.com/"},
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "60 Paya Lebar Road, #07-54, Paya Lebar Square",
@@ -188,10 +189,19 @@ p{margin:0 0 20px}
 
 /* ---------- Ventures ---------- */
 .venture{
-  display:flex;flex-wrap:wrap;align-items:baseline;gap:16px 22px;
-  padding:clamp(26px,3.4vw,38px) 0;border-bottom:1px solid var(--rule);
+  display:grid;grid-template-columns:minmax(200px,1fr) minmax(0,2fr);gap:20px 48px;
+  padding:clamp(30px,3.6vw,42px) 0;border-bottom:1px solid var(--rule);
+  border-top:1px solid var(--rule);
 }
-.venture:first-of-type{border-top:1px solid var(--rule)}
+@media(max-width:760px){.venture{grid-template-columns:1fr;gap:18px}}
+.venture-head{display:flex;flex-wrap:wrap;align-items:center;gap:14px 16px;align-content:flex-start}
+.venture-body p{color:var(--muted);font-size:.97rem;font-weight:300;line-height:1.62;margin:0 0 16px}
+.venture-lede{color:var(--sand-soft)!important;font-size:1.1rem!important;font-weight:300;margin-bottom:18px!important}
+.venture-link{
+  display:inline-block;margin-top:4px;font-size:.92rem;color:var(--sand);text-decoration:none;
+  border-bottom:1px solid rgba(212,180,128,.35);padding-bottom:3px;transition:.2s;
+}
+.venture-link:hover,.venture-link:focus-visible{border-bottom-color:var(--sand);color:var(--cream)}
 .venture-name{font-size:clamp(1.5rem,3.4vw,2.05rem);font-weight:300;letter-spacing:-.02em;margin:0;flex:0 0 auto}
 .chip{
   display:inline-flex;align-items:center;gap:8px;
@@ -259,8 +269,7 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
     <nav aria-label="Primary">
       <ul>
         <li><a href="#company">Company</a></li>
-        <li><a href="#building">Building</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#building">Anthrie</a></li>
       </ul>
     </nav>
   </div>
@@ -274,7 +283,7 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
     <div class="wrap">
       <p class="mono eyebrow">Singapore · Intellumia Pte. Ltd.</p>
       <h1>Applied AI, built out of <span class="serif">Singapore</span>.</h1>
-      <p class="lede">Intellumia designs and builds AI products. Our first, Anthrie, is in development.</p>
+      <p class="lede">Intellumia is the parent company behind Anthrie, a fractional AI operating partner for owner-led companies.</p>
       <div class="cta">
         <a class="btn btn-primary" href="#contact">Get in touch</a>
         <a class="btn btn-ghost" href="#company">About the company</a>
@@ -290,20 +299,20 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
         <h2>A technology company, incorporated in Singapore.</h2>
       </div>
       <div class="prose">
-        <p>Intellumia builds applied AI products — software that puts current AI capability to specific, practical use, rather than general-purpose demonstration.</p>
-        <p>Products are designed, engineered and operated in-house. Each is built to stand on its own, with Intellumia holding them as the parent entity.</p>
+        <p>Intellumia is the holding entity for a small group of applied AI businesses. The common thread is judgment about where AI actually earns its keep — not technology for its own sake.</p>
+        <p>Each business is built to stand on its own, with its own brand, clients and accountability. Intellumia holds them and provides the corporate structure they operate under.</p>
       </div>
 
       <div class="pillars">
         <div class="pillar">
           <span class="num">01</span>
           <h3>Applied</h3>
-          <p>We build for defined use cases, not general-purpose platforms.</p>
+          <p>We work where AI moves a number, not where it demonstrates well.</p>
         </div>
         <div class="pillar">
           <span class="num">02</span>
-          <h3>In-house</h3>
-          <p>Design, engineering and operations sit inside the company.</p>
+          <h3>Accountable</h3>
+          <p>Each business is measured on the outcome it was hired to change.</p>
         </div>
         <div class="pillar">
           <span class="num">03</span>
@@ -318,13 +327,21 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
   <section id="building">
     <div class="wrap">
       <div class="section-head">
-        <span class="mono">02 — What we're building</span>
-        <h2>One product in development.</h2>
+        <span class="mono">02 — Our businesses</span>
+        <h2>One operating business today.</h2>
       </div>
 
       <div class="venture">
-        <h3 class="venture-name">Anthrie</h3>
-        <span class="chip"><span class="dot" aria-hidden="true"></span>In development</span>
+        <div class="venture-head">
+          <h3 class="venture-name">Anthrie</h3>
+          <span class="chip"><span class="dot" aria-hidden="true"></span>Operating</span>
+        </div>
+        <div class="venture-body">
+          <p class="venture-lede">A fractional AI operating partner for owner-led companies.</p>
+          <p>Anthrie finds the two or three workflows where AI actually pays, puts them into production through vetted specialist partners, and stays accountable for the result. It sells judgment — no licences, no build shop, no headcount to keep billable.</p>
+          <p>Engagements start with a three-week AI Value Diagnostic: a scored opportunity map, one baselined KPI, a 90-day plan and a straight recommendation — including “do not spend on AI yet” when that is the truth.</p>
+          <a class="venture-link" href="https://anthrie.com" target="_blank" rel="noopener">anthrie.com <span aria-hidden="true">↗</span></a>
+        </div>
       </div>
 
       <p class="venture-more">Further work is at an early stage and will be listed here when there is something to show.</p>
