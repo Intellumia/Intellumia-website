@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intellumia — Applied AI, built out of Singapore</title>
+<meta name="description" content="Intellumia Pte. Ltd. is a Singapore-incorporated technology company building applied AI products. Anthrie is in development.">
+<link rel="canonical" href="https://intellumia.com/">
+<meta name="theme-color" content="#0F1D0A">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://intellumia.com/">
+<meta property="og:site_name" content="Intellumia">
+<meta property="og:title" content="Intellumia — Applied AI, built out of Singapore">
+<meta property="og:description" content="A Singapore-incorporated technology company building applied AI products. Anthrie is in development.">
+<meta property="og:image" content="https://intellumia.com/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Intellumia — Applied AI, built out of Singapore">
+<meta name="twitter:description" content="A Singapore-incorporated technology company building applied AI products. Anthrie is in development.">
+<meta name="twitter:image" content="https://intellumia.com/og.png">
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="preload" href="manrope-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="plexmono-500.woff2" as="font" type="font/woff2" crossorigin>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Intellumia",
+  "legalName": "Intellumia Pte. Ltd.",
+  "url": "https://intellumia.com/",
+  "logo": "https://intellumia.com/og.png",
+  "email": "hello@intellumia.com",
+  "foundingDate": "2025",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "60 Paya Lebar Road, #07-54, Paya Lebar Square",
+    "addressLocality": "Singapore",
+    "postalCode": "409051",
+    "addressCountry": "SG"
+  }
+}
+</script>
+
+<style>
+/* Self-hosted fonts — no third-party requests, no Google Fonts dependency.
+   Manrope, Merriweather and IBM Plex Mono are all SIL Open Font License 1.1. */
+@font-face{font-family:'Manrope';src:url('manrope-var.woff2') format('woff2-variations');font-weight:200 800;font-style:normal;font-display:swap}
+@font-face{font-family:'Merriweather';src:url('merriweather-italic.woff2') format('woff2');font-weight:300;font-style:italic;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('plexmono-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Mono';src:url('plexmono-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+
+:root{
+  --green-900:#0F1D0A;
+  --green-800:#152510;
+  --green-700:#263A19;
+  --sand:#D4B480;
+  --sand-soft:#DDD1BA;
+  --cream:#F4F1E9;
+  --lime:#D0ED5F;
+  --olive:#86AE33;
+  --muted:#A8A395;
+  --rule:rgba(244,241,233,.12);
+  --maxw:1120px;
+  --pad:clamp(20px,5vw,48px);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--green-900);
+  color:var(--cream);
+  font-family:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
+  font-weight:400;
+  font-size:clamp(16px,.55vw + 14px,18px);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img,svg{max-width:100%;height:auto}
+a{color:inherit}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+.mono{
+  font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--sand);
+  font-weight:500;
+}
+.serif{font-family:'Merriweather',Georgia,serif;font-style:italic;font-weight:300}
+
+/* ---------- Header ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(15,29,10,.82);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);
+}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:24px;height:74px}
+.brand{display:flex;align-items:center;color:var(--cream);text-decoration:none}
+.brand svg{width:150px;height:auto;display:block}
+nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0}
+nav a{
+  font-size:.9rem;color:var(--sand-soft);text-decoration:none;
+  padding-bottom:3px;border-bottom:1px solid transparent;transition:.2s;
+}
+nav a:hover,nav a:focus-visible{color:var(--cream);border-bottom-color:var(--sand)}
+@media(max-width:640px){
+  nav ul{gap:18px}
+  nav a{font-size:.82rem}
+  .brand svg{width:116px}
+  .bar{height:64px}
+}
+@media(max-width:420px){nav li:nth-child(2){display:none}}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;padding:clamp(72px,13vh,132px) 0 clamp(64px,10vh,104px);overflow:hidden}
+/* Glass Graphic, rebuilt in CSS. The exported SVGs use foreignObject +
+   backdrop-filter, which does not render reliably in browsers. */
+.glass{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    linear-gradient(90deg,
+      transparent 62%,  rgba(188,221,230,.028) 64%,  transparent 66.5%,
+      transparent 71%,  rgba(212,180,128,.034) 73.5%,transparent 76.5%,
+      transparent 81%,  rgba(188,221,230,.038) 83.5%,transparent 86.5%,
+      transparent 90%,  rgba(208,237,95,.024) 92%,   transparent 95%),
+    radial-gradient(110% 75% at 92% -10%,rgba(134,174,51,.07),transparent 60%),
+    radial-gradient(80% 55% at 0% 110%,rgba(212,180,128,.045),transparent 62%);
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 62%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 62%,transparent 100%);
+}
+@media(max-width:760px){.glass{opacity:.55}}
+.hero .wrap{position:relative;z-index:1}
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:26px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule);max-width:180px}
+h1{
+  font-size:clamp(2.3rem,6.2vw,4.35rem);
+  line-height:1.04;
+  letter-spacing:-.03em;
+  font-weight:300;
+  margin:0 0 28px;
+  max-width:19ch;
+}
+h1 .serif{color:var(--sand)}
+.lede{font-size:clamp(1.05rem,1.5vw,1.3rem);color:var(--sand-soft);max-width:56ch;margin:0 0 40px;font-weight:300;line-height:1.55}
+.cta{display:flex;flex-wrap:wrap;gap:14px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:.94rem;font-weight:500;text-decoration:none;
+  padding:13px 24px;border-radius:2px;transition:.2s;
+}
+.btn-primary{background:var(--cream);color:var(--green-900)}
+.btn-primary:hover,.btn-primary:focus-visible{background:var(--sand)}
+.btn-ghost{border:1px solid var(--rule);color:var(--cream)}
+.btn-ghost:hover,.btn-ghost:focus-visible{border-color:var(--sand);color:var(--sand)}
+
+/* ---------- Sections ---------- */
+section{padding:clamp(64px,9vh,104px) 0;border-top:1px solid var(--rule)}
+h2{
+  font-size:clamp(1.55rem,3vw,2.3rem);
+  line-height:1.15;letter-spacing:-.02em;font-weight:300;
+  margin:0 0 22px;max-width:22ch;
+}
+.section-head{margin-bottom:clamp(36px,5vw,56px)}
+.section-head .mono{display:block;margin-bottom:18px}
+p{margin:0 0 20px}
+.prose{max-width:62ch;color:var(--sand-soft);font-weight:300}
+.prose strong{color:var(--cream);font-weight:500}
+
+/* ---------- Numbered principles ---------- */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--rule);margin-top:clamp(40px,5vw,60px);border:1px solid var(--rule)}
+.pillar{background:var(--green-900);padding:clamp(24px,3vw,34px)}
+.pillar .num{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--olive);letter-spacing:.14em;display:block;margin-bottom:16px}
+.pillar h3{font-size:1.06rem;font-weight:500;margin:0 0 10px;letter-spacing:-.01em}
+.pillar p{font-size:.93rem;color:var(--muted);margin:0;font-weight:300;line-height:1.55}
+
+/* ---------- Ventures ---------- */
+.venture{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:16px 22px;
+  padding:clamp(26px,3.4vw,38px) 0;border-bottom:1px solid var(--rule);
+}
+.venture:first-of-type{border-top:1px solid var(--rule)}
+.venture-name{font-size:clamp(1.5rem,3.4vw,2.05rem);font-weight:300;letter-spacing:-.02em;margin:0;flex:0 0 auto}
+.chip{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--lime);border:1px solid rgba(208,237,95,.3);border-radius:2px;padding:5px 11px;
+  white-space:nowrap;
+}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--lime);flex:0 0 auto}
+.venture-note{flex:1 1 260px;color:var(--muted);font-size:.95rem;font-weight:300;margin:0;min-width:0}
+.venture-more{margin-top:34px;color:var(--muted);font-size:.95rem;font-weight:300;max-width:58ch}
+
+/* ---------- Company facts ---------- */
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule)}
+@media(max-width:820px){.facts{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.facts{grid-template-columns:1fr}}
+.fact{background:var(--green-900);padding:24px clamp(20px,2.4vw,28px)}
+.fact dt{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:9px}
+.fact dd{margin:0;font-size:1rem;color:var(--cream);font-weight:400;line-height:1.45}
+dl{margin:0}
+
+/* ---------- Contact ---------- */
+.contact-inner{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:32px}
+.mail{
+  font-size:clamp(1.3rem,3.6vw,2.1rem);font-weight:300;letter-spacing:-.02em;
+  color:var(--cream);text-decoration:none;border-bottom:1px solid var(--rule);
+  padding-bottom:6px;transition:.2s;word-break:break-word;
+}
+.mail:hover,.mail:focus-visible{color:var(--sand);border-bottom-color:var(--sand)}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid var(--rule);padding:44px 0 56px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px 32px;align-items:center}
+.foot p{margin:0;font-size:.83rem;color:var(--muted);font-weight:300}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap}
+.foot-links a{font-size:.83rem;color:var(--muted);text-decoration:none;transition:.2s}
+.foot-links a:hover,.foot-links a:focus-visible{color:var(--sand)}
+.foot svg{width:26px;color:var(--sand);opacity:.6}
+
+/* ---------- A11y ---------- */
+:focus-visible{outline:2px solid var(--sand);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-9999px;top:0}
+.skip:focus{left:12px;top:12px;z-index:99;background:var(--cream);color:var(--green-900);padding:10px 16px;border-radius:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="/" aria-label="Intellumia — home">
+      <svg viewBox="0 0 771 207" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Intellumia"><g clip-path="url(#lc)"><path d="M718.441 161.459C711.178 161.459 704.502 159.75 698.414 156.332C692.325 152.914 689.281 146.452 689.281 136.946C689.281 127.653 692.753 121.298 699.695 117.88C706.638 114.355 715.503 111.685 726.291 109.869C733.875 108.587 739.216 107.306 742.313 106.024C745.517 104.742 747.12 101.912 747.12 97.5323C747.12 92.8326 745.517 89.1476 742.313 86.4773C739.216 83.807 734.676 82.4719 728.695 82.4719C721.859 82.4719 716.732 83.9673 713.314 86.958C710.003 89.9487 708.24 94.0075 708.027 99.1345H693.607C693.714 92.2985 696.491 85.9967 701.938 80.2289C707.493 74.4611 716.358 71.5771 728.534 71.5771C740.07 71.5771 748.348 74.3008 753.368 79.7482C758.388 85.0888 760.898 91.7111 760.898 99.6151V139.83C760.898 147.627 764.156 150.618 770.671 148.802V159.216L762.661 160.498C758.068 160.498 754.596 159.429 752.247 157.293C749.897 155.05 748.241 151.632 747.28 147.039C744.823 151.098 741.085 154.516 736.065 157.293C731.151 160.07 725.277 161.459 718.441 161.459ZM722.126 150.564C730.671 150.564 736.972 148.214 741.031 143.515C745.197 138.815 747.28 133.635 747.28 127.974V113.874C745.144 115.263 742.313 116.491 738.788 117.559C735.37 118.521 731.899 119.322 728.374 119.963C724.849 120.604 720.043 122.045 713.955 124.289C707.973 126.425 704.983 130.59 704.983 136.785C704.983 141.699 706.211 145.224 708.668 147.36C711.231 149.496 715.717 150.564 722.126 150.564Z"/><path d="M665.457 159.695V73.6577H680.838V159.695H665.457ZM665.457 73.6577V56.3545L680.739 56.3546L680.838 63.4839L665.457 73.6577Z"/><path d="M537.031 159.692V75.0975H551.771V87.9148H552.252C558.34 77.9814 566.832 73.0146 577.726 73.0146C588.301 73.0146 595.724 78.3552 599.997 89.0363H600.317C606.405 78.3552 615.271 73.0146 626.913 73.0146C634.817 73.0146 641.226 75.4179 646.139 80.2244C651.052 85.0309 653.509 91.9737 653.509 101.053V159.692H638.609V102.334C638.609 96.9938 637.113 92.8816 634.123 89.9976C631.132 87.0069 627.447 85.5116 623.068 85.5116C618.154 85.5116 613.508 87.3808 609.129 91.1192C604.856 94.8576 602.72 100.519 602.72 108.102V159.692H587.98V102.334C587.98 96.9938 586.645 92.8816 583.975 89.9976C581.305 87.0069 577.726 85.5116 573.24 85.5116C566.404 85.5116 561.117 87.9148 557.379 92.7213C553.747 97.5278 551.931 102.655 551.931 108.102V159.692H537.031Z"/><path d="M483.288 161.614C474.316 161.614 467.213 159.104 461.98 154.084C456.746 149.064 454.129 142.014 454.129 132.935V75.0967H469.029V132.134C469.029 137.581 470.631 141.854 473.836 144.951C477.147 147.942 481.793 149.437 487.774 149.437C494.29 149.437 499.524 147.194 503.476 142.708C507.428 138.115 509.404 132.561 509.404 126.046V75.0967H524.304V159.691H509.564V147.675H509.244C502.408 156.968 493.756 161.614 483.288 161.614Z"/><path d="M426.801 159.689L426.801 46.4912H441.701V159.689H426.801Z"/><path d="M398.512 159.7V46.3467H413.412V159.7H398.512Z"/><path d="M350.907 162.1C337.876 162.1 327.622 157.72 320.145 148.962C312.668 140.203 308.93 129.469 308.93 116.758C308.93 104.155 312.882 93.4735 320.786 84.7149C328.797 75.9564 338.57 71.5771 350.105 71.5771C363.991 71.5771 374.138 76.2768 380.547 85.6762C386.955 94.9688 390.16 106.504 390.16 120.283H324.15C324.471 129.789 327.194 137.106 332.321 142.233C337.448 147.36 343.697 149.923 351.067 149.923C357.048 149.923 361.961 148.642 365.807 146.078C369.759 143.408 372.429 139.776 373.818 135.183H388.397C386.475 143.194 382.202 149.71 375.58 154.73C369.064 159.643 360.84 162.1 350.907 162.1ZM324.471 109.549H374.298C373.871 101.217 371.575 94.7552 367.409 90.1623C363.35 85.4626 357.582 83.1128 350.105 83.1128C343.056 83.1128 337.128 85.516 332.321 90.3225C327.515 95.0222 324.898 101.431 324.471 109.549Z"/><path d="M293.759 160.331C287.991 160.224 283.291 158.889 279.66 156.326C276.028 153.655 274.212 149.169 274.212 142.868V85.1894H260.754V73.6538H274.212V46.5771H288.952V73.6538H306.736V85.1894H288.952V139.503C288.952 142.601 289.7 144.737 291.195 145.912C292.797 146.98 294.987 147.514 297.764 147.514C301.93 146.98 304.44 146.606 305.294 146.392L305.775 158.889C301.716 159.851 297.711 160.331 293.759 160.331Z"/><path d="M184.086 159.692V75.0975H198.826V87.274H199.307C202.404 82.8947 206.142 79.4233 210.522 76.8599C214.901 74.2964 220.242 73.0146 226.543 73.0146C235.622 73.0146 242.725 75.4179 247.852 80.2244C252.979 85.0309 255.543 91.9737 255.543 101.053V159.692H240.803V102.815C240.803 97.2608 239.094 92.9884 235.676 89.9976C232.365 87.0069 227.772 85.5116 221.897 85.5116C213.245 85.5116 207.264 87.7546 203.953 92.2407C200.642 96.6199 198.986 102.121 198.986 108.743V159.692H184.086Z"/><path d="M153.188 159.695V73.6577H168.568V159.695H153.188ZM153.188 73.6577V56.3545L168.469 56.3546L168.568 63.4839L153.188 73.6577Z"/><path d="M46.5859 112.376C46.5033 115.487 44.8122 118.34 42.1074 119.901L17.4717 134.125L11.6484 137.487L18.373 149.134L33.1758 140.587C39.0723 137.215 46.403 141.376 46.5859 148.113V179.316L0 206.213V26.8975L46.5859 0.000976562V112.376ZM106.627 179.315L60.0391 206.213V130.193C60.0603 127.027 61.7504 124.106 64.4863 122.51L91.9043 106.681L85.1797 95.0342L73.4707 101.793C67.5115 105.218 60.0773 100.938 60.0391 94.0732V26.8975L106.627 0V179.315Z"/></g><defs><clipPath id="lc"><rect width="770.671" height="206.213" fill="#fff"/></clipPath></defs></svg>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="#company">Company</a></li>
+        <li><a href="#building">Building</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero">
+    <div class="glass" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="mono eyebrow">Singapore · Intellumia Pte. Ltd.</p>
+      <h1>Applied AI, built out of <span class="serif">Singapore</span>.</h1>
+      <p class="lede">Intellumia designs and builds AI products. Our first, Anthrie, is in development.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#contact">Get in touch</a>
+        <a class="btn btn-ghost" href="#company">About the company</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ COMPANY ============ -->
+  <section id="company">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="mono">01 — Company</span>
+        <h2>A technology company, incorporated in Singapore.</h2>
+      </div>
+      <div class="prose">
+        <p>Intellumia builds applied AI products — software that puts current AI capability to specific, practical use, rather than general-purpose demonstration.</p>
+        <p>Products are designed, engineered and operated in-house. Each is built to stand on its own, with Intellumia holding them as the parent entity.</p>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar">
+          <span class="num">01</span>
+          <h3>Applied</h3>
+          <p>We build for defined use cases, not general-purpose platforms.</p>
+        </div>
+        <div class="pillar">
+          <span class="num">02</span>
+          <h3>In-house</h3>
+          <p>Design, engineering and operations sit inside the company.</p>
+        </div>
+        <div class="pillar">
+          <span class="num">03</span>
+          <h3>Singapore</h3>
+          <p>Incorporated and operating under Singapore jurisdiction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BUILDING ============ -->
+  <section id="building">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="mono">02 — What we're building</span>
+        <h2>One product in development.</h2>
+      </div>
+
+      <div class="venture">
+        <h3 class="venture-name">Anthrie</h3>
+        <span class="chip"><span class="dot" aria-hidden="true"></span>In development</span>
+      </div>
+
+      <p class="venture-more">Further work is at an early stage and will be listed here when there is something to show.</p>
+    </div>
+  </section>
+
+  <!-- ============ DETAILS ============ -->
+  <section id="details">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="mono">03 — Company details</span>
+        <h2>Registered particulars.</h2>
+      </div>
+      <dl class="facts">
+        <div class="fact"><dt>Legal name</dt><dd>Intellumia Pte. Ltd.</dd></div>
+        <div class="fact"><dt>Entity type</dt><dd>Private company limited by shares</dd></div>
+        <div class="fact"><dt>Incorporated</dt><dd>2025</dd></div>
+        <div class="fact"><dt>Jurisdiction</dt><dd>Singapore</dd></div>
+        <div class="fact"><dt>Registered office</dt><dd>60 Paya Lebar Road, #07-54<br>Paya Lebar Square<br>Singapore 409051</dd></div>
+        <div class="fact"><dt>Enquiries</dt><dd><a href="mailto:hello@intellumia.com" style="color:var(--sand);text-decoration:none;border-bottom:1px solid var(--rule)">hello@intellumia.com</a></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact">
+    <div class="wrap contact-inner">
+      <div>
+        <span class="mono" style="display:block;margin-bottom:18px">04 — Contact</span>
+        <h2 style="margin-bottom:26px">Partnership, press and general enquiries.</h2>
+        <a class="mail" href="mailto:hello@intellumia.com">hello@intellumia.com</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <svg viewBox="0 0 107 207" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M46.5859 112.376C46.5033 115.487 44.8122 118.34 42.1074 119.901L17.4717 134.125L11.6484 137.487L18.373 149.134L33.1758 140.587C39.0723 137.215 46.403 141.376 46.5859 148.113V179.316L0 206.213V26.8975L46.5859 0.000976562V112.376ZM106.627 179.315L60.0391 206.213V130.193C60.0603 127.027 61.7504 124.106 64.4863 122.51L91.9043 106.681L85.1797 95.0342L73.4707 101.793C67.5115 105.218 60.0773 100.938 60.0391 94.0732V26.8975L106.627 0V179.315Z" fill="currentColor"/></svg>
+    <p>© 2026 Intellumia Pte. Ltd. · Singapore</p>
+    <div class="foot-links">
+      <a href="mailto:hello@intellumia.com">Email</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
