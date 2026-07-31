@@ -7,9 +7,10 @@ no build step, no framework, no dependencies.
 
 ## Outstanding
 
-- **UEN** is not yet on the page. When you have it, replace the `Entity type`
-  card in the Company details section of `index.html` with a `UEN` card. Keeping
-  the count at six preserves the 3×2 grid.
+- **UEN** is not yet on the page. When you have it, add a `<div><dt>UEN</dt>
+  <dd>…</dd></div>` to the `.particulars` list in the footer of `index.html`.
+  That grid is four columns on desktop, so a fifth item wraps — either drop
+  `Entity type` or accept the wrap.
 - **Registered office** currently reads `#07-54`. Confirm this matches the unit
   on the ACRA filing — a third-party registry lists `#06-28`, so one of the two
   is stale.
@@ -54,6 +55,8 @@ Once DNS resolves, tick **Enforce HTTPS** in Settings → Pages. GitHub redirect
 
 ```
 index.html                 the page — all CSS inline, zero JavaScript
+                           hero + 2 sections; contact and registered
+                           particulars live in the footer
 privacy.html               PDPA-aligned privacy statement
 *.woff2                    self-hosted fonts (52 KB total)
 favicon.svg                logomark on brand green
