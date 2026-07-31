@@ -10,8 +10,6 @@ no build step, no framework, no dependencies.
 - **UEN** is not yet on the page. When you have it, replace the `Entity type`
   card in the Company details section of `index.html` with a `UEN` card. Keeping
   the count at six preserves the 3×2 grid.
-- **`hello@intellumia.com`** must be a monitored inbox. It is the only contact
-  route on the site.
 - **Registered office** currently reads `#07-54`. Confirm this matches the unit
   on the ACRA filing — a third-party registry lists `#06-28`, so one of the two
   is stale.
@@ -20,8 +18,8 @@ no build step, no framework, no dependencies.
 
 ## Deploy
 
-Already live at **https://intellumia.com** via
-**Settings → Pages → Deploy from a branch → `main` / `/ (root)`**.
+Served from **Settings → Pages → Deploy from a branch → `main` / `/ (root)`**.
+Pushing to `main` redeploys automatically, usually within a minute.
 
 To work on it locally:
 
@@ -31,11 +29,9 @@ cd website
 python3 -m http.server 8000   # then open http://localhost:8000
 ```
 
-Pushing to `main` redeploys automatically, usually within a minute.
-
 ### Custom domain
 
-Apex domain `intellumia.com`, DNS at **Ionos**. Required records:
+Apex domain `intellumia.com`, DNS at **Ionos**.
 
 | Type | Host | Value |
 |---|---|---|
@@ -45,11 +41,12 @@ Apex domain `intellumia.com`, DNS at **Ionos**. Required records:
 | A | `@` | `185.199.111.153` |
 | CNAME | `www` | `intellumia.github.io` |
 
+**Do not touch the MX or TXT records** — the domain carries live Google
+Workspace email. The apex previously pointed at Framer (`31.43.160.6`,
+`31.43.161.6`) with `www` on `sites.framer.app`; those were replaced.
+
 Once DNS resolves, tick **Enforce HTTPS** in Settings → Pages. GitHub redirects
 `www` → apex automatically.
-
-`.nojekyll` is included so GitHub serves files verbatim rather than running
-them through Jekyll.
 
 ---
 
@@ -83,9 +80,9 @@ Every brand accent fails WCAG AA as text on white (`#D4B480` is 1.75:1,
 15.5:1, sand 8.9:1, lime 13.3:1. The palette was built for a dark surface.
 
 **Self-hosted fonts.** Manrope, Merriweather Italic and IBM Plex Mono are all
-SIL OFL 1.1, subset to Latin and served from the repo root. No Google Fonts request
-— faster, and it avoids the third-party-transfer question that has caused
-problems for European sites.
+SIL OFL 1.1, subset to Latin and served from the repo root. No Google Fonts
+request — faster, and it avoids the third-party-transfer question that has
+caused problems for European sites.
 
 **Glass Graphic rebuilt in CSS.** The exported SVGs use `<foreignObject>` with
 `backdrop-filter`, which doesn't render reliably in browsers (Safari in
