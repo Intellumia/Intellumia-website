@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Intellumia — Applied AI, built out of Singapore</title>
-<meta name="description" content="Intellumia Pte. Ltd. is a Singapore-incorporated holding company. Its operating business, Anthrie, is a fractional AI operating partner for owner-led companies.">
+<meta name="description" content="Intellumia Pte. Ltd. is a Singapore-incorporated holding company behind Anthrie, a fractional AI operating partner, and Egrysa, open-source AI egress control.">
 <link rel="canonical" href="https://intellumia.com/">
 <meta name="theme-color" content="#0F1D0A">
 
@@ -12,13 +12,13 @@
 <meta property="og:url" content="https://intellumia.com/">
 <meta property="og:site_name" content="Intellumia">
 <meta property="og:title" content="Intellumia — Applied AI, built out of Singapore">
-<meta property="og:description" content="A Singapore holding company. Its operating business, Anthrie, is a fractional AI operating partner for owner-led companies.">
+<meta property="og:description" content="A Singapore holding company behind Anthrie, a fractional AI operating partner, and Egrysa, open-source AI egress control.">
 <meta property="og:image" content="https://intellumia.com/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Intellumia — Applied AI, built out of Singapore">
-<meta name="twitter:description" content="A Singapore holding company. Its operating business, Anthrie, is a fractional AI operating partner for owner-led companies.">
+<meta name="twitter:description" content="A Singapore holding company behind Anthrie, a fractional AI operating partner, and Egrysa, open-source AI egress control.">
 <meta name="twitter:image" content="https://intellumia.com/og.png">
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -37,7 +37,10 @@
   "logo": "https://intellumia.com/og.png",
   "email": "sundeep@intellumia.com",
   "foundingDate": "2025",
-  "subOrganization": {"@type":"Organization","name":"Anthrie","url":"https://anthrie.com/"},
+  "subOrganization": [
+    {"@type":"Organization","name":"Anthrie","url":"https://anthrie.com/"},
+    {"@type":"Organization","name":"Egrysa","url":"https://github.com/sundeep229211/egrysa"}
+  ],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "60 Paya Lebar Road, #07-54, Paya Lebar Square",
@@ -209,7 +212,8 @@ p{margin:0 0 20px}
   color:var(--lime);border:1px solid rgba(208,237,95,.3);border-radius:2px;padding:5px 11px;
   white-space:nowrap;
 }
-.dot{width:5px;height:5px;border-radius:50%;background:var(--lime);flex:0 0 auto}
+.dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex:0 0 auto}
+.chip--dev{color:var(--sand);border-color:rgba(212,180,128,.32)}
 .venture-note{flex:1 1 260px;color:var(--muted);font-size:.95rem;font-weight:300;margin:0;min-width:0}
 .venture-more{margin-top:34px;color:var(--muted);font-size:.95rem;font-weight:300;max-width:58ch}
 
@@ -269,7 +273,7 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
     <nav aria-label="Primary">
       <ul>
         <li><a href="#company">Company</a></li>
-        <li><a href="#building">Anthrie</a></li>
+        <li><a href="#building">Businesses</a></li>
       </ul>
     </nav>
   </div>
@@ -283,7 +287,7 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
     <div class="wrap">
       <p class="mono eyebrow">Singapore · Intellumia Pte. Ltd.</p>
       <h1>Applied AI, built out of <span class="serif">Singapore</span>.</h1>
-      <p class="lede">Intellumia is the parent company behind Anthrie, a fractional AI operating partner for owner-led companies.</p>
+      <p class="lede">Intellumia is the parent company behind Anthrie and Egrysa — helping companies find where AI actually pays, and giving them the controls to adopt it safely.</p>
       <div class="cta">
         <a class="btn btn-primary" href="#contact">Get in touch</a>
         <a class="btn btn-ghost" href="#company">About the company</a>
@@ -299,7 +303,7 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
         <h2>A technology company, incorporated in Singapore.</h2>
       </div>
       <div class="prose">
-        <p>Intellumia is the holding entity for a small group of applied AI businesses. The common thread is judgment about where AI actually earns its keep — not technology for its own sake.</p>
+        <p>Intellumia is the holding entity for a small group of applied AI businesses. The common thread is making AI adoption pay off and hold up — the judgment about where to apply it, and the controls that make applying it defensible.</p>
         <p>Each business is built to stand on its own, with its own brand, clients and accountability. Intellumia holds them and provides the corporate structure they operate under.</p>
       </div>
 
@@ -328,7 +332,7 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
     <div class="wrap">
       <div class="section-head">
         <span class="mono">02 — Our businesses</span>
-        <h2>One operating business today.</h2>
+        <h2>One operating, one in development.</h2>
       </div>
 
       <div class="venture">
@@ -341,6 +345,19 @@ html{scroll-behavior:smooth;scroll-padding-top:90px}
           <p>Anthrie finds the two or three workflows where AI actually pays, puts them into production through vetted specialist partners, and stays accountable for the result. It sells judgment — no licences, no build shop, no headcount to keep billable.</p>
           <p>Engagements start with a three-week AI Value Diagnostic: a scored opportunity map, one baselined KPI, a 90-day plan and a straight recommendation — including “do not spend on AI yet” when that is the truth.</p>
           <a class="venture-link" href="https://anthrie.com" target="_blank" rel="noopener">anthrie.com <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <div class="venture">
+        <div class="venture-head">
+          <h3 class="venture-name">Egrysa</h3>
+          <span class="chip chip--dev"><span class="dot" aria-hidden="true"></span>In development</span>
+        </div>
+        <div class="venture-body">
+          <p class="venture-lede">Open-source, customer-owned AI egress control.</p>
+          <p>Egrysa sits between enterprise users and model providers. It removes or blocks high-risk data, routes confidential work to local models, and returns a signed, content-minimised policy receipt — without storing prompt content. The trust boundary runs inside infrastructure the operator owns, which is why the reference implementation is open source.</p>
+          <p>A security-oriented MVP under Apache-2.0, suitable for technical evaluation in a non-production environment. It is not a certified product, and it does not by itself make an organisation compliant.</p>
+          <a class="venture-link" href="https://github.com/sundeep229211/egrysa" target="_blank" rel="noopener">View the repository <span aria-hidden="true">↗</span></a>
         </div>
       </div>
 
