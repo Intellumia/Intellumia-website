@@ -1,7 +1,13 @@
 # intellumia.com
 
-Static corporate landing page for Intellumia Pte. Ltd. Built for GitHub Pages —
-no build step, no framework, no dependencies.
+Static site for Intellumia Pte. Ltd. Built for GitHub Pages — no build step,
+no framework, no dependencies.
+
+**Current state: placeholder.** Intellumia is under new direction and this
+site is being rebuilt from scratch. `index.html` is a holding page (logo,
+one-line message, contact, legal particulars) until the new site replaces it.
+The previous page — the Anthrie/Egrysa parent-company page — has been
+retired; see git history if you need to reference it.
 
 ---
 
@@ -14,6 +20,7 @@ no build step, no framework, no dependencies.
 - **Registered office** currently reads `#07-54`. Confirm this matches the unit
   on the ACRA filing — a third-party registry lists `#06-28`, so one of the two
   is stale.
+- **Rebuild** — new site TBD once the new direction firms up.
 
 ---
 
@@ -54,14 +61,13 @@ Once DNS resolves, tick **Enforce HTTPS** in Settings → Pages. GitHub redirect
 ## What's here
 
 ```
-index.html                 the page — all CSS inline, zero JavaScript
-                           hero + 2 sections; contact and registered
-                           particulars live in the footer
+index.html                 holding page — all CSS inline, zero JavaScript
+                           logo, one message, contact, legal particulars
 privacy.html               PDPA-aligned privacy statement
-*.woff2                    self-hosted fonts (52 KB total)
+manrope-var.woff2          self-hosted fonts
+plexmono-500.woff2
 favicon.svg                logomark on brand green
 apple-touch-icon.png       180×180
-og.png                     1200×630 social share card
 robots.txt  sitemap.xml    basic SEO
 CNAME  .nojekyll           GitHub Pages config
 ```
@@ -69,40 +75,26 @@ CNAME  .nojekyll           GitHub Pages config
 Everything sits at the repo root — no subdirectories — so files can be managed
 through the GitHub web UI without losing paths.
 
-Total page weight is roughly **90 KB**, most of it fonts. No JavaScript, no
-third-party requests, no cookies, no analytics — which is also why the privacy
-statement can honestly say the site collects nothing.
+No JavaScript, no third-party requests, no cookies, no analytics — which is
+also why the privacy statement can honestly say the site collects nothing.
 
 ---
 
 ## Design decisions worth knowing
 
 **Dark green base.** Not a stylistic preference — a contrast requirement.
-Every brand accent fails WCAG AA as text on white (`#D4B480` is 1.75:1,
-`#D0ED5F` is 1.17:1). On `#0F1D0A` they pass comfortably: cream text hits
-15.5:1, sand 8.9:1, lime 13.3:1. The palette was built for a dark surface.
+Every brand accent fails WCAG AA as text on white (`#D4B480` is 1.75:1). On
+`#0F1D0A` it passes comfortably: cream text hits 15.5:1, sand 8.9:1. The
+palette was built for a dark surface, and is kept here as a visual bridge
+until the new brand direction lands.
 
-**Self-hosted fonts.** Manrope, Merriweather Italic and IBM Plex Mono are all
-SIL OFL 1.1, subset to Latin and served from the repo root. No Google Fonts
-request — faster, and it avoids the third-party-transfer question that has
-caused problems for European sites.
+**Self-hosted fonts.** Manrope and IBM Plex Mono are SIL OFL 1.1, subset to
+Latin and served from the repo root. No Google Fonts request — faster, and it
+avoids the third-party-transfer question that has caused problems for
+European sites.
 
-**Glass Graphic rebuilt in CSS.** The exported SVGs use `<foreignObject>` with
-`backdrop-filter`, which doesn't render reliably in browsers (Safari in
-particular). The hero texture is plain CSS gradients instead.
-
-**No illustrated icons.** The brand icon set — lotus, brain, cradled orb —
-reads as consumer wellbeing. Wrong register for a page whose job is
-credibility with investors and compliance officers. Those icons belong on a
-product site.
-
-**No stock photography.** Stock model photos are a credibility cost with
-exactly the audience this page is for.
-
-**Every claim on the page is true today.** No metrics, no testimonials, no
-"trusted by", no roadmap, no thesis section. When the post-pivot narrative
-firms up, the natural place for it is a new section between `01 — Company`
-and `02 — What we're building`.
+**No illustrated icons, no stock photography.** Same reasoning as before the
+rebuild — kept for continuity while the new site is designed.
 
 ---
 
