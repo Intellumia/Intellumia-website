@@ -1,7 +1,7 @@
 # Intellumia Website
 
 **Phase:** 1 — client-first website and thesis depth  
-**Status:** Founder-approved static release candidate; not deployed  
+**Status:** Phase 1 live in production from GitHub Pages `main` / `docs`  
 **Canonical source:** This directory  
 **Production URL:** <https://intellumia.com>
 

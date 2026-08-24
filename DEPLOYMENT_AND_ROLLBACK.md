@@ -1,6 +1,6 @@
 # Deployment and Rollback
 
-**Current deployment state:** Static release candidate approved; production unchanged.
+**Current deployment state:** Phase 1 website live in production from `main` / `docs`.
 
 ## Production baseline
 
@@ -8,13 +8,14 @@
 - Privacy URL: <https://intellumia.com/privacy.html>
 - Host: GitHub Pages.
 - Repository: <https://github.com/Intellumia/Intellumia-website>
-- Deployment branch and folder: `main` / repository root.
-- Current deployable commit: `5800aadbee507532a06789ae4e5993d75b5578ba`.
+- Deployment branch and folder: `main` / `docs`.
+- Current deployed commit: `c2ea6552b57185da02584b8e237f8cd82dc78a8c`.
+- GitHub Pages deployment run: <https://github.com/Intellumia/Intellumia-website/actions/runs/32707368753>.
 - Custom domain: `intellumia.com` through the repository `CNAME` file.
 - `www` redirects to the apex domain and HTTP redirects to HTTPS.
 - DNS remains outside the release scope and must not be changed.
 
-The public files captured on 23 August 2026 remain under `baseline/production_2026-08-23/` with SHA-256 checksums. The Git commit above is the preferred rollback source.
+The former holding-page files captured on 23 August 2026 remain under `baseline/production_2026-08-23/` with SHA-256 checksums. Commit `5800aadbee507532a06789ae4e5993d75b5578ba` remains the code-level rollback source.
 
 ## Approved release architecture
 
@@ -22,7 +23,7 @@ The public files captured on 23 August 2026 remain under `baseline/production_20
 - The authored project remains at the repository root.
 - `npm run build` creates the public release artifact in `docs/`.
 - The existing root holding page must remain intact while the release source is imported, so pushing the source does not itself change production.
-- The final production action is changing the GitHub Pages publishing folder from `/root` to `/docs` on `main`.
+- GitHub Pages publishes from `/docs` on `main`.
 - No DNS, email, analytics or privacy-system change is part of this release.
 
 GitHub Pages does not allow project-defined response headers. Supported content-security and referrer controls are implemented in page metadata. The site remains static, has no form, analytics, third-party font, cookie or data store.
@@ -38,13 +39,14 @@ Completed:
 5. Exact static artifact built and reviewed at desktop and mobile sizes.
 6. Lint, static-file, internal-link, metadata, accessibility and Lighthouse checks passed.
 7. Current production commit and emergency file archive recorded.
+8. Release source and `docs/` artifact merged through pull request 1 without altering the root holding page.
+9. Founder gave final production confirmation on 24 August 2026.
+10. GitHub Pages source changed from `main` / root to `main` / `docs`.
+11. Production verified over HTTPS on desktop and mobile. Required routes, the conversation copy action, legal footer, sitemap, robots file and `404` response passed.
 
-Outstanding before production change:
+Outstanding after production release:
 
-1. Import the release source and `docs/` artifact into the repository without altering the existing root holding page.
-2. Establish authorised GitHub write access in the deployment environment.
-3. Obtain the approved social-preview image from Brand Studio when available. Until then, keep text Open Graph metadata and do not substitute a generic image.
-4. Show the exact release candidate and ask the founder for confirmation immediately before changing GitHub Pages from `/root` to `/docs`.
+1. Obtain the approved social-preview image from Brand Studio when available. Until then, keep text Open Graph metadata and do not substitute a generic image.
 
 ## Deployment sequence
 
