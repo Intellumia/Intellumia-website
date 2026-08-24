@@ -1,106 +1,68 @@
-# intellumia.com
+# Intellumia Website
 
-Static site for Intellumia Pte. Ltd. Built for GitHub Pages — no build step,
-no framework, no dependencies.
+**Phase:** 1 — client-first website and thesis depth  
+**Status:** Founder-approved static release candidate; not deployed  
+**Canonical source:** This directory  
+**Production URL:** <https://intellumia.com>
 
-**Current state: placeholder.** Intellumia is under new direction and this
-site is being rebuilt from scratch. `index.html` is a holding page (logo,
-one-line message, contact, legal particulars) until the new site replaces it.
-The previous page — the Anthrie/Egrysa parent-company page — has been
-retired; see git history if you need to reference it.
+## Purpose
 
----
+This is the canonical implementation layer for Intellumia's initial website. The homepage is designed around the visitor's business consequence, the point at which Intellumia may help and the route to a qualified conversation. The deeper Point of View route carries the company's future thesis, organisational-intelligence direction and bounded Intelligence Twin concept.
 
-## Outstanding
+The website does not define company strategy or the brand system. It implements the current company and brand sources listed in `CONTENT_SOURCES.md`. The inactive, privacy-gated measurement design is recorded in `ANALYTICS_PLAN.md`.
 
-- **UEN** is not yet on the page. When you have it, add a `<div><dt>UEN</dt>
-  <dd>…</dd></div>` to the `.particulars` list in the footer of `index.html`.
-  That grid is four columns on desktop, so a fifth item wraps — either drop
-  `Entity type` or accept the wrap.
-- **Registered office** currently reads `#07-54`. Confirm this matches the unit
-  on the ACRA filing — a third-party registry lists `#06-28`, so one of the two
-  is stale.
-- **Rebuild** — new site TBD once the new direction firms up.
+## Routes
 
----
+| Route | Purpose |
+| --- | --- |
+| `/` | Client-first Phase 1 homepage |
+| `/point-of-view` | Intellumia thesis, organisational intelligence and Intelligence Twin boundary |
+| `/connect` | Device-independent conversation path with address copy and optional email-app opening |
+| `/privacy` | Preserved current privacy statement |
+| `/privacy.html` | Legacy production URL forwarding to `/privacy` |
+| Any unmatched URL | Branded missing-page state |
+| `/robots.txt` | Search crawler rules |
+| `/sitemap.xml` | Production sitemap |
+| `/manifest.webmanifest` | Basic web-app metadata |
 
-## Deploy
+## Local use
 
-Served from **Settings → Pages → Deploy from a branch → `main` / `/ (root)`**.
-Pushing to `main` redeploys automatically, usually within a minute.
+Requirements:
 
-To work on it locally:
+- Node.js 22.13 or later.
+- npm.
+
+Commands:
 
 ```bash
-git clone https://github.com/Intellumia/website.git
-cd website
-python3 -m http.server 8000   # then open http://localhost:8000
+npm install
+npm run dev
+npm run build
+npm run verify:release
+npm run preview
+npm run lint
 ```
 
-### Custom domain
+`npm run build` creates the production-ready GitHub Pages artifact in `docs/`.
+The source remains in `app/`; generated browser pages contain no Next.js or
+React runtime. Only the small address-copy interaction loads JavaScript.
 
-Apex domain `intellumia.com`, DNS at **Ionos**.
+No environment variables, API keys or secrets are required. The site has no contact form, analytics, third-party fonts or client data store.
 
-| Type | Host | Value |
-|---|---|---|
-| A | `@` | `185.199.108.153` |
-| A | `@` | `185.199.109.153` |
-| A | `@` | `185.199.110.153` |
-| A | `@` | `185.199.111.153` |
-| CNAME | `www` | `intellumia.github.io` |
+## Implementation boundaries
 
-**Do not touch the MX or TXT records** — the domain carries live Google
-Workspace email. The apex previously pointed at Framer (`31.43.160.6`,
-`31.43.161.6`) with `www` on `sites.framer.app`; those were replaced.
+- The approved Instrument Sans, Instrument Serif and Recursive sources are self-hosted from `public/fonts/`; lossless WOFF2 web subsets derived from those sources are used at runtime, with the supplied SIL Open Font License notices retained under `public/fonts/licenses/`.
+- Authoritative logo files are copied without alteration from the workspace `Logo/` directory.
+- The primary conversation action opens the local `/connect` route so it does not depend on a configured mail client. Visitors can copy `connect@intellumia.com` into any email service; a clearly labelled `mailto:` option remains secondary.
+- No contact form, message content or personal data is collected by the website.
+- No analytics code is active. CTA links include a future-facing event name only; nothing is transmitted.
+- No Open Graph image is included. Brand Studio must supply the production social-preview image.
+- The registered-office unit `#07-54` was confirmed by the founder on 24 August 2026. No unverified UEN was added.
+- The current `/privacy.html` URL remains available as a no-index static forward to `/privacy` so existing links do not break.
+- GitHub Pages does not support project-defined response headers. The static pages include the supported browser-level content-security and referrer policies; server-only headers cannot be asserted by this host.
 
-Once DNS resolves, tick **Enforce HTTPS** in Settings → Pages. GitHub redirects
-`www` → apex automatically.
+## Production safety
 
----
+The existing holding page is preserved under `baseline/production_2026-08-23/` and in production repository commit `5800aad`. The live site remains unchanged. See `DEPLOYMENT_AND_ROLLBACK.md` before any staging or production action.
 
-## What's here
-
-```
-index.html                 holding page — all CSS inline, zero JavaScript
-                           logo, one message, contact, legal particulars
-privacy.html               PDPA-aligned privacy statement
-manrope-var.woff2          self-hosted fonts
-plexmono-500.woff2
-favicon.svg                logomark on brand green
-apple-touch-icon.png       180×180
-robots.txt  sitemap.xml    basic SEO
-CNAME  .nojekyll           GitHub Pages config
-```
-
-Everything sits at the repo root — no subdirectories — so files can be managed
-through the GitHub web UI without losing paths.
-
-No JavaScript, no third-party requests, no cookies, no analytics — which is
-also why the privacy statement can honestly say the site collects nothing.
-
----
-
-## Design decisions worth knowing
-
-**Dark green base.** Not a stylistic preference — a contrast requirement.
-Every brand accent fails WCAG AA as text on white (`#D4B480` is 1.75:1). On
-`#0F1D0A` it passes comfortably: cream text hits 15.5:1, sand 8.9:1. The
-palette was built for a dark surface, and is kept here as a visual bridge
-until the new brand direction lands.
-
-**Self-hosted fonts.** Manrope and IBM Plex Mono are SIL OFL 1.1, subset to
-Latin and served from the repo root. No Google Fonts request — faster, and it
-avoids the third-party-transfer question that has caused problems for
-European sites.
-
-**No illustrated icons, no stock photography.** Same reasoning as before the
-rebuild — kept for continuity while the new site is designed.
-
----
-
-## Accessibility
-
-- All text passes WCAG AA; body copy and headings pass AAA
-- Skip link, visible focus rings, semantic landmarks, labelled SVGs
-- `prefers-reduced-motion` respected
-- Works with JavaScript disabled (there is none)
+The completed local verification record and raw Lighthouse audits are under `qa/`.
