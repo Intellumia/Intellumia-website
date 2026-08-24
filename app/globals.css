@@ -58,6 +58,8 @@
   --font-operating: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
   --font-vision: 'Instrument Serif', Georgia, serif;
   --font-intelligence: 'Recursive', ui-monospace, 'SFMono-Regular', monospace;
+  --content-max: 1680px;
+  --page-gutter: max(clamp(20px, 4vw, 64px), calc((100vw - var(--content-max)) / 2));
   --section-block: clamp(88px, 9vw, 132px);
   --section-gap: clamp(56px, 5vw, 72px);
   --section-structure-gap: clamp(64px, 6vw, 80px);
@@ -129,7 +131,7 @@ a {
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: 28px clamp(20px, 4vw, 64px);
+  padding: 28px var(--page-gutter);
   color: var(--white);
 }
 
@@ -210,7 +212,7 @@ a {
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-template-rows: auto 1fr auto;
   gap: 24px;
-  padding: clamp(140px, 18vh, 196px) clamp(20px, 4vw, 64px) 112px;
+  padding: clamp(140px, 18vh, 196px) var(--page-gutter) 112px;
 }
 
 .system-label {
@@ -278,7 +280,7 @@ a {
   grid-template-columns: 1fr 4fr 2fr;
   gap: 24px;
   align-items: center;
-  padding: 24px clamp(20px, 4vw, 64px);
+  padding: 24px var(--page-gutter);
   background: var(--carbon);
   border-top: 1px solid var(--rule-dark);
 }
@@ -312,7 +314,7 @@ a {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 24px;
-  padding: clamp(96px, 12vw, 176px) clamp(20px, 4vw, 64px);
+  padding: clamp(96px, 12vw, 176px) var(--page-gutter);
   background: var(--warm-light);
 }
 
@@ -376,7 +378,7 @@ a {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 24px;
-  padding: var(--section-block) clamp(20px, 4vw, 64px);
+  padding: var(--section-block) var(--page-gutter);
   overflow: hidden;
   background: var(--intelligence-light);
   color: var(--white);
@@ -472,7 +474,7 @@ a {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 24px;
-  padding: var(--section-block) clamp(20px, 4vw, 64px);
+  padding: var(--section-block) var(--page-gutter);
   background: var(--warm-light);
 }
 
@@ -640,7 +642,7 @@ a {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 24px;
-  padding: clamp(96px, 12vw, 176px) clamp(20px, 4vw, 64px);
+  padding: clamp(96px, 12vw, 176px) var(--page-gutter);
   background: var(--white);
 }
 
@@ -748,7 +750,7 @@ a {
   grid-template-columns: 1fr 4fr 2fr;
   gap: 24px;
   align-items: center;
-  padding: 24px clamp(20px, 4vw, 64px);
+  padding: 24px var(--page-gutter);
   background: var(--carbon);
   border-top: 1px solid var(--rule-dark);
   color: var(--white);
@@ -796,7 +798,7 @@ a {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 24px;
-  padding: var(--section-block) clamp(20px, 4vw, 64px);
+  padding: var(--section-block) var(--page-gutter);
 }
 
 .value-section {
@@ -898,7 +900,7 @@ a {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 24px;
-  padding: var(--section-block) clamp(20px, 4vw, 64px);
+  padding: var(--section-block) var(--page-gutter);
   background: var(--black);
   color: var(--white);
 }
@@ -977,7 +979,7 @@ a {
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-template-rows: auto 1fr auto;
   gap: 24px;
-  padding: clamp(140px, 18vh, 196px) clamp(20px, 4vw, 64px) 112px;
+  padding: clamp(140px, 18vh, 196px) var(--page-gutter) 112px;
 }
 
 .pov-hero-grid > .hero-label {
@@ -1078,7 +1080,7 @@ a {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 24px;
-  padding: var(--section-block) clamp(20px, 4vw, 64px);
+  padding: var(--section-block) var(--page-gutter);
   background: var(--carbon);
   color: var(--white);
 }
@@ -1239,7 +1241,7 @@ a {
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 24px;
   align-content: space-between;
-  padding: clamp(96px, 12vw, 176px) clamp(20px, 4vw, 64px) 80px;
+  padding: clamp(96px, 12vw, 176px) var(--page-gutter) 80px;
   background: var(--signal-dark);
   color: var(--black);
 }
@@ -1297,7 +1299,7 @@ a {
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 24px;
   align-content: start;
-  padding: clamp(136px, 13vw, 190px) clamp(20px, 4vw, 64px) clamp(80px, 9vw, 132px);
+  padding: clamp(136px, 13vw, 190px) var(--page-gutter) clamp(80px, 9vw, 132px);
 }
 
 .connect-section > .system-label {
@@ -1427,7 +1429,7 @@ a {
   display: grid;
   grid-template-columns: 1fr;
   gap: 28px;
-  padding: 36px clamp(20px, 4vw, 64px) 32px;
+  padding: 36px var(--page-gutter) 32px;
   background: var(--black);
   color: var(--white);
 }
@@ -1572,7 +1574,7 @@ a {
   min-height: 100svh;
   flex-direction: column;
   justify-content: space-between;
-  padding: clamp(28px, 4vw, 64px);
+  padding: clamp(28px, 4vw, 64px) var(--page-gutter);
   overflow: hidden;
   background: var(--black);
   color: var(--white);

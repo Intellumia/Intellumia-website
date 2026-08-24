@@ -1,5 +1,5 @@
 import { access, readFile, readdir } from 'node:fs/promises';
-import { extname, resolve } from 'node:path';
+import { basename, extname, resolve } from 'node:path';
 
 const projectRoot = resolve(import.meta.dirname, '..');
 const pagesRoot = resolve(projectRoot, 'docs');
@@ -69,6 +69,10 @@ if (cname !== 'intellumia.com') {
 }
 
 const files = await collectFiles(pagesRoot);
+if (files.some((file) => / \d+(?:\.[^./]+)?$/.test(basename(file)))) {
+  throw new Error('Sync-conflict copy found in the release artifact.');
+}
+
 if (files.some((file) => file.includes('/_next/') && !file.includes('/_next/static/css/'))) {
   throw new Error('Unused framework runtime found in the release artifact.');
 }
