@@ -58,7 +58,7 @@
   --font-operating: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
   --font-vision: 'Instrument Serif', Georgia, serif;
   --font-intelligence: 'Recursive', ui-monospace, 'SFMono-Regular', monospace;
-  --content-max: 1680px;
+  --content-max: 1600px;
   --page-gutter: max(clamp(20px, 4vw, 64px), calc((100vw - var(--content-max)) / 2));
   --section-block: clamp(88px, 9vw, 132px);
   --section-gap: clamp(56px, 5vw, 72px);
