@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://intellumia.com/</loc>
+<lastmod>2026-08-24T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://intellumia.com/point-of-view</loc>
+<lastmod>2026-08-24T00:00:00.000Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://intellumia.com/connect</loc>
+<lastmod>2026-08-24T00:00:00.000Z</lastmod>
+<changefreq>yearly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://intellumia.com/privacy</loc>
+<lastmod>2026-08-23T00:00:00.000Z</lastmod>
+<changefreq>yearly</changefreq>
+<priority>0.2</priority>
+</url>
+</urlset>
