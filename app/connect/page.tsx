@@ -21,6 +21,11 @@ export default function ConnectPage() {
           <h1 id="connect-title">Start with the outcome that matters.</h1>
 
           <div className="connect-intro">
+            <p>
+              Sundeep Kumar reads every message himself. Twenty-five years converting
+              inflection points (new markets, acquisitions, digital transitions) into
+              working operating structures at IBM, Red Hat and Apptio.
+            </p>
             <p>Tell us what needs to change and what is currently in the way.</p>
             <p>
               Use whichever email service works for you. Copy the address below, or

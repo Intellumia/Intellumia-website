@@ -15,6 +15,9 @@ export default function SiteFooter() {
           </Link>
           <Link href="/point-of-view">Point of view</Link>
           <Link href="/privacy">Privacy</Link>
+          <a href="https://www.linkedin.com/in/kumarsundeep" target="_blank" rel="noopener noreferrer">
+            LinkedIn
+          </a>
         </nav>
       </div>
       <p className="footer-legal">

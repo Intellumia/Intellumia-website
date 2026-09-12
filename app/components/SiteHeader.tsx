@@ -19,6 +19,17 @@ export default function SiteHeader() {
           <Link href="/#how-we-help">How we help</Link>
           <Link href="/point-of-view">Our point of view</Link>
         </nav>
+        <details className="mobile-nav">
+          <summary className="mobile-nav-toggle" aria-label="Menu">
+            <span className="mobile-nav-bar" aria-hidden="true" />
+            <span className="mobile-nav-bar" aria-hidden="true" />
+            <span className="mobile-nav-bar" aria-hidden="true" />
+          </summary>
+          <nav className="mobile-nav-panel" aria-label="Primary navigation">
+            <Link href="/#how-we-help">How we help</Link>
+            <Link href="/point-of-view">Our point of view</Link>
+          </nav>
+        </details>
         <Link
           className="header-action"
           href="/connect"
