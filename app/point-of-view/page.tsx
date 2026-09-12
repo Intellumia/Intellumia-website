@@ -244,8 +244,8 @@ export default function PointOfViewPage() {
         <section className="conversation-section" aria-labelledby="conversation-title">
           <span className="system-label">Bring the future back to the present</span>
           <h2 id="conversation-title">
-            <span>What must your company become?</span>
-            <span>What should change first?</span>
+            <span>What do you know?</span>
+            <span>What would prove it?</span>
           </h2>
           <Link
             href="/connect"

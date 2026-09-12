@@ -183,8 +183,8 @@ export default function LabPage() {
         <section className="conversation-section" aria-labelledby="conversation-title">
           <span className="system-label">Bring the future back to the present</span>
           <h2 id="conversation-title">
-            <span>What must your company become?</span>
-            <span>What should change first?</span>
+            <span>What&rsquo;s worth trying?</span>
+            <span>What convinces you?</span>
           </h2>
           <Link
             href="/connect"
