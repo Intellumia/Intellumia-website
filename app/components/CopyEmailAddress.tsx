@@ -1,4 +1,4 @@
-const emailAddress = 'connect@intellumia.com';
+const emailAddress = 'sundeep@intellumia.com';
 
 export default function CopyEmailAddress() {
   return (

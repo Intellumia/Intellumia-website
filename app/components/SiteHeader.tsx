@@ -18,6 +18,7 @@ export default function SiteHeader() {
         <nav className="site-nav" aria-label="Primary navigation">
           <Link href="/#how-we-help">How we help</Link>
           <Link href="/point-of-view">Our point of view</Link>
+          <Link href="/lab">The Lab</Link>
         </nav>
         <details className="mobile-nav">
           <summary className="mobile-nav-toggle" aria-label="Menu">
@@ -28,6 +29,7 @@ export default function SiteHeader() {
           <nav className="mobile-nav-panel" aria-label="Primary navigation">
             <Link href="/#how-we-help">How we help</Link>
             <Link href="/point-of-view">Our point of view</Link>
+            <Link href="/lab">The Lab</Link>
           </nav>
         </details>
         <Link

@@ -37,7 +37,7 @@ export default function ConnectPage() {
 
           <a
             className="connect-mail-link"
-            href="mailto:connect@intellumia.com"
+            href="mailto:sundeep@intellumia.com"
             data-analytics-event="conversation_email_client_open"
             data-analytics-location="connect_page"
           >

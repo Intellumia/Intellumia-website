@@ -17,6 +17,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: 'https://intellumia.com/lab',
+      lastModified: new Date('2026-09-12'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
       url: 'https://intellumia.com/connect',
       lastModified: new Date('2026-08-24'),
       changeFrequency: 'yearly',

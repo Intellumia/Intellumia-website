@@ -53,7 +53,7 @@ No environment variables, API keys or secrets are required. The site has no cont
 
 - The approved Instrument Sans, Instrument Serif and Recursive sources are self-hosted from `public/fonts/`; lossless WOFF2 web subsets derived from those sources are used at runtime, with the supplied SIL Open Font License notices retained under `public/fonts/licenses/`.
 - Authoritative logo files are copied without alteration from the workspace `Logo/` directory.
-- The primary conversation action opens the local `/connect` route so it does not depend on a configured mail client. Visitors can copy `connect@intellumia.com` into any email service; a clearly labelled `mailto:` option remains secondary.
+- The primary conversation action opens the local `/connect` route so it does not depend on a configured mail client. Visitors can copy `sundeep@intellumia.com` into any email service; a clearly labelled `mailto:` option remains secondary.
 - No contact form, message content or personal data is collected by the website.
 - No analytics code is active. CTA links include a future-facing event name only; nothing is transmitted.
 - No Open Graph image is included. Brand Studio must supply the production social-preview image.
@@ -63,6 +63,6 @@ No environment variables, API keys or secrets are required. The site has no cont
 
 ## Production safety
 
-The existing holding page is preserved under `baseline/production_2026-08-23/` and in production repository commit `5800aad`. The live site remains unchanged. See `DEPLOYMENT_AND_ROLLBACK.md` before any staging or production action.
+The original holding page is preserved under `baseline/production_2026-08-23/` and in production repository commit `5800aad`. Phase 1 is live from GitHub Pages `main` / `docs` at commit `39d0dffa71114e4e10570f90dc01ebec95211870`; the immediate rollback is `3a441f9e12e68e932906698ba98a765f5bc9302c`. See `DEPLOYMENT_AND_ROLLBACK.md` before any production action.
 
 The completed local verification record and raw Lighthouse audits are under `qa/`.
