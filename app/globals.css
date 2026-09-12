@@ -1137,6 +1137,16 @@ a {
   border-right: 0;
 }
 
+.intelligence-capabilities p.lab-status {
+  color: var(--black);
+  font-weight: 560;
+}
+
+.intelligence-capabilities .text-link {
+  margin-top: 8px;
+  font-size: 15px;
+}
+
 .definition-close {
   grid-column: 7 / span 6;
   margin: var(--section-gap) 0 0;

@@ -70,7 +70,7 @@ export default function PrivacyPage() {
         <h2>Contact</h2>
         <p>
           Data Protection Officer, Intellumia Pte. Ltd.<br />
-          <Link href="/connect">connect@intellumia.com</Link>
+          <Link href="/connect">sundeep@intellumia.com</Link>
         </p>
       </section>
 
