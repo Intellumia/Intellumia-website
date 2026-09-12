@@ -157,8 +157,9 @@ export default function Home() {
         <section className="conversation-section" aria-labelledby="conversation-title">
           <span className="system-label">Begin with the consequential question</span>
           <h2 id="conversation-title">
-            <span>What outcome matters now,</span>
-            <span>and what must change to reach it?</span>
+            <span>What outcome matters</span>
+            <span>now, and what must</span>
+            <span>change to reach it?</span>
           </h2>
           <p className="conversation-payoff">
             Every company will become an intelligent organisation. The only question
