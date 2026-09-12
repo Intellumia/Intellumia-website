@@ -44,6 +44,17 @@ export default function ConnectPage() {
             Open your email app <span aria-hidden="true">↗</span>
           </a>
 
+          <a
+            className="connect-mail-link"
+            href="https://cal.com/meetsk/30"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics-event="conversation_schedule_open"
+            data-analytics-location="connect_page"
+          >
+            Schedule a call <span aria-hidden="true">↗</span>
+          </a>
+
           <p className="connect-privacy-note">
             Please do not include confidential or sensitive information in an initial
             message.
