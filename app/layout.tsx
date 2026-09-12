@@ -31,12 +31,21 @@ export const metadata: Metadata = {
     title: 'Every company will become an intelligent organisation.',
     description:
       'Intellumia begins with one consequential decision or workflow and a measurable business outcome.',
+    images: [
+      {
+        url: '/social/og-default.png',
+        width: 1200,
+        height: 630,
+        alt: 'Intellumia: every company will become an intelligent organisation.',
+      },
+    ],
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Every company will become an intelligent organisation.',
     description:
       'Intellumia begins with one consequential decision or workflow and a measurable business outcome.',
+    images: ['/social/og-default.png'],
   },
 };
 

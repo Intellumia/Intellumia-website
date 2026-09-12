@@ -20,8 +20,8 @@ export default function Home() {
 
             <div className="hero-statement">
               <h1 id="hero-title">
-                Every company will become an{' '}
-                <em>intelligent organisation.</em>
+                Where is your next material{' '}
+                <em>decision stuck?</em>
               </h1>
             </div>
 
@@ -160,6 +160,10 @@ export default function Home() {
             <span>What outcome matters now?</span>
             <span>What must change to reach it?</span>
           </h2>
+          <p className="conversation-payoff">
+            Every company will become an intelligent organisation. The only question
+            is which decision gets you there first.
+          </p>
           <Link
             href="/connect"
             className="conversation-link"
