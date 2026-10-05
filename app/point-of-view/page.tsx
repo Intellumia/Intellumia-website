@@ -44,18 +44,20 @@ export default function PointOfViewPage() {
               <span>Core thesis v0.4, 5 October 2026</span>
             </div>
             <h1 id="pov-title">
-              Intelligence is free. <em>Judgement is the moat.</em>
+              Your judgement is unprotected. <em>Own the layer it lives on.</em>
             </h1>
             <div className="pov-hero-copy">
               <p>
-                Every company will become an intelligent organisation, running on the
-                same models as its competitors. What sets it apart is the judgement it
-                brings to them, and that judgement is unprotected: it sits in a few
-                heads, leaves when they do, and leaks into someone else&apos;s model.
+                Intelligence is free. Judgement is the moat. Every company will become
+                an intelligent organisation, running on the same models as its
+                competitors. What sets it apart is the judgement it brings to them, and
+                that judgement sits in a few heads, leaves when they do, and leaks into
+                someone else&apos;s model.
               </p>
               <p>
-                The protection is ownership of the layer your judgement lives on. We
-                help a company build that layer and operate it. The company owns it.
+                Private inference protects your data. Nothing protects your judgement.
+                The protection is ownership of the layer it lives on. We help a company
+                build that layer and operate it. The company owns it.
               </p>
             </div>
           </div>

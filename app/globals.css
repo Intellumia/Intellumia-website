@@ -3377,3 +3377,26 @@ a {
     margin-left: 0;
   }
 }
+
+/* Point of view hero: a quieter register than the home hero */
+.pov-page .pov-hero {
+  min-height: 0;
+}
+
+.pov-page .pov-hero::after {
+  display: none;
+}
+
+.pov-page .pov-hero-grid {
+  min-height: 0;
+  grid-template-rows: auto auto auto;
+  gap: 40px;
+  padding-bottom: clamp(64px, 8vw, 104px);
+}
+
+.pov-page .pov-hero h1 {
+  grid-column: 1 / span 10;
+  padding: clamp(16px, 4vh, 40px) 0 0;
+  font-size: clamp(44px, 6.2vw, 104px);
+  line-height: 0.95;
+}
