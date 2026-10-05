@@ -2946,3 +2946,15 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+/* keep italic phrases whole and balance wrapped headings */
+.map-heading h2,
+.essay-pull,
+.lab-intro h2 {
+  text-wrap: balance;
+}
+
+.map-heading h2 em,
+.essay-pull em {
+  display: inline-block;
+}
