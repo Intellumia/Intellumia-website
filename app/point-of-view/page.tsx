@@ -6,22 +6,22 @@ import SiteHeader from '../components/SiteHeader';
 export const metadata: Metadata = {
   title: 'Our point of view | Intellumia',
   description:
-    'Intellumia’s thesis on intelligent organisations, organisational intelligence and bounded Intelligence Twins.',
+    'Intellumia’s thesis: intelligence is free, judgement is the moat, and the layer a company’s judgement lives on should be its own.',
   alternates: {
     canonical: '/point-of-view',
   },
   openGraph: {
     type: 'article',
     url: 'https://intellumia.com/point-of-view',
-    title: 'Every company will become an intelligent organisation.',
+    title: 'Intelligence is free. Judgement is the moat.',
     description:
-      'Intellumia’s point of view on organisational intelligence and the future of the intelligent organisation.',
+      'Intellumia’s thesis on the intelligent organisation and the layer a company’s judgement lives on.',
   },
   twitter: {
     card: 'summary',
-    title: 'Every company will become an intelligent organisation.',
+    title: 'Intelligence is free. Judgement is the moat.',
     description:
-      'Intellumia’s point of view on organisational intelligence and the future of the intelligent organisation.',
+      'Intellumia’s thesis on the intelligent organisation and the layer a company’s judgement lives on.',
   },
 };
 
@@ -39,49 +39,48 @@ export default function PointOfViewPage() {
           <div className="pov-hero-grid">
             <div className="hero-label system-label">
               <span>Intellumia / Point of view</span>
-              <span>Day 0 company thesis</span>
+              <span>Thesis v0.2, October 2026</span>
             </div>
             <h1 id="pov-title">
-              Every company will become an <em>intelligent organisation.</em>
+              Intelligence is free. <em>Judgement is the moat.</em>
             </h1>
             <div className="pov-hero-copy">
               <p>
-                The world is moving from systems that record and distribute
-                information to systems that can interpret context, support judgment,
-                take bounded action and learn from outcomes.
+                Every company will become an intelligent organisation. That is the
+                premise, not the argument. Frontier models now supply, at near-zero
+                cost, most of what a company once paid its people and advisers to
+                know. What they cannot supply is the judgement that makes one company
+                different from the next: which customer to keep, which risk to carry,
+                when to stop, who to trust.
               </p>
               <p>
-                Model access will become less differentiating. What will matter is
-                the intelligence distinctive to each organisation and the operating
-                system that turns it into better outcomes.
+                That judgement either leaks into someone else&apos;s model or lives on a
+                layer the company owns. Own the layer your judgement lives on, or
+                someone else will.
               </p>
             </div>
           </div>
           <aside className="pov-status" aria-label="Evidence status">
             <span className="system-label">Evidence posture</span>
             <p>Bold in direction. Exact in evidence.</p>
-            <span>This is a thesis, not a claim of validated demand or product.</span>
+            <span>Thesis, being tested with clients. Reviewed April 2027.</span>
           </aside>
         </section>
 
         <section className="pov-transition" aria-labelledby="transition-title">
-          <div className="section-number system-label">01 / The transition</div>
+          <div className="section-number system-label">01 / The turn</div>
           <div>
-            <h2 id="transition-title">
-              AI changes what an organisation can remember, decide and learn.
-            </h2>
+            <h2 id="transition-title">Same models, same company.</h2>
             <div className="pov-two-column">
               <p>
-                Every organisation already contains substantial intelligence:
-                leadership judgment, employee experience, customer understanding,
-                relationships, the context behind past decisions and lessons from
-                successes, failures and exceptions.
+                Two companies running the same models, on the same vendor playbooks,
+                with the same prompts, converge on the same decisions. Undifferentiated
+                intelligence has become a cost of doing business, like electricity. It
+                keeps you in the game and wins you nothing.
               </p>
               <p>
-                Much of that intelligence remains fragmented across people,
-                conversations and systems. AI creates a new possibility, but the
-                destination is not AI itself. It is an organisation that becomes
-                better at thinking and acting over time.
+                What wins is judgement the competitor does not have and cannot buy,
+                and judgement only stays yours if it stays inside a layer you own.
               </p>
             </div>
           </div>
@@ -89,52 +88,57 @@ export default function PointOfViewPage() {
 
         <section className="risk-section pov-risk" aria-labelledby="risk-title">
           <div className="risk-intro">
-            <span className="section-number system-label">02 / Intelligence continuity</span>
+            <span className="section-number system-label">02 / Trust</span>
           </div>
           <h2 id="risk-title">
-            <span>What makes a company </span>
-            <span>distinctive can be difficult </span>
-            <span>to see and easy to lose.</span>
+            <span>Private inference protects </span>
+            <span>your data. Nothing protects </span>
+            <span>your judgement.</span>
           </h2>
           <div className="risk-grid">
             <article>
               <span className="risk-index">01</span>
-              <h3>Trapped in individuals</h3>
+              <h3>A clause is not control</h3>
               <p>
-                Important judgment, relationships and the reasons behind exceptions
-                often remain concentrated in founders, leaders and experienced operators.
+                The model makers sell private tiers: zero retention, private
+                inference, nothing of yours trains their models. In the software era
+                terms and conditions would have settled it. This is not the software era.
               </p>
             </article>
             <article>
               <span className="risk-index">02</span>
-              <h3>Fragmented across systems</h3>
+              <h3>The makers say so themselves</h3>
               <p>
-                Transactions may be recorded while the context behind a decision is
-                separated from the action, owner and outcome.
+                In their own safety reports they say they do not fully understand or
+                control their models, and they have published cases of models
+                deceiving evaluators and working around their limits.
               </p>
             </article>
             <article>
               <span className="risk-index">03</span>
-              <h3>Lost through change</h3>
+              <h3>Judgement is still nowhere</h3>
               <p>
-                Growth, succession, professionalisation and technology change expose
-                what the organisation has not learned to preserve or transfer.
+                It stays in a few heads, leaves when they do, and converges on the
+                vendor&apos;s playbook every time your people type a decision into
+                someone else&apos;s model.
               </p>
             </article>
           </div>
           <p className="risk-close">
-            The problem is not information scarcity. It is intelligence continuity.
+            Own the layer. Rent the model. Trust nothing you cannot see.
           </p>
         </section>
 
         <section className="intelligence-definition" aria-labelledby="intelligence-title">
-          <div className="section-number system-label">03 / Organisational intelligence</div>
+          <div className="section-number system-label">03 / The layer</div>
           <div className="definition-heading">
-            <h2 id="intelligence-title">Intelligence only matters when it changes outcomes.</h2>
+            <h2 id="intelligence-title">Organisations forget. Models don&apos;t.</h2>
             <p>
-              Organisational intelligence is the permissioned combination of
-              evidence, memory, relationships, judgment and learning that helps an
-              organisation decide and act.
+              The layer is a company&apos;s own system of evidence, memory, permissions
+              and decisions. Sovereign means owned and controlled by the company, on
+              any model it chooses, never data residency. It turns every decision into
+              memory the next one can use, and compounds inside the company&apos;s own
+              boundary. That compounding is what an intelligent organisation is.
             </p>
           </div>
           <div className="intelligence-capabilities">
@@ -160,37 +164,43 @@ export default function PointOfViewPage() {
             </article>
           </div>
           <p className="definition-close">
-            This is an operating capability, not a software feature. It requires
-            leadership intent, work design, governance, memory, data, technology and
-            behavioural change to function as one system.
+            Every decision records its evidence, outcome and owner, and the owner
+            approves what changes, so the layer stays current instead of decaying.
+            Ownership today is what lets capability feed from it tomorrow, on
+            whichever model earns the trust.
           </p>
         </section>
 
         <section className="twin-section" aria-labelledby="twin-title">
           <div className="twin-heading">
-            <span className="section-number system-label">04 / A bounded thesis</span>
-            <h2 id="twin-title">An Intelligence Twin has a defined purpose and boundary.</h2>
+            <span className="section-number system-label">04 / How it happens</span>
+            <h2 id="twin-title">Start at the decision, not the task.</h2>
           </div>
           <div className="twin-definition">
             <p>
-              An Intelligence Twin is built for a defined purpose, governed by
-              permissions and informed by relevant context. It is connected to a
-              person, role, team, workflow or decision domain.
+              AI does not change a company when it automates a task; that produces a
+              faster version of the same company. It changes a company when it changes
+              a decision: who makes it, what evidence sits in front of them, what the
+              organisation remembers afterwards. Decisions are where judgement is
+              exercised, so decisions are where the layer is built.
             </p>
           </div>
           <div className="twin-boundaries">
             <article>
-              <span className="system-label">What it may do</span>
+              <span className="system-label">The embed</span>
               <p>
-                Recover relevant context, support questions and decisions, preserve
-                learning and enable bounded action within declared permissions.
+                A fixed window inside one company, on one decision, with a number
+                agreed before we start. Establish the baseline, change the work,
+                measure the outcome. The layer grows decision by decision, never as a
+                platform rollout.
               </p>
             </article>
             <article>
               <span className="system-label">What it is not</span>
               <p>
-                A digital clone, autonomous replacement, complete replica of a human
-                being or currently validated Intellumia software product.
+                A pilot, a consulting engagement or a retainer. We are not the answer
+                to every problem and we are not experts in every problem. We will
+                never tell you that only Intellumia can solve it.
               </p>
             </article>
           </div>
@@ -199,12 +209,13 @@ export default function PointOfViewPage() {
         <section className="evidence-sequence" aria-labelledby="sequence-title">
           <div className="section-number system-label">05 / How we intend to earn it</div>
           <div className="sequence-heading">
-            <h2 id="sequence-title">The first business is not the final company.</h2>
+            <h2 id="sequence-title">Your judgement is your moat. Ours is the method.</h2>
             <p>
-              Intellumia begins through consulting and operating partner work for the
-              AI era, focused on problems owned by executives. That work is the evidence engine for
-              discovering what should become repeatable, reusable or eventually
-              software-shaped.
+              Intellumia is a software company that starts inside its clients, not
+              with a demo. The judgement is always the client&apos;s. Ours is the method
+              that gets a company there, and the platform that method becomes, so the
+              next company gets there faster. Each embed is the evidence engine for
+              what becomes repeatable.
             </p>
           </div>
           <ol className="company-sequence" aria-label="Intellumia company sequence">
@@ -230,7 +241,7 @@ export default function PointOfViewPage() {
 
         <section className="principles-section" aria-labelledby="principles-title">
           <div className="section-number system-label">06 / How we intend to operate</div>
-          <h2 id="principles-title">Direction should be bold. Evidence should be exact.</h2>
+          <h2 id="principles-title">Bold in direction. Exact in evidence.</h2>
           <div className="principles-grid">
             <p>Truth before theatre.</p>
             <p>Business consequence before technology.</p>

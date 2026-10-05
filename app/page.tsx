@@ -15,34 +15,33 @@ export default function Home() {
         <section className="hero client-hero" id="top" aria-labelledby="hero-title">
           <div className="hero-grid">
             <div className="hero-label system-label">
-              Business consequence before technology
+              A software company for the intelligence era
             </div>
 
             <div className="hero-statement">
               <h1 id="hero-title">
-                Where is your next material{' '}
-                <em>decision stuck?</em>
+                Intelligence is free.{' '}
+                <em>Judgement is the moat.</em>
               </h1>
             </div>
 
             <div className="hero-consequence client-consequence">
               <p>
-                AI is creating more possibilities than most organisations can
-                convert into business value. Leaders still have to decide where
-                to act, what to stop, who owns the outcome and what must change
-                in the work.
+                Own the layer your judgement lives on, or someone else will. Every
+                company will become an intelligent organisation; we build the layer
+                that makes yours its own.
               </p>
               <p>
-                Intellumia helps accountable leaders turn business and technology
-                inflection points into decisions, operating systems and measurable
-                outcomes.
+                Intellumia is a software company for the intelligence era. We embed
+                with leadership teams to find where their judgement lives, test
+                whether it can be codified, and build the layer they will run it on.
               </p>
             </div>
           </div>
 
           <aside className="home-rail" aria-label="Intellumia starting point">
             <span className="system-label">Start here</span>
-            <p>Begin with one material consequence.</p>
+            <p>Where is your next material decision stuck?</p>
             <Link
               href="/point-of-view"
               data-analytics-event="point_of_view_click"
@@ -54,40 +53,40 @@ export default function Home() {
         </section>
 
         <section className="value-section" aria-labelledby="value-title">
-          <div className="section-number system-label">01 / When value is stuck</div>
+          <div className="section-number system-label">01 / The problem</div>
           <div className="value-heading">
-            <h2 id="value-title">Possibility is not the same as an operating outcome.</h2>
+            <h2 id="value-title">Private inference protects your data. Nothing protects your judgement.</h2>
             <p>
-              AI initiatives and material transformations often stall between
-              intention and production value. The unresolved questions are usually
-              about priority, economics, ownership, workflow, governance and the
-              path from a decision to action.
+              The model makers now sell private tiers, and say in their own safety
+              reports that they do not fully understand or control their models. A
+              clause is not control. Your real intelligence is not in your systems;
+              it is in how you decide, and three things happen to it.
             </p>
           </div>
 
-          <div className="trigger-grid" aria-label="Situations where Intellumia may help">
+          <div className="trigger-grid" aria-label="What happens to a company's judgement">
             <article>
               <span className="trigger-index">01</span>
-              <h3>From pilot to production</h3>
+              <h3>It stays in a few heads</h3>
               <p>
-                AI or data investment needs a business priority, an economic
-                baseline and a credible production path.
+                Which customer to keep, which risk to carry, when to stop: the calls
+                that make you different sit with a handful of people.
               </p>
             </article>
             <article>
               <span className="trigger-index">02</span>
-              <h3>Across functional boundaries</h3>
+              <h3>It leaves when they do</h3>
               <p>
-                A material transformation has a sponsor but lacks the operating
-                ownership needed to move decisions and dependencies.
+                Succession, growth and attrition take the reasoning with them. The
+                next decision starts from nothing.
               </p>
             </article>
             <article>
               <span className="trigger-index">03</span>
-              <h3>At an inflection point</h3>
+              <h3>It converges on the vendor&apos;s playbook</h3>
               <p>
-                Growth, integration or business-model change requires sharper
-                choices, accountable execution and evidence of what follows.
+                Same models, same company. Undifferentiated intelligence is a cost.
+                Differentiated judgement is the moat.
               </p>
             </article>
           </div>
@@ -100,13 +99,14 @@ export default function Home() {
         >
           <div className="begin-heading">
             <span className="section-number system-label">02 / How we help</span>
-            <h2 id="begin-title">One consequence. One decision or workflow.</h2>
+            <h2 id="begin-title">Start at the decision, not the task.</h2>
           </div>
           <div className="begin-intro begin-intro-simple">
             <p className="begin-lead">
-              Intellumia begins with one business outcome, not a technology
-              catalogue. A bounded consulting engagement can continue as
-              operating-partner support when the outcome requires it.
+              AI changes a company when it changes who decides, with what evidence.
+              The first engagement is an embed: a fixed window inside your company,
+              on one decision, with a number agreed before we start. Where you are
+              today is where the work starts.
             </p>
           </div>
 
@@ -130,18 +130,20 @@ export default function Home() {
         </section>
 
         <section className="direction-teaser" aria-labelledby="direction-title">
-          <div className="section-number system-label">03 / The longer direction</div>
+          <div className="section-number system-label">03 / The promise</div>
           <div>
-            <h2 id="direction-title">Better decisions should compound.</h2>
+            <h2 id="direction-title">Every company operating from its own intelligence.</h2>
             <p>
-              Organisational intelligence is the permissioned combination of
-              evidence, memory, relationships, judgment and learning that helps a
-              company decide and act.
+              The layer is a company&apos;s own system of evidence, memory, permissions
+              and decisions: owned and controlled by the company, on any model it
+              chooses. Organisations forget. Models don&apos;t. The layer turns every
+              decision into memory the next one can use.
             </p>
             <p>
-              Intellumia&apos;s longer direction is to help that intelligence endure
-              and improve with use. The Intelligence Twin is one bounded thesis
-              within that direction, not a validated product.
+              We are not the answer to every problem, and we are not experts in every
+              problem. We will never tell you that only Intellumia can solve it. What
+              we build with you belongs to you. The platform we are building from that
+              work is a thesis, being tested with clients, and we say so plainly.
             </p>
             <Link
               className="text-link"
@@ -161,8 +163,7 @@ export default function Home() {
             <span>What changes first?</span>
           </h2>
           <p className="conversation-payoff">
-            Every company will become an intelligent organisation. The only question
-            is which decision gets you there first.
+            Own the layer. Rent the model. Trust nothing you cannot see.
           </p>
           <Link
             href="/connect"

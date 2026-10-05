@@ -4,7 +4,7 @@ export default function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="footer-primary">
-        <p>Intellumia Pte. Ltd. · Singapore</p>
+        <p>Intellumia · Intelligence, Illuminated. · sundeep@intellumia.com · +91 88558 84042</p>
         <nav aria-label="Company, legal and contact links">
           <Link
             href="/connect"

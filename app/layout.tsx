@@ -9,9 +9,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://intellumia.com'),
-  title: 'Intellumia | Building intelligent organisations',
+  title: 'Intellumia | Intelligence is free. Judgement is the moat.',
   description:
-    'Intellumia helps leaders turn consequential business and technology decisions into operating outcomes and enduring organisational intelligence.',
+    'Intellumia is a software company for the intelligence era. We embed with leadership teams to find where their judgement lives and build the layer they run it on.',
   alternates: {
     canonical: '/',
   },
@@ -28,23 +28,23 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://intellumia.com/',
     siteName: 'Intellumia',
-    title: 'Every company will become an intelligent organisation.',
+    title: 'Intelligence is free. Judgement is the moat.',
     description:
-      'Intellumia begins with one consequential decision or workflow and a measurable business outcome.',
+      'Own the layer your judgement lives on, or someone else will. Intellumia embeds with leadership teams, one decision at a time.',
     images: [
       {
         url: '/social/og-default.png',
         width: 1200,
         height: 630,
-        alt: 'Intellumia: every company will become an intelligent organisation.',
+        alt: 'Intellumia: Intelligence is free. Judgement is the moat.',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Every company will become an intelligent organisation.',
+    title: 'Intelligence is free. Judgement is the moat.',
     description:
-      'Intellumia begins with one consequential decision or workflow and a measurable business outcome.',
+      'Own the layer your judgement lives on, or someone else will. Intellumia embeds with leadership teams, one decision at a time.',
     images: ['/social/og-default.png'],
   },
 };
@@ -72,13 +72,6 @@ export default function RootLayout({
         <link
           rel="preload"
           href="/fonts/InstrumentSerif-Italic-Latin.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-        <link
-          rel="preload"
-          href="/fonts/Recursive-Mono-Latin.woff2"
           as="font"
           type="font/woff2"
           crossOrigin="anonymous"
