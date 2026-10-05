@@ -22,9 +22,10 @@ export default function ConnectPage() {
 
           <div className="connect-intro">
             <p>
-              Sundeep Kumar reads every message himself. Twenty-five years converting
-              inflection points (new markets, acquisitions, digital transitions) into
-              working operating structures at IBM, Red Hat and Apptio.
+              Sundeep Kumar, Founder &amp; CEO, reads every message himself. Twenty-five
+              years inside enterprise technology at Microsoft and IBM, working with
+              large enterprises across Asia-Pacific. Now on the client&apos;s side of the
+              table.
             </p>
             <p>Tell us what needs to change and what is currently in the way.</p>
             <p>
