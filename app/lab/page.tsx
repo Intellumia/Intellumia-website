@@ -6,7 +6,7 @@ import SiteHeader from '../components/SiteHeader';
 export const metadata: Metadata = {
   title: 'The Lab | Intellumia',
   description:
-    'Real, running prototypes behind Intellumia’s thesis that judgement is the moat, public and evidence-honest about what is proven and what is not.',
+    'The components of the intelligence layer we are building, grouped by what they do, with an honest status for each.',
   alternates: {
     canonical: '/lab',
   },
@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     url: 'https://intellumia.com/lab',
     title: 'The Lab | Intellumia',
     description:
-      'Real, running prototypes behind Intellumia’s thesis that judgement is the moat, public and evidence-honest about what is proven and what is not.',
+      'The components of the intelligence layer we are building, grouped by what they do, with an honest status for each.',
   },
   twitter: {
     card: 'summary_large_image',
     images: ['/social/og-default.png'],
     title: 'The Lab | Intellumia',
     description:
-      'Real, running prototypes behind Intellumia’s thesis that judgement is the moat, public and evidence-honest about what is proven and what is not.',
+      'The components of the intelligence layer we are building, grouped by what they do, with an honest status for each.',
   },
 };
 
@@ -41,143 +41,179 @@ export default function LabPage() {
           <div className="pov-hero-grid">
             <div className="hero-label system-label">
               <span>Intellumia / The Lab</span>
-              <span>Public proof points</span>
+              <span>Pieces of the layer</span>
             </div>
             <h1 id="lab-title">
               The <em>Lab.</em>
             </h1>
             <div className="pov-hero-copy">
               <p>
-                Everything below is real, running code, not a roadmap. Some of it is
-                a working prototype. None of it is a finished product. We are naming
-                that distinction on purpose, because a lot of what gets called AI
-                capability right now is a slide, not a system.
+                The layer is not one product. It is a set of components that work
+                together: one makes the record legible, others find what the
+                organisation knows, others keep it yours, and a test bench scores
+                all of them. Here are the pieces we are building, grouped by what
+                they do.
               </p>
               <p>
-                The underlying thesis is one bet, two layers. First, an
-                organisation&rsquo;s memory is scattered across documents, email,
-                calendar, Slack and meetings, and needs to be extracted into
-                something structured before anything can reason over it. Second,
-                once that memory exists, it can be reasoned over, to surface what a
-                team already knows but has not written down, where accountability
-                actually sits, and where risk is quietly concentrated.
+                Everything below is code we have written and are testing. None of it
+                is a finished product, and we say so on purpose, because a lot of
+                what gets called AI capability right now is a slide, not a system.
               </p>
             </div>
           </div>
+          <aside className="pov-status" aria-label="Status of the Lab">
+            <span className="system-label">Status</span>
+            <p>Private, in active development. Egrysa is public.</p>
+            <span>Updated October 2026.</span>
+          </aside>
         </section>
 
-        <aside className="pov-status" aria-label="Layer 02 status">
-          <span className="system-label">Layer 02 status</span>
-          <p>The reasoning layer is under active build and is not public yet.</p>
-          <span>When it is, it will appear here.</span>
-        </aside>
-
-        <section className="intelligence-definition" aria-labelledby="lab-entries-title">
-          <div className="section-number system-label">01 / What&rsquo;s public today</div>
-          <div className="definition-heading">
-            <h2 id="lab-entries-title">Four early proof points, not four products.</h2>
+        <section className="lab-group" aria-labelledby="lab-g0-title">
+          <div className="section-number system-label">01 / Make the record legible</div>
+          <div className="lab-intro">
+            <h2 id="lab-g0-title">Before anything can be found, the record has to make sense.</h2>
             <p>
-              Each of these is real, running code you can inspect yourself, not a
-              case study written after the fact.
+              Email, chat and meetings arrive in different shapes and under different names. These two pieces turn them into one clean record of what was said, and by whom.
             </p>
           </div>
-          <div className="intelligence-capabilities">
+          <div className="lab-cards">
             <article>
-              <span>Layer 01 &middot; Memory</span>
-              <h3>Cognitive Memory Extraction Agent</h3>
+              <h3>Normalizer</h3>
               <p>
-                An agent that reads documents, email, calendar entries, Slack
-                threads and meeting transcripts, and extracts what is actually
-                happening into seven structured memory types, instead of one flat
-                summary. This is the raw material layer: before anything can reason
-                about an organisation, its scattered communication has to become
-                something structured enough to reason over.
+                Turns email, Slack and meeting-transcript exports into one clean, threaded message format.
               </p>
-              <p className="lab-status">
-                Status: working prototype. Public, MIT licensed, with a CLI and a
-                Python API.
-              </p>
-              <a
-                className="text-link"
-                href="https://github.com/Intellumia/cognitive-memory-extraction-agent"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View the repo <span aria-hidden="true">↗</span>
-              </a>
             </article>
             <article>
-              <span>Layer 01, extended</span>
-              <h3>Synthetic Org Dataset and Agent Prototypes</h3>
+              <h3>Identity resolver</h3>
               <p>
-                Memory extraction only matters if it feeds something. This repo
-                runs a full synthetic organisation, generated communications
-                across email, Slack, CRM, HR records, calendar and meeting
-                transcripts, through a three-stage pipeline: parse the raw data,
-                extract memory from it, then synthesize that memory into personas
-                and early insight.
+                Resolves email addresses, display names, chat handles and meeting roles to the people behind them.
               </p>
-              <p className="lab-status">
-                Status: early-stage R&amp;D. All data is synthetic; the
-                insight-synthesis stage is a working prototype, not a finished
-                product.
+            </article>
+          </div>
+        </section>
+
+        <section className="lab-group lab-alt" aria-labelledby="lab-g1-title">
+          <div className="section-number system-label">02 / Find what the organisation knows</div>
+          <div className="lab-intro">
+            <h2 id="lab-g1-title">Six questions an organisation cannot answer about itself today.</h2>
+            <p>
+              Each piece reads the record and answers one question, and is built to show its evidence: the exact text from the source it came from.
+            </p>
+          </div>
+          <div className="lab-cards">
+            <article>
+              <h3>Decision extractor</h3>
+              <p>
+                Finds the decisions in email threads, chat and meetings, each backed by exact quotes from the source.
               </p>
-              <a
-                className="text-link"
-                href="https://github.com/Intellumia/synthetic-org-dataset-and-agent-prototypes"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View the repo <span aria-hidden="true">↗</span>
-              </a>
             </article>
             <article>
-              <span>Control plane</span>
+              <h3>Commitment tracker</h3>
+              <p>
+                Finds commitments in email, chat and meetings: the owner, the resolved due date and a verified status.
+              </p>
+            </article>
+            <article>
+              <h3>Risk finder</h3>
+              <p>
+                Finds risks and live issues, with who raised them and what became of them.
+              </p>
+            </article>
+            <article>
+              <h3>Gap finder</h3>
+              <p>
+                Finds the questions asked in email and chat threads, and which of them nothing ever answered.
+              </p>
+            </article>
+            <article>
+              <h3>Contradiction detector</h3>
+              <p>
+                Finds statements that conflict across email, chat, meetings and documents, and tells conflicts from updates.
+              </p>
+            </article>
+            <article>
+              <h3>Expertise finder</h3>
+              <p>
+                Finds who knows what: the topics each person has shown real knowledge of, with the quotes that show it.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section className="lab-group" aria-labelledby="lab-g2-title">
+          <div className="section-number system-label">03 / Put it in front of the decision</div>
+          <div className="lab-intro">
+            <h2 id="lab-g2-title">Memory is only useful at the moment of a decision.</h2>
+            <p>
+              The last step turns what has been found into something a decision-maker can read in a minute.
+            </p>
+          </div>
+          <div className="lab-cards">
+            <article>
+              <h3>Brief writer</h3>
+              <p>
+                Turns email, chat, meetings and documents into a short brief where every item cites the source text.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section className="lab-group lab-alt" aria-labelledby="lab-g3-title">
+          <div className="section-number system-label">04 / Keep it yours</div>
+          <div className="lab-intro">
+            <h2 id="lab-g3-title">The layer is only yours if nothing leaves without your say.</h2>
+            <p>
+              These two pieces sit between your people and any model. One strips personal data and secrets before text leaves. The other enforces your policy on what may go out at all.
+            </p>
+          </div>
+          <div className="lab-cards">
+            <article>
+              <h3>Redactor</h3>
+              <p>
+                Offline, reversible redaction of personal data and secrets before text reaches an LLM.
+              </p>
+            </article>
+            <article>
               <h3>Egrysa</h3>
               <p>
-                A customer-owned checkpoint between an organisation&rsquo;s people
-                and any AI provider they use. It classifies and redacts sensitive
-                data before it leaves an organisation&rsquo;s own infrastructure,
-                applies policy on what is allowed to go out, and returns signed,
-                tamper-evident audit receipts, without storing the underlying
-                content.
+                A customer-owned checkpoint between an organisation and any AI provider: it classifies and redacts sensitive data, applies policy and returns signed, tamper-evident audit receipts, without storing the content. Public, Apache 2.0. By its own documentation a security-oriented MVP, not a certified product.
               </p>
-              <p className="lab-status">
-                Status: what its own documentation calls a security-oriented MVP,
-                not a certified product. Public, Apache 2.0.
+            </article>
+          </div>
+        </section>
+
+        <section className="lab-group lab-dark" aria-labelledby="lab-g4-title">
+          <div className="section-number system-label">05 / Prove it</div>
+          <div className="lab-intro">
+            <h2 id="lab-g4-title">A component you cannot measure is a claim.</h2>
+            <p>
+              We build the test before we trust the result. A fictional organisation with every decision, reversal, commitment and risk planted as an exact label gives us ground truth. Everything else is scored against it.
+            </p>
+          </div>
+          <div className="lab-cards">
+            <article>
+              <h3>Organisation generator</h3>
+              <p>
+                Generates a fictional organisation&apos;s email, chat and meetings over months, with every decision, reversal, commitment, risk, outcome and lesson planted as an exact label.
               </p>
-              <a
-                className="text-link"
-                href="https://github.com/Intellumia/egrysa"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View the repo <span aria-hidden="true">↗</span>
-              </a>
             </article>
             <article>
-              <span>Individual layer</span>
-              <h3>Personal Insight Extraction Library</h3>
+              <h3>Third-party baselines</h3>
               <p>
-                The same structured-extraction approach, one layer down: from an
-                organisation&rsquo;s memory to an individual&rsquo;s professional
-                one. Given a person&rsquo;s own documented history, it extracts
-                structured insight about career trajectory, skills and working
-                patterns, building a persistent professional profile instead of
-                starting every conversation from zero.
+                Runs other people&apos;s systems on the same held-out data as our components, so their benchmarks have something honest to compare against.
               </p>
-              <p className="lab-status">
-                Status: early-stage R&amp;D. Public; extraction and profile
-                detection are working, later stages are still roadmap.
+            </article>
+            <article>
+              <h3>Model sweeps</h3>
+              <p>
+                Sweeps cheaper models across the components&apos; held-out benchmarks, to find where a smaller model is good enough.
               </p>
-              <a
-                className="text-link"
-                href="https://github.com/Intellumia/personal-insight-extraction-library"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View the repo <span aria-hidden="true">↗</span>
-              </a>
+            </article>
+            <article>
+              <h3>Shared foundations</h3>
+              <p>
+                A common data contract, and shared code that includes quote verification and a spending cap on every model call.
+              </p>
             </article>
           </div>
         </section>
