@@ -80,9 +80,8 @@ export default function Home() {
           <div className="value-heading">
             <h2 id="value-title">Private inference protects your data. Nothing protects your judgement.</h2>
             <p>
-              The model makers now sell private tiers, and say in their own safety
-              reports that they do not fully understand or control their models. A
-              clause is not control. Your real intelligence is not in your systems;
+              The model makers now sell private tiers, and the people who build these
+              systems say they do not fully understand them. A clause is not control. Your real intelligence is not in your systems;
               it is in how you decide, and three things happen to it.
             </p>
           </div>

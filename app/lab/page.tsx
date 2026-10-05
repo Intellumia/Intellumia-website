@@ -6,7 +6,7 @@ import SiteHeader from '../components/SiteHeader';
 export const metadata: Metadata = {
   title: 'The Lab | Intellumia',
   description:
-    'Real, running prototypes behind Intellumia’s organisational intelligence thesis, public and evidence-honest about what is proven and what is not.',
+    'Real, running prototypes behind Intellumia’s thesis that judgement is the moat, public and evidence-honest about what is proven and what is not.',
   alternates: {
     canonical: '/lab',
   },
@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     url: 'https://intellumia.com/lab',
     title: 'The Lab | Intellumia',
     description:
-      'Real, running prototypes behind Intellumia’s organisational intelligence thesis, public and evidence-honest about what is proven and what is not.',
+      'Real, running prototypes behind Intellumia’s thesis that judgement is the moat, public and evidence-honest about what is proven and what is not.',
   },
   twitter: {
     card: 'summary_large_image',
     images: ['/social/og-default.png'],
     title: 'The Lab | Intellumia',
     description:
-      'Real, running prototypes behind Intellumia’s organisational intelligence thesis, public and evidence-honest about what is proven and what is not.',
+      'Real, running prototypes behind Intellumia’s thesis that judgement is the moat, public and evidence-honest about what is proven and what is not.',
   },
 };
 
