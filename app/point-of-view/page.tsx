@@ -12,13 +12,15 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'article',
+    images: [{ url: '/social/og-default.png', width: 1200, height: 630, alt: 'Intellumia: Intelligence is free. Judgement is the moat.' }],
     url: 'https://intellumia.com/point-of-view',
     title: 'Intelligence is free. Judgement is the moat.',
     description:
       'Intellumia’s thesis on the intelligent organisation and the layer a company’s judgement lives on.',
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
+    images: ['/social/og-default.png'],
     title: 'Intelligence is free. Judgement is the moat.',
     description:
       'Intellumia’s thesis on the intelligent organisation and the layer a company’s judgement lives on.',
