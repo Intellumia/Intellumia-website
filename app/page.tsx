@@ -2,6 +2,7 @@ import Link from 'next/link';
 import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
 import DecisionMap from './components/DecisionMap';
+import LayerMap from './components/LayerMap';
 
 export default function Home() {
   return (
@@ -114,9 +115,23 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="layer-section" aria-labelledby="layer-title">
+          <div className="map-heading">
+            <span className="section-number system-label">02 / The layer, drawn</span>
+            <h2 id="layer-title">
+              Where your judgement lives, <em>and what holds it.</em>
+            </h2>
+            <p className="layer-intro">
+              The layer sits between your people and any model. What goes into it
+              differs for every company, so the extractors that feed it do too.
+            </p>
+          </div>
+          <LayerMap />
+        </section>
+
         <section className="map-section" aria-labelledby="map-title">
           <div className="map-heading">
-            <span className="section-number system-label">02 / The embed, drawn</span>
+            <span className="section-number system-label">03 / The embed, drawn</span>
             <h2 id="map-title">
               Four moves, one decision, <em>a number agreed first.</em>
             </h2>
@@ -130,7 +145,7 @@ export default function Home() {
           aria-labelledby="begin-title"
         >
           <div className="begin-heading">
-            <span className="section-number system-label">03 / How we help</span>
+            <span className="section-number system-label">04 / How we help</span>
             <h2 id="begin-title">Start at the decision, not the task.</h2>
           </div>
           <div className="begin-intro begin-intro-simple">
@@ -163,7 +178,7 @@ export default function Home() {
 
         <section className="direction-teaser" aria-labelledby="direction-title">
           <div className="promise-plate" aria-hidden="true" />
-          <div className="section-number system-label">04 / The promise</div>
+          <div className="section-number system-label">05 / The promise</div>
           <div>
             <h2 id="direction-title">Every company operating from its own intelligence.</h2>
             <p>
