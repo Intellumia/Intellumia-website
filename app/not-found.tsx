@@ -1,6 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = { title: 'Page not found | Intellumia', robots: { index: false, follow: true } };
+
 export default function NotFound() {
   return (
     <main className="not-found-page">
