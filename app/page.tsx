@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
+import DecisionMap from './components/DecisionMap';
 
 export default function Home() {
   return (
@@ -23,6 +24,27 @@ export default function Home() {
                 Intelligence is free.{' '}
                 <em>Judgement is the moat.</em>
               </h1>
+              <div className="hero-actions">
+                <Link
+                  className="button-primary"
+                  href="/connect"
+                  data-analytics-event="conversation_path_open"
+                  data-analytics-location="hero_primary"
+                >
+                  Begin a conversation <span aria-hidden="true">↗</span>
+                </Link>
+                <Link
+                  className="button-secondary"
+                  href="/point-of-view"
+                  data-analytics-event="point_of_view_click"
+                  data-analytics-location="hero_secondary"
+                >
+                  Read our point of view
+                </Link>
+                <p className="hero-note system-label">
+                  A fixed window. One decision. A number agreed first.
+                </p>
+              </div>
             </div>
 
             <div className="hero-consequence client-consequence">
@@ -39,17 +61,18 @@ export default function Home() {
             </div>
           </div>
 
-          <aside className="home-rail" aria-label="Intellumia starting point">
-            <span className="system-label">Start here</span>
-            <p>Where is your next material decision stuck?</p>
+          <aside className="home-rail" aria-label="Where Intellumia is today">
+            <span className="system-label">Evidence state</span>
+            <p>Public thesis · Method documented · Embeds in conversation</p>
             <Link
               href="/point-of-view"
               data-analytics-event="point_of_view_click"
               data-analytics-location="hero_rail"
             >
-              Read our point of view <span aria-hidden="true">↗</span>
+              Read the thesis <span aria-hidden="true">↗</span>
             </Link>
           </aside>
+          <div className="arc-rule" aria-hidden="true" />
         </section>
 
         <section className="value-section" aria-labelledby="value-title">
@@ -92,13 +115,23 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="map-section" aria-labelledby="map-title">
+          <div className="map-heading">
+            <span className="section-number system-label">02 / The embed, drawn</span>
+            <h2 id="map-title">
+              Four moves, one decision, <em>a number agreed first.</em>
+            </h2>
+          </div>
+          <DecisionMap />
+        </section>
+
         <section
           className="begin-section client-begin"
           id="how-we-help"
           aria-labelledby="begin-title"
         >
           <div className="begin-heading">
-            <span className="section-number system-label">02 / How we help</span>
+            <span className="section-number system-label">03 / How we help</span>
             <h2 id="begin-title">Start at the decision, not the task.</h2>
           </div>
           <div className="begin-intro begin-intro-simple">
@@ -130,7 +163,8 @@ export default function Home() {
         </section>
 
         <section className="direction-teaser" aria-labelledby="direction-title">
-          <div className="section-number system-label">03 / The promise</div>
+          <div className="promise-plate" aria-hidden="true" />
+          <div className="section-number system-label">04 / The promise</div>
           <div>
             <h2 id="direction-title">Every company operating from its own intelligence.</h2>
             <p>
