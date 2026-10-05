@@ -135,7 +135,7 @@ const CHECKS = [
   },
 ];
 
-const MODELS = ['Hosted frontier model', 'Open model inside your network', 'Specialist model'];
+const MODELS = ['Hosted frontier', 'Open, in your network', 'Specialist'];
 
 export default function LayerMap() {
   return (
@@ -167,33 +167,32 @@ export default function LayerMap() {
       ))}
 
       <div className="layer-stack">
-        <div className="layer-side layer-side-left" aria-hidden="true">
-          <span className="system-label">Built and operated with you by Intellumia</span>
+        <div className="layer-col layer-sources">
+          <span className="system-label">Extractors, by source</span>
+          <ul>
+            {SOURCES.map((s) => (
+              <li
+                key={s.id}
+                className={`layer-source layer-source-${s.state}`}
+                data-in={INDUSTRIES.filter((i) => i.lit.includes(s.id))
+                  .map((i) => i.id)
+                  .join(' ')}
+              >
+                <strong>{s.label}</strong>
+                <span>{s.note}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="layer-legend">
+            <i className="swatch swatch-lab" /> Running in the Lab
+            <i className="swatch swatch-client" /> Built for you when you need it
+          </p>
         </div>
 
-        <div className="layer-bands">
-          <div className="layer-band layer-use">
-            <span className="system-label">What it feeds</span>
-            <ul className="layer-uses">
-              {USES.map((u) => (
-                <li key={u.title}>
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    {u.icon}
-                  </svg>
-                  <strong>{u.title}</strong>
-                  <span>{u.text}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="layer-loop">
-              <span aria-hidden="true">↺</span> Every outcome is recorded back into the layer, and the
-              next decision starts from it.
-            </p>
-          </div>
+        <div className="layer-link" aria-hidden="true" />
 
-          <div className="layer-arrow" aria-hidden="true" />
-
-          <div className="layer-band layer-core">
+        <div className="layer-col layer-col-mid">
+          <div className="layer-core">
             <span className="system-label">Your intelligence layer, owned by you</span>
             <ul className="layer-slabs">
               {LAYER.map((l) => (
@@ -228,39 +227,36 @@ export default function LayerMap() {
                   </li>
                 ))}
               </ul>
-              <p>Change a model without rebuilding the layer. The memory stays with you.</p>
             </div>
           </div>
-
-          <div className="layer-arrow layer-arrow-up" aria-hidden="true" />
-
-          <div className="layer-band layer-sources">
-            <span className="system-label">Extractors, by source</span>
-            <ul>
-              {SOURCES.map((s) => (
-                <li
-                  key={s.id}
-                  className={`layer-source layer-source-${s.state}`}
-                  data-in={INDUSTRIES.filter((i) => i.lit.includes(s.id))
-                    .map((i) => i.id)
-                    .join(' ')}
-                >
-                  <strong>{s.label}</strong>
-                  <span>{s.note}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="layer-legend">
-              <i className="swatch swatch-lab" /> Running in the Lab
-              <i className="swatch swatch-client" /> Built for you when you need it
-            </p>
-          </div>
         </div>
 
-        <div className="layer-side layer-side-right" aria-hidden="true">
-          <span className="system-label">You own the layer</span>
+        <div className="layer-link" aria-hidden="true" />
+
+        <div className="layer-col layer-use">
+          <span className="system-label">What it feeds</span>
+          <ul className="layer-uses">
+            {USES.map((u) => (
+              <li key={u.title}>
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  {u.icon}
+                </svg>
+                <strong>{u.title}</strong>
+                <span>{u.text}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="layer-loop">
+            <span aria-hidden="true">↺</span> Every outcome is recorded back into the layer, and the
+            next decision starts from it.
+          </p>
         </div>
       </div>
+
+      <p className="layer-foot">
+        <span>Built and operated with you by Intellumia</span>
+        <span>You own the layer</span>
+      </p>
     </div>
   );
 }
