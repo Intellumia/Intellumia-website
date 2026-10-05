@@ -3280,9 +3280,9 @@ a {
 }
 
 .layer-source-client {
-  background: transparent;
+  background: #efe9fc;
   border-style: dashed;
-  border-color: var(--carbon);
+  border-color: var(--intelligence-light);
 }
 
 .layer-source {
@@ -3310,7 +3310,8 @@ a {
 }
 
 .swatch-client {
-  border: 2px dashed var(--carbon);
+  background: #efe9fc;
+  border: 2px dashed var(--intelligence-light);
   margin-left: 14px;
 }
 
