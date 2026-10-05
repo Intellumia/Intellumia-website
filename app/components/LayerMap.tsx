@@ -1,7 +1,3 @@
-'use client';
-
-import { useState } from 'react';
-
 type Source = {
   id: string;
   label: string;
@@ -52,28 +48,33 @@ const LAYER = [
 ];
 
 export default function LayerMap() {
-  const [active, setActive] = useState('all');
-  const industry = INDUSTRIES.find((i) => i.id === active) ?? INDUSTRIES[0];
-
   return (
     <div className="layer-map">
-      <div className="layer-picker" role="group" aria-label="Choose an industry">
-        {INDUSTRIES.map((i) => (
-          <button
-            key={i.id}
-            type="button"
-            className="layer-pick"
-            aria-pressed={active === i.id}
-            onClick={() => setActive(i.id)}
-          >
-            {i.label}
-          </button>
+      <fieldset className="layer-picker">
+        <legend className="system-label layer-pick-prompt">
+          Pick an industry to see where its judgement sits
+        </legend>
+        {INDUSTRIES.map((i, n) => (
+          <span key={i.id} className="layer-pick-wrap">
+            <input
+              type="radio"
+              name="layer-industry"
+              id={`ind-${i.id}`}
+              className="layer-radio"
+              defaultChecked={n === 0}
+            />
+            <label htmlFor={`ind-${i.id}`} className="layer-pick">
+              {i.label}
+            </label>
+          </span>
         ))}
-      </div>
-      <p className="layer-line" aria-live="polite">
-        <span className="system-label">Where judgement leaves a trace (illustrative)</span>
-        {industry.line}
-      </p>
+      </fieldset>
+      {INDUSTRIES.map((i) => (
+        <p key={i.id} className="layer-line" data-for={i.id}>
+          <span className="system-label">Where judgement leaves a trace (illustrative)</span>
+          {i.line}
+        </p>
+      ))}
 
       <div className="layer-stack">
         <div className="layer-side layer-side-left" aria-hidden="true">
@@ -115,19 +116,18 @@ export default function LayerMap() {
           <div className="layer-band layer-sources">
             <span className="system-label">Extractors, by source</span>
             <ul>
-              {SOURCES.map((s) => {
-                const on = industry.lit.includes(s.id);
-                return (
-                  <li
-                    key={s.id}
-                    className={`layer-source layer-source-${s.state}${on ? ' is-lit' : ''}`}
-                    data-lit={on}
-                  >
-                    <strong>{s.label}</strong>
-                    <span>{s.note}</span>
-                  </li>
-                );
-              })}
+              {SOURCES.map((s) => (
+                <li
+                  key={s.id}
+                  className={`layer-source layer-source-${s.state}`}
+                  data-in={INDUSTRIES.filter((i) => i.lit.includes(s.id))
+                    .map((i) => i.id)
+                    .join(' ')}
+                >
+                  <strong>{s.label}</strong>
+                  <span>{s.note}</span>
+                </li>
+              ))}
             </ul>
             <p className="layer-legend">
               <i className="swatch swatch-lab" /> Running in the Lab
