@@ -3401,3 +3401,154 @@ a {
   font-size: clamp(44px, 6.2vw, 104px);
   line-height: 0.95;
 }
+
+/* what the layer feeds */
+.layer-uses {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 18px;
+  padding: 0;
+  list-style: none;
+}
+
+.layer-uses li {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 18px 26px 18px 16px;
+  background: #efe9fc;
+  border-top: 2px solid var(--intelligence-light);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+}
+
+.layer-uses svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: var(--intelligence-light);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.layer-uses strong {
+  font-size: 18px;
+  font-variation-settings: 'wdth' 92, 'wght' 650;
+  letter-spacing: -0.02em;
+}
+
+.layer-uses span {
+  color: var(--light-secondary);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.layer-band .layer-loop {
+  color: var(--intelligence-light);
+  font-family: var(--font-vision);
+  font-style: italic;
+  font-size: 19px;
+}
+
+@media (max-width: 1000px) {
+  .layer-uses {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .layer-uses {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* control point and models */
+.layer-control {
+  margin-top: 16px;
+  padding: 22px clamp(20px, 3vw, 36px) 24px;
+  border: 1px dashed var(--carbon);
+}
+
+.layer-control > .system-label {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--carbon);
+  font-size: 12px;
+}
+
+.layer-checks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.layer-checks li {
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  padding: 18px 26px 18px 16px;
+  background: #e7e7e0;
+  border-top: 2px solid var(--carbon);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+}
+
+.layer-checks svg {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: var(--carbon);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.layer-checks strong {
+  font-size: 18px;
+  font-variation-settings: 'wdth' 92, 'wght' 650;
+  letter-spacing: -0.02em;
+}
+
+.layer-checks span {
+  color: var(--light-secondary);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.layer-control .layer-models {
+  display: grid;
+  gap: 10px;
+  padding: 18px 0 0;
+  border: 0;
+  border-top: 1px dashed var(--carbon);
+}
+
+.layer-model-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.layer-control .layer-models p {
+  margin: 0;
+  color: var(--light-secondary);
+  font-size: 15px;
+}
+
+@media (max-width: 1000px) {
+  .layer-checks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .layer-checks {
+    grid-template-columns: 1fr;
+  }
+}
