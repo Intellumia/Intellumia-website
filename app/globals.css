@@ -49,7 +49,7 @@
   --intelligence-light: #5623a8;
   --font-operating: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
   --font-vision: 'Instrument Serif', Georgia, serif;
-  --font-intelligence: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif; /* system register: Instrument Sans set uppercase, tracked, tabular figures. Brand System v0.7 retired Recursive Mono. */
+  --font-intelligence: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif; /* system register: Instrument Sans set uppercase, tracked, tabular figures. Recursive Mono retired on 6 Oct 2026. */
   --content-max: 1600px;
   --page-gutter: max(clamp(20px, 4vw, 64px), calc((100vw - var(--content-max)) / 2));
   --section-block: clamp(88px, 9vw, 132px);
@@ -2398,7 +2398,7 @@ a {
   }
 }
 
-/* ---- v0.8: conversion layer, evidence strip, decision map, plate ---- */
+/* ---- conversion layer, evidence strip, decision map, plate ---- */
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -2725,7 +2725,7 @@ a {
   }
 }
 
-/* ---- v0.9: thesis essay ---- */
+/* ---- thesis essay ---- */
 .essay-section {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));

@@ -6,7 +6,7 @@ import SiteHeader from '../../components/SiteHeader';
 export const metadata: Metadata = {
   title: 'The full argument | Intellumia',
   description:
-    'Intellumia’s thesis v0.3: intelligence is free, judgement is the moat, and the layer a company’s judgement lives on should be its own. With sources, and what would change our mind.',
+    'Intellumia’s thesis: intelligence is free, judgement is the moat, and the layer a company’s judgement lives on should be its own. With sources, and what would change our mind.',
   alternates: {
     canonical: '/point-of-view/full',
   },
@@ -51,7 +51,7 @@ export default function FullArgumentPage() {
           <div className="pov-hero-grid">
             <div className="hero-label system-label">
               <span>Intellumia / Point of view</span>
-              <span>Thesis v0.3, 5 October 2026</span>
+              <span>Thesis v1.0, 6 October 2026</span>
             </div>
             <h1 id="pov-title">
               Intelligence is free. <em>Judgement is the moat.</em>

@@ -41,7 +41,7 @@ export default function PointOfViewPage() {
           <div className="pov-hero-grid">
             <div className="hero-label system-label">
               <span>Intellumia / Point of view</span>
-              <span>Core thesis v0.4, 5 October 2026</span>
+              <span>Thesis v1.0, 6 October 2026</span>
             </div>
             <h1 id="pov-title">
               Your judgement is unprotected. <em>Own the layer it lives on.</em>
@@ -152,7 +152,7 @@ export default function PointOfViewPage() {
             </ol>
             <p>
               <Link href="/point-of-view/full">Read the full argument, with sources</Link>
-              {' '}(Thesis v0.3, October 2026).
+              {' '}(Thesis v1.0, October 2026).
             </p>
           </div>
         </section>
