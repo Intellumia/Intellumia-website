@@ -3987,3 +3987,806 @@ a {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ---------- Walkthrough (/lab/walkthrough) ---------- */
+/* Square, ruled, no shadows. Two typefaces: everything here is Instrument Sans, including code and exports. */
+
+.wt-page .lab-intro .wt-chip {
+  margin-top: 20px;
+}
+
+.wt-body {
+  display: grid;
+  grid-column: 6 / span 7;
+  gap: 28px;
+  align-content: start;
+  min-width: 0;
+}
+
+.wt-body > p,
+.wt-step p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.wt-note {
+  color: var(--light-secondary);
+  font-size: 15px !important;
+  line-height: 1.5;
+}
+
+.lab-dark .wt-note,
+.lab-dark .wt-body > p {
+  color: var(--dark-secondary);
+}
+
+.wt-h3 {
+  margin: 24px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule-dark);
+  font-size: 24px;
+  font-variation-settings: 'wdth' 96, 'wght' 650;
+  letter-spacing: -0.03em;
+}
+
+/* Evidence chips: violet for thesis and R&D, ink for prototypes and above. */
+.wt-chip {
+  display: inline-block;
+  padding: 6px 8px 5px;
+  border: 1px solid currentColor;
+  font-family: var(--font-intelligence);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  font-variation-settings: 'wght' 600, 'wdth' 100;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.wt-chip-violet {
+  color: var(--intelligence-light);
+}
+
+.wt-chip-ink {
+  color: var(--black);
+}
+
+.lab-dark .wt-chip-violet {
+  color: var(--intelligence-dark);
+}
+
+.lab-dark .wt-chip-ink {
+  color: var(--white);
+}
+
+/* The seven steps */
+.wt-sequence {
+  display: grid;
+  grid-column: 6 / span 7;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wt-sequence li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule-light);
+}
+
+.wt-sequence li:first-child {
+  border-top: 4px solid var(--black);
+}
+
+.wt-sequence a {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 4px 16px;
+  text-decoration: none;
+}
+
+.wt-sequence a .system-label {
+  grid-row: span 2;
+  padding-top: 5px;
+  color: var(--light-secondary);
+}
+
+.wt-sequence strong {
+  font-size: 20px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.wt-sequence a:hover strong,
+.wt-sequence a:focus-visible strong {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.wt-sequence-pieces {
+  color: var(--light-secondary);
+  font-size: 15px;
+}
+
+/* Tables */
+.wt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.wt-table th {
+  padding: 0 16px 10px 0;
+  border-bottom: 1px solid var(--black);
+  color: var(--light-secondary);
+  text-align: left;
+  vertical-align: bottom;
+}
+
+.wt-table td {
+  padding: 12px 16px 12px 0;
+  border-bottom: 1px solid var(--rule-light);
+  vertical-align: top;
+}
+
+.lab-dark .wt-table th {
+  border-color: var(--white);
+  color: var(--dark-secondary);
+}
+
+.lab-dark .wt-table td {
+  border-color: var(--rule-dark);
+}
+
+.wt-people td strong,
+.wt-people td span {
+  display: block;
+}
+
+.wt-people td span {
+  color: var(--light-secondary);
+  font-size: 14px;
+}
+
+.wt-people td:nth-child(2) {
+  overflow-wrap: anywhere;
+}
+
+/* Exports and records, set in the text face */
+.wt-raw-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.wt-two,
+.wt-pair {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.wt-pair {
+  display: grid;
+  gap: 16px;
+}
+
+.wt-pre {
+  display: grid;
+  min-width: 0;
+  margin: 0;
+  align-content: start;
+  gap: 8px;
+}
+
+.wt-pre figcaption {
+  color: var(--light-secondary);
+}
+
+.wt-pre pre {
+  margin: 0;
+  max-height: 420px;
+  overflow: auto;
+  padding: 16px;
+  border: 1px solid var(--rule-light);
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-operating);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.lab-dark .wt-pre figcaption {
+  color: var(--dark-secondary);
+}
+
+.lab-dark .wt-pre pre {
+  border-color: var(--rule-dark);
+  background: var(--black);
+  color: var(--white);
+}
+
+/* Benchmarks quoted from RESULTS.md */
+.wt-bench {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule-light);
+  font-size: 15px !important;
+}
+
+.wt-bench p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.wt-bench > .system-label {
+  display: block;
+  color: var(--intelligence-light);
+}
+
+.lab-dark .wt-bench {
+  border-color: var(--rule-dark);
+}
+
+.lab-dark .wt-bench > .system-label {
+  color: var(--intelligence-dark);
+}
+
+/* Counts */
+.wt-tally {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border-top: 1px solid var(--black);
+}
+
+.wt-tally div {
+  padding: 14px 16px 14px 0;
+  border-bottom: 1px solid var(--rule-light);
+}
+
+.wt-tally dt {
+  font-size: clamp(22px, 2.2vw, 32px);
+  font-variant-numeric: tabular-nums;
+  font-variation-settings: 'wdth' 94, 'wght' 650;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.wt-tally dd {
+  margin: 6px 0 0;
+  color: var(--light-secondary);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.lab-dark .wt-tally {
+  border-color: var(--white);
+}
+
+.lab-dark .wt-tally div {
+  border-color: var(--rule-dark);
+}
+
+.lab-dark .wt-tally dd {
+  color: var(--dark-secondary);
+}
+
+/* Pickers: radio inputs and :has(), no script. Without :has(), every panel shows. */
+.wt-picker {
+  display: none;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.wt-picker legend {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 0;
+  color: var(--light-secondary);
+}
+
+.wt-pick-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.wt-radio {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.wt-pick {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--black);
+  background: #fbfbf8;
+  color: var(--black);
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.wt-pick:hover {
+  background: #e9e9e2;
+}
+
+.wt-radio:checked + .wt-pick {
+  background: var(--black);
+  color: var(--warm-light);
+}
+
+.wt-radio:focus-visible + .wt-pick {
+  outline: 2px solid var(--intelligence-light);
+  outline-offset: 3px;
+}
+
+@supports selector(:has(*)) {
+  .wt-picker {
+    display: flex;
+  }
+
+  .wt-switch:has(#wt-x-email:checked) .wt-pair:not([data-for='email']),
+  .wt-switch:has(#wt-x-chat:checked) .wt-pair:not([data-for='chat']),
+  .wt-switch:has(#wt-x-meeting:checked) .wt-pair:not([data-for='meeting']),
+  .wt-finders:has(#wt-f-decision-extractor:checked) .wt-panel:not([data-for='decision-extractor']),
+  .wt-finders:has(#wt-f-commitment-tracker:checked) .wt-panel:not([data-for='commitment-tracker']),
+  .wt-finders:has(#wt-f-risk-finder:checked) .wt-panel:not([data-for='risk-finder']),
+  .wt-finders:has(#wt-f-gap-finder:checked) .wt-panel:not([data-for='gap-finder']),
+  .wt-finders:has(#wt-f-contradiction-detector:checked) .wt-panel:not([data-for='contradiction-detector']),
+  .wt-finders:has(#wt-f-expertise-finder:checked) .wt-panel:not([data-for='expertise-finder']) {
+    display: none;
+  }
+}
+
+.wt-switch {
+  display: grid;
+  gap: 16px;
+}
+
+/* Finder panels */
+.wt-panel {
+  display: grid;
+  gap: 24px;
+  padding-top: 24px;
+  border-top: 4px solid var(--black);
+}
+
+.wt-panel + .wt-panel {
+  margin-top: 48px;
+}
+
+.wt-panel-head {
+  display: grid;
+  gap: 8px;
+}
+
+.wt-panel-head h3 {
+  margin: 0;
+  font-size: clamp(28px, 2.6vw, 40px);
+  font-variation-settings: 'wdth' 92, 'wght' 650;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.wt-panel-head p {
+  font-size: 20px !important;
+  font-weight: 560;
+  letter-spacing: -0.02em;
+}
+
+.wt-panel-head .system-label,
+.wt-subhead {
+  color: var(--light-secondary);
+}
+
+.wt-subhead {
+  margin: 16px 0 0;
+  font-weight: 400;
+}
+
+.wt-item {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule-light);
+}
+
+.wt-item-label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--light-secondary);
+}
+
+.wt-item h4 {
+  margin: 0 0 12px;
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.wt-item dl {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.wt-item dl div {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 12px;
+}
+
+.wt-item dt {
+  padding-top: 3px;
+  color: var(--light-secondary);
+}
+
+.wt-item dd {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.wt-quote {
+  margin: 0 0 12px;
+  padding-left: 14px;
+  border-left: 1px solid var(--black);
+}
+
+.wt-quote blockquote {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.wt-quote figcaption {
+  margin-top: 6px;
+  color: var(--light-secondary);
+  letter-spacing: 0.08em;
+}
+
+.lab-dark .wt-quote {
+  border-color: var(--white);
+}
+
+.lab-dark .wt-quote figcaption {
+  color: var(--dark-secondary);
+}
+
+.wt-miss,
+.wt-wrong {
+  padding-top: 12px;
+  border-top: 1px solid var(--rule-light);
+}
+
+.wt-wrong p {
+  display: grid;
+  gap: 4px;
+  margin: 0 0 10px;
+}
+
+.wt-wrong .system-label {
+  color: var(--light-secondary);
+}
+
+.wt-all {
+  border-top: 1px solid var(--black);
+  border-bottom: 1px solid var(--black);
+}
+
+.wt-all summary {
+  padding: 14px 0;
+  font-weight: 560;
+  cursor: pointer;
+}
+
+.wt-all ol {
+  display: grid;
+  gap: 14px;
+  margin: 0 0 20px;
+  padding-left: 22px;
+}
+
+.wt-all li strong {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+/* The layer */
+.wt-layer {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px 32px;
+}
+
+.wt-layer > div {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  padding-top: 14px;
+  border-top: 1px solid var(--white);
+}
+
+.wt-layer > div > .system-label {
+  color: var(--dark-secondary);
+}
+
+.wt-layer strong {
+  font-size: 22px;
+  font-variation-settings: 'wdth' 96, 'wght' 650;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.wt-layer p {
+  color: var(--dark-secondary);
+  font-size: 15px !important;
+}
+
+.wt-layer .wt-chip {
+  justify-self: start;
+}
+
+.wt-perm td {
+  font-size: 14px;
+}
+
+.wt-perm td:first-child {
+  width: 40%;
+  font-weight: 560;
+}
+
+/* The brief, set as a page */
+.wt-brief {
+  display: grid;
+  gap: 24px;
+}
+
+.wt-brief-page {
+  display: grid;
+  gap: 20px;
+  padding: clamp(24px, 3vw, 48px);
+  border: 1px solid var(--black);
+  background: var(--white);
+}
+
+.wt-brief-page > .system-label {
+  color: var(--light-secondary);
+}
+
+.wt-brief-page h3 {
+  margin: 0;
+  font-size: clamp(26px, 2.4vw, 36px);
+  font-variation-settings: 'wdth' 94, 'wght' 650;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.wt-brief-section h4 {
+  margin: 0 0 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule-light);
+}
+
+.wt-brief-section h4 span {
+  color: var(--light-secondary);
+}
+
+.wt-brief-section ol {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 22px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.wt-brief-meta {
+  color: var(--light-secondary);
+}
+
+.wt-ref {
+  color: var(--signal-light);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.wt-ref:hover,
+.wt-ref:focus-visible {
+  text-decoration: underline;
+}
+
+.wt-brief-sources {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wt-brief-sources li {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.wt-brief-sources li:target .wt-quote {
+  border-left-width: 4px;
+}
+
+.wt-brief-sources li > .system-label {
+  padding-top: 3px;
+  color: var(--light-secondary);
+}
+
+/* The outcome */
+.wt-carried {
+  display: grid;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule-light);
+}
+
+.wt-carried .system-label {
+  color: var(--light-secondary);
+}
+
+.wt-loop {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr) 48px minmax(0, 1fr);
+  align-items: center;
+  margin: 8px 0 0;
+}
+
+.wt-loop-node {
+  display: grid;
+  gap: 6px;
+  min-height: 96px;
+  align-content: center;
+  padding: 14px;
+  font-size: 15px;
+}
+
+.wt-loop-node .system-label {
+  color: var(--light-secondary);
+}
+
+.wt-solid {
+  border: 1px solid var(--black);
+  background: var(--black);
+  color: var(--white);
+}
+
+.wt-solid .system-label {
+  color: var(--dark-secondary);
+}
+
+.wt-hollow {
+  border: 1px dashed var(--intelligence-light);
+}
+
+.wt-loop-edge {
+  height: 0;
+  border-top: 1px dashed var(--intelligence-light);
+}
+
+.wt-loop figcaption {
+  grid-column: 1 / -1;
+  margin-top: 14px;
+}
+
+/* Ruled lists instead of bullets */
+.wt-rows {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wt-rows li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule-light);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.lab-dark .wt-rows li {
+  border-color: var(--rule-dark);
+}
+
+.wt-rows strong {
+  font-weight: 650;
+}
+
+@media (max-width: 1100px) {
+  .wt-body,
+  .wt-sequence {
+    grid-column: 1 / -1;
+  }
+
+  .wt-raw-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .wt-tally {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wt-item,
+  .wt-pair,
+  .wt-two,
+  .wt-layer {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wt-loop {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wt-loop-edge {
+    width: 0;
+    height: 24px;
+    margin-left: 24px;
+    border-top: 0;
+    border-left: 1px dashed var(--intelligence-light);
+  }
+
+  .wt-ledger td:nth-child(2),
+  .wt-ledger th:nth-child(2) {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .wt-tally {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wt-spend td:nth-child(3),
+  .wt-spend th:nth-child(3) {
+    display: none;
+  }
+
+  .wt-sequence li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .wt-sequence .wt-chip {
+    justify-self: start;
+    margin-left: 64px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wt-pick {
+    transition-duration: 0.01ms;
+  }
+}

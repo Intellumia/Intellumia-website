@@ -100,7 +100,7 @@ for (const file of visitorFiles) {
   }
 }
 
-for (const page of ['index.html', 'connect/index.html', 'point-of-view/index.html', 'privacy/index.html']) {
+for (const page of ['index.html', 'connect/index.html', 'point-of-view/index.html', 'privacy/index.html', 'lab/walkthrough/index.html']) {
   const source = await readFile(resolve(pagesRoot, page), 'utf8');
   const h1Count = (source.match(/<h1(?:\s|>)/g) ?? []).length;
 
