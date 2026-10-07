@@ -180,17 +180,17 @@ export function tallies(finder: string, f: FinderData): [string, string][] {
       ];
     case 'risk-finder':
       return [
-        [of(s.found, s.planted), 'planted risks found'],
+        [of(s.found, s.planted), num(s.found_as_issue) ? `planted risks found, ${num(s.found_as_issue)} filed as a live issue` : 'planted risks found'],
         [of(s.status_right, s.found), 'with what became of them right'],
-        [of(s.issues_seen, s.issues_planted), 'risks that came true, seen as such'],
-        [String(num(s.outside_labels) + num(s.lookalikes_reported)), 'other risks or issues it reported'],
+        [of(s.came_true_seen_as_separate_issue, s.came_true), 'that came true, reported as a separate live issue'],
+        [String(num(s.outside_labels)), 'other risks or issues it reported'],
       ];
     case 'gap-finder':
       return [
         [of(s.found, s.planted_in_material_given), 'planted questions found, in email and chat'],
         [of(s.status_right, s.found), 'answered or open, right'],
-        [String(num(s.planted_in_meetings_not_given)), 'asked in meetings, which it was not given'],
-        [String(num(s.outside_labels) + num(s.lookalikes_reported)), 'other questions it reported'],
+        [String(num(s.outside_labels)), 'other questions it reported'],
+        [String(num(s.outside_on_lookalikes)), 'of those, option lists or doubts it read as open questions'],
       ];
     case 'contradiction-detector':
       return [
@@ -203,8 +203,8 @@ export function tallies(finder: string, f: FinderData): [string, string][] {
       return [
         [of(s.person_right, s.planted_in_material_given), 'planted explanations credited to the right person'],
         [of(s.referrals_credited, s.referrals), 'times someone was pointed to, credited'],
-        [String(num(s.lookalikes_reported)), 'look-alikes credited'],
         [String(num(s.outside_labels)), 'other credits it gave'],
+        [String(num(s.outside_on_lookalikes)), 'of those, for listing options'],
       ];
     default:
       return [];
@@ -266,8 +266,7 @@ export function shortfalls(finder: string, f: FinderData): string[] {
   const out: string[] = [];
   const gap = (have: unknown, of: unknown) => num(of) - num(have);
   const outsideKinds = and(Object.keys((s.outside_kinds as Record<string, number>) ?? {}).map((k) => KIND_WORDS[k] ?? k));
-  const outside = (n: number, what: string) =>
-    n ? out.push(`${what} ${n} other ${n === 1 ? 'item' : 'items'} the labels do not hold${outsideKinds ? `, citing ${outsideKinds}` : ''}`) : 0;
+  const outside = (n: number, what: string) => void [n, what, outsideKinds]; // not errors: see unchecked()
   const lookalikes = (n: number) => (n ? out.push(`reported ${n} ${n === 1 ? 'look-alike' : 'look-alikes'}, a false positive by construction`) : 0);
   switch (finder) {
     case 'decision-extractor':
@@ -282,8 +281,8 @@ export function shortfalls(finder: string, f: FinderData): string[] {
       if (gap(s.found, planted)) out.push(`missed ${gap(s.found, planted)} of ${num(planted)} planted items`);
       if (finder === 'commitment-tracker' && gap(s.due_right, s.found)) out.push(`got ${gap(s.due_right, s.found)} due dates wrong`);
       if (gap(s.status_right, s.found)) out.push(`got the status of ${gap(s.status_right, s.found)} wrong`);
-      if (finder === 'risk-finder' && gap(s.issues_seen, s.issues_planted))
-        out.push(`did not see ${gap(s.issues_seen, s.issues_planted)} of ${num(s.issues_planted)} risks that came true`);
+      if (finder === 'risk-finder' && gap(s.came_true_seen_as_separate_issue, s.came_true))
+        out.push(`did not see ${gap(s.came_true_seen_as_separate_issue, s.came_true)} of ${num(s.came_true)} risks that came true`);
       lookalikes(num(s.lookalikes_reported));
       outside(num(s.outside_labels), 'reported');
       break;
@@ -303,4 +302,13 @@ export function shortfalls(finder: string, f: FinderData): string[] {
       break;
   }
   return out;
+}
+
+// What each finder reported that the planted labels do not cover. Not counted as errors: read the quotes.
+export function unchecked(finder: string, f: FinderData): string | null {
+  const s = f.score;
+  const n = num(s.outside_labels) + (finder === 'decision-extractor' ? num(s.made_outside_labels) : 0);
+  if (!n) return null;
+  const kindsList = and(Object.keys((s.outside_kinds as Record<string, number>) ?? {}).map((k) => KIND_WORDS[k] ?? k));
+  return `${n} ${n === 1 ? 'item' : 'items'}${kindsList ? `, citing ${kindsList}` : ''}`;
 }

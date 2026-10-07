@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import SiteFooter from '../../components/SiteFooter';
 import SiteHeader from '../../components/SiteHeader';
-import data, { count, num, usd } from './data';
+import data, { EM_DASHES_SHOWN_AS_HYPHENS, count, num, usd } from './data';
 import type { Brief, BriefItem, Citation, Item, ScoreRow } from './data';
-import { Chip, FIELDS, ItemView, Panel, Planted, Pre, Source, Tally, kinds, shortfalls, tallies } from './parts';
+import { Chip, FIELDS, ItemView, Panel, Planted, Pre, Source, Tally, kinds, shortfalls, tallies, unchecked } from './parts';
 import type { EvidenceState } from './parts';
 
 const TITLE = 'Walkthrough: from the record to the decision | Intellumia';
@@ -86,6 +86,87 @@ const FINDERS: { id: string; question: string; read: string; benchmark: string[]
   },
 ];
 
+// Notes under each finder's counts. Numbers come from the run; the wording explains what the counts mean.
+function finderNotes(id: string): string[] {
+  const s = F[id]?.score ?? {};
+  const n = (k: string) => num(s[k]);
+  switch (id) {
+    case 'decision-extractor':
+      return [
+        n('reversals_in_other_thread')
+          ? `${n('reversals_in_other_thread')} of ${n('reversals')} reversals were made in a different conversation from the decision they reversed, and it reads one conversation at a time. It recorded ${n('reversals') - n('reversals_found_as_made')} of them only as “the earlier decision was reversed”, not as the new decision.`
+          : '',
+        n('made_outside_labels')
+          ? `Most of the ${n('made_outside_labels')} other items it called decisions are promises, the kickoff and work reported done: it counts “I’ll have it done by Monday” as a decision to act, where the labels file it as a commitment.`
+          : '',
+      ].filter(Boolean);
+    case 'commitment-tracker':
+      return [
+        n('due_right') < n('found')
+          ? `${n('found') - n('due_right')} of the ${n('found')} due dates it gave are wrong, for one reason: when a message names both a weekday and a date, as in “by Friday 13 February”, its date resolver takes the next such weekday and ignores the date. Said on 2 February, that became 6 February. This walkthrough found the bug; its held-out threads did not.`
+          : '',
+        n('done_in_other_thread')
+          ? `${n('done_in_other_thread')} of the ${n('done_planted')} promises that were kept were confirmed done in a different conversation, which it cannot see when it reads one at a time, so it left them open.`
+          : '',
+      ].filter(Boolean);
+    case 'risk-finder':
+      return n('came_true_in_other_thread')
+        ? [
+            `${n('came_true_in_other_thread')} of the ${n('came_true')} risks that came true were reported in a different conversation from the risk. It reported each as a separate live issue and left the original risk open, because it reads one conversation at a time.`,
+          ]
+        : [];
+    case 'gap-finder':
+      return n('outside_on_lookalikes')
+        ? [
+            `${n('outside_on_lookalikes')} of its other questions come from messages planted as look-alikes for decisions: options listed without choosing, and doubts. Read as questions, they are fair ones; the labels simply do not count them.`,
+          ]
+        : [];
+    case 'expertise-finder':
+      return n('outside_on_lookalikes')
+        ? [`${n('outside_on_lookalikes')} of its other credits are for laying out options, which the labels do not count as expertise.`]
+        : [];
+    default:
+      return [];
+  }
+}
+
+// What we found by reading the outputs, beyond what the counts show. Written for this run only: the build stops if
+// run.json comes from a different run, so these lines cannot drift away from the files they describe.
+const NOTES_FOR_RUN = { seed: 23, spent_usd: 2.015688 };
+if (S.seed !== NOTES_FOR_RUN.seed || data.ledger.spent_usd !== NOTES_FOR_RUN.spent_usd) {
+  throw new Error('run.json is from a different run than the ledger notes were written for; reread the outputs and update them.');
+}
+const RUN_NOTES: { who: string; text: string }[] = [
+  {
+    who: 'org-generator',
+    text: 'wrote a fact it had been told to rule out. The plan said annual contracts only, ruling out prices 10% below Ireland; the message it wrote says “Pricing goes 10% below Ireland for year one.” decision-extractor and the second brief then report that as decided. They read the text correctly; the text was wrong.',
+  },
+  {
+    who: 'commitment-tracker',
+    text: 'resolves “by Friday 13 February” to the Friday after the message, not to 13 February. All six due dates are wrong, and the wrong dates appear in both briefs.',
+  },
+  {
+    who: 'decision-extractor, commitment-tracker, risk-finder',
+    text: 'read one conversation at a time, so a change made in another conversation (a reversal, a promise kept, a risk that came true) is not joined to what it changes. The hosting reversal on 2 March was recorded as “the earlier decision was reversed”, not as the decision to keep everything in Dublin.',
+  },
+  {
+    who: 'commitment-tracker, inside the second brief',
+    text: 'marked the employer-of-record shortlist “cancelled”. It slipped from 6 April to 27 April and was never delivered: overdue, not cancelled.',
+  },
+  {
+    who: 'redactor',
+    text: 'took three message ids for email addresses. Harmless here, but a false positive all the same.',
+  },
+  {
+    who: 'contradiction-detector',
+    text: 'gave different answers on the same record. Run on its own, it reported the Frankfurt conflict; run again inside the second brief, it reported only the changes of plan, so the second brief has no conflicts section.',
+  },
+  {
+    who: 'normalizer',
+    text: 'moved the sign-off name (“Mateo”, “Sven”) into the signature in 13 of 43 emails. No sentence was lost, but the body is not exactly what the person wrote.',
+  },
+];
+
 const STEPS: { n: string; id: string; title: string; pieces: string; state: EvidenceState }[] = [
   { n: '01', id: 'raw', title: 'Raw material arrives', pieces: 'org-generator', state: 'Working prototype' },
   { n: '02', id: 'record', title: 'The record is made legible', pieces: 'normalizer, identity-resolver', state: 'Working prototype' },
@@ -103,6 +184,8 @@ const SECTION_TITLES: Record<string, string> = {
   conflicts: 'Unresolved conflicts',
   open_questions: 'Open questions',
 };
+
+const KIND_LABELS: Record<string, string> = { EMAIL: 'email addresses', PHONE: 'phone numbers', PERSON: 'names', SECRET: 'secrets' };
 
 const WORDS = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
 
@@ -190,11 +273,16 @@ export default function WalkthroughPage() {
     (n, f) => n + f.items.reduce((m, i) => m + (i.citations?.length ?? 0) + (i.status_citations?.length ?? 0), 0),
     0,
   );
-  const callTotals = Object.values(data.calls).reduce(
+  const generation = data.calls['org-generator'];
+  const callTotals = Object.entries(data.calls).filter(([k]) => k !== 'org-generator').map(([, c]) => c).reduce(
     (t, c) => ({ calls: t.calls + c.calls, prompt: t.prompt + c.prompt_tokens, completion: t.completion + c.completion_tokens, cost: t.cost + c.cost_usd }),
     { calls: 0, prompt: 0, completion: 0, cost: 0 },
   );
-  const models = [...new Set(Object.values(data.calls).flatMap((c) => c.models))];
+  const allCalls = Object.values(data.calls).reduce(
+    (t, c) => ({ calls: t.calls + c.calls, prompt: t.prompt + c.prompt_tokens, completion: t.completion + c.completion_tokens }),
+    { calls: 0, prompt: 0, completion: 0 },
+  );
+  const models = [...new Set(Object.entries(data.calls).filter(([k]) => k !== 'org-generator').flatMap(([, c]) => c.models))];
   const ns = data.normalizer.by_source ?? {};
   const exact = Object.values(ns).reduce((n, s) => n + num(s.exact), 0);
   const idScore = data.identity.score ?? {};
@@ -204,6 +292,7 @@ export default function WalkthroughPage() {
   const goal = (S as unknown as { goal?: string }).goal;
   const runDate = (S as unknown as { run_date?: string }).run_date ?? data.generated_at.slice(0, 10);
   const redactedKinds = Object.entries(data.redact.replaced ?? {});
+  const messageIdHits = (data.redact.values ?? []).filter((v) => v.is_message_id).length;
   const outcomeIds = new Set([data.outcome.decision?.message_id, data.outcome.outcome?.message_id].filter(Boolean));
   const carried = fullBrief
     ? Object.entries(fullBrief.sections).flatMap(([s, items]) =>
@@ -348,6 +437,13 @@ export default function WalkthroughPage() {
               wrappers and never changes what a person wrote. Phone numbers in signatures come from the UK range reserved
               for drama.
             </p>
+            {EM_DASHES_SHOWN_AS_HYPHENS ? (
+              <p className="wt-note">
+                This site sets no em dashes. Where a message, or something a component wrote about it, contains one, it is
+                shown on this page as a spaced hyphen ({count(EM_DASHES_SHOWN_AS_HYPHENS, 'place', 'places')}). The run’s own
+                files keep the original text, and nothing else in any quote is changed.
+              </p>
+            ) : null}
             <p className="wt-bench">
               <span className="system-label">Held-out benchmark, org-generator</span>
               252 of 253 planted facts were judged present in the text of two held-out organisations. A judge picked the
@@ -419,8 +515,8 @@ export default function WalkthroughPage() {
             <Tally
               rows={[
                 [`${exact} of ${data.normalizer.generated_messages}`, 'messages where normalizer kept exactly what the person wrote'],
-                [`${Object.values(ns).reduce((n, s) => n + num(s.extra_text_left), 0)}`, 'with quoted history or a signature left in'],
-                [`${Object.values(ns).reduce((n, s) => n + num(s.own_text_lost), 0)}`, 'where some of the person’s own words were cut'],
+                [`${Object.values(ns).reduce((n, s) => n + num(s.signoff_moved), 0)}`, 'where only the sign-off name went to the signature'],
+                [`${Object.values(ns).reduce((n, s) => n + num(s.own_text_lost) + num(s.extra_text_left), 0)}`, 'with words cut, or quoted history or a signature left in'],
                 [`${num(idScore.wrong_merges)}`, 'people merged who are different people'],
               ]}
             />
@@ -511,15 +607,20 @@ export default function WalkthroughPage() {
                     </span>
                   </header>
                   <Tally rows={tallies(f.id, fd)} />
+                  {finderNotes(f.id).map((note) => (
+                    <p key={note} className="wt-note">
+                      {note}
+                    </p>
+                  ))}
 
-                  <h4 className="system-label wt-subhead">What it found, beside its source</h4>
-                  {fd.items.slice(0, 3).map((item: Item) => (
+                  <h4 className="system-label wt-subhead">Planted items it found, beside its source</h4>
+                  {fd.items.filter((i) => i.matched).slice(0, 3).map((item: Item) => (
                     <ItemView key={item.id} finder={f.id} item={item} />
                   ))}
-                  {fd.items.length === 0 ? <p className="wt-note">It reported nothing.</p> : null}
+                  {fd.items.filter((i) => i.matched).length === 0 ? <p className="wt-note">None.</p> : null}
                   <p className="wt-note">
-                    Shown first: items about the hosting decision, then the rest in the order the finder reported them.
-                    Every item is listed at the end of this panel.
+                    Shown: up to three of the {fd.items.filter((i) => i.matched).length} items that match a planted label,
+                    those about the hosting decision first. Every item it reported is listed at the end of this panel.
                   </p>
 
                   <h4 className="system-label wt-subhead">What it missed</h4>
@@ -542,7 +643,7 @@ export default function WalkthroughPage() {
                               {(s.lookalikes ?? []).includes(item) ? 'Look-alike: a false positive by construction' : `Cites: ${kinds(item.cites_kinds)}`}
                             </span>
                           </p>
-                          {((item.evidence as Citation[]) ?? []).slice(0, 1).map((c, j) => (
+                          {((item.evidence as Citation[]) ?? []).slice(0, f.id === 'contradiction-detector' ? 2 : 1).map((c, j) => (
                             <Source key={j} c={c} />
                           ))}
                         </div>
@@ -653,14 +754,19 @@ export default function WalkthroughPage() {
                 [usd(callTotals.cost), 'what the logged calls cost'],
               ]}
             />
-            <p className="wt-note">Every call went to {models.join(', ') || 'no model'}, through OpenRouter.</p>
+            <p className="wt-note">
+              These are the components’ calls, all to {models.join(', ') || 'no model'} through OpenRouter. Writing the
+              fictional company took {generation ? `${count(generation.calls, 'more call')}, ${usd(generation.cost_usd)}` : 'separate calls'}, not counted here.
+            </p>
             {data.redact.sent ? (
               <>
                 <p>
-                  redactor, run on its patterns only, on the exact text {data.redact.component} sent in one call, replaced{' '}
-                  {redactedKinds.length ? redactedKinds.map(([k, n]) => `${n} ${k.toLowerCase().replaceAll('_', ' ')}`).join(', ') : 'nothing'}. It
-                  left names alone: names need its local model, which downloads from Hugging Face, and this run could not
-                  reach it.
+                  We ran redactor, on its patterns only, over the exact text {data.redact.component} sent in one call: the
+                  call with the most @ signs in it, where addresses would show. It replaced{' '}
+                  {redactedKinds.length ? redactedKinds.map(([k, n]) => `${n} ${KIND_LABELS[k] ?? k.toLowerCase()}`).join(', ') : 'nothing'}
+                  {messageIdHits ? `, and ${messageIdHits === (data.redact.values ?? []).length ? 'every one of them' : count(messageIdHits, 'of them', 'of them')} is a message id such as ${(data.redact.values ?? [])[0]?.text}, which has the shape of an email address. A false positive: there was no address in what was sent, because normalizer had already set signatures aside` : ''}.
+                  It left the names alone: names need its local model, which downloads from Hugging Face, and this run could
+                  not reach it.
                 </p>
                 <div className="wt-raw-grid wt-two">
                   <Pre label="Sent to the model (excerpt)">{(data.redact.sent ?? '').slice(0, 1200)}</Pre>
@@ -699,6 +805,11 @@ export default function WalkthroughPage() {
             <p className="wt-note">
               brief-writer does not take a question. It briefs everything it is given; we gave it the record up to 1 March
               and a title naming the decision. A brief framed around one pending decision is not built.
+            </p>
+            <p className="wt-note">
+              Read it as Tariq would, and check it. The due dates in its commitments come from commitment-tracker and carry
+              its date bug: “by Friday 13 February” shows as due 2026-02-06. Several of its decisions are promises. The
+              conflict it raises, Frankfurt ruled out and then built, is real and nobody planted it.
             </p>
             <p className="wt-bench">
               <span className="system-label">Held-out benchmark, brief-writer</span>
@@ -825,6 +936,11 @@ export default function WalkthroughPage() {
                   </li>
                 ) : null;
               })}
+              {RUN_NOTES.map((n) => (
+                <li key={n.who + n.text.slice(0, 20)}>
+                  <strong>{n.who}</strong> {n.text}
+                </li>
+              ))}
               {S.fallbacks ? (
                 <li>
                   <strong>org-generator</strong> could not get the model to write {count(S.fallbacks, 'planted fact')} and used plain text instead.
@@ -837,6 +953,23 @@ export default function WalkthroughPage() {
                     <strong>{id}</strong> stopped with an error: {fd.run?.stderr.join(' ')}
                   </li>
                 ))}
+            </ul>
+
+            <h3 className="wt-h3">What the labels cannot check</h3>
+            <p className="wt-note">
+              Items a finder reported that no planted label covers. These are not counted as errors: some are true and
+              simply unlabelled, some are not. Each is listed, with its quote, in its finder’s panel.
+            </p>
+            <ul className="wt-rows">
+              {FINDERS.map((f) => {
+                const fd = F[f.id];
+                const u = fd ? unchecked(f.id, fd) : null;
+                return u ? (
+                  <li key={f.id}>
+                    <strong>{f.id}</strong> {u}.
+                  </li>
+                ) : null;
+              })}
             </ul>
 
             <h3 className="wt-h3">What is not built</h3>
@@ -875,9 +1008,9 @@ export default function WalkthroughPage() {
                   <td>
                     <strong>Total, from the shared spending ledger</strong>
                   </td>
-                  <td>{callTotals.calls}</td>
+                  <td>{allCalls.calls}</td>
                   <td>
-                    {callTotals.prompt.toLocaleString('en-GB')} / {callTotals.completion.toLocaleString('en-GB')}
+                    {allCalls.prompt.toLocaleString('en-GB')} / {allCalls.completion.toLocaleString('en-GB')}
                   </td>
                   <td>
                     <strong>{usd(data.ledger.spent_usd)}</strong>

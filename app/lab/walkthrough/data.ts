@@ -15,6 +15,7 @@ export type Citation = {
 
 export type Item = Record<string, unknown> & {
   id?: string;
+  matched?: boolean;
   citations?: Citation[];
   status_citations?: Citation[];
 };
@@ -121,6 +122,7 @@ export type Walkthrough = {
     component?: string;
     characters?: number;
     replaced?: Record<string, number>;
+    values?: { label: string; text: string; is_message_id: boolean }[];
     sent?: string | null;
     redacted?: string | null;
   };
@@ -129,12 +131,29 @@ export type Walkthrough = {
   versions: Record<string, { version: string | null; commit: string | null }>;
 };
 
-const data = run as unknown as Walkthrough;
+// This site sets no em dashes, and its release check rejects them. Some of the generated messages, and some of
+// what the components wrote about them, contain em dashes. On the page each one is shown as a spaced hyphen, and
+// the page says so; the run's own files keep the original text. Nothing else in any quote is changed.
+let emDashes = 0;
+function display<T>(value: T): T {
+  if (typeof value === 'string') {
+    emDashes += (value.match(/\u2014/g) ?? []).length;
+    return value.replace(/[ \t]*\u2014[ \t]*/g, ' - ') as T;
+  }
+  if (Array.isArray(value)) return value.map(display) as T;
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, display(v)])) as T;
+  }
+  return value;
+}
+
+const data = display(run as unknown as Walkthrough);
+export const EM_DASHES_SHOWN_AS_HYPHENS = emDashes;
 
 // Only a run written by the model writer may be published. The free template writer exists for tests, and its
 // plain sentences must never be shown as if they were the walkthrough. Set WALKTHROUGH_PREVIEW=1 to look at a
 // template run locally.
-if (data.sources.writer !== 'model' && process.env.WALKTHROUGH_PREVIEW !== '1') {
+if (!data.sources.writer.startsWith('model') && process.env.WALKTHROUGH_PREVIEW !== '1') {
   throw new Error(
     `walkthrough/run.json comes from a ${data.sources.writer} run; only a model-written run may be published.`,
   );
