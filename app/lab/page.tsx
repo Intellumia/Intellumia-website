@@ -189,6 +189,14 @@ export default function LabPage() {
             <p>
               We build the test before we trust the result. A fictional organisation with every decision, reversal, commitment and risk planted as an exact label gives us ground truth. Everything else is scored against it.
             </p>
+            <Link
+              className="text-link"
+              href="/lab/walkthrough"
+              data-analytics-event="walkthrough_open"
+              data-analytics-location="lab_prove_it"
+            >
+              See every piece run on one fictional company <span aria-hidden="true">↗</span>
+            </Link>
           </div>
           <div className="lab-cards">
             <article>
