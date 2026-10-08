@@ -34,7 +34,7 @@ const FINDERS: { id: string; question: string; read: string; benchmark: string[]
     question: 'What did we decide, who owns it, and why?',
     read: 'every thread: email, chat and meetings',
     benchmark: [
-      'Held out on 97 AMI meetings, Claude Sonnet 5 for both: F1 58.9% against 56.8% for a plain prompt under one judge, 54.6% against 54.8% under a second. Read it as a tie; every decision it keeps carries quotes found in the transcript.',
+      'Held out on 97 AMI meetings, Claude Sonnet 5 for both: F1 58.9% against 56.8% for a plain prompt under one judge, 54.6% against 54.8% under a second. Read it as a tie; 99.7% of the decisions it keeps carry quotes found in the transcript.',
       'Against transcript-analysis-pipeline, an open-source tool, on 60 of the same meetings: it found 80.5% of the reference decisions against 48.9%, but the pipeline’s F1 was higher (61.6% against 57.9%), because it packs several decisions into one sentence.',
       'On an earlier generated organisation it found 8 of 12 planted decisions and reported none of 22 look-alikes, but 44 of the 62 items it called made decisions were commitments, status messages or filler.',
     ],
@@ -94,7 +94,10 @@ function finderNotes(id: string): string[] {
     case 'decision-extractor':
       return [
         n('reversals_in_other_thread')
-          ? `${n('reversals_in_other_thread')} of ${n('reversals')} reversals were made in a different conversation from the decision they reversed, and it reads one conversation at a time. It recorded ${n('reversals') - n('reversals_found_as_made')} of them only as “the earlier decision was reversed”, not as the new decision.`
+          ? `${n('reversals_in_other_thread')} of ${n('reversals')} reversals were made in a different conversation from the decision they reversed. It reads one conversation at a time, so it linked ${n('reversals_linked')} of them to the decision they undid.`
+          : '',
+        n('reversals') - n('reversals_found_as_made')
+          ? `Separately, it gave ${n('reversals') - n('reversals_found_as_made')} reversal only the status “reversed” (an earlier decision was undone): its statement names the new choice, but it recorded no decision made. That is the planted decision it missed.`
           : '',
         n('made_outside_labels')
           ? `Most of the ${n('made_outside_labels')} other items it called decisions are promises, the kickoff and work reported done: it counts “I’ll have it done by Monday” as a decision to act, where the labels file it as a commitment.`
@@ -147,7 +150,11 @@ const RUN_NOTES: { who: string; text: string }[] = [
   },
   {
     who: 'decision-extractor, commitment-tracker, risk-finder',
-    text: 'read one conversation at a time, so a change made in another conversation (a reversal, a promise kept, a risk that came true) is not joined to what it changes. The hosting reversal on 2 March was recorded as “the earlier decision was reversed”, not as the decision to keep everything in Dublin.',
+    text: 'read one conversation at a time, so a change made in another conversation (a reversal, a promise kept, a risk that came true) is not joined to what it changes. Neither reversal was linked to the decision it undid.',
+  },
+  {
+    who: 'decision-extractor',
+    text: 'gave the 2 March hosting reversal only the status “reversed”. Its statement names Dublin, but it recorded no decision made to keep everything there, so the decision this walkthrough follows is not among its decisions made. For the other reversal it recorded both.',
   },
   {
     who: 'commitment-tracker, inside the second brief',
@@ -446,9 +453,9 @@ export default function WalkthroughPage() {
             ) : null}
             <p className="wt-bench">
               <span className="system-label">Held-out benchmark, org-generator</span>
-              252 of 253 planted facts were judged present in the text of two held-out organisations. A judge picked the
-              real Enron email thread over a generated one 55% of the time (50% means it cannot tell), with about ±15
-              points of uncertainty.
+              252 of 253 planted facts were judged present in the text of two held-out organisations. Shown a real
+              Enron email thread beside a generated one, one judge picked the real one 55% of the time (50% means it
+              cannot tell, give or take about 15 points); a second judge picked it 92% of the time.
             </p>
           </div>
         </section>

@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-07T04:10:15",
+ "generated_at": "2026-10-08T05:03:21",
  "sources": {
   "company": "Brightwater",
   "domain": "brightwater.example",
@@ -1323,6 +1323,7 @@
     "reversals": 2,
     "reversals_found_as_made": 1,
     "reversals_in_other_thread": 2,
+    "reversals_linked": 0,
     "reaffirmations": 3,
     "reaffirmations_reported": 3,
     "lookalikes_planted": 9,
@@ -1359,6 +1360,7 @@
       ],
       "found_otherwise": [],
       "reversal_in_other_thread": false,
+      "reversal_linked": false,
       "quote": "Decided: German customer data goes with a German hosting company.",
       "message_id": "slack:proj-expansion:1769426220.000000",
       "source": "slack",
@@ -1378,6 +1380,7 @@
        "decision:transcript:meeting-expansion-2026-03-02:0 (reversed)"
       ],
       "reversal_in_other_thread": true,
+      "reversal_linked": false,
       "quote": "We're reversing the earlier call: we're keeping everything in Dublin instead of moving to the German hosting company, because two prospects paused while the German terms sat in review.",
       "message_id": "transcript:meeting:expansion:2026-03-02:4",
       "source": "transcript",
@@ -1399,6 +1402,7 @@
       ],
       "found_otherwise": [],
       "reversal_in_other_thread": false,
+      "reversal_linked": false,
       "quote": "Decided: we're employing the first German staff by setting up a German GmbH.",
       "message_id": "slack:proj-expansion:1771260840.000000",
       "source": "slack",
@@ -1422,6 +1426,7 @@
        "decision:email:<b0017.23@brightwater.example>:0 (reversed)"
       ],
       "reversal_in_other_thread": true,
+      "reversal_linked": false,
       "quote": "Going through an employer-of-record service instead.",
       "message_id": "email:<b0017.23@brightwater.example>",
       "source": "email",
@@ -1445,6 +1450,7 @@
       ],
       "found_otherwise": [],
       "reversal_in_other_thread": false,
+      "reversal_linked": false,
       "quote": "Annual contracts only, no monthly option.",
       "message_id": "slack:proj-expansion:1773152640.000000",
       "source": "slack",
@@ -6840,7 +6846,7 @@
  "versions": {
   "org-generator": {
    "version": "0.1.0",
-   "commit": "044570b"
+   "commit": "637dcd6"
   },
   "normalizer": {
    "version": "0.1.0",
