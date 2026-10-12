@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-08T05:06:38",
+ "generated_at": "2026-10-12T14:44:24",
  "sources": {
   "company": "Brightwater",
   "domain": "brightwater.example",
@@ -1846,7 +1846,11 @@
        "where": "Meeting: Germany market entry weekly meeting"
       }
      ],
-     "matched": true
+     "matched": true,
+     "replay_due": {
+      "text": "by friday 13 february",
+      "date": "2026-02-13"
+     }
     },
     {
      "schema_version": "1.0",
@@ -1878,7 +1882,11 @@
        "where": "Meeting: Germany market entry weekly meeting"
       }
      ],
-     "matched": true
+     "matched": true,
+     "replay_due": {
+      "text": "by Monday 16 February",
+      "date": "2026-02-16"
+     }
     },
     {
      "schema_version": "1.0",
@@ -1920,7 +1928,11 @@
        "where": "Email: Re: Germany market entry - AE hire"
       }
      ],
-     "matched": true
+     "matched": true,
+     "replay_due": {
+      "text": "Tuesday 24 February",
+      "date": "2026-02-24"
+     }
     },
     {
      "schema_version": "1.0",
@@ -1952,7 +1964,11 @@
        "where": "Chat: #proj-expansion"
       }
      ],
-     "matched": true
+     "matched": true,
+     "replay_due": {
+      "text": "by monday 2 march",
+      "date": "2026-03-02"
+     }
     },
     {
      "schema_version": "1.0",
@@ -1984,7 +2000,11 @@
        "where": "Chat: #proj-expansion"
       }
      ],
-     "matched": true
+     "matched": true,
+     "replay_due": {
+      "text": "Monday 6 april",
+      "date": "2026-04-06"
+     }
     },
     {
      "schema_version": "1.0",
@@ -2016,7 +2036,11 @@
        "where": "Email: Germany market entry – price list & support readiness"
       }
      ],
-     "matched": true
+     "matched": true,
+     "replay_due": {
+      "text": "by Tuesday, 14 April",
+      "date": "2026-04-14"
+     }
     },
     {
      "schema_version": "1.0",
@@ -2075,7 +2099,11 @@
        "where": "Chat: #proj-expansion"
       }
      ],
-     "matched": false
+     "matched": false,
+     "replay_due": {
+      "text": "Monday 27 April",
+      "date": "2026-04-27"
+     }
     }
    ],
    "score": {
@@ -5529,6 +5557,395 @@
    }
   }
  },
+ "replay": {
+  "components": {
+   "decision-extractor": {
+    "version": "0.1.6",
+    "commit": "45a0527",
+    "calls_recorded": 65,
+    "calls_matched": 65,
+    "calls_unmatched": 0,
+    "outside_calls_refused": 24,
+    "complete": false,
+    "compared": {
+     "recorded": 28,
+     "replayed": 28,
+     "same_ids": 28,
+     "identical": 4,
+     "fields_changed": {
+      "made_probability": 24
+     }
+    },
+    "plugins": null
+   },
+   "commitment-tracker": {
+    "version": "0.1.4",
+    "commit": "f5523c9",
+    "calls_recorded": 65,
+    "calls_matched": 65,
+    "calls_unmatched": 0,
+    "outside_calls_refused": 0,
+    "complete": true,
+    "compared": {
+     "recorded": 8,
+     "replayed": 8,
+     "same_ids": 8,
+     "identical": 1,
+     "fields_changed": {
+      "due": 7
+     }
+    },
+    "plugins": null
+   },
+   "risk-finder": {
+    "version": "0.1.0",
+    "commit": "8fa9734",
+    "calls_recorded": 65,
+    "calls_matched": 65,
+    "calls_unmatched": 0,
+    "outside_calls_refused": 0,
+    "complete": true,
+    "compared": {
+     "recorded": 14,
+     "replayed": 14,
+     "same_ids": 14,
+     "identical": 14,
+     "fields_changed": {}
+    },
+    "plugins": null
+   },
+   "gap-finder": {
+    "version": "0.1.0",
+    "commit": "cf634d0",
+    "calls_recorded": 57,
+    "calls_matched": 57,
+    "calls_unmatched": 0,
+    "outside_calls_refused": 3,
+    "complete": false,
+    "compared": {
+     "recorded": 23,
+     "replayed": 23,
+     "same_ids": 23,
+     "identical": 20,
+     "fields_changed": {
+      "settled_probability": 3
+     }
+    },
+    "plugins": null
+   },
+   "contradiction-detector": {
+    "version": "0.1.3",
+    "commit": "f11c948",
+    "calls_recorded": 1,
+    "calls_matched": 1,
+    "calls_unmatched": 0,
+    "outside_calls_refused": 0,
+    "complete": true,
+    "compared": {
+     "recorded": 4,
+     "replayed": 4,
+     "same_ids": 4,
+     "identical": 4,
+     "fields_changed": {}
+    },
+    "plugins": null
+   },
+   "expertise-finder": {
+    "version": "0.1.0",
+    "commit": "b8e61b8",
+    "calls_recorded": 57,
+    "calls_matched": 57,
+    "calls_unmatched": 0,
+    "outside_calls_refused": 0,
+    "complete": true,
+    "compared": {
+     "recorded": 18,
+     "replayed": 18,
+     "same_ids": 18,
+     "identical": 18,
+     "fields_changed": {}
+    },
+    "plugins": null
+   },
+   "brief-writer": {
+    "version": "0.1.3",
+    "commit": "12f83fd",
+    "calls_recorded": 8,
+    "calls_matched": 8,
+    "calls_unmatched": 0,
+    "outside_calls_refused": 0,
+    "complete": true,
+    "compared": {
+     "cut": {
+      "commitments": {
+       "recorded": 4,
+       "replayed": 4,
+       "identical": 0,
+       "fields_changed": {
+        "due": 4
+       }
+      },
+      "conflicts": {
+       "recorded": 1,
+       "replayed": 1,
+       "identical": 1,
+       "fields_changed": {}
+      },
+      "decisions": {
+       "recorded": 11,
+       "replayed": 11,
+       "identical": 11,
+       "fields_changed": {}
+      },
+      "open_questions": {
+       "recorded": 5,
+       "replayed": 5,
+       "identical": 5,
+       "fields_changed": {}
+      },
+      "summary": {
+       "recorded": 4,
+       "replayed": 4,
+       "identical": 4,
+       "fields_changed": {}
+      }
+     },
+     "full": {
+      "commitments": {
+       "recorded": 6,
+       "replayed": 6,
+       "identical": 0,
+       "fields_changed": {
+        "due": 6
+       }
+      },
+      "conflicts": {
+       "recorded": 0,
+       "replayed": 0,
+       "identical": 0,
+       "fields_changed": {}
+      },
+      "decisions": {
+       "recorded": 17,
+       "replayed": 17,
+       "identical": 17,
+       "fields_changed": {}
+      },
+      "open_questions": {
+       "recorded": 7,
+       "replayed": 7,
+       "identical": 7,
+       "fields_changed": {}
+      },
+      "summary": {
+       "recorded": 4,
+       "replayed": 4,
+       "identical": 4,
+       "fields_changed": {}
+      }
+     }
+    },
+    "plugins": {
+     "decision-extractor": "0.1.6",
+     "commitment-tracker": "0.1.4",
+     "contradiction-detector": "0.1.3"
+    }
+   }
+  },
+  "scores": {
+   "decision-extractor": {
+    "planted": 5,
+    "found_as_made": 4,
+    "found_only_otherwise": 1,
+    "reversals": 2,
+    "reversals_found_as_made": 1,
+    "reversals_in_other_thread": 2,
+    "reversals_linked": 0,
+    "reaffirmations": 3,
+    "reaffirmations_reported": 3,
+    "lookalikes_planted": 9,
+    "lookalikes_reported_as_made": 0,
+    "reported": 28,
+    "reported_made": 24,
+    "made_outside_labels": 16
+   },
+   "commitment-tracker": {
+    "planted": 6,
+    "found": 6,
+    "owner_right": 6,
+    "due_right": 5,
+    "status_right": 3,
+    "done_planted": 4,
+    "done_in_other_thread": 3,
+    "done_reported": 1,
+    "reported": 8,
+    "lookalikes_reported": 0,
+    "outside_labels": 1
+   },
+   "risk-finder": {
+    "planted": 3,
+    "found": 3,
+    "found_as_issue": 1,
+    "status_right": 1,
+    "raised_by_right": 3,
+    "came_true": 2,
+    "came_true_seen_as_separate_issue": 2,
+    "came_true_in_other_thread": 2,
+    "reported": 14,
+    "lookalikes_reported": 0,
+    "outside_labels": 9
+   },
+   "gap-finder": {
+    "planted": 4,
+    "planted_in_material_given": 4,
+    "planted_in_meetings_not_given": 0,
+    "found": 4,
+    "status_right": 4,
+    "reported": 23,
+    "lookalikes_reported": 0,
+    "outside_labels": 19,
+    "outside_on_lookalikes": 7
+   },
+   "contradiction-detector": {
+    "changes_planted": 3,
+    "changes_reported": 3,
+    "changes_reported_as_update": 3,
+    "reported": 4,
+    "outside_labels": 1
+   },
+   "expertise-finder": {
+    "planted": 3,
+    "planted_in_material_given": 3,
+    "found": 3,
+    "person_right": 3,
+    "referrals": 2,
+    "referrals_credited": 2,
+    "reported": 18,
+    "lookalikes_reported": 0,
+    "outside_labels": 15,
+    "outside_on_lookalikes": 3
+   }
+  },
+  "commitments": [
+   {
+    "label": "commitment:1",
+    "action": "get the data processing agreement translated",
+    "owner": "Wen Eriksen",
+    "planted_due": "2026-02-13",
+    "text": "by friday 13 february",
+    "recorded": "2026-02-06",
+    "replayed": "2026-02-13",
+    "right": true
+   },
+   {
+    "label": "commitment:2",
+    "action": "shortlist employer-of-record providers",
+    "owner": "Declan Achterberg",
+    "planted_due": "2026-04-27",
+    "text": "Monday 6 april",
+    "recorded": "2026-03-16",
+    "replayed": "2026-04-06",
+    "right": false
+   },
+   {
+    "label": "commitment:3",
+    "action": "set up the Frankfurt environment",
+    "owner": "Declan Achterberg",
+    "planted_due": "2026-03-02",
+    "text": "by monday 2 march",
+    "recorded": "2026-02-16",
+    "replayed": "2026-03-02",
+    "right": true
+   },
+   {
+    "label": "commitment:4",
+    "action": "prepare the German price list",
+    "owner": "Mateo Iyer",
+    "planted_due": "2026-04-14",
+    "text": "by Tuesday, 14 April",
+    "recorded": "2026-03-31",
+    "replayed": "2026-04-14",
+    "right": true
+   },
+   {
+    "label": "commitment:5",
+    "action": "hire the first account executive",
+    "owner": "Zane Quintero",
+    "planted_due": "2026-02-24",
+    "text": "Tuesday 24 February",
+    "recorded": "2026-02-10",
+    "replayed": "2026-02-24",
+    "right": true
+   },
+   {
+    "label": "commitment:6",
+    "action": "write the German support macros",
+    "owner": "Zane Quintero",
+    "planted_due": "2026-02-16",
+    "text": "by Monday 16 February",
+    "recorded": "2026-02-09",
+    "replayed": "2026-02-16",
+    "right": true
+   }
+  ],
+  "brief_commitments": {
+   "cut": [
+    {
+     "text": "Wen Eriksen will have the data processing agreement translated by Friday 13 February.",
+     "recorded": "2026-02-06",
+     "replayed": "2026-02-13"
+    },
+    {
+     "text": "Zane Quintero will have the German support macros written by Monday 16 February.",
+     "recorded": "2026-02-09",
+     "replayed": "2026-02-16"
+    },
+    {
+     "text": "Declan Achterberg will have the Frankfurt environment done by Monday 2 March.",
+     "recorded": "2026-02-16",
+     "replayed": "2026-03-02"
+    },
+    {
+     "text": "Zane Quintero will have the first account executive hired by Tuesday 24 February.",
+     "recorded": "2026-02-10",
+     "replayed": "2026-02-24"
+    }
+   ],
+   "full": [
+    {
+     "text": "Wen will have the data processing agreement translated by Friday 13 February.",
+     "recorded": "2026-02-06",
+     "replayed": "2026-02-13"
+    },
+    {
+     "text": "Zane will have the German support macros written by Monday 16 February.",
+     "recorded": "2026-02-09",
+     "replayed": "2026-02-16"
+    },
+    {
+     "text": "Zane will have the first account executive start by Tuesday 24 February.",
+     "recorded": "2026-02-10",
+     "replayed": "2026-02-24"
+    },
+    {
+     "text": "Declan will have the Frankfurt environment done by Monday 2 March.",
+     "recorded": "2026-02-16",
+     "replayed": "2026-03-02"
+    },
+    {
+     "text": "Mateo will prepare the German price list, including the local VAT breakdown and currency conversion, by Tuesday, 14 April.",
+     "recorded": "2026-03-31",
+     "replayed": "2026-04-14"
+    },
+    {
+     "text": "Declan will have the employer-of-record providers shortlist done by Monday 27 April.",
+     "recorded": "2026-04-06",
+     "replayed": "2026-04-27"
+    }
+   ]
+  },
+  "ledger_spent_usd": 0.0
+ },
  "briefs": {
   "cut": {
    "schema_version": "1.0",
@@ -6846,7 +7263,7 @@
  "versions": {
   "org-generator": {
    "version": "0.1.0",
-   "commit": "c46eddd"
+   "commit": "eafc25c"
   },
   "normalizer": {
    "version": "0.1.0",

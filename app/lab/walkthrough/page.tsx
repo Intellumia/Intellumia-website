@@ -3,7 +3,7 @@ import Link from 'next/link';
 import SiteFooter from '../../components/SiteFooter';
 import SiteHeader from '../../components/SiteHeader';
 import data, { EM_DASHES_SHOWN_AS_HYPHENS, count, num, usd } from './data';
-import type { Brief, BriefItem, Citation, Item, ScoreRow } from './data';
+import type { Brief, BriefItem, Citation, Compared, Item, ReplayComponent, ScoreRow } from './data';
 import { Chip, FIELDS, ItemView, Panel, Planted, Pre, Source, Tally, kinds, shortfalls, tallies, unchecked } from './parts';
 import type { EvidenceState } from './parts';
 
@@ -27,6 +27,45 @@ export const metadata: Metadata = {
 
 const S = data.sources;
 const F = data.finders;
+const R = data.replay;
+const RCT = R?.components['commitment-tracker'];
+const briefFix = R?.brief_commitments.cut?.find((c) => c.text.includes('13 February') && c.replayed !== c.recorded);
+const cutCompared = (R?.components['brief-writer']?.compared as Record<string, Record<string, Compared>> | undefined)?.cut;
+const cutOnlyDates =
+  cutCompared &&
+  Object.entries(cutCompared).every(([section, x]) =>
+    section === 'commitments' ? Object.keys(x.fields_changed).every((f) => f === 'due') : x.identical === x.recorded,
+  );
+const stillWrong = R?.commitments.filter((c) => !c.right) ?? [];
+
+// The replay table: what each piece changed when run again on this run's recorded replies.
+const FIELD_WORDS: Record<string, string> = {
+  due: 'due date',
+  made_probability: 'probability its status check adds',
+  settled_probability: 'probability its status check adds',
+};
+function replayChanged(id: string, c: ReplayComponent): string {
+  if (id === 'brief-writer') {
+    const briefs = c.compared as Record<string, Record<string, Compared>>;
+    const parts = Object.entries(briefs).flatMap(([name, sections]) =>
+      Object.entries(sections).flatMap(([section, x]) =>
+        Object.entries(x.fields_changed).map(
+          ([f, n]) => `the ${FIELD_WORDS[f] ?? f} of ${n} of ${x.recorded} ${section} in the ${name === 'cut' ? 'first' : 'second'} brief`,
+        ),
+      ),
+    );
+    const joined = parts.join('; ');
+    return parts.length ? `${joined.charAt(0).toUpperCase()}${joined.slice(1)}. Every other section as recorded.` : 'Nothing.';
+  }
+  const x = c.compared as Compared;
+  const fields = Object.entries(x.fields_changed);
+  if (!fields.length) return `Nothing: all ${x.same_ids} items as recorded.`;
+  const what = fields.map(([f, n]) => `the ${FIELD_WORDS[f] ?? f} on ${n} of ${x.same_ids} items`).join('; ');
+  const refused = c.outside_calls_refused
+    ? `. Those ${c.outside_calls_refused} checks go to TypeSafe’s Jev and are not in the call log, so the replay refused them${fields.some(([f]) => f === 'status') ? '' : '; no status changed'}`
+    : '; nothing else';
+  return `${what.charAt(0).toUpperCase()}${what.slice(1)}${refused}.`;
+}
 
 const FINDERS: { id: string; question: string; read: string; benchmark: string[] }[] = [
   {
@@ -108,6 +147,9 @@ function finderNotes(id: string): string[] {
         n('due_right') < n('found')
           ? `${n('found') - n('due_right')} of the ${n('found')} due dates it gave are wrong, for one reason: when a message names both a weekday and a date, as in “by Friday 13 February”, its date resolver takes the next such weekday and ignores the date. Said on 2 February, that became 6 February. This walkthrough found the bug; its held-out threads did not.`
           : '',
+        RCT && num(R?.scores['commitment-tracker']?.due_right) > n('due_right')
+          ? `Fixed since, in commitment-tracker ${RCT.version}. Replayed on this run’s recorded model replies, it gets ${num(R?.scores['commitment-tracker']?.due_right)} of the ${n('planted')} planted due dates right; each card shows both dates, and the ledger below says how the replay works.`
+          : '',
         n('done_in_other_thread')
           ? `${n('done_in_other_thread')} of the ${n('done_planted')} promises that were kept were confirmed done in a different conversation, which it cannot see when it reads one at a time, so it left them open.`
           : '',
@@ -146,7 +188,7 @@ const RUN_NOTES: { who: string; text: string }[] = [
   },
   {
     who: 'commitment-tracker',
-    text: 'resolves “by Friday 13 February” to the Friday after the message, not to 13 February. All six due dates are wrong, and the wrong dates appear in both briefs.',
+    text: `resolves “by Friday 13 February” to the Friday after the message, not to 13 February. All six due dates are wrong, and the wrong dates appear in both briefs.${RCT ? ` Fixed since in ${RCT.version}: see “Fixed since this run”.` : ''}`,
   },
   {
     who: 'decision-extractor, commitment-tracker, risk-finder',
@@ -818,6 +860,16 @@ export default function WalkthroughPage() {
               its date bug: “by Friday 13 February” shows as due 2026-02-06. Several of its decisions are promises. The
               conflict it raises, Frankfurt ruled out and then built, is real and nobody planted it.
             </p>
+            {briefFix ? (
+              <p className="wt-note">
+                Replayed with commitment-tracker {RCT?.version} on this run’s recorded model replies, the same brief shows
+                that commitment due {briefFix.replayed}.
+                {cutOnlyDates
+                  ? ` Only the due dates of its commitments change (${cutCompared?.commitments?.fields_changed.due ?? 0} of ${cutCompared?.commitments?.recorded ?? 0}); every other section is as recorded.`
+                  : ''}{' '}
+                See “Fixed since this run” in the ledger.
+              </p>
+            ) : null}
             <p className="wt-bench">
               <span className="system-label">Held-out benchmark, brief-writer</span>
               On 60 AMI meetings, 4.2% and 2.5% of its items were not supported by the transcript under two judges, against
@@ -962,6 +1014,62 @@ export default function WalkthroughPage() {
                 ))}
             </ul>
 
+            {R && RCT ? (
+              <>
+                <h3 className="wt-h3">Fixed since this run</h3>
+                <p className="wt-note">
+                  commitment-tracker {RCT.version}
+                  {RCT.commit ? ` (commit ${RCT.commit})` : ''} reads a date written out, as in “by Friday 13 February”,
+                  before the weekday beside it. To check the fix on this run without paying for it again, we replayed the
+                  run: every finder and both briefs ran again on the same record with the code installed now, and each
+                  model call was answered with the reply this run recorded for that exact request. A request that was
+                  not recorded is refused, so a piece whose prompts had changed would show it here. Nothing was sent out,
+                  and the replay spent {usd(R.ledger_spent_usd ?? 0)}.
+                </p>
+                <table className="wt-table wt-replay">
+                  <thead>
+                    <tr>
+                      <th className="system-label">Piece</th>
+                      <th className="system-label">Version</th>
+                      <th className="system-label">Model calls replayed</th>
+                      <th className="system-label">What changed</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.entries(R.components).map(([k, c]) => (
+                      <tr key={k}>
+                        <td>
+                          {k}
+                          <span className="wt-replay-meta">
+                            {c.version}
+                            {c.plugins?.['commitment-tracker'] ? ` with commitment-tracker ${c.plugins['commitment-tracker']}` : ''} ·{' '}
+                            {c.calls_matched} of {c.calls_recorded} calls replayed
+                          </span>
+                        </td>
+                        <td>
+                          {c.version}
+                          {c.plugins?.['commitment-tracker'] ? `, its commitments from commitment-tracker ${c.plugins['commitment-tracker']}` : ''}
+                        </td>
+                        <td>
+                          {c.calls_matched} of {c.calls_recorded}
+                        </td>
+                        <td>{replayChanged(k, c)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className="wt-note">
+                  Planted due dates right: {num(F['commitment-tracker']?.score.due_right)} of{' '}
+                  {num(F['commitment-tracker']?.score.planted)} in the run, {num(R.scores['commitment-tracker']?.due_right)} of{' '}
+                  {num(R.scores['commitment-tracker']?.planted)} in the replay.{' '}
+                  {stillWrong.length === 1
+                    ? `The one still wrong, ${stillWrong[0].owner}’s “${stillWrong[0].action}”, was moved to ${stillWrong[0].planted_due} in another chat thread: the tracker read “${stillWrong[0].text}” in one conversation and reported the move as a second commitment.`
+                    : ''}{' '}
+                  The briefs shown above are the recorded ones.
+                </p>
+              </>
+            ) : null}
+
             <h3 className="wt-h3">What the labels cannot check</h3>
             <p className="wt-note">
               Items a finder reported that no planted label covers. These are not counted as errors: some are true and
@@ -1032,7 +1140,8 @@ export default function WalkthroughPage() {
 
             <h3 className="wt-h3">Run it again</h3>
             <p className="wt-note">
-              The run, its harness and every file it wrote are in the org-generator repository, folder walkthrough/.
+              The run, its harness and every file it wrote are in the org-generator repository, folder walkthrough/; the
+              replay is its own stage there, and needs only the run folder.
               Versions: {Object.entries(data.versions)
                 .map(([k, v]) => `${k} ${v.version ?? ''}${v.commit ? ` (${v.commit})` : ''}`)
                 .join(', ')}

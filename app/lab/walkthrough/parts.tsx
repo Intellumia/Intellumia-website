@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Citation, FinderData, Item, ScoreRow } from './data';
-import { num } from './data';
+import data, { num } from './data';
 
 export type EvidenceState =
   | 'Thesis'
@@ -98,6 +98,8 @@ export function ItemView({ finder, item }: { finder: string; item: Item }) {
   const spec = FIELDS[finder];
   const headline = spec.headline.map((k) => text(item[k])).filter(Boolean).join(': ');
   const due = item.due as { text?: string; date?: string } | undefined;
+  const replayDue = item.replay_due as { date?: string } | undefined;
+  const replayVersion = data.replay?.components[finder]?.version;
   return (
     <article className="wt-item">
       <div className="wt-item-output">
@@ -115,6 +117,12 @@ export function ItemView({ finder, item }: { finder: string; item: Item }) {
               </div>
             ) : null;
           })}
+          {replayDue?.date && replayDue.date !== due?.date ? (
+            <div>
+              <dt className="system-label">Due, replayed with {replayVersion}</dt>
+              <dd>resolved to {replayDue.date}</dd>
+            </div>
+          ) : null}
         </dl>
       </div>
       <div className="wt-item-source">

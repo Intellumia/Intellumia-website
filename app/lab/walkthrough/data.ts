@@ -129,6 +129,38 @@ export type Walkthrough = {
   calls: Record<string, CallStats>;
   ledger: { spent_usd: number | null; estimate: Record<string, unknown> | null };
   versions: Record<string, { version: string | null; commit: string | null }>;
+  replay: Replay | null;
+};
+
+// The free replay, after the run: each finder run again with the code installed then, every model call answered
+// with the reply the run recorded for that exact request (walkthrough.py replay in org-generator).
+export type Compared = {
+  recorded: number;
+  replayed: number;
+  same_ids?: number;
+  identical: number;
+  fields_changed: Record<string, number>;
+};
+
+export type ReplayComponent = {
+  version: string;
+  commit: string | null;
+  calls_recorded: number;
+  calls_matched: number;
+  calls_unmatched: number;
+  outside_calls_refused: number;
+  complete: boolean;
+  plugins?: Record<string, string>;
+  // Per item for a finder; per brief and section for brief-writer.
+  compared: Compared | Record<string, Record<string, Compared>>;
+};
+
+export type Replay = {
+  components: Record<string, ReplayComponent>;
+  scores: Record<string, Record<string, unknown>>;
+  commitments: { label: string; action: string; owner: string; planted_due: string; text: string | null; recorded: string | null; replayed: string | null; right: boolean }[];
+  brief_commitments: Record<string, { text: string; recorded: string | null; replayed: string | null }[]>;
+  ledger_spent_usd: number | null;
 };
 
 // This site sets no em dashes, and its release check rejects them. Some of the generated messages, and some of
