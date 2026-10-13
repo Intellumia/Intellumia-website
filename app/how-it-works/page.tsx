@@ -35,8 +35,8 @@ export default function HowItWorks() {
           <div className="arc-rule v2-arc" aria-hidden="true" />
         </section>
 
-        <div className="v2-band v2-band-slabs" aria-hidden="true" />
         <section className="v2-section v2-light" aria-labelledby="steps-title">
+          <div className="v2-band v2-band-slabs" aria-hidden="true" />
           <p className="system-label v2-index">01 / The steps</p>
           <h2 id="steps-title" className="v2-visually-hidden">The steps</h2>
           <ol className="v2-timeline">
@@ -62,8 +62,8 @@ export default function HowItWorks() {
           </figure>
         </section>
 
-        <div className="v2-band v2-band-both" aria-hidden="true" />
         <section className="v2-section v2-light" aria-labelledby="faq-title">
+          <div className="v2-band v2-band-both" aria-hidden="true" />
           <p className="system-label v2-index">03 / Common questions</p>
           <h2 id="faq-title" className="v2-visually-hidden">Common questions</h2>
           <dl className="v2-faq">
