@@ -2,9 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import SiteFooter from '../components/SiteFooter';
 import SiteHeader from '../components/SiteHeader';
+import LayerMap from '../components/LayerMap';
 
 export const metadata: Metadata = {
-  title: 'Our point of view | Intellumia',
+  title: 'For investors and partners | Intellumia',
   description:
     'Intellumia’s core thesis: intelligence is free, judgement is the moat, and the layer a company’s judgement lives on should be its own. What we are not, and what would change our mind.',
   alternates: {
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'article',
-    images: [{ url: '/social/og-default.png', width: 1200, height: 630, alt: 'Intellumia: Intelligence is free. Judgement is the moat.' }],
+    images: [{ url: '/social/og-default.png', width: 1200, height: 630, alt: 'Intellumia: AI that knows your business. Built with your team. Owned by you.' }],
     url: 'https://intellumia.com/point-of-view',
     title: 'Intelligence is free. Judgement is the moat.',
     description:
@@ -40,7 +41,7 @@ export default function PointOfViewPage() {
         <section className="pov-hero" aria-labelledby="pov-title">
           <div className="pov-hero-grid">
             <div className="hero-label system-label">
-              <span>Intellumia / Point of view</span>
+              <span>For investors and partners</span>
               <span>Thesis v1.0, 6 October 2026</span>
             </div>
             <h1 id="pov-title">
@@ -66,6 +67,22 @@ export default function PointOfViewPage() {
             <p>Bold in direction. Exact in evidence.</p>
             <span>Sundeep Kumar, Founder &amp; CEO. Reviewed April 2027.</span>
           </aside>
+        </section>
+
+        <div className="v2-band v2-band-slabs" aria-hidden="true" />
+
+        <section className="layer-section" aria-labelledby="layer-title">
+          <div className="map-heading">
+            <span className="section-number system-label">The layer, drawn</span>
+            <h2 id="layer-title">
+              Where your judgement lives, <em>and what holds it.</em>
+            </h2>
+            <p className="layer-intro">
+              The layer sits between your people and any model. What goes into it
+              differs for every company, so the extractors that feed it do too.
+            </p>
+          </div>
+          <LayerMap />
         </section>
 
         <section className="essay-section" aria-labelledby="claims-title">

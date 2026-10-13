@@ -1,8 +1,8 @@
-import Link from 'next/link';
 import SiteFooter from './components/SiteFooter';
 import SiteHeader from './components/SiteHeader';
-import DecisionMap from './components/DecisionMap';
-import LayerMap from './components/LayerMap';
+import FirstLookMap from './components/FirstLookMap';
+import Actions from './components/V2Actions';
+import Close from './components/V2Close';
 
 export default function Home() {
   return (
@@ -13,242 +13,143 @@ export default function Home() {
 
       <SiteHeader />
 
-      <main id="main-content">
-        <section className="hero client-hero" id="top" aria-labelledby="hero-title">
-          <div className="hero-grid">
-            <div className="hero-label system-label">
-              A software company for the intelligence era
-            </div>
-
-            <div className="hero-statement">
-              <h1 id="hero-title">
-                Intelligence is free.{' '}
-                <em>Judgement is the moat.</em>
-              </h1>
-              <div className="hero-actions">
-                <Link
-                  className="button-primary"
-                  href="/connect"
-                  data-analytics-event="conversation_path_open"
-                  data-analytics-location="hero_primary"
-                >
-                  Begin a conversation <span aria-hidden="true">↗</span>
-                </Link>
-                <Link
-                  className="button-secondary"
-                  href="/point-of-view"
-                  data-analytics-event="point_of_view_click"
-                  data-analytics-location="hero_secondary"
-                >
-                  Read our point of view
-                </Link>
-                <p className="hero-note system-label">
-                  A fixed window. One decision. A number agreed first.
-                </p>
-              </div>
-            </div>
-
-            <div className="hero-consequence client-consequence">
-              <p>
-                Own the layer your judgement lives on, or someone else will. Every
-                company will become an intelligent organisation; we build the layer
-                that makes yours its own.
-              </p>
-              <p>
-                Intellumia is a software company for the intelligence era. We embed
-                with leadership teams to find where their judgement lives, test
-                whether it can be codified, and build the layer they will run it on.
-              </p>
-            </div>
-          </div>
-
-          <aside className="home-rail" aria-label="Where Intellumia is today">
-            <span className="system-label">Evidence state</span>
-            <p>Public thesis · Method documented · Embeds in conversation</p>
-            <Link
-              href="/point-of-view"
-              data-analytics-event="point_of_view_click"
-              data-analytics-location="hero_rail"
-            >
-              Read the thesis <span aria-hidden="true">↗</span>
-            </Link>
-          </aside>
-          <div className="arc-rule" aria-hidden="true" />
+      <main id="main-content" className="v2">
+        <section className="v2-hero" aria-labelledby="hero-title">
+          <div className="v2-hero-plate" aria-hidden="true" />
+          <p className="system-label v2-kicker">An AI-native services company</p>
+          <h1 id="hero-title">
+            <span className="heading-line">AI that knows your business.</span>
+            <span className="heading-line hero-muted">Built with your team. Owned by you.</span>
+          </h1>
+          <p className="v2-sub">
+            You know your business. We help you see how AI will change it, and where to start.
+          </p>
+          <Actions where="hero" />
+          <div className="arc-rule v2-arc" aria-hidden="true" />
         </section>
 
-        <section className="value-section" aria-labelledby="value-title">
-          <div className="section-number system-label">01 / The problem</div>
-          <div className="value-heading">
-            <h2 id="value-title">Private inference protects your data. Nothing protects your judgement.</h2>
-            <p>
-              The model makers now sell private tiers, and the people who build these
-              systems say they do not fully understand them. A clause is not control. Your real intelligence is not in your systems;
-              it is in how you decide, and three things happen to it.
-            </p>
-          </div>
-
-          <div className="trigger-grid" aria-label="What happens to a company's judgement">
-            <article>
-              <span className="trigger-index">01</span>
-              <h3>It stays in a few heads</h3>
-              <p>
-                Which customer to keep, which risk to carry, when to stop: the calls
-                that make you different sit with a handful of people.
-              </p>
-            </article>
-            <article>
-              <span className="trigger-index">02</span>
-              <h3>It leaves when they do</h3>
-              <p>
-                Succession, growth and attrition take the reasoning with them. The
-                next decision starts from nothing.
-              </p>
-            </article>
-            <article>
-              <span className="trigger-index">03</span>
-              <h3>It converges on the vendor&apos;s playbook</h3>
-              <p>
-                Same models, same company. Undifferentiated intelligence is a cost.
-                Differentiated judgement is the moat.
-              </p>
-            </article>
-          </div>
+        <div className="v2-band v2-band-spectrum" aria-hidden="true" />
+        <section className="v2-section v2-dark" aria-labelledby="fit-title">
+          <p className="system-label v2-index">01 / Where most businesses are</p>
+          <h2 id="fit-title" className="v2-visually-hidden">
+            What we hear most
+          </h2>
+          <ul className="v2-quotes">
+            <li>
+              <p className="v2-quote">&ldquo;How will AI change my business?&rdquo;</p>
+              <p>Where it helps you, where it threatens you, and what to do first.</p>
+            </li>
+            <li>
+              <p className="v2-quote">&ldquo;Where do I even start?&rdquo;</p>
+              <p>With one place in your business, not a tool.</p>
+            </li>
+            <li>
+              <p className="v2-quote">&ldquo;My best people carry this business.&rdquo;</p>
+              <p>AI makes their judgement go further, and keeps it yours.</p>
+            </li>
+          </ul>
         </section>
 
-        <section className="layer-section" aria-labelledby="layer-title">
-          <div className="map-heading">
-            <span className="section-number system-label">02 / The layer, drawn</span>
-            <h2 id="layer-title">
-              Where your judgement lives, <em>and what holds it.</em>
-            </h2>
-            <p className="layer-intro">
-              The layer sits between your people and any model. What goes into it
-              differs for every company, so the extractors that feed it do too.
-            </p>
-          </div>
-          <LayerMap />
-        </section>
-
-        <section className="map-section" aria-labelledby="map-title">
-          <div className="map-heading">
-            <span className="section-number system-label">03 / The embed, drawn</span>
-            <h2 id="map-title">
-              Four moves, one decision, <em>a number agreed first.</em>
-            </h2>
-          </div>
-          <DecisionMap />
-        </section>
-
+        <div className="v2-band v2-band-slabs" aria-hidden="true" />
         <section
-          className="begin-section client-begin"
-          id="how-we-help"
-          aria-labelledby="begin-title"
+          className="v2-section v2-light"
+          id="how-it-works"
+          aria-labelledby="how-title"
         >
-          <div className="begin-heading">
-            <span className="section-number system-label">04 / How we help</span>
-            <h2 id="begin-title">Start at the decision, not the task.</h2>
-          </div>
-          <div className="begin-intro begin-intro-simple">
-            <p className="begin-lead">
-              AI changes a company when it changes who decides, with what evidence.
-              The first engagement is an embed: a fixed window inside your company,
-              on one decision, with a number agreed before we start. Where you are
-              today is where the work starts.
-            </p>
-          </div>
-
-          <ol className="value-path" aria-label="How an engagement progresses">
-            <li>
-              <span>01</span>
-              <strong>Establish the baseline</strong>
-              <p>See what happens now, what it costs and what happens if nothing changes.</p>
+          <p className="system-label v2-index">02 / How it works</p>
+          <h2 id="how-title">
+            <span className="heading-line">Start small.</span>
+            <span className="heading-line">Own what we build.</span>
+          </h2>
+          <ol className="v2-timeline">
+            <li className="v2-s1">
+              <span className="v2-dot" aria-hidden="true" />
+              <strong>First Look</strong>
+              <span className="v2-time">2 to 3 weeks</span>
+              <p>How AI will change your business, and the first move.</p>
             </li>
-            <li>
-              <span>02</span>
-              <strong>Change the work</strong>
-              <p>Bring the right ownership, context, evidence and permissions into the decision.</p>
+            <li className="v2-s2">
+              <span className="v2-dot" aria-hidden="true" />
+              <strong>Embed</strong>
+              <span className="v2-time">60 to 90 days</span>
+              <p>One place, one measure, a working build.</p>
             </li>
-            <li>
-              <span>03</span>
-              <strong>Measure the outcome</strong>
-              <p>Compare what followed and decide to scale, redesign, hold or stop.</p>
+            <li className="v2-s3">
+              <span className="v2-dot" aria-hidden="true" />
+              <strong>Run and Improve</strong>
+              <span className="v2-time">Until it holds</span>
+              <p>Then we hand it over. It is yours.</p>
+            </li>
+            <li className="v2-s4">
+              <span className="v2-dot" aria-hidden="true" />
+              <strong>Your intelligence layer</strong>
+              <span className="v2-time">Over time</span>
+              <p>Each step adds to a layer built on your own judgement.</p>
             </li>
           </ol>
+          <p className="v2-note">A First Look is free for our first five clients.</p>
         </section>
 
-        <section className="direction-teaser" aria-labelledby="direction-title">
-          <div className="promise-plate" aria-hidden="true" />
-          <div className="section-number system-label">05 / The promise</div>
+        <section className="v2-section v2-dark v2-split v2-sample-section" aria-labelledby="sample-title">
           <div>
-            <h2 id="direction-title">Every company operating from its own intelligence.</h2>
-            <p>
-              The layer is a company&apos;s own system of evidence, memory, permissions
-              and decisions: owned and controlled by the company, on any model it
-              chooses. Organisations forget. Models don&apos;t. The layer turns every
-              decision into memory the next one can use.
+            <p className="system-label v2-index">03 / What you get</p>
+            <h2 id="sample-title">
+              <span className="heading-line">See your business</span>
+              <span className="heading-line">the way AI will.</span>
+            </h2>
+            <p className="v2-body">
+              We map where AI helps you, where it threatens you, and where a few
+              people&apos;s judgement matters most. Then we pick one place to start,
+              with one number to move.
             </p>
-            <p>
-              We are not the answer to every problem, and we are not experts in every
-              problem. We will never tell you that only Intellumia can solve it. What
-              we build with you belongs to you. The platform we are building from that
-              work is a thesis, being tested with clients, and we say so plainly.
+          </div>
+          <figure className="v2-sample">
+            <FirstLookMap />
+            <figcaption className="system-label">Illustration · an example business</figcaption>
+          </figure>
+        </section>
+
+        <section className="v2-section v2-dark v2-split" id="about" aria-labelledby="about-title">
+          <img
+            className="v2-portrait"
+            src="/team/sundeep-kumar.jpg"
+            alt="Sundeep Kumar, Founder and CEO of Intellumia"
+            width={720}
+            height={720}
+            loading="lazy"
+          />
+          <div>
+            <p className="system-label v2-index">04 / Who you will work with</p>
+            <h2 id="about-title">Sundeep Kumar</h2>
+            <p className="system-label v2-role">Founder &amp; CEO</p>
+            <p className="v2-body">
+              Twenty-five years inside enterprise technology, working with large
+              companies across Asia-Pacific. Now on your side of the table, wherever
+              your business is.
             </p>
-            <Link
-              className="text-link"
-              href="/point-of-view"
-              data-analytics-event="point_of_view_click"
-              data-analytics-location="direction_teaser"
-            >
-              Explore our point of view <span aria-hidden="true">↗</span>
-            </Link>
           </div>
         </section>
 
-        <section className="conversation-section" aria-labelledby="conversation-title">
-          <span className="system-label">Begin with the consequential question</span>
-          <h2 id="conversation-title">
-            <span>What matters now?</span>
-            <span>What changes first?</span>
-          </h2>
-          <p className="conversation-payoff">
-            Own the layer. Rent the model. Trust nothing you cannot see.
-          </p>
-          <Link
-            href="/connect"
-            className="conversation-link"
-            data-analytics-event="conversation_path_open"
-            data-analytics-location="conversation_section"
-          >
-            Begin a conversation
-            <span aria-hidden="true">↗</span>
-          </Link>
+        <section className="v2-promise-wrap v2-light" aria-labelledby="promise-title">
+          <div className="v2-promise-plate" aria-hidden="true" />
+          <div className="v2-promise-text">
+            <p className="system-label v2-index">05 / The promise</p>
+            <h2 id="promise-title" className="v2-vision">
+              <span className="heading-line">What we build</span>
+              <span className="heading-line">with you is yours.</span>
+            </h2>
+            <ul className="v2-promises">
+              <li>Your data stays in your accounts.</li>
+              <li>AI models that never train on your data.</li>
+              <li>Independent of every model maker.</li>
+            </ul>
+          </div>
         </section>
+
+        <Close where="close" />
       </main>
 
       <SiteFooter />
-
-      <script
-        type="application/ld+json"
-        data-static-script="true"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            name: 'Intellumia',
-            legalName: 'Intellumia Pte. Ltd.',
-            url: 'https://intellumia.com/',
-            email: 'sundeep@intellumia.com',
-            foundingDate: '2025',
-            address: {
-              '@type': 'PostalAddress',
-              streetAddress: '60 Paya Lebar Road, #07-54, Paya Lebar Square',
-              addressLocality: 'Singapore',
-              postalCode: '409051',
-              addressCountry: 'SG',
-            },
-          }),
-        }}
-      />
     </>
   );
 }
