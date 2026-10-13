@@ -1,82 +1,43 @@
 import type { Metadata } from 'next';
-import CopyEmailAddress from '../components/CopyEmailAddress';
 import SiteFooter from '../components/SiteFooter';
 import SiteHeader from '../components/SiteHeader';
+import Actions from '../components/V2Actions';
 
 export const metadata: Metadata = {
-  title: 'Begin a conversation | Intellumia',
-  description: 'Begin a conversation with Intellumia about an outcome that matters.',
-  alternates: {
-    canonical: '/connect',
-  },
+  title: 'Contact | Intellumia',
+  description: 'Book a call, send a WhatsApp message or email Intellumia about your business.',
+  alternates: { canonical: '/connect' },
+  openGraph: { type: 'website', url: 'https://intellumia.com/connect', title: 'Contact | Intellumia', description: 'Let us talk about your business.', images: [{ url: '/social/og-default.png', width: 1200, height: 630, alt: 'Intellumia: AI that knows your business. Built with your team. Owned by you.' }] },
 };
 
-export default function ConnectPage() {
+export default function Connect() {
   return (
     <>
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <SiteHeader />
-      <main id="main-content" className="connect-page">
-        <section className="connect-section" aria-labelledby="connect-title">
-          <span className="system-label">Begin a conversation</span>
-          <h1 id="connect-title">Start with the outcome that matters.</h1>
-
-          <div className="connect-intro">
-            <p>
-              Sundeep Kumar, Founder &amp; CEO, reads every message himself. Twenty-five
-              years inside enterprise technology at Microsoft and IBM, working with
-              large enterprises across Asia-Pacific. Now on the client&apos;s side of the
-              table.
+      <main id="main-content" className="v2">
+        <section className="v2-contact" aria-labelledby="contact-title">
+          <div className="v2-contact-plate" aria-hidden="true" />
+          <div className="v2-contact-text">
+            <p className="system-label v2-kicker">Contact</p>
+            <h1 id="contact-title">
+              <span className="heading-line">Let&apos;s talk about</span>
+              <span className="heading-line">your business.</span>
+            </h1>
+            <Actions where="contact" />
+            <p className="v2-email">
+              Or email <a href="mailto:sundeep@intellumia.com" data-analytics-event="email_click" data-analytics-location="contact">sundeep@intellumia.com</a>
             </p>
-            <p>Tell us what needs to change and what is currently in the way.</p>
-            <p>
-              Use whichever email service works for you. Copy the address below, or
-              open your default email app if you know it is configured.
-            </p>
+            <ol className="v2-next v2-next-dark">
+              <li>Book a call or send a message.</li>
+              <li>Talk to Sundeep about your business.</li>
+              <li>Get a short note on whether a First Look makes sense.</li>
+            </ol>
+            <p className="v2-privacy">Please leave confidential information out of a first message.</p>
           </div>
-
-          <a
-            className="button-primary connect-primary"
-            href="https://cal.com/meetsk/30"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-analytics-event="conversation_schedule_open"
-            data-analytics-location="connect_primary"
-          >
-            Schedule a call <span aria-hidden="true">↗</span>
-          </a>
-
-          <CopyEmailAddress />
-
-          <a
-            className="connect-mail-link"
-            href="mailto:sundeep@intellumia.com"
-            data-analytics-event="conversation_email_client_open"
-            data-analytics-location="connect_page"
-          >
-            Open your email app <span aria-hidden="true">↗</span>
-          </a>
-
-          <blockquote className="founder-note">
-            <span className="system-label">A note from the founder</span>
-            <p>
-              I spent twenty-five years selling and delivering technology to the
-              largest companies in Asia-Pacific. The pattern never changed: the
-              best decisions lived in a few people&apos;s heads, and the technology
-              never touched them. AI makes that gap expensive. I am building
-              Intellumia so a company can put its own judgement on a layer it owns,
-              starting with one decision.
-            </p>
-            <cite>Sundeep Kumar, Founder &amp; CEO</cite>
-          </blockquote>
-
-          <p className="connect-privacy-note">
-            Please do not include confidential or sensitive information in an initial
-            message.
-          </p>
         </section>
       </main>
       <SiteFooter />
-      <script src="/connect.js" defer data-static-script="true" />
     </>
   );
 }

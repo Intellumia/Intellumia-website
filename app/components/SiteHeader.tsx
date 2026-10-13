@@ -16,9 +16,9 @@ export default function SiteHeader() {
       </Link>
       <div className="header-right">
         <nav className="site-nav" aria-label="Primary navigation">
-          <Link href="/#how-we-help">How we help</Link>
-          <Link href="/point-of-view">Our point of view</Link>
-          <Link href="/lab">The Lab</Link>
+          <Link href="/how-it-works">How it works</Link>
+          <Link href="/about">About</Link>
+          <Link href="/point-of-view">Investors and partners</Link>
         </nav>
         <details className="mobile-nav">
           <summary className="mobile-nav-toggle" aria-label="Menu">
@@ -27,20 +27,22 @@ export default function SiteHeader() {
             <span className="mobile-nav-bar" aria-hidden="true" />
           </summary>
           <nav className="mobile-nav-panel" aria-label="Primary navigation">
-            <Link href="/#how-we-help">How we help</Link>
-            <Link href="/point-of-view">Our point of view</Link>
-            <Link href="/lab">The Lab</Link>
+            <Link href="/how-it-works">How it works</Link>
+            <Link href="/about">About</Link>
+            <Link href="/point-of-view">Investors and partners</Link>
           </nav>
         </details>
-        <Link
+        <a
           className="header-action"
-          href="/connect"
-          data-analytics-event="conversation_path_open"
+          href="https://cal.com/meetsk/30"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-analytics-event="book_call_click"
           data-analytics-location="header"
         >
-          Begin a conversation
+          Book a call
           <span aria-hidden="true">↗</span>
-        </Link>
+        </a>
       </div>
     </header>
   );

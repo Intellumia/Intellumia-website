@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'article',
-    images: [{ url: '/social/og-default.png', width: 1200, height: 630, alt: 'Intellumia: Intelligence is free. Judgement is the moat.' }],
+    images: [{ url: '/social/og-default.png', width: 1200, height: 630, alt: 'Intellumia: AI that knows your business. Built with your team. Owned by you.' }],
     url: 'https://intellumia.com/point-of-view/full',
     title: 'Intelligence is free. Judgement is the moat.',
     description:
@@ -277,8 +277,8 @@ export default function FullArgumentPage() {
               gets there faster.
             </p>
             <p>
-              We are a software company that starts inside its clients rather than
-              with a demo. The platform is a thesis, being tested with clients, and we
+              We are an AI-native services company that starts inside its clients
+              rather than with a demo. The platform is a thesis, being tested with clients, and we
               say so plainly. <Link href="/lab">The Lab</Link> shows what runs today and
               what does not.
             </p>

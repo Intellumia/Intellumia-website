@@ -11,6 +11,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: 'https://intellumia.com/how-it-works/',
+      lastModified: new Date('2026-10-13'),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: 'https://intellumia.com/about/',
+      lastModified: new Date('2026-10-13'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: 'https://intellumia.com/point-of-view/',
       lastModified: new Date('2026-10-05'),
       changeFrequency: 'monthly',
