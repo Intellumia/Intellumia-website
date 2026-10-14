@@ -4173,3 +4173,12 @@ a {
 .v2-next-dark li::before { color: var(--signal-dark); }
 .v2-privacy { margin: 32px 0 0; color: var(--dark-secondary); font-size: 14px; }
 @media (max-width: 900px) { .v2-contact { grid-template-columns: 1fr; } .v2-contact-plate { min-height: 360px; } .v2-contact-text { padding-top: 56px; } }
+
+/* kept from the width trial: two bug fixes */
+.v2-close .button-primary { background: var(--black); color: var(--signal-dark); border-color: var(--black); }
+.v2-close .button-primary:hover, .v2-close .button-primary:focus-visible { background: var(--carbon); }
+@media (max-width: 900px) {
+  .v2-split { grid-template-columns: 1fr; }
+  .v2-split > :first-child, .v2-split > :last-child,
+  .v2-dark.v2-split > :first-child, .v2-dark.v2-split > :last-child { grid-column: 1 / -1; }
+}
