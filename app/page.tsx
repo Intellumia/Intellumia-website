@@ -28,6 +28,7 @@ export default function Home() {
           <div className="arc-rule v2-arc" aria-hidden="true" />
         </section>
 
+        <div className="v2-band v2-band-spectrum" aria-hidden="true" />
         <section className="v2-section v2-dark" aria-labelledby="fit-title">
           <p className="system-label v2-index">01 / Where most businesses are</p>
           <h2 id="fit-title" className="v2-visually-hidden">
@@ -49,12 +50,12 @@ export default function Home() {
           </ul>
         </section>
 
+        <div className="v2-band v2-band-slabs" aria-hidden="true" />
         <section
           className="v2-section v2-light"
           id="how-it-works"
           aria-labelledby="how-title"
         >
-          <div className="v2-band v2-band-slabs" aria-hidden="true" />
           <p className="system-label v2-index">02 / How it works</p>
           <h2 id="how-title">
             <span className="heading-line">Start small.</span>
