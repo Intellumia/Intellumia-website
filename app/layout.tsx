@@ -9,9 +9,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://intellumia.com'),
-  title: 'Intellumia | Intelligence is free. Judgement is the moat.',
+  title: 'Intellumia | AI that knows your business. Built with your team. Owned by you.',
   description:
-    'Intellumia is a software company for the intelligence era. We embed with leadership teams to find where their judgement lives and build the layer they run it on.',
+    'Intellumia is an AI-native services company. We learn how a business really works, build and run the AI with their team, and hand it over to own.',
   alternates: {
     canonical: '/',
   },
@@ -28,23 +28,23 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://intellumia.com/',
     siteName: 'Intellumia',
-    title: 'Intelligence is free. Judgement is the moat.',
+    title: 'AI that knows your business. Built with your team. Owned by you.',
     description:
-      'Own the layer your judgement lives on, or someone else will. Intellumia embeds with leadership teams, one decision at a time.',
+      'You know your business. Intellumia helps you see how AI will change it, where to start, and builds it with your team for you to own.',
     images: [
       {
         url: '/social/og-default.png',
         width: 1200,
         height: 630,
-        alt: 'Intellumia: Intelligence is free. Judgement is the moat.',
+        alt: 'Intellumia: AI that knows your business. Built with your team. Owned by you.',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Intelligence is free. Judgement is the moat.',
+    title: 'AI that knows your business. Built with your team. Owned by you.',
     description:
-      'Own the layer your judgement lives on, or someone else will. Intellumia embeds with leadership teams, one decision at a time.',
+      'You know your business. Intellumia helps you see how AI will change it, where to start, and builds it with your team for you to own.',
     images: ['/social/og-default.png'],
   },
 };

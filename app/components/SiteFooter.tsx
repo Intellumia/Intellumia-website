@@ -4,7 +4,7 @@ export default function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="footer-primary">
-        <p>Intellumia · Intelligence, Illuminated. · sundeep@intellumia.com · +91 88558 84042</p>
+        <p>Intelligence, Illuminated. · sundeep@intellumia.com</p>
         <nav aria-label="Company, legal and contact links">
           <Link
             href="/connect"
@@ -13,7 +13,6 @@ export default function SiteFooter() {
           >
             Contact
           </Link>
-          <Link href="/point-of-view">Point of view</Link>
           <Link href="/privacy">Privacy</Link>
           <a href="https://www.linkedin.com/in/kumarsundeep" target="_blank" rel="noopener noreferrer">
             LinkedIn
@@ -21,9 +20,7 @@ export default function SiteFooter() {
         </nav>
       </div>
       <p className="footer-legal">
-        Private company limited by shares · Incorporated 2025 · Registered office:
-        60 Paya Lebar Road, #07-54, Paya Lebar Square, Singapore 409051 · © 2026
-        Intellumia Pte. Ltd.
+        © 2026 Intellumia Pte. Ltd., Singapore
       </p>
     </footer>
   );

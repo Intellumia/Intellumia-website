@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'article',
-    images: [{ url: '/social/og-default.png', width: 1200, height: 630, alt: 'Intellumia: Intelligence is free. Judgement is the moat.' }],
+    images: [{ url: '/social/og-default.png', width: 1200, height: 630, alt: 'Intellumia: AI that knows your business. Built with your team. Owned by you.' }],
     url: 'https://intellumia.com/lab',
     title: 'The Lab | Intellumia',
     description:
