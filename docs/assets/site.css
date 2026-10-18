@@ -12,3 +12,8 @@ a:focus-visible{outline:2px solid #C7FF3D;outline-offset:3px}
 @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
 @media (max-width: 640px){header > div, section > div, footer > div{padding-left:20px !important;padding-right:20px !important}
 section > div{padding-top:64px !important;padding-bottom:64px !important}}
+
+.pin-list{display:none}
+@media (max-width: 760px){.pin{display:none !important}.pin-list{display:flex !important}}
+summary{list-style-position:outside}
+@supports (animation-timeline: view()){@media (prefers-reduced-motion: no-preference){.lit{animation:lit-up linear both;animation-timeline:view();animation-range:entry 10% cover 45%}@keyframes lit-up{from{opacity:.25}to{opacity:1}}}}
