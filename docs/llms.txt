@@ -1,6 +1,6 @@
-# intellumia
+# Intellumia
 
-> We draw out how the people who run a business decide, build AI on it with their team, and measure it in their numbers. It stays theirs.
+> Intellumia, the judgement engine for owner-led businesses. An AI-native services company. In five days, on your own data, we find the first move; in 90 days we move one number, and you own what we build. Pronounced in-tel-LOO-mee-uh.
 
 - [Home](https://intellumia.com/)
 - [How we work](https://intellumia.com/how-we-work/)
