@@ -99,12 +99,11 @@ summary::-webkit-details-marker{display:none}
 .faq details[open] > summary::before{transform:rotate(45deg)}
 .faq details > .body{margin:12px 0 0 30px;max-width:720px}
 
-/* Photographs take their own panel on Carbon; the caption and credit sit below, never on top */
+/* Photographs take their own panel on Carbon; the caption sits below, never on top */
 .photo{margin:0;background:#101010;display:flex;flex-direction:column}
 .photo img{display:block;width:100%;height:auto;aspect-ratio:21/9;object-fit:cover}
 .photo figcaption{display:flex;flex-direction:column;gap:8px;padding:18px 0 0}
 .photo .body{color:#F4F4EF}
-.photo .label{color:#9A9A9A}
 .sec--light .photo figcaption,.photo--panel figcaption{padding:18px 24px 22px}
 .photo--panel img{aspect-ratio:4/3}
 @media (max-width: 760px){.photo img{aspect-ratio:4/3}}
