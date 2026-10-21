@@ -10,7 +10,7 @@ a:focus-visible,summary:focus-visible{outline:2px solid #C7FF3D;outline-offset:3
 @media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important}}
 
 /* Sections: Carbon for the opening and ending, Warm Light for reading, black for the close */
-.sec--dark,.sec--close,.photo{--fg:#F4F4EF;--soft:#BDBDB6;--rule:#2A2A2A;--accent:#C7FF3D;--violet:#BCA7FF;color:#F4F4EF}
+.sec--dark,.sec--close{--fg:#F4F4EF;--soft:#BDBDB6;--rule:#2A2A2A;--accent:#C7FF3D;--violet:#BCA7FF;color:#F4F4EF}
 .sec--light,.card{--fg:#101010;--soft:#4A4A45;--rule:#D9D9D3;--accent:#365E00;--violet:#5623A8;color:#101010}
 .sec--dark{background:#101010}
 .sec--light{background:#F4F4EF;border-top:1px solid #D9D9D3}
@@ -99,14 +99,10 @@ summary::-webkit-details-marker{display:none}
 .faq details[open] > summary::before{transform:rotate(45deg)}
 .faq details > .body{margin:12px 0 0 30px;max-width:720px}
 
-/* Photographs take their own panel on Carbon; the caption sits below, never on top */
-.photo{margin:0;background:#101010;display:flex;flex-direction:column}
-.photo img{display:block;width:100%;height:auto;aspect-ratio:21/9;object-fit:cover}
-.photo figcaption{display:flex;flex-direction:column;gap:8px;padding:18px 0 0}
-.photo .body{color:#F4F4EF}
-.sec--light .photo figcaption,.photo--panel figcaption{padding:18px 24px 22px}
-.photo--panel img{aspect-ratio:4/3}
-@media (max-width: 760px){.photo img{aspect-ratio:4/3}}
+/* Hairline scenes take their own band on Carbon; nothing sits on top of them */
+.scene{margin:0;padding:48px 40px;background:#101010;display:flex;justify-content:center}
+.scene img{display:block;width:100%;max-width:760px;height:auto}
+@media (max-width: 640px){.scene{padding:48px 20px}}
 
 /* Home: the field and its labelled decisions */
 .field-panel{margin-top:16px;display:grid;grid-template-columns:minmax(0,2fr) minmax(260px,1fr);gap:40px;align-items:center}
@@ -118,15 +114,29 @@ summary::-webkit-details-marker{display:none}
 .call--first::before{background:#C7FF3D}
 @media (max-width: 980px){.field-panel{grid-template-columns:1fr}}
 
-/* Steps: a rule and a mark per step on Home; one row per step on How we work */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));gap:24px}
-.step{display:flex;flex-direction:column;gap:10px;border-top:1px solid #101010}
-.step__mark{display:block;width:16px;height:16px;margin-top:-8px;background:#101010}
-.step__mark--go{background:#365E00}
+/* Home: a rule and a mark per step */
+.stepline{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));gap:24px}
+.stepline__item{display:flex;flex-direction:column;gap:10px;border-top:1px solid #101010}
+.stepline__mark{display:block;width:16px;height:16px;margin-top:-8px;background:#101010}
+.stepline__mark--go{background:#365E00}
 .timeline{display:block;max-width:1160px}
-.phase{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:16px 48px;padding:32px 0;border-top:1px solid #D9D9D3}
-.phase--first{border-top:4px solid #365E00}
-.phase .photo{margin-top:12px}
+
+/* How we work: the five steps as one process, top to bottom, joined by one hairline.
+   Figures alternate sides through grid placement; the text always comes first in the source. */
+.steps{list-style:none;margin:0;padding:0;position:relative;display:flex;flex-direction:column;gap:72px}
+.steps::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:#C9C9C2}
+.step{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:96px;align-items:center}
+.step__text{grid-column:1;grid-row:1}
+.step__fig{grid-column:2;grid-row:1;justify-self:center;display:block;width:100%;max-width:360px;height:auto}
+.step--flip .step__text{grid-column:2}
+.step--flip .step__fig{grid-column:1}
+@media (max-width: 760px){
+.steps{gap:32px}
+.steps::before{display:none}
+.step{grid-template-columns:minmax(0,1fr);row-gap:20px}
+.step__text,.step--flip .step__text{grid-column:1;grid-row:2}
+.step__fig,.step--flip .step__fig{grid-column:1;grid-row:1;justify-self:start}
+}
 
 /* Connect */
 .contact{display:flex;flex-direction:column;border-top:1px solid #2A2A2A}
