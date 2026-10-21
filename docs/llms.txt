@@ -4,10 +4,11 @@
 
 - [Home](https://intellumia.com/)
 - [How we work](https://intellumia.com/how-we-work/)
-- [Where AI works today](https://intellumia.com/where-ai-works-today/)
+- [What is working](https://intellumia.com/where-ai-works-today/)
 - [For the next generation](https://intellumia.com/next-generation/)
 - [Point of view](https://intellumia.com/point-of-view/)
 - [Sales Engine](https://intellumia.com/sales-engine/)
 - [The Lab](https://intellumia.com/lab/)
+- [About](https://intellumia.com/about/)
 - [Book 30 minutes](https://intellumia.com/connect/)
 - [Privacy](https://intellumia.com/privacy/)

@@ -133,6 +133,7 @@ summary::-webkit-details-marker{display:none}
 .contact a{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px;min-height:44px;padding:20px 0;border-bottom:1px solid #2A2A2A;text-decoration:none}
 .contact__how{font-weight:600;font-size:17px;color:#C7FF3D}
 .portrait{width:100%;max-width:360px;aspect-ratio:4/5;object-fit:cover;filter:grayscale(1);display:block}
+.portrait--about{max-width:480px}
 
 /* Closing section */
 .close{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-end;justify-content:space-between}
