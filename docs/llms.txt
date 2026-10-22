@@ -5,5 +5,6 @@
 - [Home](https://intellumia.com/)
 - [How we work](https://intellumia.com/how-we-work/)
 - [Where AI works today](https://intellumia.com/where-ai-works-today/)
+- [For the next generation](https://intellumia.com/next-generation/)
 - [Book 30 minutes](https://intellumia.com/connect/)
 - [Privacy](https://intellumia.com/privacy/)
