@@ -1,14 +1,19 @@
 # Intellumia
 
-> Intellumia, the judgement engine for owner-led businesses. An AI-native services company. In five days, on your own data, we find the first move; in 90 days we move one number, and you own what we build. Pronounced in-tel-LOO-mee-uh.
+> Intellumia, the judgement engine for owner-led businesses. An AI-native product company, starting with service. Intellumia is the judgement engine for owner-led businesses: it learns how your best people decide and runs those decisions on your data. You own it. Pronounced in-tel-LOO-mee-uh.
+
+The product is the Intellumia layer: decision, organisational and tacit intelligence and the decision record, owned by the client. Engines run on it: the Sales Engine (the first engine; demo opening soon), the Plant Engine and the Cash Engine (in build). The AI models are rented and can be swapped.
 
 - [Home](https://intellumia.com/)
+- [Product: the intelligence layer](https://intellumia.com/product/)
+- [Sales Engine for real estate developers](https://intellumia.com/sales-engine/)
+- [Industries](https://intellumia.com/industries/)
+- [AI for auto component makers](https://intellumia.com/industries/auto-components/)
+- [AI for real estate developers](https://intellumia.com/industries/real-estate/)
+- [AI for chemical and pharma makers](https://intellumia.com/industries/chemicals-and-pharma/)
+- [Research](https://intellumia.com/research/)
 - [How we work](https://intellumia.com/how-we-work/)
-- [What is working](https://intellumia.com/where-ai-works-today/)
-- [For the next generation](https://intellumia.com/next-generation/)
-- [Point of view](https://intellumia.com/point-of-view/)
-- [Sales Engine](https://intellumia.com/sales-engine/)
-- [The Lab](https://intellumia.com/lab/)
 - [About](https://intellumia.com/about/)
 - [Book 30 minutes](https://intellumia.com/connect/)
+- [For the next generation](https://intellumia.com/next-generation/)
 - [Privacy](https://intellumia.com/privacy/)

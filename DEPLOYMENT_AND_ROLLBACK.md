@@ -1,69 +1,46 @@
-# Deployment and Rollback
+# Deployment and rollback
 
-**Current deployment state:** Phase 1 website live in production from `main` / `docs`.
+## Production
 
-## Production baseline
+- URL: <https://intellumia.com/>. `www` redirects to the apex domain, and HTTP redirects to HTTPS.
+- Host: GitHub Pages, publishing `main` / `docs` as it stands (no build step).
+- Repository: <https://github.com/Intellumia/Intellumia-website>.
+- Custom domain: `docs/CNAME` (`intellumia.com`).
+- DNS, email and the domain registrar are outside the website's scope and are never changed by a release.
+- GitHub Pages cannot set response headers, so the security and referrer policies are set in each page's `<head>`.
 
-- Primary URL: <https://intellumia.com/>
-- Privacy URL: <https://intellumia.com/privacy.html>
-- Host: GitHub Pages.
-- Repository: <https://github.com/Intellumia/Intellumia-website>
-- Deployment branch and folder: `main` / `docs`.
-- Current deployed commit: `c2ea6552b57185da02584b8e237f8cd82dc78a8c`.
-- GitHub Pages deployment run: <https://github.com/Intellumia/Intellumia-website/actions/runs/32707368753>.
-- Custom domain: `intellumia.com` through the repository `CNAME` file.
-- `www` redirects to the apex domain and HTTP redirects to HTTPS.
-- DNS remains outside the release scope and must not be changed.
+## How a release goes out
 
-The former holding-page files captured on 23 August 2026 remain under `baseline/production_2026-08-23/` with SHA-256 checksums. Commit `5800aadbee507532a06789ae4e5993d75b5578ba` remains the code-level rollback source.
+1. Work on a branch and open a draft pull request into `main`. The pull request states its rollback point: the commit `main` is at before the merge.
+2. Run the checks in `README.md` at 390, 768, 1100 and 1440 px, and put the results and desktop and phone screenshots in the pull request.
+3. The brand studio does its brand check on the pull request; fixes go on the same branch, and the checks run again.
+4. Sundeep merges, with a merge commit. Nobody else merges.
+5. GitHub Pages runs "pages build and deployment" (about 30 seconds). Confirm the run succeeded for the merge commit.
+6. Check the live site: the pages load, the header and footer are right, `/sitemap.xml` and `/robots.txt` are served, and an unknown path shows the 404 page.
+7. The IndexNow workflow runs on the same push and pings Bing with the sitemap URLs. A failed ping does not affect the site.
 
-## Approved release architecture
+## Rollback
 
-- GitHub Pages remains the production host.
-- The authored project remains at the repository root.
-- `npm run build` creates the public release artifact in `docs/`.
-- The existing root holding page must remain intact while the release source is imported, so pushing the source does not itself change production.
-- GitHub Pages publishes from `/docs` on `main`.
-- No DNS, email, analytics or privacy-system change is part of this release.
+Every release is a merge commit on `main`, so the quickest rollback is to revert it:
 
-GitHub Pages does not allow project-defined response headers. Supported content-security and referrer controls are implemented in page metadata. The site remains static, has no form, analytics, third-party font, cookie or data store.
+```bash
+git revert -m 1 <merge commit>
+git push origin main
+```
 
-## Gate status
+GitHub Pages redeploys the previous site within a minute. Alternatively, restore `docs/` from the release's rollback point and push.
 
-Completed:
+Last resort, if `docs/` is unusable: in the repository's Pages settings, switch the source from `main` / `docs` to `main` / root. That serves the holding page kept at the repository root (Carbon, refreshed on 23 Oct 2026), with its own privacy page and a link to book 30 minutes.
 
-1. Source repository, host, branch, domain file and current commit identified.
-2. Founder approved the assembled page and accepted the current conversation experience on 24 August 2026.
-3. Founder confirmed registered-office unit `#07-54`; no unverified UEN was introduced.
-4. GitHub Pages retained as the approved host.
-5. Exact static artifact built and reviewed at desktop and mobile sizes.
-6. Lint, static-file, internal-link, metadata, accessibility and Lighthouse checks passed.
-7. Current production commit and emergency file archive recorded.
-8. Release source and `docs/` artifact merged through pull request 1 without altering the root holding page.
-9. Founder gave final production confirmation on 24 August 2026.
-10. GitHub Pages source changed from `main` / root to `main` / `docs`.
-11. Production verified over HTTPS on desktop and mobile. Required routes, the conversation copy action, legal footer, sitemap, robots file and `404` response passed.
+## Release log
 
-Outstanding after production release:
+| Date | Release | Merge commit | Rollback point |
+| --- | --- | --- | --- |
+| 15 Oct 2026 | Site v2 on Brand System v1.3.2 (#25, #26) | `28aa145` | `273f367` |
+| 17 Oct 2026 | Wordmark, Brand System v1.4.1 (#27); zip removed (#28) | `4ab5bd7`, `30f093f` | `28aa145` |
+| 18 Oct 2026 | intellumia.com v3, direction C (#29) | `5db5e55` | `30f093f` |
+| 20 Oct 2026 | Brand v1.5: Anek only, Intellumia in text, five steps (#30) | `176067c` | `5db5e55` |
+| 21 to 22 Oct 2026 | Release v1.5 Phase 1 and 2, Hairline art (#31, #32, #33) | `c36d78a`, `c01ff92`, `309e679` | `176067c` |
+| Pending | intellumia.com v2, product-led (#34) | | `309e679` |
 
-1. Obtain the approved social-preview image from Brand Studio when available. Until then, keep text Open Graph metadata and do not substitute a generic image.
-
-## Deployment sequence
-
-1. Fetch and verify `main` still points to the recorded production baseline or inspect any newer commit before proceeding.
-2. Create a release branch from the current `main` state.
-3. Add the authored source and generated `docs/` folder while preserving the root holding-page files.
-4. Rebuild and rerun `npm run verify:release` from the release branch.
-5. Review the exact local artifact and repository diff.
-6. Merge or fast-forward the release source to `main`; confirm production is still serving the preserved root holding page.
-7. Ask for the founder's final production confirmation.
-8. Change only the GitHub Pages publishing folder from `/root` to `/docs`.
-9. Verify production and record the deployed commit.
-
-## Rollback plan
-
-Preferred rollback is to change the GitHub Pages publishing folder back from `/docs` to `/root`. The preserved holding page should return without a source-code rollback.
-
-If the root baseline is not intact, redeploy commit `5800aadbee507532a06789ae4e5993d75b5578ba`. The captured files in `baseline/production_2026-08-23/` remain the emergency restoration package.
-
-After deployment, verify the apex URL, `www` redirect, HTTPS, `/privacy`, `/privacy.html`, conversation path, copy action, metadata, sitemap, robots file and missing-page behaviour. Roll back if a material legal, access, rendering or routing problem cannot be corrected immediately.
+Add a row for every merge to `main` that changes `docs/`.
