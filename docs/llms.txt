@@ -1,6 +1,6 @@
 # Intellumia
 
-> Intellumia, the judgement engine for owner-led businesses. An AI-native product company, starting with service. Intellumia is the judgement engine for owner-led businesses. In five days, on your own data, we find the first move; in 90 days we move one number, and you own what we build. Pronounced in-tel-LOO-mee-uh.
+> Intellumia, the judgement engine for owner-led businesses. An AI-native product company, starting with service. Intellumia is the judgement engine for owner-led businesses: it learns how your best people decide and runs those decisions on your data. You own it. Pronounced in-tel-LOO-mee-uh.
 
 The product is the Intellumia layer: decision, organisational and tacit intelligence and the decision record, owned by the client. Engines run on it: the Sales Engine (the first engine; demo opening soon), the Plant Engine and the Cash Engine (in build). The AI models are rented and can be swapped.
 
