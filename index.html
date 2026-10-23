@@ -1,159 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Intellumia — New site coming soon</title>
-<meta name="description" content="Intellumia Pte. Ltd. is rebuilding this site from the ground up. New site coming soon.">
-<link rel="canonical" href="https://intellumia.com/">
-<meta name="theme-color" content="#0F1D0A">
+<title>Intellumia, the judgement engine for owner-led businesses</title>
+<meta name="description" content="Intellumia is the judgement engine for owner-led businesses: it learns how your best people decide and runs those decisions on your data. You own it.">
 <meta name="robots" content="noindex,follow">
-
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://intellumia.com/">
-<meta property="og:site_name" content="Intellumia">
-<meta property="og:title" content="Intellumia — New site coming soon">
-<meta property="og:description" content="This site is being rebuilt from the ground up. New site coming soon.">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Intellumia — New site coming soon">
-<meta name="twitter:description" content="This site is being rebuilt from the ground up. New site coming soon.">
-
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="theme-color" content="#101010">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-<link rel="preload" href="manrope-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="plexmono-500.woff2" as="font" type="font/woff2" crossorigin>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Intellumia",
-  "legalName": "Intellumia Pte. Ltd.",
-  "url": "https://intellumia.com/",
-  "email": "connect@intellumia.com",
-  "foundingDate": "2025",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "60 Paya Lebar Road, #07-54, Paya Lebar Square",
-    "addressLocality": "Singapore",
-    "postalCode": "409051",
-    "addressCountry": "SG"
-  }
-}
-</script>
-
+<!-- The fallback holding page, served only if GitHub Pages is switched from main/docs to main/root (see DEPLOYMENT_AND_ROLLBACK.md).
+     Refreshed to the v2 brand on 23 Oct 2026: Carbon, Anek (from docs/ when it is reachable, otherwise a system face), no em dashes. -->
 <style>
-/* Self-hosted fonts — no third-party requests, no Google Fonts dependency.
-   Manrope and IBM Plex Mono are SIL Open Font License 1.1. */
-@font-face{font-family:'Manrope';src:url('manrope-var.woff2') format('woff2-variations');font-weight:200 800;font-style:normal;font-display:swap}
-@font-face{font-family:'IBM Plex Mono';src:url('plexmono-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
-
-:root{
-  --green-900:#0F1D0A;
-  --sand:#D4B480;
-  --sand-soft:#DDD1BA;
-  --cream:#F4F1E9;
-  --muted:#A8A395;
-  --rule:rgba(244,241,233,.12);
-}
-
+@font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latin.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap}
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{
-  margin:0;
-  min-height:100dvh;
-  display:flex;flex-direction:column;
-  background:var(--green-900);
-  color:var(--cream);
-  font-family:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;
-  font-weight:300;
-  font-size:clamp(16px,.55vw + 14px,18px);
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-}
-img,svg{max-width:100%;height:auto}
-a{color:inherit}
-
-.wrap{max-width:640px;margin:0 auto;padding:clamp(24px,5vw,48px)}
-.mono{
-  font-family:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--sand);font-weight:500;
-}
-
+html{background:#101010;-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:#101010;color:#F2F2F2;font-family:'Anek Latin','Arial Narrow',Arial,sans-serif;font-stretch:100%;font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:#F2F2F2}
+a:hover{color:#C7FF3D}
+:focus-visible{outline:2px solid #C7FF3D;outline-offset:3px}
+.wrap{width:100%;max-width:760px;margin:0 auto;padding:40px}
 main{flex:1;display:flex;align-items:center}
-.mark{width:44px;color:var(--sand);margin-bottom:32px}
-.mark path{fill:currentColor}
-h1{
-  font-size:clamp(1.9rem,4.5vw,2.6rem);line-height:1.15;
-  letter-spacing:-.02em;font-weight:300;margin:0 0 18px;
-}
-.lede{font-size:1.05rem;color:var(--sand-soft);max-width:46ch;margin:0;font-weight:300}
-.contact{margin-top:40px}
-.mail{
-  font-size:1.05rem;font-weight:400;color:var(--cream);text-decoration:none;
-  border-bottom:1px solid var(--rule);padding-bottom:4px;transition:.2s;
-}
-.mail:hover,.mail:focus-visible{color:var(--sand);border-bottom-color:var(--sand)}
-
-footer{border-top:1px solid var(--rule)}
-.particulars{
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px 28px;
-  padding-bottom:24px;border-bottom:1px solid var(--rule);
-}
-@media(max-width:640px){.particulars{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.particulars dt{
-  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--muted);margin-bottom:6px;
-}
-.particulars dd{margin:0;font-size:.85rem;color:var(--sand-soft);font-weight:300;line-height:1.5}
-dl{margin:0}
-.foot-base{
-  padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;
-  gap:12px 28px;align-items:center;
-}
-.foot-base p{margin:0;font-size:.8rem;color:var(--muted);font-weight:300}
-.foot-links{display:flex;gap:20px}
-.foot-links a{font-size:.8rem;color:var(--muted);text-decoration:none;transition:.2s}
-.foot-links a:hover,.foot-links a:focus-visible{color:var(--sand)}
-
-:focus-visible{outline:2px solid var(--sand);outline-offset:3px;border-radius:2px}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.wm{display:block;width:180px;height:auto;margin:0 0 48px}
+.label{margin:0 0 20px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9A9A9A}
+h1{margin:0 0 24px;font-weight:650;font-stretch:80%;font-size:clamp(44px,5vw + 20px,64px);line-height:1.02;letter-spacing:-.01em}
+p{margin:0 0 16px;color:#D8D8D8}
+.btn{display:inline-flex;align-items:center;min-height:52px;padding:0 26px;margin-top:12px;border-radius:4px;background:#C7FF3D;color:#101010;font-weight:600;text-decoration:none}
+a.btn:hover{color:#101010;background:#D8FF6B}
+footer{border-top:1px solid #2A2A2A}
+footer .wrap{padding-top:32px;padding-bottom:32px;font-size:15px;color:#9A9A9A}
+footer p{color:#9A9A9A;margin:0 0 8px}
+@media (max-width:760px){.wrap{padding:24px 20px}.wm{width:150px;margin-bottom:36px}}
 </style>
 </head>
 <body>
-
 <main>
-  <div class="wrap">
-    <svg class="mark" viewBox="0 0 107 207" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Intellumia"><path d="M46.5859 112.376C46.5033 115.487 44.8122 118.34 42.1074 119.901L17.4717 134.125L11.6484 137.487L18.373 149.134L33.1758 140.587C39.0723 137.215 46.403 141.376 46.5859 148.113V179.316L0 206.213V26.8975L46.5859 0.000976562V112.376ZM106.627 179.315L60.0391 206.213V130.193C60.0603 127.027 61.7504 124.106 64.4863 122.51L91.9043 106.681L85.1797 95.0342L73.4707 101.793C67.5115 105.218 60.0773 100.938 60.0391 94.0732V26.8975L106.627 0V179.315Z"/></svg>
-    <p class="mono">Intellumia</p>
-    <h1>We're rebuilding this site.</h1>
-    <p class="lede">Intellumia is under new direction, and this site is being rebuilt from the ground up to reflect it. Thank you for your patience — the new site is coming soon.</p>
-    <p class="contact">
-      <a class="mail" href="mailto:connect@intellumia.com">connect@intellumia.com</a>
-    </p>
-  </div>
+<div class="wrap">
+<svg class="wm" role="img" aria-label="Intellumia" xmlns="http://www.w3.org/2000/svg" viewBox="84.0 -1386.0 8779.7 1412.0"><g fill="#F2F2F2"><path transform="matrix(1 0 0 -1 0.0 0)" d="M92 0V985H446V0ZM269 1056Q172 1056 128.0 1099.5Q84 1143 84 1217V1225Q84 1299 128.0 1342.5Q172 1386 269 1386Q365 1386 409.5 1342.5Q454 1299 454 1225V1217Q454 1142 409.5 1099.0Q365 1056 269 1056Z"/><path transform="matrix(1 0 0 -1 497.0 0)" d="M717 0V566Q717 613 705.5 647.0Q694 681 666.0 699.0Q638 717 590 717Q553 717 524.0 704.0Q495 691 474.5 669.5Q454 648 442 621L388 767H445Q460 836 495.5 890.5Q531 945 594.5 977.0Q658 1009 757 1009Q865 1009 934.5 967.0Q1004 925 1037.5 840.5Q1071 756 1071 627V0ZM92 0V985H444L433 732L446 696V0Z"/><path transform="matrix(1 0 0 -1 1613.0 0)" d="M498 -23Q361 -23 280.5 18.5Q200 60 165.5 142.0Q131 224 131 344V872H482V404Q482 340 511.0 310.5Q540 281 625 281Q671 281 716.5 291.5Q762 302 799 316L769 26Q717 4 649.0 -9.5Q581 -23 498 -23ZM8 708V985H789L759 708ZM136 961 135 1208 484 1239 472 961Z"/><path transform="matrix(1 0 0 -1 2392.0 0)" d="M606 -26Q323 -26 190.5 97.0Q58 220 58 457V534Q58 769 182.5 892.0Q307 1015 546 1015Q705 1015 811.0 962.5Q917 910 970.5 811.5Q1024 713 1024 574V543Q1024 503 1020.5 461.5Q1017 420 1010 385H693Q697 446 698.5 500.0Q700 554 700 597Q700 649 684.0 684.5Q668 720 634.0 738.5Q600 757 546 757Q465 757 428.5 715.0Q392 673 392 596V507L394 469V407Q394 376 405.0 347.0Q416 318 445.5 295.5Q475 273 529.5 260.0Q584 247 671 247Q760 247 845.0 261.5Q930 276 1009 302L981 45Q912 11 816.5 -7.5Q721 -26 606 -26ZM245 385V593H939V385Z"/><path transform="matrix(1 0 0.21256 -1 3382.9 0)" d="M92 0V1319H446V0Z"/><path transform="matrix(1 0 0.21256 -1 3880.9 0)" d="M92 0V1319H446V0Z"/><path transform="matrix(1 0 0 -1 4562.7 0)" d="M439 985V419Q439 372 450.5 338.0Q462 304 490.0 286.0Q518 268 566 268Q604 268 632.5 281.0Q661 294 681.5 316.0Q702 338 714 364L768 218H711Q696 150 660.5 95.0Q625 40 562.0 8.0Q499 -24 399 -24Q292 -24 222.0 18.0Q152 60 118.5 144.5Q85 229 85 358V985ZM1064 985V0H712L723 253L710 289V985Z"/><path transform="matrix(1 0 0 -1 5678.7 0)" d="M1292 0V576Q1292 620 1281.5 651.5Q1271 683 1246.0 700.0Q1221 717 1177 717Q1142 717 1115.5 704.0Q1089 691 1070.5 669.5Q1052 648 1042 621L1011 767H1041Q1056 836 1090.0 890.5Q1124 945 1185.5 977.0Q1247 1009 1344 1009Q1448 1009 1514.5 968.0Q1581 927 1613.5 844.5Q1646 762 1646 637V0ZM92 0V985H444L433 705L446 696V0ZM692 0V576Q692 620 681.5 651.5Q671 683 646.0 700.0Q621 717 577 717Q542 717 515.5 704.0Q489 691 470.5 669.5Q452 648 442 621L388 767H445Q460 836 493.5 890.5Q527 945 588.0 977.0Q649 1009 744 1009Q881 1009 950.5 938.0Q1020 867 1037 733Q1039 713 1042.5 682.0Q1046 651 1046 628V0Z"/><path transform="matrix(1 0 0 -1 7369.7 0)" d="M92 0V985H446V0ZM269 1056Q172 1056 128.0 1099.5Q84 1143 84 1217V1225Q84 1299 128.0 1342.5Q172 1386 269 1386Q365 1386 409.5 1342.5Q454 1299 454 1225V1217Q454 1142 409.5 1099.0Q365 1056 269 1056Z"/><path transform="matrix(1 0 0 -1 7866.7 0)" d="M650 0 660 252 653 261V567L650 603Q650 672 605.5 704.5Q561 737 454 737Q357 737 267.5 714.0Q178 691 96 661L125 930Q175 952 236.0 970.5Q297 989 369.0 1000.0Q441 1011 522 1011Q659 1011 750.5 979.5Q842 948 896.0 890.5Q950 833 973.5 754.0Q997 675 997 580V0ZM345 -24Q197 -24 121.5 51.5Q46 127 46 266V291Q46 439 136.5 509.0Q227 579 426 604L677 636L698 434L485 403Q427 395 404.5 375.5Q382 356 382 318V314Q382 279 405.5 257.0Q429 235 484 235Q530 235 563.5 247.5Q597 260 619.5 281.0Q642 302 655 327L705 207H648Q633 140 600.5 88.0Q568 36 507.0 6.0Q446 -24 345 -24Z"/></g></svg>
+<p class="label">Intellumia, the judgement engine for owner-led businesses</p>
+<h1>The site is being updated.</h1>
+<p>Intellumia is the judgement engine for owner-led businesses: it learns how your best people decide and runs those decisions on your data. You own it.</p>
+<p>Write to <a href="mailto:sundeep@intellumia.com">sundeep@intellumia.com</a>, or book thirty minutes with Sundeep.</p>
+<a class="btn" href="https://cal.com/meetsk" rel="noopener">Book 30 minutes</a>
+</div>
 </main>
-
 <footer>
-  <div class="wrap">
-    <dl class="particulars">
-      <div><dt>Legal name</dt><dd>Intellumia Pte. Ltd.</dd></div>
-      <div><dt>Entity type</dt><dd>Private company limited by shares</dd></div>
-      <div><dt>Incorporated</dt><dd>2025 · Singapore</dd></div>
-      <div><dt>Registered office</dt><dd>60 Paya Lebar Road, #07-54<br>Paya Lebar Square<br>Singapore 409051</dd></div>
-    </dl>
-    <div class="foot-base">
-      <p>© 2026 Intellumia Pte. Ltd.</p>
-      <div class="foot-links">
-        <a href="mailto:connect@intellumia.com">Email</a>
-        <a href="privacy.html">Privacy</a>
-      </div>
-    </div>
-  </div>
+<div class="wrap">
+<p>Intellumia Pte. Ltd., a private company limited by shares, incorporated in Singapore in 2025.</p>
+<p>60 Paya Lebar Road, #07-54, Paya Lebar Square, Singapore 409051. <a href="privacy.html">Privacy</a></p>
+</div>
 </footer>
-
 </body>
 </html>
