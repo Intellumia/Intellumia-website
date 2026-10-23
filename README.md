@@ -13,7 +13,7 @@ Intellumia is the judgement engine for owner-led businesses: it learns how your 
 | `.github/workflows/indexnow.yml` | After each push to `main` that touches `docs/`, waits for the deploy and sends every sitemap URL to IndexNow (Bing). |
 | `archive/next-app/` | The retired Phase 1 Next.js source (August 2026). Kept for the record; nothing builds from it. |
 | `package.json`, `scripts/`, `public/` and the other root config files | Belong to the retired Next.js app. Do not run `npm run build`: it would try to regenerate `docs/` from the retired source. |
-| `index.html`, `privacy.html`, `robots.txt`, `sitemap.xml` at the root | The August 2026 holding page, kept as the last-resort fallback (see `DEPLOYMENT_AND_ROLLBACK.md`). Not the live site. |
+| `index.html`, `privacy.html`, `robots.txt`, `sitemap.xml` at the root | The holding page, kept as the last-resort fallback (see `DEPLOYMENT_AND_ROLLBACK.md`) and refreshed to the v2 brand on 23 Oct 2026. Not the live site. |
 
 ## Pages (v2, product-led)
 
@@ -29,7 +29,7 @@ Intellumia is the judgement engine for owner-led businesses: it learns how your 
 | `/about/` | Sundeep Kumar and the company |
 | `/connect/` | Book 30 minutes (booking on cal.com/meetsk) |
 | `/next-generation/` | For the next generation |
-| `/point-of-view/` | Our published pieces (`noindex` until the first entry) |
+| `/point-of-view/` | Our published pieces. `noindex`, and not linked from the footer, until the first entry |
 | `/privacy/` | Privacy notice |
 | `404.html` | Page not found |
 
@@ -43,7 +43,7 @@ These come from the Brand System (current) in Drive; it wins if anything here di
 - Anek only, from `docs/assets/fonts/`. No other typeface, no third-party fonts.
 - Never words on an image: every picture sits in its own panel beside the text, with alt text that describes what is drawn.
 - The name is written "Intellumia" with a capital I; only the logo is lower case. The legal entity stays "Intellumia Pte. Ltd.".
-- British English, sentence case, no em dashes, no fees on the site.
+- British English, sentence case, no em dashes. No fees on the site: How we work shows each stage's duration and outcome only.
 - Every number carries its source and evidence state ("Market evidence, not an Intellumia result", "Sample data. Illustration, not a client result").
 - No scripts: each page sets a Content-Security-Policy with `script-src 'none'`. The only script tags are JSON-LD structured data.
 - No cookies, analytics, tracking or forms. The owner's brief sign-up is an email link until a form endpoint is approved.
@@ -52,8 +52,8 @@ These come from the Brand System (current) in Drive; it wins if anything here di
 
 - Each page is a complete HTML file. The header, footer and `<head>` are repeated on every page, so a change to navigation, the footer, the descriptor or the security policy must be made on every page in the same commit.
 - Page titles end with "| Intellumia, an AI-native product company, starting with service" (Home uses the category line).
-- Every page carries Organization structured data with the one company description above. Home adds WebSite, About and Book 30 minutes add Person, and the industry pages add FAQPage, whose answers must match the page word for word.
-- A new indexable page also goes into `docs/sitemap.xml` and `docs/llms.txt`.
+- Every page carries Organization structured data with the one company description above. Home adds WebSite; About and Book 30 minutes add Person; Product and the industry pages add FAQPage, whose answers must match the page word for word; the Industries pages add BreadcrumbList.
+- A new indexable page also goes into `docs/sitemap.xml` and `docs/llms.txt`. When Point of view gets its first entry, remove its `noindex`, add it to both files and put it back in the footer on every page.
 
 ## Search and answer engines
 

@@ -30,7 +30,7 @@ git push origin main
 
 GitHub Pages redeploys the previous site within a minute. Alternatively, restore `docs/` from the release's rollback point and push.
 
-Last resort, if `docs/` is unusable: in the repository's Pages settings, switch the source from `main` / `docs` to `main` / root. That serves the August 2026 holding page kept at the repository root.
+Last resort, if `docs/` is unusable: in the repository's Pages settings, switch the source from `main` / `docs` to `main` / root. That serves the holding page kept at the repository root (Carbon, refreshed on 23 Oct 2026), with its own privacy page and a link to book 30 minutes.
 
 ## Release log
 
