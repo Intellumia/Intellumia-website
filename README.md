@@ -1,68 +1,75 @@
-# Intellumia Website
+# Intellumia website
 
-**Phase:** 1 — client-first website and thesis depth  
-**Status:** Phase 1 live in production from GitHub Pages `main` / `docs`  
-**Canonical source:** This directory  
-**Production URL:** <https://intellumia.com>
+The public website of Intellumia, served at <https://intellumia.com> by GitHub Pages from `main` / `docs`.
 
-## Purpose
+Intellumia is the judgement engine for owner-led businesses: it learns how your best people decide and runs those decisions on your data. You own it.
 
-This is the canonical implementation layer for Intellumia's initial website. The homepage is designed around the visitor's business consequence, the point at which Intellumia may help and the route to a qualified conversation. The deeper Point of View route carries the company's future thesis, organisational-intelligence direction and bounded Intelligence Twin concept.
+## What is here
 
-The website does not define company strategy or the brand system. It implements the current company and brand sources listed in `CONTENT_SOURCES.md`. The inactive, privacy-gated measurement design is recorded in `ANALYTICS_PLAN.md`.
-
-## Routes
-
-| Route | Purpose |
+| Path | What it is |
 | --- | --- |
-| `/` | Client-first Phase 1 homepage |
-| `/point-of-view` | Intellumia thesis, organisational intelligence and Intelligence Twin boundary |
-| `/connect` | Device-independent conversation path with address copy and optional email-app opening |
-| `/privacy` | Preserved current privacy statement |
-| `/privacy.html` | Legacy production URL forwarding to `/privacy` |
-| Any unmatched URL | Branded missing-page state |
-| `/robots.txt` | Search crawler rules |
-| `/sitemap.xml` | Production sitemap |
-| `/manifest.webmanifest` | Basic web-app metadata |
+| `docs/` | The live site. Hand-written static HTML, one folder per page, sharing `docs/assets/site.css`. GitHub Pages publishes this folder as it stands: there is no build step. |
+| `docs/CNAME` | The custom domain, `intellumia.com`. Do not change it. |
+| `.github/workflows/indexnow.yml` | After each push to `main` that touches `docs/`, waits for the deploy and sends every sitemap URL to IndexNow (Bing). |
+| `archive/next-app/` | The retired Phase 1 Next.js source (August 2026). Kept for the record; nothing builds from it. |
+| `package.json`, `scripts/`, `public/` and the other root config files | Belong to the retired Next.js app. Do not run `npm run build`: it would try to regenerate `docs/` from the retired source. |
+| `index.html`, `privacy.html`, `robots.txt`, `sitemap.xml` at the root | The August 2026 holding page, kept as the last-resort fallback (see `DEPLOYMENT_AND_ROLLBACK.md`). Not the live site. |
 
-## Local use
+## Pages (v2, product-led)
 
-Requirements:
+| Route | Page |
+| --- | --- |
+| `/` | Home: the product named on the first screen, the living field, where owners start, the layer, how you start, why now, research, the close |
+| `/product/` | The intelligence layer and its engines |
+| `/sales-engine/` | The Sales Engine for real estate developers, with a static picture of the sandbox (demo opening soon) |
+| `/industries/` | Industries index |
+| `/industries/auto-components/`, `/industries/real-estate/`, `/industries/chemicals-and-pharma/` | Answer pages: question heading, short answer, three places, how we do it, FAQ |
+| `/research/` | Our studies (publishing soon) and sourced market views |
+| `/how-we-work/` | The method in four steps and the three stages: Decision Sprint, the 90-day build, Embed |
+| `/about/` | Sundeep Kumar and the company |
+| `/connect/` | Book 30 minutes (booking on cal.com/meetsk) |
+| `/next-generation/` | For the next generation |
+| `/point-of-view/` | Our published pieces (`noindex` until the first entry) |
+| `/privacy/` | Privacy notice |
+| `404.html` | Page not found |
 
-- Node.js 22.13 or later.
-- npm.
+Redirects (meta refresh, `noindex`): `/how-it-works/` and `/lab/` to `/how-we-work/`; `/where-ai-works-today/` and its old entry pages to `/industries/` or the matching page.
 
-Commands:
+## House rules for every page
+
+These come from the Brand System (current) in Drive; it wins if anything here disagrees.
+
+- Carbon ground (`#101010`) only. Signal lime for action only, violet for evidence and the tagline only.
+- Anek only, from `docs/assets/fonts/`. No other typeface, no third-party fonts.
+- Never words on an image: every picture sits in its own panel beside the text, with alt text that describes what is drawn.
+- The name is written "Intellumia" with a capital I; only the logo is lower case. The legal entity stays "Intellumia Pte. Ltd.".
+- British English, sentence case, no em dashes, no fees on the site.
+- Every number carries its source and evidence state ("Market evidence, not an Intellumia result", "Sample data. Illustration, not a client result").
+- No scripts: each page sets a Content-Security-Policy with `script-src 'none'`. The only script tags are JSON-LD structured data.
+- No cookies, analytics, tracking or forms. The owner's brief sign-up is an email link until a form endpoint is approved.
+
+## Editing a page
+
+- Each page is a complete HTML file. The header, footer and `<head>` are repeated on every page, so a change to navigation, the footer, the descriptor or the security policy must be made on every page in the same commit.
+- Page titles end with "| Intellumia, an AI-native product company, starting with service" (Home uses the category line).
+- Every page carries Organization structured data with the one company description above. Home adds WebSite, About and Book 30 minutes add Person, and the industry pages add FAQPage, whose answers must match the page word for word.
+- A new indexable page also goes into `docs/sitemap.xml` and `docs/llms.txt`.
+
+## Search and answer engines
+
+- `docs/robots.txt` allows all crawlers and names Googlebot, Bingbot, OAI-SearchBot and PerplexityBot.
+- `docs/sitemap.xml` lists every indexable page; `docs/llms.txt` summarises the company and links the pages.
+- `docs/<key>.txt` is the IndexNow key file; `.github/workflows/indexnow.yml` uses it after each deploy.
+- Google Search Console is verified, with the sitemap and homepage submitted, and Bing imports from Search Console (Sundeep, 22 Oct 2026).
+
+## Checking a change locally
 
 ```bash
-npm install
-npm run dev
-npm run build
-npm run verify:release
-npm run preview
-npm run lint
+python3 -m http.server 8000 --directory docs
 ```
 
-`npm run build` creates the production-ready GitHub Pages artifact in `docs/`.
-The source remains in `app/`; generated browser pages contain no Next.js or
-React runtime. Only the small address-copy interaction loads JavaScript.
+Open <http://localhost:8000>. This simple server does not serve `404.html` for unknown paths as GitHub Pages does.
 
-No environment variables, API keys or secrets are required. The site has no contact form, analytics, third-party fonts or client data store.
+Before a release, check at 390, 768, 1100 and 1440 px wide: every page loads with no sideways scroll, the menu works on phone and tablet, every internal link and redirect resolves, axe-core finds no WCAG 2.2 AA violations, Lighthouse stays at or near 100, and the text has no em dashes and no lower-case "intellumia" outside URLs and file names.
 
-## Implementation boundaries
-
-- The approved Instrument Sans, Instrument Serif and Recursive sources are self-hosted from `public/fonts/`; lossless WOFF2 web subsets derived from those sources are used at runtime, with the supplied SIL Open Font License notices retained under `public/fonts/licenses/`.
-- Authoritative logo files are copied without alteration from the workspace `Logo/` directory.
-- The primary conversation action opens the local `/connect` route so it does not depend on a configured mail client. Visitors can copy `sundeep@intellumia.com` into any email service; a clearly labelled `mailto:` option remains secondary.
-- No contact form, message content or personal data is collected by the website.
-- No analytics code is active. CTA links include a future-facing event name only; nothing is transmitted.
-- No Open Graph image is included. Brand Studio must supply the production social-preview image.
-- The registered-office unit `#07-54` was confirmed by the founder on 24 August 2026. No unverified UEN was added.
-- The current `/privacy.html` URL remains available as a no-index static forward to `/privacy` so existing links do not break.
-- GitHub Pages does not support project-defined response headers. The static pages include the supported browser-level content-security and referrer policies; server-only headers cannot be asserted by this host.
-
-## Production safety
-
-The original holding page is preserved under `baseline/production_2026-08-23/` and in production repository commit `5800aad`. Phase 1 is live from GitHub Pages `main` / `docs` at commit `39d0dffa71114e4e10570f90dc01ebec95211870`; the immediate rollback is `3a441f9e12e68e932906698ba98a765f5bc9302c`. See `DEPLOYMENT_AND_ROLLBACK.md` before any production action.
-
-The completed local verification record and raw Lighthouse audits are under `qa/`.
+See `DEPLOYMENT_AND_ROLLBACK.md` before any change reaches `main`.
