@@ -41,6 +41,7 @@ Last resort, if `docs/` is unusable: in the repository's Pages settings, switch 
 | 18 Oct 2026 | intellumia.com v3, direction C (#29) | `5db5e55` | `30f093f` |
 | 20 Oct 2026 | Brand v1.5: Anek only, Intellumia in text, five steps (#30) | `176067c` | `5db5e55` |
 | 21 to 22 Oct 2026 | Release v1.5 Phase 1 and 2, Hairline art (#31, #32, #33) | `c36d78a`, `c01ff92`, `309e679` | `176067c` |
-| Pending | intellumia.com v2, product-led (#34) | | `309e679` |
+| 23 Oct 2026 | intellumia.com v2, product-led (#34) | `87b4797` | `309e679` |
+| 27 Oct 2026 | Registered address: 60 Paya Lebar Road, #06-28 Paya Lebar Square (direct commits) | `dd28b4b`, `0fbcfe0` | `87b4797` |
 
 Add a row for every merge to `main` that changes `docs/`.
