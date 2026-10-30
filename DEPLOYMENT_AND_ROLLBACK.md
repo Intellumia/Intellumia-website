@@ -43,5 +43,6 @@ Last resort, if `docs/` is unusable: in the repository's Pages settings, switch 
 | 21 to 22 Oct 2026 | Release v1.5 Phase 1 and 2, Hairline art (#31, #32, #33) | `c36d78a`, `c01ff92`, `309e679` | `176067c` |
 | 23 Oct 2026 | intellumia.com v2, product-led (#34) | `87b4797` | `309e679` |
 | 27 Oct 2026 | Registered address: 60 Paya Lebar Road, #06-28 Paya Lebar Square (direct commits) | `dd28b4b`, `0fbcfe0` | `87b4797` |
+| 30 Oct 2026 | Website blockers closed (time commitment, brief address, privacy approved); voice check complete (#35) | `126c548` | `b46f985` |
 
 Add a row for every merge to `main` that changes `docs/`.
