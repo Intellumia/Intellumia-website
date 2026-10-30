@@ -46,7 +46,7 @@ These come from the Brand System (current) in Drive; it wins if anything here di
 - British English, sentence case, no em dashes. No fees on the site: How we work shows each stage's duration and outcome only.
 - Every number carries its source and evidence state ("Market evidence, not an Intellumia result", "Sample data. Illustration, not a client result").
 - No scripts: each page sets a Content-Security-Policy with `script-src 'none'`. The only script tags are JSON-LD structured data.
-- No cookies, analytics, tracking or forms. The owner's brief sign-up is an email link until a form endpoint is approved.
+- No cookies, analytics, tracking or forms. The owner's brief sign-up is a plain email link to brief@intellumia.com (an alias on Sundeep's mailbox); if a form comes later, the address stays the same.
 
 ## Editing a page
 
