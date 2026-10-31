@@ -44,6 +44,7 @@ These come from the Brand System (current) in Drive; it wins if anything here di
 - Never words on an image: every picture sits in its own panel beside the text, with alt text that describes what is drawn.
 - The name is written "Intellumia" with a capital I; only the logo is lower case. The legal entity stays "Intellumia Pte. Ltd.".
 - British English, sentence case, no em dashes. No fees on the site: How we work shows each stage's duration and outcome only.
+- One booking action only: the floating "Talk to Sundeep" button (`.fab`, last in the header) on every page except Book 30 minutes, which it leads to. No booking buttons in the header or in page sections; the footer keeps a plain "Talk to Sundeep" link.
 - Every number carries its source and evidence state ("Market evidence, not an Intellumia result", "Sample data. Illustration, not a client result").
 - No scripts: each page sets a Content-Security-Policy with `script-src 'none'`. The only script tags are JSON-LD structured data.
 - No cookies, analytics, tracking or forms. The owner's brief sign-up is a plain email link to brief@intellumia.com (an alias on Sundeep's mailbox); if a form comes later, the address stays the same.
