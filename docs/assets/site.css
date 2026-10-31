@@ -211,3 +211,11 @@ a.btn--ghost,a.btn--ghost:hover{color:var(--text)}
 @media (max-width: 560px){
 .stack__row{grid-template-columns:minmax(0,1fr)}
 }
+/* The one booking action (Sundeep, 31 Oct): a floating "Talk to Sundeep" button on every page except Book 30 minutes.
+   The footer and scroll padding keep it clear of the last line and of any focused link. */
+.fab{position:fixed;right:24px;bottom:24px;z-index:20;box-shadow:0 0 0 4px #101010}
+body:has(.fab) .ftr{padding-bottom:120px}
+html{scroll-padding-bottom:104px}
+body:has(.menu[open]) .fab{display:none}
+@media (max-width: 760px){.fab{right:16px;bottom:calc(16px + env(safe-area-inset-bottom))}}
+@media print{.fab{display:none}}
