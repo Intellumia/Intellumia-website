@@ -44,5 +44,6 @@ Last resort, if `docs/` is unusable: in the repository's Pages settings, switch 
 | 23 Oct 2026 | intellumia.com v2, product-led (#34) | `87b4797` | `309e679` |
 | 27 Oct 2026 | Registered address: 60 Paya Lebar Road, #06-28 Paya Lebar Square (direct commits) | `dd28b4b`, `0fbcfe0` | `87b4797` |
 | 30 Oct 2026 | Website blockers closed (time commitment, brief address, privacy approved); voice check complete (#35) | `126c548` | `b46f985` |
+| 31 Oct 2026 | One floating "Talk to Sundeep" button replaces every booking button (#36) | `881e7ca` | `f6261c1` |
 
 Add a row for every merge to `main` that changes `docs/`.
