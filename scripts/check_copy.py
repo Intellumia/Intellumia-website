@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / 'docs'
 SITE = 'https://intellumia.com/'
-BOOKING = 'https://cal.com/meetsk'
+BOOKING = 'https://cal.com/intellumia/meetsk'
 
 # ---------------------------------------------------------------------------------------------
 # Approved lines (strategy v5.0; Brand System v5.0.1 section 6). Nothing else goes on the page.
