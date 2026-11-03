@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Copy and one-page checks for intellumia.com (strategy v5.0, Brand System v5.0.3).
+"""Copy and one-page checks for intellumia.com (strategy v5.0, Brand System v5.0.4).
 
 Run before every pull request, from the repository root:
 
@@ -8,7 +8,8 @@ Run before every pull request, from the repository root:
 Standard library only. Prints one line per check and exits 1 if any check fails.
 The rules are in CLAUDE.md. The page is the approved mockup of 3 Nov 2026 (Drive Intellumia/website/
 mockup/index.html); the lines below are the only words it may carry, in this order. To change a line,
-change it here and on the page in the same commit, with Sundeep's approval.
+change it here and on the page in the same commit, with Sundeep's approval. The plant band follows
+mockup/index-motion.html (v5.0.4): a slow silent loop with a Pause button.
 """
 import json
 import re
@@ -49,6 +50,7 @@ WHO = 'For owner-run companies across India, where the owner decides and signs t
 INDUSTRIES = ['Construction, EPC and roads', 'Specialty and agro chemicals', 'Auto components',
               'Pharma and APIs', 'Hospitals and healthcare chains']
 SCENE = '[img] '  # decorative, alt=""
+PAUSE = 'Pause'  # the plant loop's button (reads 'Play' once paused)
 DOORS = ['Where it starts', 'We start with your money. AI is how we do it.',
          '01', 'Costs are up and you cannot pass them on.',
          'Your costliest process, done a better way, tested on your own past records before anyone changes how they work.',
@@ -111,7 +113,7 @@ HEADER = ['[img] Intellumia', BUTTON]
 FOOTER = ['[img] Intellumia', 'Working with owners across India.', ADDRESS, EMAIL, 'Privacy', SIGN_OFF]
 BAR = ['30 minutes with Sundeep', BUTTON]
 HOME = (HEADER + [CATEGORY, HERO, HERO_STATEMENT, PROOF, BUTTON, HERO_NOTE, MAP_DRAWING_WIDE, MAP_DRAWING_PHONE,
-                  MAP_CAPTION, WHO, *INDUSTRIES, SCENE] + DOORS + HOW + THE_MAP + RULES + [SCENE] + PERSON + PLATE
+                  MAP_CAPTION, WHO, *INDUSTRIES, SCENE, PAUSE] + DOORS + HOW + THE_MAP + RULES + [SCENE] + PERSON + PLATE
         + FOOTER + BAR)
 PAGE_404 = HEADER + NOT_FOUND + FOOTER
 
@@ -388,21 +390,34 @@ check('404: every path is absolute, so it works at any address',
 # ---------------------------------------------------------------------------------------------
 # 4. Pictures: the portrait and two decorative scene bands; no words on the scenes.
 # ---------------------------------------------------------------------------------------------
+css_text = (DOCS / 'assets/site.css').read_text()
+js_text = (DOCS / 'assets/site.js').read_text()
 scenes = re.findall(r'<figure class="scene[^"]*">(.*?)</figure>', home_src, re.S)
 scene_text = [norm(re.sub(r'<[^>]+>', ' ', s)) for s in scenes]
-check('two scene bands, with no words on them', len(scenes) == 2 and scene_text == ['', ''], f'{scene_text}')
+check('two scene bands, with no words on them but the plant loop\'s Pause button', len(scenes) == 2 and scene_text == [PAUSE, ''],
+      f'{scene_text}')
 for name, s in zip(SCENES, scenes):
     check(f'scene {name}: WebP first, the JPG as fallback, alt="", width and height set, lazy',
           f'<source type="image/webp" srcset="/assets/imagery/{name}-768.webp 768w, /assets/imagery/{name}.webp' in s
-          and re.search(rf'<img src="/assets/imagery/{name}\.jpg" width="\d+" height="\d+" alt="" loading="lazy"', s)
+          and re.search(rf'<img (?:class="scene-still" )?src="/assets/imagery/{name}\.jpg" width="\d+" height="\d+" alt="" loading="lazy"', s)
           is not None)
 plant = scenes[0] if scenes else ''
-check('the plant loop: muted, looping, inline, nothing loaded up front, hidden from screen readers, WebM then MP4',
-      re.search(r'<video class="scene__video" muted loop playsinline preload="none" aria-hidden="true" hidden>'
-                r'<source src="/assets/imagery/plant-loop\.webm" type="video/webm">'
-                r'<source src="/assets/imagery/plant-loop\.mp4" type="video/mp4"></video>', plant) is not None)
-check('the plant loop has a pause control with a name and no visible words (WCAG 2.2.2)',
-      '<button class="scene__toggle" type="button" aria-label="Pause the animation" hidden>' in plant)
+check('the plant loop (v5.0.4): autoplay, muted, looping, inline, preload="none", hidden from screen readers; '
+      'poster and video set only near the screen (WebM, or MP4 for Safari)',
+      '<video class="scene-v" autoplay muted loop playsinline preload="none" aria-hidden="true" '
+      'data-poster="/assets/imagery/plant2-band.webp" data-webm="/assets/imagery/plant-loop.webm" '
+      'data-mp4="/assets/imagery/plant-loop.mp4"></video>' in plant and 'src=' not in plant.split('<picture>')[0])
+check('the plant loop: the still is its poster and the only thing shown for reduced motion',
+      'class="scene-still"' in plant and '@media(prefers-reduced-motion:reduce){.scene--motion video,.scene-pause{display:none}'
+      '.scene--motion .scene-still{display:block}}' in css_text)
+check('the plant loop: a Pause button that becomes Play, with its label (WCAG 2.2.2)',
+      '<button class="scene-pause" type="button" aria-label="Pause the animation" hidden>Pause</button>' in plant
+      and "'Play the animation'" in js_text and "'Pause the animation'" in js_text and "x ? 'Play' : 'Pause'" in js_text)
+check('no other motion: no animations, one video, transitions only on the phone bar',
+      not re.search(r'@keyframes|animation\s*:', css_text) and home_src.count('<video') == 1
+      and all('<video' not in (DOCS / f).read_text() for f in html_files if f != 'index.html')
+      and re.findall(r'transition:[^;}]+', css_text) == ['transition:transform .2s ease', 'transition:none']
+      and not any(p.suffix == '.gif' for p in DOCS.rglob('*')))
 check('the portrait: alt text, width and height, lazy',
       re.search(rf'<img src="/assets/imagery/sundeep-portrait-2026_720\.jpg"[^>]+width="720" height="720" '
                 rf'alt="{PORTRAIT_ALT}" loading="lazy"', home_src) is not None)
