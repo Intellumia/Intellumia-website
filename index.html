@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="docs/assets/fonts/AnekLatin-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* intellumia.com, one page. Brand System v5.0.1 (strategy v5.0). Anek Latin only, self-hosted; see CLAUDE.md. */
+/* intellumia.com, one page. Brand System v5.0.2 (strategy v5.0). Anek Latin only, self-hosted; see CLAUDE.md. */
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latin.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap}
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latinext.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20CF,U+2C60-2C7F,U+A720-A7FF}
 
@@ -46,7 +46,7 @@ a:hover{text-decoration-thickness:2px}
 .fire{color:var(--fire)}
 .nw{white-space:nowrap}
 
-/* The button: ultramarine, corners 6. There is one, "Book a Map", floating in the bottom right corner of every page */
+/* The button: ultramarine, corners 6. There is one, "Talk to Sundeep", floating in the bottom right corner of every page */
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 16px;border-radius:6px;background:var(--klein);color:#FFFFFF;font-weight:600;font-size:17px;line-height:1.2;text-decoration:none;white-space:nowrap}
 .btn:hover{color:#FFFFFF;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
 .btn--lg{min-height:56px;padding:16px 32px;font-size:clamp(20px,calc(.185vw + 19.33px),22px)}
@@ -77,6 +77,7 @@ body:has(.fab) .ftr{padding-bottom:96px}
 .two{display:grid;gap:24px}
 .two .ld{max-width:32em}
 .two .bd{max-width:38em}
+.two .label{margin-bottom:12px}
 @media (min-width:1100px){.two{grid-template-columns:repeat(12,minmax(0,1fr));gap:48px}.two>:first-child{grid-column:1 / span 6}.two>:last-child{grid-column:8 / span 5}}
 
 /* The one Bone panel: what the Map gives you. Corners 10 */
@@ -90,11 +91,16 @@ body:has(.fab) .ftr{padding-bottom:96px}
 
 /* Who you will work with. The portrait is the only picture; corners 0 */
 .person{display:grid;gap:24px}
-.person img{width:200px;height:200px;object-fit:cover;border-radius:0}
+.person img{width:160px;height:160px;object-fit:cover;border-radius:0}
 .person .ld{margin-bottom:12px}
 .person .bd{max-width:34em}
 @media (min-width:768px){.person{grid-template-columns:240px minmax(0,1fr);gap:48px;align-items:end}.person img{width:240px;height:240px}}
 @media (min-width:1100px){.person{grid-template-columns:320px minmax(0,1fr)}.person img{width:320px;height:320px}}
+.person .bd + .bd{margin-top:12px}
+
+/* The close: the opening question, and one muted line. No second button */
+.close .hd{max-width:16em}
+.close .bd{margin-top:16px;max-width:38em}
 
 .ftr{border-top:1px solid var(--rule);padding-top:32px;padding-bottom:48px;display:grid;gap:12px}
 .ftr__links{display:flex;flex-wrap:wrap;gap:12px 24px}
@@ -120,12 +126,12 @@ body:has(.fab) .ftr{padding-bottom:96px}
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Where will AI make your business money? We will show you, then run it.">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://intellumia.com/#organization","name":"Intellumia","legalName":"Intellumia Pte. Ltd.","url":"https://intellumia.com/","logo":"https://intellumia.com/docs/assets/intellumia-wordmark-ultramarine.svg","description":"Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.","email":"sundeep@intellumia.com","address":{"@type":"PostalAddress","streetAddress":"60 Paya Lebar Road, #06-28, Paya Lebar Square","addressLocality":"Singapore","postalCode":"409051","addressCountry":"SG"},"founder":{"@id":"https://intellumia.com/#sundeep-kumar"}},{"@type":"Person","@id":"https://intellumia.com/#sundeep-kumar","name":"Sundeep Kumar","jobTitle":"Founder & CEO","worksFor":{"@id":"https://intellumia.com/#organization"},"image":"https://intellumia.com/docs/assets/imagery/sundeep-portrait-2026_720.jpg"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://intellumia.com/#organization","name":"Intellumia","legalName":"Intellumia Pte. Ltd.","url":"https://intellumia.com/","logo":"https://intellumia.com/docs/assets/intellumia-wordmark-ultramarine.svg","description":"Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.","email":"sundeep@intellumia.com","address":{"@type":"PostalAddress","streetAddress":"60 Paya Lebar Road, #06-28, Paya Lebar Square","addressLocality":"Singapore","postalCode":"409051","addressCountry":"SG"},"founder":{"@id":"https://intellumia.com/#sundeep-kumar"}},{"@type":"Person","@id":"https://intellumia.com/#sundeep-kumar","name":"Sundeep Kumar","jobTitle":"Founder & CEO","worksFor":{"@id":"https://intellumia.com/#organization"},"image":"https://intellumia.com/docs/assets/imagery/sundeep-portrait-2026_720.jpg","sameAs":["https://www.linkedin.com/in/kumarsundeep"]}]}</script>
 </head>
 <body>
 <header class="wrap hdr">
 <a class="hdr__logo" href="/"><img src="docs/assets/intellumia-wordmark-ultramarine.svg" alt="Intellumia" width="144" height="23"></a>
-<a class="btn fab" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Book a Map</a>
+<a class="btn fab" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Talk to Sundeep</a>
 </header>
 <main id="main">
 <section class="wrap hero">
@@ -134,7 +140,10 @@ body:has(.fab) .ftr{padding-bottom:96px}
 <section class="wrap">
 <div class="sec two">
 <p class="ld">We price each move in your own numbers, name at least one way to do it that is not us, and take no fees from vendors. Where we run the work, a named professional signs off.</p>
+<div>
+<p class="label">The Map</p>
 <p class="bd">In two to three weeks, starting from summaries of your own books, we show you the two or three places AI would make your business the most money, what each is worth, and at least one way to do each that is not us. Then we run the ones you choose, a named professional signs off, and you see the result every week.</p>
+</div>
 </div>
 </section>
 <section class="wrap">
@@ -149,16 +158,23 @@ body:has(.fab) .ftr{padding-bottom:96px}
 <li>At least two ways to do each move, one of them not Intellumia.</li>
 </ul>
 </div>
-<p class="bd after">Your time: about 20 to 40 hours of your staff, said up front.</p>
+<p class="bd after">Your time: about 20 to 40 hours of your staff across the two to three weeks. We agree it with you before we start.</p>
 </div>
 </section>
 <section class="wrap">
 <div class="sec person">
-<img src="docs/assets/imagery/sundeep-portrait-2026_720.jpg" srcset="docs/assets/imagery/sundeep-portrait-2026_720.jpg 720w, docs/assets/imagery/sundeep-portrait-2026_890.jpg 890w" sizes="(min-width: 1100px) 320px, (min-width: 768px) 240px, 200px" width="720" height="720" alt="Sundeep Kumar" loading="lazy" decoding="async">
+<img src="docs/assets/imagery/sundeep-portrait-2026_720.jpg" srcset="docs/assets/imagery/sundeep-portrait-2026_720.jpg 720w, docs/assets/imagery/sundeep-portrait-2026_890.jpg 890w" sizes="(min-width: 1100px) 320px, (min-width: 768px) 240px, 160px" width="720" height="720" alt="Sundeep Kumar, Founder and CEO of Intellumia" loading="lazy" decoding="async">
 <div>
 <h2 class="ld">Sundeep Kumar, Founder &amp; CEO</h2>
 <p class="bd">More than two decades at IBM and Microsoft helping large companies across Asia-Pacific change how they work, now on the owner&rsquo;s side. Based in India.</p>
+<p class="bd"><a href="https://www.linkedin.com/in/kumarsundeep">Sundeep on LinkedIn</a></p>
 </div>
+</div>
+</section>
+<section class="wrap">
+<div class="sec close">
+<h2 class="hd">Where does your business lose the most cash, days or margin today?</h2>
+<p class="bd muted">Talk to Sundeep: 30 minutes. We start with where your business loses the most cash, days or margin.</p>
 </div>
 </section>
 </main>

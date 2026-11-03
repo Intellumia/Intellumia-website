@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Copy and one-page checks for intellumia.com (strategy v5.0, Brand System v5.0.1).
+"""Copy and one-page checks for intellumia.com (strategy v5.0, Brand System v5.0.2).
 
 Run before every pull request, from the repository root:
 
@@ -19,14 +19,15 @@ ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / 'docs'
 SITE = 'https://intellumia.com/'
 BOOKING = 'https://cal.com/intellumia/meetsk'
+LINKEDIN = 'https://www.linkedin.com/in/kumarsundeep'
 
 # ---------------------------------------------------------------------------------------------
-# Approved lines (strategy v5.0; Brand System v5.0.1 section 6). Nothing else goes on the page.
+# Approved lines (strategy v5.0; Brand System v5.0.2 section 6). Nothing else goes on the page.
 # ---------------------------------------------------------------------------------------------
 TITLE = 'Intellumia, the AI partner for owner-run businesses'
 DESCRIPTION = ('Intellumia shows owner-run businesses where AI makes them money, runs the parts that do '
                'with named professionals signing off, and takes no vendor fees.')
-BUTTON = 'Book a Map'
+BUTTON = 'Talk to Sundeep'  # never 'Book a Map': a Map is paid work priced in a proposal (Brand System v5.0.2)
 HERO = 'Where will AI make your business money? We will show you, then run it.'
 PROOF = ('We price each move in your own numbers, name at least one way to do it that is not us, and take '
          'no fees from vendors. Where we run the work, a named professional signs off.')
@@ -34,6 +35,7 @@ HOW = ('In two to three weeks, starting from summaries of your own books, we sho
        'places AI would make your business the most money, what each is worth, and at least one way to do '
        'each that is not us. Then we run the ones you choose, a named professional signs off, and you see '
        'the result every week.')
+MAP_LABEL = 'The Map'  # a Label, set in capitals
 MAP_HEADING = 'What the Map gives you'
 MAP_ITEMS = [
     'A one-page map of the money in your business.',
@@ -42,10 +44,15 @@ MAP_ITEMS = [
     'One working proof on your data for the first move.',
     'At least two ways to do each move, one of them not Intellumia.',
 ]
-YOUR_TIME = 'Your time: about 20 to 40 hours of your staff, said up front.'
+YOUR_TIME = ('Your time: about 20 to 40 hours of your staff across the two to three weeks. '
+             'We agree it with you before we start.')
 NAME = 'Sundeep Kumar, Founder & CEO'
 FOUNDER = ('More than two decades at IBM and Microsoft helping large companies across Asia-Pacific change '
            "how they work, now on the owner's side. Based in India.")
+PORTRAIT_ALT = 'Sundeep Kumar, Founder and CEO of Intellumia'
+LINKEDIN_TEXT = 'Sundeep on LinkedIn'
+QUESTION = 'Where does your business lose the most cash, days or margin today?'
+QUESTION_LINE = 'Talk to Sundeep: 30 minutes. We start with where your business loses the most cash, days or margin.'
 ADDRESS = 'Intellumia Pte. Ltd., 60 Paya Lebar Road, #06-28, Paya Lebar Square, Singapore 409051'
 EMAIL = 'sundeep@intellumia.com'
 SIGN_OFF = 'Intelligence, Illuminated.'
@@ -56,8 +63,8 @@ GO_HOME = 'Go to intellumia.com'
 
 HEADER = ['[img] Intellumia', BUTTON]
 FOOTER = [ADDRESS, EMAIL, 'Privacy', SIGN_OFF]
-HOME = HEADER + [HERO, PROOF, HOW, MAP_HEADING, *MAP_ITEMS, YOUR_TIME,
-                 '[img] Sundeep Kumar', NAME, FOUNDER] + FOOTER
+HOME = HEADER + [HERO, PROOF, MAP_LABEL, HOW, MAP_HEADING, *MAP_ITEMS, YOUR_TIME,
+                 '[img] ' + PORTRAIT_ALT, NAME, FOUNDER, LINKEDIN_TEXT, QUESTION, QUESTION_LINE] + FOOTER
 PAGE_404 = HEADER + [NOT_FOUND_LABEL, NOT_FOUND, HERO, GO_HOME] + FOOTER
 
 # ---------------------------------------------------------------------------------------------
@@ -75,7 +82,7 @@ BANNED = {
                                    'intelligence layer', 'Decision Sprint', '90-day build', 'Embed',
                                    'Sales Engine', 'Plant Engine', 'Cash Engine', 'owner-led', 'Rent the model',
                                    'research desk', "owner's brief", 'engine', 'engines'],
-    'retired buttons and links': ['Talk to Sundeep', 'See the Sales Engine work', 'Book 30 minutes',
+    'retired buttons and links': ['Book a Map', 'See the Sales Engine work', 'Book 30 minutes',
                                   'How we work', 'brief@intellumia.com'],
     'products described as existing': ['live', 'demo', 'demo opening soon', 'in build', 'opening soon',
                                        'sandbox', 'platform', 'module', 'modules'],
@@ -264,7 +271,7 @@ for label, pg in (('Home', home), ('Privacy', privacy)):
     ok = len(pg.buttons) == 1 and all(b.get('href') == BOOKING and b.get('target') == '_blank'
                                       and 'noopener' in b.get('rel', '') and 'fab' in b.get('class', '').split()
                                       for b in pg.buttons)
-    check(f'{label}: one floating "Book a Map" button, opening {BOOKING} in a new tab', ok,
+    check(f'{label}: one floating "{BUTTON}" button, opening {BOOKING} in a new tab', ok,
           f'buttons: {pg.buttons}')
     check(f'{label}: header is the wordmark and the button, no navigation',
           [l.get('href') for l in pg.header_links] == ['/', BOOKING] and not any(t == 'nav' for t, _ in pg.tags))
@@ -274,7 +281,7 @@ nf = read(DOCS / '404.html')
 check('404: the approved lines, in order', nf.blocks == PAGE_404, f'{nf.blocks}')
 check('404: noindex, title "Page not found | Intellumia"',
       nf.meta.get('robots') == 'noindex' and norm(nf.title) == 'Page not found | Intellumia')
-check('404: one floating "Book a Map" button, opening the booking page in a new tab',
+check(f'404: one floating "{BUTTON}" button, opening the booking page in a new tab',
       len(nf.buttons) == 1 and 'fab' in nf.buttons[0].get('class', '').split() and all(b.get('href') == BOOKING and b.get('target') == '_blank'
                                    and 'noopener' in b.get('rel', '') for b in nf.buttons))
 nf_src = (DOCS / '404.html').read_text()
@@ -300,6 +307,10 @@ for group, words in BANNED.items():
     check(f'no {group}', not hits, f'{hits}')
 
 desc_hits = [f for f, t in surfaces.items() if DESCRIPTOR.lower() in t.lower()]
+published_text = [p for p in DOCS.rglob('*') if p.is_file() and p.suffix in ('.html', '.txt', '.xml', '.css', '.json')]
+old_link = [p.relative_to(ROOT).as_posix() for p in published_text + [ROOT / 'index.html', ROOT / 'privacy.html']]
+old_link = [f for f in old_link if 'cal.com/meetsk' in (ROOT / f).read_text()]
+check('no link to cal.com/meetsk is left (the booking page is cal.com/intellumia/meetsk)', not old_link, f'{old_link}')
 check('the descriptor appears on Privacy only', set(desc_hits) <= {'docs/privacy/index.html'}, f'{desc_hits}')
 all_text = '\n'.join(surfaces.values())
 check('no em dashes', '—' not in all_text and ' -- ' not in all_text)
@@ -361,8 +372,11 @@ person = next((g for g in graph if g.get('@type') == 'Person'), {})
 check('Home structured data: Organization with the 25 words, address and logo',
       org.get('legalName') == 'Intellumia Pte. Ltd.' and org.get('description') == DESCRIPTION
       and org.get('address', {}).get('postalCode') == '409051' and org.get('logo', '').endswith('.svg'))
-check('Home structured data: Person, Sundeep Kumar, Founder & CEO',
-      person.get('name') == 'Sundeep Kumar' and person.get('jobTitle') == 'Founder & CEO')
+check('Home structured data: Person, Sundeep Kumar, Founder & CEO, sameAs his LinkedIn profile',
+      person.get('name') == 'Sundeep Kumar' and person.get('jobTitle') == 'Founder & CEO'
+      and person.get('sameAs') == [LINKEDIN])
+check('the LinkedIn link goes to the profile in the structured data',
+      f'<a href="{LINKEDIN}">{LINKEDIN_TEXT}</a>' in (DOCS / 'index.html').read_text())
 check('structured data has no offers or prices',
       not re.search(r'offer|price', ' '.join(home.ld + privacy.ld + nf.ld), re.I))
 
