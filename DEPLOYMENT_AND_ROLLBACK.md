@@ -48,5 +48,6 @@ Last resort, if `docs/` is unusable: in the repository's Pages settings, switch 
 | 3 Nov 2026 | intellumia.com is one page on strategy v5.0: one button, Book a Map; Privacy; a new 404 page; every retired address redirects to the page (#37) | `1b0327f` | `9c7b35e` |
 | 3 Nov 2026 | Book a Map points at cal.com/intellumia/meetsk; cal.com/meetsk had stopped working (#39) | `f381a0e` | `d8e9fb3` |
 | 3 Nov 2026 | One floating "Book a Map" button on every page, in place of three (#40) | `d94135d` | `f381a0e` |
+| 3 Nov 2026 | Brand System v5.0.2: the button reads "Talk to Sundeep"; the Map named; new time line; the close; LinkedIn (#41) | `b2c367e` | `6fe9506` |
 
 Add a row for every merge to `main` that changes `docs/`.
