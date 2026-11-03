@@ -12,7 +12,7 @@ Since 3 November 2026 (strategy v5.0) the site is **one page with one action, "T
 | --- | --- |
 | `docs/index.html` | The page. Hand-written static HTML; GitHub Pages publishes `docs/` as it stands, with no build step. |
 | `docs/privacy/index.html` | The Privacy notice. |
-| `docs/assets/` | `site.css` (the one stylesheet), `site.js` (the one script: the phone bottom bar and the plant loop), the ultramarine wordmark, the Anek fonts and their licence, Sundeep's portrait, the two scene bands and the plant loop, the social preview. |
+| `docs/assets/` | `site.css` (the one stylesheet), `site.js` (the one script: the phone bottom bar and the plant loop), the ultramarine wordmark, the Anek fonts and their licence, Sundeep's portrait, the plant scene band and its loop, the social preview. |
 | `docs/404.html` | The not-found page, served at any unknown address. |
 | Every other HTML file in `docs/` | A redirect to the page, so old links still land on intellumia.com. |
 | `docs/CNAME` | The custom domain, `intellumia.com`. Do not change it. |
@@ -21,7 +21,7 @@ Since 3 November 2026 (strategy v5.0) the site is **one page with one action, "T
 | `scripts/check_copy.py` | The copy and one-page checks. Run before every pull request. |
 | `scripts/make_fallback.py` | Rebuilds the fallback at the root from `docs/`. |
 | `index.html`, `privacy.html`, `favicon.*`, `apple-touch-icon.png`, `robots.txt`, `sitemap.xml` at the root | The last-resort fallback (see `DEPLOYMENT_AND_ROLLBACK.md`), a copy of the page. Not the live site. |
-| `_archive/` | Retired pages and assets of the October 2026 site, the old fallback and the fonts that are not Anek. Kept for the record; not published. |
+| `_archive/` | Retired pages and assets of the October 2026 site, the old fallback, the fonts that are not Anek and the corridor scene band (removed 3 Nov 2026). Kept for the record; not published. |
 | `archive/next-app/`, `package.json`, `public/` and the other root config files | The retired Phase 1 Next.js app (August 2026). Not published; do not run `npm run build`. |
 
 ## Checking a change locally
