@@ -88,7 +88,7 @@ BANNED = {
                           'analyze', 'optimize', 'optimization', 'behavior', 'favorite', 'labor', 'honor',
                           'realize', 'recognize', 'prioritize', 'catalog', 'defense', 'fulfill', 'modeling',
                           'traveling', 'judgment'],
-    'a city for Sundeep': ['Mumbai', 'Delhi', 'New Delhi', 'Bengaluru', 'Bangalore', 'Pune', 'Chennai',
+    'city for Sundeep': ['Mumbai', 'Delhi', 'New Delhi', 'Bengaluru', 'Bangalore', 'Pune', 'Chennai',
                            'Hyderabad', 'Kolkata', 'Gurgaon', 'Gurugram', 'Noida', 'Ahmedabad'],
 }
 COLOURS = {'#FFFFFF', '#101010', '#1A1AFF', '#FF3D00', '#F3EFE6', '#DDD8CC', '#5E5B55'}
