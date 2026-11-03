@@ -4,9 +4,31 @@
 
 Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.
 
+Where will AI make your business money? We will show you, then run it. In two to three weeks, starting from summaries of your own books, we show you the two or three places AI would make your business the most money, and what each is worth. Then we run the ones you choose.
+
+We price each move in your own numbers, name at least one way to do it that is not us, and take no fees from vendors. Where we run the work, a named professional signs off.
+
+## Who we work with
+
+For owner-run companies across India, where the owner decides and signs the cheque. Where we start:
+
+- Construction, EPC and roads
+- Specialty and agro chemicals
+- Auto components
+- Pharma and APIs
+- Hospitals and healthcare chains
+
+## How it works
+
+A Map first. Then we run the parts that pay.
+
+- Map (start here): A review across the whole business, two to three weeks, for a fee agreed up front. Always paid, and the fee never depends on what you buy next.
+- Run (if you choose): AI agents do the work, named professionals sign off, and you see the result every week. We connect, test on your past records, run in shadow beside your people, and switch on only with your sign-off, within 90 days.
+- Guide (alongside): Independent advice on your side, on AI, vendors and the board, with no fees from vendors. Covers AI policy and oversight, vendor choice and renewals, readiness for India's data protection duties, and a quarterly review of your Map.
+
 ## The Map
 
-In two to three weeks, starting from summaries of your own books, we show you the two or three places AI would make your business the most money, what each is worth, and at least one way to do each that is not us. Then we run the ones you choose, a named professional signs off, and you see the result every week.
+Two to three weeks. Your numbers. Your choice.
 
 What the Map gives you:
 
@@ -18,16 +40,34 @@ What the Map gives you:
 
 Your time: about 20 to 40 hours of your staff across the two to three weeks. We agree it with you before we start.
 
-We price each move in your own numbers, name at least one way to do it that is not us, and take no fees from vendors. Where we run the work, a named professional signs off.
+How the weeks run:
+
+- Start: Kick-off. We ask for summaries only, never all your books on day one.
+- Week 1: Interviews with you and four to six heads of function. We find out what systems and data you have.
+- Week 2: We value each move and test the top ones on your past records.
+- Week 3: The readout, to you alone.
+
+## Our rules
+
+On your side of the table, in writing.
+
+1. Every move is valued in your numbers before you spend anything.
+2. You choose each move, in writing, from at least two ways to do it.
+3. We take no fees from vendors. No referral fees, no resale margins.
+4. Where we run the work, a named professional signs off.
+5. Your data stays in your environment, with models that neither keep nor train on it.
+6. Your data, your configuration and your running instance are yours, with the right to run it without us.
 
 ## Who you will work with
 
 Sundeep Kumar, Founder & CEO. More than two decades at IBM and Microsoft helping large companies across Asia-Pacific change how they work, now on the owner's side. Based in India. [Sundeep on LinkedIn](https://www.linkedin.com/in/kumarsundeep)
 
+"We will never tell you only Intellumia can solve it. What we build with you is yours."
+
 ## Links
 
 - [Intellumia](https://intellumia.com/)
-- [Talk to Sundeep](https://cal.com/intellumia/meetsk)
+- [Talk to Sundeep](https://cal.com/intellumia/meetsk): 30 minutes with Sundeep, by video.
 - [Privacy](https://intellumia.com/privacy/)
 
-Intellumia Pte. Ltd., 60 Paya Lebar Road, #06-28, Paya Lebar Square, Singapore 409051. sundeep@intellumia.com
+Working with owners across India. Intellumia Pte. Ltd., 60 Paya Lebar Road, #06-28, Paya Lebar Square, Singapore 409051. sundeep@intellumia.com
