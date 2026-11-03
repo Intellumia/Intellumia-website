@@ -46,11 +46,17 @@ a:hover{text-decoration-thickness:2px}
 .fire{color:var(--fire)}
 .nw{white-space:nowrap}
 
-/* The button: ultramarine, corners 6 */
+/* The button: ultramarine, corners 6. There is one, "Book a Map", floating in the bottom right corner of every page */
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 16px;border-radius:6px;background:var(--klein);color:#FFFFFF;font-weight:600;font-size:17px;line-height:1.2;text-decoration:none;white-space:nowrap}
 .btn:hover{color:#FFFFFF;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
 .btn--lg{min-height:56px;padding:16px 32px;font-size:clamp(20px,calc(.185vw + 19.33px),22px)}
 @media (min-width:768px){.btn{padding:12px 24px}.btn--lg{padding:16px 32px}}
+.fab{position:fixed;right:16px;bottom:16px;z-index:10}
+@media (min-width:768px){.fab{right:24px;bottom:24px;min-height:56px;padding:16px 32px;font-size:clamp(20px,calc(.185vw + 19.33px),22px)}}
+@media (min-width:1100px){.fab{right:32px;bottom:32px}}
+html:has(.fab){scroll-padding-bottom:96px}
+body:has(.fab) .ftr{padding-bottom:96px}
+@media (min-width:768px){body:has(.fab) .ftr{padding-bottom:128px}}
 
 /* Layout */
 .wrap{max-width:calc(var(--max) + 2 * var(--gut));margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
@@ -61,8 +67,7 @@ a:hover{text-decoration-thickness:2px}
 
 .hero{padding-top:48px;padding-bottom:64px}
 .hero .st{max-width:12.5em}
-.hero .btn{margin-top:32px}
-@media (min-width:768px){.hero{padding-top:64px;padding-bottom:96px}.hero .btn{margin-top:48px}}
+@media (min-width:768px){.hero{padding-top:64px;padding-bottom:96px}}
 @media (min-width:1100px){.hero{padding-top:96px;padding-bottom:128px}}
 
 .sec{border-top:1px solid var(--rule);padding-top:48px;padding-bottom:48px}
@@ -91,10 +96,6 @@ a:hover{text-decoration-thickness:2px}
 @media (min-width:768px){.person{grid-template-columns:240px minmax(0,1fr);gap:48px;align-items:end}.person img{width:240px;height:240px}}
 @media (min-width:1100px){.person{grid-template-columns:320px minmax(0,1fr)}.person img{width:320px;height:320px}}
 
-.close{border-top:1px solid var(--rule);padding-top:48px;padding-bottom:64px}
-@media (min-width:768px){.close{padding-top:64px;padding-bottom:96px}}
-@media (min-width:1100px){.close{padding-top:96px;padding-bottom:128px}}
-
 .ftr{border-top:1px solid var(--rule);padding-top:32px;padding-bottom:48px;display:grid;gap:12px}
 .ftr__links{display:flex;flex-wrap:wrap;gap:12px 24px}
 .ftr .label{margin-top:12px}
@@ -106,7 +107,6 @@ a:hover{text-decoration-thickness:2px}
 .page .ld{margin-top:24px}
 .notice{display:grid;gap:32px;margin-top:48px}
 .notice .ld{margin:0 0 8px}
-.nf .btn{margin-top:32px}
 .nf .bd{margin-top:24px}
 @media (min-width:768px){.page{padding-top:64px;padding-bottom:96px}}
 </style>
@@ -125,12 +125,11 @@ a:hover{text-decoration-thickness:2px}
 <body>
 <header class="wrap hdr">
 <a class="hdr__logo" href="/"><img src="docs/assets/intellumia-wordmark-ultramarine.svg" alt="Intellumia" width="144" height="23"></a>
-<a class="btn" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Book a Map</a>
+<a class="btn fab" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Book a Map</a>
 </header>
 <main id="main">
 <section class="wrap hero">
 <h1 class="st">Where will AI make your business <span class="fire">money</span>? We will show you, then run it.</h1>
-<a class="btn btn--lg" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Book a Map</a>
 </section>
 <section class="wrap">
 <div class="sec two">
@@ -160,11 +159,6 @@ a:hover{text-decoration-thickness:2px}
 <h2 class="ld">Sundeep Kumar, Founder &amp; CEO</h2>
 <p class="bd">More than two decades at IBM and Microsoft helping large companies across Asia-Pacific change how they work, now on the owner&rsquo;s side. Based in India.</p>
 </div>
-</div>
-</section>
-<section class="wrap">
-<div class="close">
-<a class="btn btn--lg" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Book a Map</a>
 </div>
 </section>
 </main>
