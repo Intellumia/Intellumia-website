@@ -7,6 +7,11 @@ on:
     branches: [main]
     paths: ['docs/**']
   workflow_dispatch:
+    inputs:
+      extra_paths:
+        description: 'Extra paths to send as well, separated by spaces (for example retired addresses that now redirect)'
+        required: false
+        default: ''
 
 permissions:
   contents: read
@@ -31,9 +36,14 @@ jobs:
             sleep 20
           done
           echo "key file not live after 10 minutes"; exit 1
-      - name: Ping IndexNow with the sitemap URLs
+      - name: Ping IndexNow with the sitemap URLs (and any extra paths)
+        env:
+          EXTRA_PATHS: ${{ inputs.extra_paths }}
         run: |
-          urls=$(grep -o '<loc>[^<]*</loc>' docs/sitemap.xml | sed -e 's/<loc>//' -e 's/<\/loc>//' | jq -R . | jq -s .)
+          for p in $EXTRA_PATHS; do
+            echo "$p" | grep -Eq '^/[a-z0-9/._-]*$' || { echo "not a site path: $p"; exit 1; }
+          done
+          urls=$( { grep -o '<loc>[^<]*</loc>' docs/sitemap.xml | sed -e 's/<loc>//' -e 's/<\/loc>//'; for p in $EXTRA_PATHS; do echo "https://intellumia.com$p"; done; } | jq -R . | jq -s .)
           body=$(jq -n --arg key "${{ steps.key.outputs.key }}" --argjson urls "$urls" \
             '{host: "intellumia.com", key: $key, keyLocation: ("https://intellumia.com/" + $key + ".txt"), urlList: $urls}')
           echo "$body"
