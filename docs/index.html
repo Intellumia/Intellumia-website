@@ -109,9 +109,11 @@
 
 
 <!-- SCENE -->
-<figure class="scene"><picture><source type="image/webp" srcset="/assets/imagery/plant2-band-768.webp 768w, /assets/imagery/plant2-band.webp 1376w" sizes="100vw"><img src="/assets/imagery/plant2-band.jpg" width="1376" height="589" alt="" loading="lazy" decoding="async"></picture>
-<video class="scene__video" muted loop playsinline preload="none" aria-hidden="true" hidden><source src="/assets/imagery/plant-loop.webm" type="video/webm"><source src="/assets/imagery/plant-loop.mp4" type="video/mp4"></video>
-<button class="scene__toggle" type="button" aria-label="Pause the animation" hidden><svg class="i-pause" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4h3v12H6zM11 4h3v12h-3z" fill="currentColor"/></svg><svg class="i-play" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4l10 6-10 6z" fill="currentColor"/></svg></button></figure>
+<figure class="scene scene--motion">
+ <video class="scene-v" autoplay muted loop playsinline preload="none" aria-hidden="true" data-poster="/assets/imagery/plant2-band.webp" data-webm="/assets/imagery/plant-loop.webm" data-mp4="/assets/imagery/plant-loop.mp4"></video>
+ <picture><source type="image/webp" srcset="/assets/imagery/plant2-band-768.webp 768w, /assets/imagery/plant2-band.webp 1600w" sizes="100vw"><img class="scene-still" src="/assets/imagery/plant2-band.jpg" width="1600" height="685" alt="" loading="lazy" decoding="async"></picture>
+ <button class="scene-pause" type="button" aria-label="Pause the animation" hidden>Pause</button>
+</figure>
 
 <!-- DOOR STORIES -->
 <section class="wrap sec split" aria-labelledby="h-doors">

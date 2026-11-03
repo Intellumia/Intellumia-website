@@ -1,6 +1,6 @@
 # intellumia.com: rules for every change
 
-The site follows Intellumia strategy v5.0 and the Brand System v5.0.3 ("Brand System (current).md" in Drive, brand folder). The page itself is the approved mockup of 3 November 2026: Drive Intellumia/website/mockup/index.html, with its section list in "Website page copy (current).md" beside it. If this file and the Brand System or the mockup disagree, they win; say so in the pull request.
+The site follows Intellumia strategy v5.0 and the Brand System v5.0.4 ("Brand System (current).md" in Drive, brand folder). The page itself is the approved mockup of 3 November 2026: Drive Intellumia/website/mockup/index-motion.html (the same as index.html except the plant band), with its section list in "Website page copy (current).md" beside it. If this file and the Brand System or the mockup disagree, they win; say so in the pull request.
 
 ## The one-page rule
 
@@ -18,7 +18,7 @@ The page carries the mockup's words and nothing else, in the mockup's order. `sc
 1. Header: the ultramarine wordmark, and the "Talk to Sundeep" button on wide screens (see The action). No navigation.
 2. Hero: the Label "The AI partner for owner-run businesses"; the Statement "Where will AI make your business money? We will show you, then run it." with "money" as the one red word; the short meeting statement; the proof line; the button and its note "30 minutes, by video. We start with your numbers, not with AI."; the Map drawing (four columns on wide screens, two on phones, both inline SVG with a label for screen readers) and its caption, "Illustration of a Map, not a client. ...".
 3. Who we work with: "For owner-run companies across India, where the owner decides and signs the cheque." and the five industries.
-4. The plant scene band.
+4. The plant scene band: a slow silent loop, with its Pause button.
 5. Where it starts: the five door stories, each an owner's situation and what we give.
 6. How it works: Map (start here), Run (if you choose), Guide (alongside).
 7. The Map: what it gives you, "Your time: about 20 to 40 hours of your staff across the two to three weeks. We agree it with you before we start.", and how the weeks run.
@@ -51,7 +51,9 @@ The mockup's CSS lives in `docs/assets/site.css`, the one stylesheet. Keep its b
 - Logo: `docs/assets/intellumia-wordmark-ultramarine.svg`, at least 96 px wide, never on a photograph. Favicons: the ink tile with the white ll.
 - Type, Anek Latin only, self-hosted from `docs/assets/fonts/` with `OFL-Anek.txt` beside the files: Statement 650 width 80, 46 to 80 px (the plate's question 34 to 64 px); Heading 620, 30 to 52 px; Lead 600, 19 to 22 px; Body 400, 17 to 18 px; Label 600, capitals, +0.12em, 12 to 13 px. Tabular figures; emphasis by colour, never italics.
 - Corners: 0 for pictures, 6 for buttons and chips, 10 for the Map figure and the step cards.
-- Pictures: Sundeep's portrait and the two scene bands only. The bands are decorative (`alt=""`, width and height set, `loading="lazy"`), served as WebP (768 px and full width) with the JPG as fallback, and never carry words. The plant band plays `plant-loop.webm` (MP4 for Safari) over its still while on screen, muted, never for readers who ask for reduced motion, with an icon-only pause control ("Pause the animation" / "Play the animation") so the motion can be stopped (WCAG 2.2.2).
+- Pictures: Sundeep's portrait and the two scene bands only. The bands are decorative (`alt=""`, width and height set, `loading="lazy"`), served as WebP (768 px and full width) with the JPG as fallback, and carry no words but the plant band's Pause button.
+- The plant band (Brand System v5.0.4): `plant-loop` (9.5 s, silent, seamless; WebM, and MP4 for Safari) in `<video autoplay muted loop playsinline preload="none" aria-hidden="true">`, at the video's own shape (1280:548) so nothing shifts. Its still, `plant2-band` (1600 x 685), is the poster and the only thing shown for reduced motion or without the script. Nothing of the band loads until it is within 100 px of the screen, so it never counts toward the first view. The small white Pause button, bottom right, reads "Play" once paused, with its label updated ("Pause the animation" / "Play the animation", WCAG 2.2.2).
+- No other motion anywhere: no animations, no other video; the only transition is the phone bar's slide, which reduced motion removes.
 - The section heads of "Where it starts" and "Our rules" are sticky from 1000 px.
 - Mobile first: check at 360 px first.
 
@@ -66,7 +68,7 @@ The mockup's CSS lives in `docs/assets/site.css`, the one stylesheet. Keep its b
 
 ## Script
 
-`docs/assets/site.js` is the only script, loaded by the page alone (`script-src 'self'` in its security policy; Privacy, the 404 page and the redirects keep `script-src 'none'`). It runs the bottom bar and the plant loop and nothing else: no addresses, no storage, no tracking. Without it the bar stays hidden and the plant band shows its still.
+`docs/assets/site.js` is the only script, loaded by the page alone (`script-src 'self'` in its security policy; Privacy, the 404 page and the redirects keep `script-src 'none'`). It runs the bottom bar and the plant loop (it sets the poster and the video only near the screen, rests the loop off screen, and works the Pause button) and nothing else: no addresses, no storage, no tracking. Without it the bar stays hidden and the plant band shows its still.
 
 ## Files
 
@@ -88,7 +90,7 @@ Structured data (JSON-LD): Organization and Person on Home, Organization on Priv
 
 1. `python3 scripts/make_fallback.py` (keeps the root fallback in step with `docs/`).
 2. `python3 scripts/check_copy.py`: all checks must pass. Paste the result into the pull request.
-3. In a browser at 360, 390, 768, 1100 and 1440 px: no sideways scroll, Anek only, white ground, the one red word, the action where The action puts it, the bottom bar's show and hide, the plant loop's play, pause and reduced motion, every old URL lands on the page, an unknown address shows the 404 page, axe-core finds no WCAG 2.2 AA violations.
+3. In a browser at 360, 390, 768, 1100 and 1440 px: no sideways scroll, Anek only, white ground, the one red word, the action where The action puts it, the bottom bar's show and hide, the plant loop's late load, play, Pause and reduced motion, every old URL lands on the page, an unknown address shows the 404 page, axe-core finds no WCAG 2.2 AA violations.
 4. Lighthouse on Home and Privacy, mobile and desktop. Budgets: LCP 2.0 s on mobile, INP 150 ms (report Total Blocking Time as the lab stand-in), CLS 0.05, under 500 KB on first view (the scenes and the loop are below the fold and lazy).
 5. Screenshots of the whole page at 360 px and 1440 px in the pull request.
 

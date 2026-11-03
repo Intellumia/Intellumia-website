@@ -16,8 +16,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="docs/assets/fonts/AnekLatin-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* intellumia.com, one page. Brand System v5.0.3 (strategy v5.0): the approved mockup of 3 Nov 2026,
-   Drive Intellumia/website/mockup/index.html. Anek Latin only, self-hosted; see CLAUDE.md. */
+/* intellumia.com, one page. Brand System v5.0.4 (strategy v5.0): the approved mockup of 3 Nov 2026,
+   Drive Intellumia/website/mockup/index-motion.html. Anek Latin only, self-hosted; see CLAUDE.md. */
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latin.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap}
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latinext.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20CF,U+2C60-2C7F,U+A720-A7FF}
 
@@ -92,18 +92,21 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 .sec-head .label{color:var(--muted)}
 @media(min-width:1000px){.sec-head{margin-bottom:56px}.split{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px;align-items:start}.split>.sec-head{margin-bottom:0;position:sticky;top:32px}}
 
-/* scene bands: decorative pictures, never with words on them */
+/* scene bands: decorative pictures, never with words on them (the plant band's Pause button aside) */
 .scene{margin:56px 0 0}
 .scene--2{margin:0}
 .scene img{width:100%;height:auto;max-height:560px;object-fit:cover}
-/* the plant band plays its loop over the still (site.js), with an icon-only pause control: no words on the scene */
-.scene{position:relative}.scene picture{display:block}
-.scene__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.scene__video[hidden],.scene__toggle[hidden]{display:none}
-.scene__toggle{position:absolute;right:16px;bottom:16px;width:44px;height:44px;padding:0;border:0;border-radius:6px;background:var(--klein);color:#fff;display:grid;place-items:center;cursor:pointer}
-.scene__toggle svg{width:18px;height:18px}.scene__toggle .i-play{display:none}
-.scene__toggle.is-paused .i-play{display:block}.scene__toggle.is-paused .i-pause{display:none}
-@media(min-width:768px){.scene__toggle{right:24px;bottom:24px}}
+/* the plant band (Brand System v5.0.4, mockup index-motion.html): a slow silent loop, the still as poster and for
+   reduced motion, and a small Pause button. site.js adds .js-motion and starts the loop only near the screen;
+   without it, or with reduced motion, the band shows the still. The still takes the video's shape, so nothing moves. */
+.scene--motion{position:relative}
+.scene--motion video{width:100%;height:auto;display:block;aspect-ratio:1280/548;object-fit:cover}
+.scene--motion .scene-still{display:none;max-height:none;aspect-ratio:1280/548}
+.scene-pause{position:absolute;right:16px;bottom:16px;min-height:36px;padding:6px 12px;border:1px solid var(--rule);border-radius:6px;background:#fff;color:var(--ink);font:500 14px 'Anek Latin',sans-serif;cursor:pointer}
+.scene-pause[hidden]{display:none}
+html:not(.js-motion) .scene--motion video,html:not(.js-motion) .scene-pause{display:none}
+html:not(.js-motion) .scene--motion .scene-still{display:block}
+@media(prefers-reduced-motion:reduce){.scene--motion video,.scene-pause{display:none}.scene--motion .scene-still{display:block}}
 @media(min-width:1000px){.scene{margin-top:96px}}
 
 /* door stories */
@@ -292,9 +295,11 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 
 
 <!-- SCENE -->
-<figure class="scene"><picture><source type="image/webp" srcset="docs/assets/imagery/plant2-band-768.webp 768w, docs/assets/imagery/plant2-band.webp 1376w" sizes="100vw"><img src="docs/assets/imagery/plant2-band.jpg" width="1376" height="589" alt="" loading="lazy" decoding="async"></picture>
-<video class="scene__video" muted loop playsinline preload="none" aria-hidden="true" hidden><source src="docs/assets/imagery/plant-loop.webm" type="video/webm"><source src="docs/assets/imagery/plant-loop.mp4" type="video/mp4"></video>
-<button class="scene__toggle" type="button" aria-label="Pause the animation" hidden><svg class="i-pause" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4h3v12H6zM11 4h3v12h-3z" fill="currentColor"/></svg><svg class="i-play" viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4l10 6-10 6z" fill="currentColor"/></svg></button></figure>
+<figure class="scene scene--motion">
+ <video class="scene-v" autoplay muted loop playsinline preload="none" aria-hidden="true" data-poster="docs/assets/imagery/plant2-band.webp" data-webm="docs/assets/imagery/plant-loop.webm" data-mp4="docs/assets/imagery/plant-loop.mp4"></video>
+ <picture><source type="image/webp" srcset="docs/assets/imagery/plant2-band-768.webp 768w, docs/assets/imagery/plant2-band.webp 1600w" sizes="100vw"><img class="scene-still" src="docs/assets/imagery/plant2-band.jpg" width="1600" height="685" alt="" loading="lazy" decoding="async"></picture>
+ <button class="scene-pause" type="button" aria-label="Pause the animation" hidden>Pause</button>
+</figure>
 
 <!-- DOOR STORIES -->
 <section class="wrap sec split" aria-labelledby="h-doors">
