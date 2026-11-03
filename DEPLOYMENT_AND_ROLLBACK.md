@@ -16,7 +16,7 @@
 3. The brand studio does its brand check on the pull request; fixes go on the same branch, and the checks run again.
 4. Sundeep merges, with a merge commit. Nobody else merges.
 5. GitHub Pages runs "pages build and deployment" (about 30 seconds). Confirm the run succeeded for the merge commit.
-6. Check the live site: the page and Privacy load, the header and footer are right, `/sitemap.xml` and `/robots.txt` are served, and an old address (for example `/product/`) and an unknown path both land on the page.
+6. Check the live site: the page and Privacy load, the header and footer are right, `/sitemap.xml` and `/robots.txt` are served, an old address (for example `/product/`) lands on the page, and an unknown path shows the 404 page.
 7. The IndexNow workflow runs on the same push and pings Bing with the sitemap URLs. A failed ping does not affect the site.
 
 ## Rollback

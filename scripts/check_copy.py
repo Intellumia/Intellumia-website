@@ -50,11 +50,15 @@ ADDRESS = 'Intellumia Pte. Ltd., 60 Paya Lebar Road, #06-28, Paya Lebar Square, 
 EMAIL = 'sundeep@intellumia.com'
 SIGN_OFF = 'Intelligence, Illuminated.'
 DESCRIPTOR = 'an AI-native product company, starting with service'  # Privacy only
+NOT_FOUND_LABEL = 'Page not found'
+NOT_FOUND = 'There is nothing at this address.'
+GO_HOME = 'Go to intellumia.com'
 
 HEADER = ['[img] Intellumia', BUTTON]
 FOOTER = [ADDRESS, EMAIL, 'Privacy', SIGN_OFF]
 HOME = HEADER + [HERO, BUTTON, PROOF, HOW, MAP_HEADING, *MAP_ITEMS, YOUR_TIME,
                  '[img] Sundeep Kumar', NAME, FOUNDER, BUTTON] + FOOTER
+PAGE_404 = HEADER + [NOT_FOUND_LABEL, NOT_FOUND, HERO, BUTTON, GO_HOME] + FOOTER
 
 # ---------------------------------------------------------------------------------------------
 # Words that never appear on a published surface (case-insensitive, whole words).
@@ -79,7 +83,7 @@ BANNED = {
                                              'trusted by', 'results', 'our clients', 'clients include'],
     'fear, urgency, scarcity': ['hurry', 'act now', 'limited time', 'last chance', 'only a few',
                                 'falling behind', 'left behind', "don't miss", 'before it is too late'],
-    'forms and sign-ups': ['newsletter', 'subscribe', 'sign up', 'sign-up'],
+    'forms, sign-ups and analytics': ['newsletter', 'subscribe', 'sign up', 'sign-up', 'analytics'],
     'American spelling': ['color', 'colors', 'center', 'centers', 'organization', 'organizations', 'organize',
                           'analyze', 'optimize', 'optimization', 'behavior', 'favorite', 'labor', 'honor',
                           'realize', 'recognize', 'prioritize', 'catalog', 'defense', 'fulfill', 'modeling',
@@ -87,9 +91,6 @@ BANNED = {
     'a city for Sundeep': ['Mumbai', 'Delhi', 'New Delhi', 'Bengaluru', 'Bangalore', 'Pune', 'Chennai',
                            'Hyderabad', 'Kolkata', 'Gurgaon', 'Gurugram', 'Noida', 'Ahmedabad'],
 }
-# The one sentence on Privacy that names analytics, to say there are none.
-PRIVACY_ALLOWED = {'Nothing about you beyond what any web server records. No cookies, no analytics, no tracking, no advertising.'}
-
 COLOURS = {'#FFFFFF', '#101010', '#1A1AFF', '#FF3D00', '#F3EFE6', '#DDD8CC', '#5E5B55'}
 ASSETS = {'assets/site.css', 'assets/social-preview.jpg', 'assets/intellumia-wordmark-ultramarine.svg',
           'assets/fonts/AnekLatin-latin.woff2', 'assets/fonts/AnekLatin-latinext.woff2', 'assets/fonts/OFL-Anek.txt',
@@ -210,11 +211,12 @@ def words_found(text, words):
 
 
 # ---------------------------------------------------------------------------------------------
-# 1. One page: only Home and Privacy are pages; every other HTML file is a redirect to Home.
+# 1. One page: Home and Privacy are the pages, 404.html is the not-found page; every other HTML file
+#    is a redirect to Home.
 # ---------------------------------------------------------------------------------------------
 html_files = sorted(p.relative_to(DOCS).as_posix() for p in DOCS.rglob('*.html'))
-pages = {'index.html', 'privacy/index.html'}
-check('docs/ has Home and Privacy', pages <= set(html_files), f'missing: {pages - set(html_files)}')
+pages = {'index.html', 'privacy/index.html', '404.html'}
+check('docs/ has Home, Privacy and the not-found page', pages <= set(html_files), f'missing: {pages - set(html_files)}')
 bad_stubs = []
 for f in html_files:
     if f in pages:
@@ -226,7 +228,7 @@ for f in html_files:
           and norm(pg.title) == TITLE and pg.blocks == ['intellumia.com'] and not pg.scripts)
     if not ok:
         bad_stubs.append(f)
-check(f'every other HTML file is a redirect to {SITE} ({len(html_files) - 2} files, 404.html included)',
+check(f'every other HTML file is a redirect to {SITE} ({len(html_files) - len(pages)} files)',
       not bad_stubs, f'not a clean redirect: {bad_stubs}')
 
 locs = re.findall(r'<loc>([^<]+)</loc>', (DOCS / 'sitemap.xml').read_text())
@@ -267,6 +269,16 @@ for label, pg, n in (('Home', home, 3), ('Privacy', privacy, 1)):
           [l.get('href') for l in pg.header_links] == ['/', BOOKING] and not any(t == 'nav' for t, _ in pg.tags))
     check(f'{label}: footer lines', pg.blocks[-4:] == FOOTER, f'footer: {pg.blocks[-4:]}')
 check('Privacy: header lines', privacy.blocks[:2] == HEADER, f'header: {privacy.blocks[:2]}')
+nf = read(DOCS / '404.html')
+check('404: the approved lines, in order', nf.blocks == PAGE_404, f'{nf.blocks}')
+check('404: noindex, title "Page not found | Intellumia"',
+      nf.meta.get('robots') == 'noindex' and norm(nf.title) == 'Page not found | Intellumia')
+check('404: 2 "Book a Map" buttons, each opening the booking page in a new tab',
+      len(nf.buttons) == 2 and all(b.get('href') == BOOKING and b.get('target') == '_blank'
+                                   and 'noopener' in b.get('rel', '') for b in nf.buttons))
+nf_src = (DOCS / '404.html').read_text()
+check('404: every path is absolute, so it works at any address',
+      not re.search(r'(?:href|src)="(?!/|https://|mailto:)', nf_src))
 
 # ---------------------------------------------------------------------------------------------
 # 4. Words: banned, retired, descriptor, dashes, emoji, italics.
@@ -276,8 +288,6 @@ for f in html_files:
     pg = read(DOCS / f)
     texts = pg.blocks + [norm(pg.title)] + [v for k, v in pg.meta.items() if k in (
         'description', 'og:title', 'og:description', 'og:image:alt')]
-    if f == 'privacy/index.html':
-        texts = [t for t in texts if t not in PRIVACY_ALLOWED]
     for ld in pg.ld:
         texts += ld_values(json.loads(ld))
     surfaces['docs/' + f] = '\n'.join(texts)
@@ -311,7 +321,7 @@ check('colours are the seven brand tokens only', hexes <= COLOURS, f'other colou
 check('no gradients, shadows or dark mode', not re.search(r'gradient|shadow|prefers-color-scheme', css, re.I))
 check('vermilion is set once, on the .fire class only',
       css.count('#FF3D00') == 1 and css.count('var(--fire)') == 1 and '.fire{color:var(--fire)}' in css)
-fire_ok = (len(home.fire) == 1 and 'h1' in home.fire[0] and privacy.fire == []
+fire_ok = (len(home.fire) == 1 and 'h1' in home.fire[0] and privacy.fire == [] and nf.fire == []
            and all('class="fire"' not in (DOCS / f).read_text() for f in html_files if f not in pages))
 check('one red thing: one word of the hero, at Statement size', fire_ok)
 check('the hero is set in the Statement style', re.search(r'<h1 class="st">', (DOCS / 'index.html').read_text()) is not None)
@@ -350,7 +360,7 @@ check('Home structured data: Organization with the 25 words, address and logo',
 check('Home structured data: Person, Sundeep Kumar, Founder & CEO',
       person.get('name') == 'Sundeep Kumar' and person.get('jobTitle') == 'Founder & CEO')
 check('structured data has no offers or prices',
-      not re.search(r'offer|price', ' '.join(home.ld + privacy.ld), re.I))
+      not re.search(r'offer|price', ' '.join(home.ld + privacy.ld + nf.ld), re.I))
 
 # ---------------------------------------------------------------------------------------------
 # 7. The fallback at the repository root carries the same words as the live pages.

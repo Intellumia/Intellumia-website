@@ -13,7 +13,8 @@ Since 3 November 2026 (strategy v5.0, Brand System v5.0.1) the site is **one pag
 | `docs/index.html` | The page. Hand-written static HTML; GitHub Pages publishes `docs/` as it stands, with no build step. |
 | `docs/privacy/index.html` | The Privacy notice. |
 | `docs/assets/` | `site.css`, the ultramarine wordmark, the Anek fonts and their licence, Sundeep's portrait, the social preview. |
-| Every other HTML file in `docs/` | A redirect to the page, so old links still land on intellumia.com. `404.html` does the same for unknown addresses. |
+| `docs/404.html` | The not-found page, served at any unknown address. |
+| Every other HTML file in `docs/` | A redirect to the page, so old links still land on intellumia.com. |
 | `docs/CNAME` | The custom domain, `intellumia.com`. Do not change it. |
 | `docs/llms.txt`, `docs/robots.txt`, `docs/sitemap.xml` | For answer engines and crawlers. The sitemap lists Home and Privacy only. |
 | `.github/workflows/indexnow.yml` | After each push to `main` that touches `docs/`, waits for the deploy and sends the sitemap URLs to IndexNow (Bing). |
