@@ -31,6 +31,7 @@ html{background:var(--ground);color-scheme:light;-webkit-text-size-adjust:100%;s
 body{margin:0;background:var(--ground);color:var(--ink);font-family:'Anek Latin',system-ui,sans-serif;font-size:17px;line-height:1.55;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
 h1,h2,h3,p,ul,ol,figure{margin:0}
+button{font:inherit}
 ul,ol{padding:0;list-style:none}
 a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 :focus-visible{outline:2px solid var(--klein);outline-offset:3px}
@@ -180,7 +181,7 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 .ftr .links{display:flex;flex-wrap:wrap;gap:8px 24px}
 @media(min-width:768px){.ftr{padding-bottom:56px;grid-template-columns:1fr auto;align-items:end}}
 
-/* phone bottom bar: shown by /assets/site.js once the hero has scrolled away, hidden while the closing plate is on screen */
+/* phone bottom bar (inside the footer landmark): shown by /assets/site.js once the hero has scrolled away, hidden while the closing plate is on screen */
 .bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--rule);padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:12px;transform:translateY(110%);transition:transform .2s ease;z-index:10}
 .bar.on{transform:none}
 .bar .note{font-size:14px;color:var(--muted);line-height:1.3}
