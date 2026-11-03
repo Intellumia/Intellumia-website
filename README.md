@@ -4,7 +4,7 @@ The public website of Intellumia, served at <https://intellumia.com> by GitHub P
 
 Intellumia, the AI partner for owner-run businesses. Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.
 
-Since 3 November 2026 (strategy v5.0, Brand System v5.0.2) the site is **one page with one button, "Talk to Sundeep"**, plus the Privacy notice, until Intellumia has 5 to 10 paying clients. The rules for every change are in [`CLAUDE.md`](CLAUDE.md).
+Since 3 November 2026 (strategy v5.0) the site is **one page with one action, "Talk to Sundeep"**, plus the Privacy notice, until Intellumia has 5 to 10 paying clients. The page follows the mockup Sundeep approved on 3 November 2026 (Brand System v5.0.4, with the plant band as a slow loop). The rules for every change are in [`CLAUDE.md`](CLAUDE.md).
 
 ## What is here
 
@@ -12,7 +12,7 @@ Since 3 November 2026 (strategy v5.0, Brand System v5.0.2) the site is **one pag
 | --- | --- |
 | `docs/index.html` | The page. Hand-written static HTML; GitHub Pages publishes `docs/` as it stands, with no build step. |
 | `docs/privacy/index.html` | The Privacy notice. |
-| `docs/assets/` | `site.css`, the ultramarine wordmark, the Anek fonts and their licence, Sundeep's portrait, the social preview. |
+| `docs/assets/` | `site.css` (the one stylesheet), `site.js` (the one script: the phone bottom bar and the plant loop), the ultramarine wordmark, the Anek fonts and their licence, Sundeep's portrait, the two scene bands and the plant loop, the social preview. |
 | `docs/404.html` | The not-found page, served at any unknown address. |
 | Every other HTML file in `docs/` | A redirect to the page, so old links still land on intellumia.com. |
 | `docs/CNAME` | The custom domain, `intellumia.com`. Do not change it. |
