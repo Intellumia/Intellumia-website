@@ -12,11 +12,11 @@
 ## How a release goes out
 
 1. Work on a branch and open a draft pull request into `main`. The pull request states its rollback point: the commit `main` is at before the merge.
-2. Run the checks in `README.md` at 390, 768, 1100 and 1440 px, and put the results and desktop and phone screenshots in the pull request.
+2. Run the checks in `CLAUDE.md` (`scripts/make_fallback.py`, `scripts/check_copy.py`, then the browser checks at 360, 390, 768, 1100 and 1440 px and Lighthouse), and put the results and screenshots at 360 px and 1440 px in the pull request.
 3. The brand studio does its brand check on the pull request; fixes go on the same branch, and the checks run again.
 4. Sundeep merges, with a merge commit. Nobody else merges.
 5. GitHub Pages runs "pages build and deployment" (about 30 seconds). Confirm the run succeeded for the merge commit.
-6. Check the live site: the pages load, the header and footer are right, `/sitemap.xml` and `/robots.txt` are served, and an unknown path shows the 404 page.
+6. Check the live site: the page and Privacy load, the header and footer are right, `/sitemap.xml` and `/robots.txt` are served, an old address (for example `/product/`) lands on the page, and an unknown path shows the 404 page.
 7. The IndexNow workflow runs on the same push and pings Bing with the sitemap URLs. A failed ping does not affect the site.
 
 ## Rollback
@@ -30,7 +30,7 @@ git push origin main
 
 GitHub Pages redeploys the previous site within a minute. Alternatively, restore `docs/` from the release's rollback point and push.
 
-Last resort, if `docs/` is unusable: in the repository's Pages settings, switch the source from `main` / `docs` to `main` / root. That serves the holding page kept at the repository root (Carbon, refreshed on 23 Oct 2026), with its own privacy page and a link to book 30 minutes.
+Last resort, if `docs/` is unusable: in the repository's Pages settings, switch the source from `main` / `docs` to `main` / root. That serves the fallback kept at the repository root: a copy of the page and Privacy, rebuilt from `docs/` by `scripts/make_fallback.py` with every release (white, since 3 Nov 2026). The root carries `.nojekyll`, so in that mode `_archive/` and `archive/` would also be reachable by address; nothing links to them.
 
 ## Release log
 
