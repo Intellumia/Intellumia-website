@@ -1,4 +1,4 @@
-/* intellumia.com, one page. Brand System v5.0.1 (strategy v5.0). Anek Latin only, self-hosted; see CLAUDE.md. */
+/* intellumia.com, one page. Brand System v5.0.2 (strategy v5.0). Anek Latin only, self-hosted; see CLAUDE.md. */
 @font-face{font-family:'Anek Latin';src:url('/assets/fonts/AnekLatin-latin.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap}
 @font-face{font-family:'Anek Latin';src:url('/assets/fonts/AnekLatin-latinext.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20CF,U+2C60-2C7F,U+A720-A7FF}
 
@@ -28,7 +28,7 @@ a:hover{text-decoration-thickness:2px}
 .fire{color:var(--fire)}
 .nw{white-space:nowrap}
 
-/* The button: ultramarine, corners 6. There is one, "Book a Map", floating in the bottom right corner of every page */
+/* The button: ultramarine, corners 6. There is one, "Talk to Sundeep", floating in the bottom right corner of every page */
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 16px;border-radius:6px;background:var(--klein);color:#FFFFFF;font-weight:600;font-size:17px;line-height:1.2;text-decoration:none;white-space:nowrap}
 .btn:hover{color:#FFFFFF;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
 .btn--lg{min-height:56px;padding:16px 32px;font-size:clamp(20px,calc(.185vw + 19.33px),22px)}
@@ -59,6 +59,7 @@ body:has(.fab) .ftr{padding-bottom:96px}
 .two{display:grid;gap:24px}
 .two .ld{max-width:32em}
 .two .bd{max-width:38em}
+.two .label{margin-bottom:12px}
 @media (min-width:1100px){.two{grid-template-columns:repeat(12,minmax(0,1fr));gap:48px}.two>:first-child{grid-column:1 / span 6}.two>:last-child{grid-column:8 / span 5}}
 
 /* The one Bone panel: what the Map gives you. Corners 10 */
@@ -72,11 +73,16 @@ body:has(.fab) .ftr{padding-bottom:96px}
 
 /* Who you will work with. The portrait is the only picture; corners 0 */
 .person{display:grid;gap:24px}
-.person img{width:200px;height:200px;object-fit:cover;border-radius:0}
+.person img{width:160px;height:160px;object-fit:cover;border-radius:0}
 .person .ld{margin-bottom:12px}
 .person .bd{max-width:34em}
 @media (min-width:768px){.person{grid-template-columns:240px minmax(0,1fr);gap:48px;align-items:end}.person img{width:240px;height:240px}}
 @media (min-width:1100px){.person{grid-template-columns:320px minmax(0,1fr)}.person img{width:320px;height:320px}}
+.person .bd + .bd{margin-top:12px}
+
+/* The close: the opening question, and one muted line. No second button */
+.close .hd{max-width:16em}
+.close .bd{margin-top:16px;max-width:38em}
 
 .ftr{border-top:1px solid var(--rule);padding-top:32px;padding-bottom:48px;display:grid;gap:12px}
 .ftr__links{display:flex;flex-wrap:wrap;gap:12px 24px}

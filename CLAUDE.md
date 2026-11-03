@@ -1,10 +1,10 @@
 # intellumia.com: rules for every change
 
-The site follows Intellumia strategy v5.0 and the Brand System v5.0.1 ("Brand System (current).md" in Drive, brand folder). If this file and the Brand System disagree, the Brand System wins; say so in the pull request.
+The site follows Intellumia strategy v5.0 and the Brand System v5.0.2 ("Brand System (current).md" in Drive, brand folder). If this file and the Brand System disagree, the Brand System wins; say so in the pull request.
 
 ## The one-page rule
 
-Until Intellumia has 5 to 10 paying clients, intellumia.com is **one page with one button, "Book a Map"**, plus the Privacy notice. Nothing else is published.
+Until Intellumia has 5 to 10 paying clients, intellumia.com is **one page with one button, "Talk to Sundeep"**, plus the Privacy notice. Nothing else is published.
 
 - `docs/index.html` is the page. `docs/privacy/index.html` is Privacy. `docs/404.html` is the not-found page GitHub Pages serves at any unknown address (`noindex`, absolute paths only): "Page not found", "There is nothing at this address.", the hero line and "Go to intellumia.com", with the floating button (approved by Sundeep, 3 November 2026).
 - Every other HTML file under `docs/` is a redirect to `https://intellumia.com/`: a meta refresh to `/`, a canonical link to `https://intellumia.com/` and `noindex`. Never delete one: old links must keep landing on the page.
@@ -15,13 +15,14 @@ Until Intellumia has 5 to 10 paying clients, intellumia.com is **one page with o
 
 The page carries the approved lines and nothing else, in this order. `scripts/check_copy.py` holds the exact text and fails on any other line, so a wording change goes into the page and the script in the same commit.
 
-1. Header: the wordmark in ultramarine. No navigation. The one button, "Book a Map", floats in the bottom right corner (see The button).
+1. Header: the wordmark in ultramarine. No navigation. The one button, "Talk to Sundeep", floats in the bottom right corner (see The button).
 2. Hero (Statement): "Where will AI make your business money? We will show you, then run it."
 3. Proof line (Lead).
-4. How it works (Body): the meeting statement, "In two to three weeks, ...".
-5. Heading "What the Map gives you", the five items, then "Your time: about 20 to 40 hours of your staff, said up front."
-6. Sundeep's black and white portrait, "Sundeep Kumar, Founder & CEO" and the founder line. "Based in India", never a city; never IBM figures or IBM client names.
-7. Footer: the registered address, sundeep@intellumia.com, Privacy, "Intelligence, Illuminated."
+4. How it works: the Label "The Map" (set in capitals, so the Map is named before the word is used), then the meeting statement in Body, "In two to three weeks, ...".
+5. Heading "What the Map gives you", the five items, then "Your time: about 20 to 40 hours of your staff across the two to three weeks. We agree it with you before we start."
+6. Sundeep's black and white portrait (alt text "Sundeep Kumar, Founder and CEO of Intellumia"), "Sundeep Kumar, Founder & CEO", the founder line, and a plain link "Sundeep on LinkedIn" (the same profile is `sameAs` on the Person in the structured data). "Based in India", never a city; never IBM figures or IBM client names.
+7. The close: the opening question as a Heading, "Where does your business lose the most cash, days or margin today?", and one muted line, "Talk to Sundeep: 30 minutes. We start with where your business loses the most cash, days or margin." No second button.
+8. Footer: the registered address, sundeep@intellumia.com, Privacy, "Intelligence, Illuminated."
 
 Title and og:title: "Intellumia, the AI partner for owner-run businesses". Description and og:description: the 25 words, "Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees." The descriptor "an AI-native product company, starting with service" appears on Privacy only.
 
@@ -34,6 +35,7 @@ Never on any published surface (page, Privacy, llms.txt, structured data):
 - Retired terms: judgement engine, decision intelligence, intelligence layer, Decision Sprint, 90-day build, Embed, Sales Engine, Plant Engine, Cash Engine, owner-led (now "owner-run"), "Rent the model", research desk, the owner's brief.
 - Fear, urgency or scarcity; market statistics.
 - Forms, newsletters, analytics, cookies, chat widgets, third-party scripts.
+- "Book a Map" as a button label or anywhere else: a Map is paid work priced in a proposal, and the button opens a 30-minute call (Brand System v5.0.2).
 - Em dashes, emoji, italics, American spelling. British English, sentence case. "Intellumia" with a capital I in text; only the logo is lower case. "Map" is a name and is capitalised.
 
 ## The look
@@ -48,9 +50,9 @@ Never on any published surface (page, Privacy, llms.txt, structured data):
 
 ## The button
 
-There is one "Book a Map" button on every page, floating in the bottom right corner and always in view (Sundeep, 3 November 2026): 16 px from the corner on a phone, 24 px from 768 px, 32 px from 1100 px. It is the last element in the header, so it sits inside a landmark. It never floats over the portrait; the footer has room below it, and `scroll-padding-bottom` keeps a focused link from hiding under it. No other button, in the header or in a section.
+There is one "Talk to Sundeep" button on every page, floating in the bottom right corner and always in view (Sundeep, 3 November 2026; label from Brand System v5.0.2): 16 px from the corner on a phone, 24 px from 768 px, 32 px from 1100 px. It is the last element in the header, so it sits inside a landmark. It never floats over the portrait; the footer has room below it, and `scroll-padding-bottom` keeps a focused link from hiding under it. No other button, in the header or in a section.
 
-It opens <https://cal.com/intellumia/meetsk> in a new tab (`target="_blank" rel="noopener"`). Never create accounts or change cal.com settings; Sundeep manages the event himself.
+It opens <https://cal.com/intellumia/meetsk>, the cal.com event "Talk to Sundeep (30 minutes)", in a new tab (`target="_blank" rel="noopener"`). Never link `cal.com/meetsk`: that username is no longer Sundeep's. Never create accounts or change cal.com settings; Sundeep manages the event himself.
 
 ## Files
 
