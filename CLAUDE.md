@@ -49,7 +49,7 @@ Never on any published surface (page, Privacy, llms.txt, structured data):
 
 ## The button
 
-"Book a Map" opens <https://cal.com/meetsk> in a new tab (`target="_blank" rel="noopener"`). Never create accounts or change cal.com settings; Sundeep manages the event himself.
+"Book a Map" opens <https://cal.com/intellumia/meetsk> in a new tab (`target="_blank" rel="noopener"`). Never create accounts or change cal.com settings; Sundeep manages the event himself.
 
 ## Files
 
