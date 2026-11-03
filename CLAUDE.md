@@ -6,7 +6,7 @@ The site follows Intellumia strategy v5.0 and the Brand System v5.0.1 ("Brand Sy
 
 Until Intellumia has 5 to 10 paying clients, intellumia.com is **one page with one button, "Book a Map"**, plus the Privacy notice. Nothing else is published.
 
-- `docs/index.html` is the page. `docs/privacy/index.html` is Privacy. `docs/404.html` is the not-found page GitHub Pages serves at any unknown address (`noindex`, absolute paths only): "Page not found", "There is nothing at this address.", the hero line, the button and "Go to intellumia.com" (approved by Sundeep, 3 November 2026).
+- `docs/index.html` is the page. `docs/privacy/index.html` is Privacy. `docs/404.html` is the not-found page GitHub Pages serves at any unknown address (`noindex`, absolute paths only): "Page not found", "There is nothing at this address.", the hero line and "Go to intellumia.com", with the floating button (approved by Sundeep, 3 November 2026).
 - Every other HTML file under `docs/` is a redirect to `https://intellumia.com/`: a meta refresh to `/`, a canonical link to `https://intellumia.com/` and `noindex`. Never delete one: old links must keep landing on the page.
 - Retired pages and assets live in `_archive/` at the repository root, outside `docs/`, so GitHub Pages never publishes them. Nothing is deleted; it is moved there.
 - A new page, section, line or button needs Sundeep's written approval first.
@@ -15,14 +15,13 @@ Until Intellumia has 5 to 10 paying clients, intellumia.com is **one page with o
 
 The page carries the approved lines and nothing else, in this order. `scripts/check_copy.py` holds the exact text and fails on any other line, so a wording change goes into the page and the script in the same commit.
 
-1. Header: the wordmark in ultramarine on the left, one button "Book a Map" on the right. No navigation.
-2. Hero (Statement): "Where will AI make your business money? We will show you, then run it." Button: "Book a Map".
+1. Header: the wordmark in ultramarine. No navigation. The one button, "Book a Map", floats in the bottom right corner (see The button).
+2. Hero (Statement): "Where will AI make your business money? We will show you, then run it."
 3. Proof line (Lead).
 4. How it works (Body): the meeting statement, "In two to three weeks, ...".
 5. Heading "What the Map gives you", the five items, then "Your time: about 20 to 40 hours of your staff, said up front."
 6. Sundeep's black and white portrait, "Sundeep Kumar, Founder & CEO" and the founder line. "Based in India", never a city; never IBM figures or IBM client names.
-7. The "Book a Map" button once more.
-8. Footer: the registered address, sundeep@intellumia.com, Privacy, "Intelligence, Illuminated."
+7. Footer: the registered address, sundeep@intellumia.com, Privacy, "Intelligence, Illuminated."
 
 Title and og:title: "Intellumia, the AI partner for owner-run businesses". Description and og:description: the 25 words, "Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees." The descriptor "an AI-native product company, starting with service" appears on Privacy only.
 
@@ -49,7 +48,9 @@ Never on any published surface (page, Privacy, llms.txt, structured data):
 
 ## The button
 
-"Book a Map" opens <https://cal.com/intellumia/meetsk> in a new tab (`target="_blank" rel="noopener"`). Never create accounts or change cal.com settings; Sundeep manages the event himself.
+There is one "Book a Map" button on every page, floating in the bottom right corner and always in view (Sundeep, 3 November 2026): 16 px from the corner on a phone, 24 px from 768 px, 32 px from 1100 px. It is the last element in the header, so it sits inside a landmark. It never floats over the portrait; the footer has room below it, and `scroll-padding-bottom` keeps a focused link from hiding under it. No other button, in the header or in a section.
+
+It opens <https://cal.com/intellumia/meetsk> in a new tab (`target="_blank" rel="noopener"`). Never create accounts or change cal.com settings; Sundeep manages the event himself.
 
 ## Files
 
@@ -70,7 +71,7 @@ Each page sets a Content-Security-Policy with `script-src 'none'`; the only scri
 
 1. `python3 scripts/make_fallback.py` (keeps the root fallback in step with `docs/`).
 2. `python3 scripts/check_copy.py`: all checks must pass. Paste the result into the pull request.
-3. In a browser at 360, 390, 768, 1100 and 1440 px: no sideways scroll, Anek only, white ground, the one red word, every old URL lands on the page, an unknown address shows the 404 page, axe-core finds no WCAG 2.2 AA violations.
+3. In a browser at 360, 390, 768, 1100 and 1440 px: no sideways scroll, Anek only, white ground, the one red word, one floating button in view and clear of the portrait, the footer and focused links, every old URL lands on the page, an unknown address shows the 404 page, axe-core finds no WCAG 2.2 AA violations.
 4. Lighthouse on Home and Privacy, mobile and desktop. Budgets: LCP 2.0 s, INP 150 ms (the page has no scripts; report Total Blocking Time as the lab stand-in), CLS 0.05, under 500 KB on first view.
 5. Screenshots at 360 px and 1440 px in the pull request.
 

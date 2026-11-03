@@ -56,9 +56,9 @@ GO_HOME = 'Go to intellumia.com'
 
 HEADER = ['[img] Intellumia', BUTTON]
 FOOTER = [ADDRESS, EMAIL, 'Privacy', SIGN_OFF]
-HOME = HEADER + [HERO, BUTTON, PROOF, HOW, MAP_HEADING, *MAP_ITEMS, YOUR_TIME,
-                 '[img] Sundeep Kumar', NAME, FOUNDER, BUTTON] + FOOTER
-PAGE_404 = HEADER + [NOT_FOUND_LABEL, NOT_FOUND, HERO, BUTTON, GO_HOME] + FOOTER
+HOME = HEADER + [HERO, PROOF, HOW, MAP_HEADING, *MAP_ITEMS, YOUR_TIME,
+                 '[img] Sundeep Kumar', NAME, FOUNDER] + FOOTER
+PAGE_404 = HEADER + [NOT_FOUND_LABEL, NOT_FOUND, HERO, GO_HOME] + FOOTER
 
 # ---------------------------------------------------------------------------------------------
 # Words that never appear on a published surface (case-insensitive, whole words).
@@ -260,10 +260,11 @@ check('Home: social preview declared at 1200 x 630', home.meta.get('og:image') =
 # 3. One button, everywhere the same; no navigation.
 # ---------------------------------------------------------------------------------------------
 privacy = read(DOCS / 'privacy/index.html')
-for label, pg, n in (('Home', home, 3), ('Privacy', privacy, 1)):
-    ok = len(pg.buttons) == n and all(b.get('href') == BOOKING and b.get('target') == '_blank'
-                                      and 'noopener' in b.get('rel', '') for b in pg.buttons)
-    check(f'{label}: {n} "Book a Map" button(s), each opening {BOOKING} in a new tab', ok,
+for label, pg in (('Home', home), ('Privacy', privacy)):
+    ok = len(pg.buttons) == 1 and all(b.get('href') == BOOKING and b.get('target') == '_blank'
+                                      and 'noopener' in b.get('rel', '') and 'fab' in b.get('class', '').split()
+                                      for b in pg.buttons)
+    check(f'{label}: one floating "Book a Map" button, opening {BOOKING} in a new tab', ok,
           f'buttons: {pg.buttons}')
     check(f'{label}: header is the wordmark and the button, no navigation',
           [l.get('href') for l in pg.header_links] == ['/', BOOKING] and not any(t == 'nav' for t, _ in pg.tags))
@@ -273,8 +274,8 @@ nf = read(DOCS / '404.html')
 check('404: the approved lines, in order', nf.blocks == PAGE_404, f'{nf.blocks}')
 check('404: noindex, title "Page not found | Intellumia"',
       nf.meta.get('robots') == 'noindex' and norm(nf.title) == 'Page not found | Intellumia')
-check('404: 2 "Book a Map" buttons, each opening the booking page in a new tab',
-      len(nf.buttons) == 2 and all(b.get('href') == BOOKING and b.get('target') == '_blank'
+check('404: one floating "Book a Map" button, opening the booking page in a new tab',
+      len(nf.buttons) == 1 and 'fab' in nf.buttons[0].get('class', '').split() and all(b.get('href') == BOOKING and b.get('target') == '_blank'
                                    and 'noopener' in b.get('rel', '') for b in nf.buttons))
 nf_src = (DOCS / '404.html').read_text()
 check('404: every path is absolute, so it works at any address',
@@ -334,6 +335,9 @@ check('only Anek font files are published, with the licence beside them',
 check('corners: 6 for buttons, 10 for the panel, 0 for the portrait',
       '.btn{' in css and 'border-radius:6px' in css and 'border-radius:10px' in css
       and set(re.findall(r'border-radius:(\d+)px', css)) <= {'6', '10', '0'})
+check('the one button floats: fixed in the bottom right corner, the footer and focus kept clear of it',
+      '.fab{position:fixed;right:16px;bottom:16px' in css and 'scroll-padding-bottom' in css
+      and 'body:has(.fab) .ftr{padding-bottom' in css)
 check('one Bone panel', (DOCS / 'index.html').read_text().count('class="panel"') == 1
       and css.count('var(--bone)') == 1)
 
