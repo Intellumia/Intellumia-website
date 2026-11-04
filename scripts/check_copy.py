@@ -12,11 +12,16 @@ mockup/index-round5.html, also reference-mockup.html in round5-assets.zip) with 
 may carry, in this order. To change a line, change it here and on the page in the same commit, with Sundeep's
 approval.
 """
+import datetime as dt
 import json
 import re
 import sys
 from html.parser import HTMLParser
 from pathlib import Path
+
+sys.dont_write_bytecode = True  # no __pycache__ in scripts/
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import make_structured_data as msd  # noqa: E402  (the structured data is generated from the page; Round 7)
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / 'docs'
@@ -618,7 +623,8 @@ surfaces = {}
 for f in html_files:
     pg = read(DOCS / f)
     texts = pg.blocks + [norm(pg.title)] + [v for k, v in pg.meta.items() if k in (
-        'description', 'og:title', 'og:description', 'og:image:alt')]
+        'description', 'og:title', 'og:description', 'og:image:alt', 'twitter:title', 'twitter:description',
+        'twitter:image:alt')]
     for ld in pg.ld:
         texts += ld_values(json.loads(ld))
     texts += [norm(a.get('aria-label', '')) for _, a in pg.tags if a.get('aria-label')]
@@ -752,8 +758,109 @@ check('Home structured data: Person, Sundeep Kumar, Founder & CEO, sameAs his Li
       and person.get('sameAs') == [LINKEDIN])
 check('the LinkedIn link goes to the profile in the structured data',
       f'<a href="{LINKEDIN}" target="_blank" rel="noopener">{LINKEDIN_TEXT}</a>' in home_src)
-check('structured data has no offers or prices',
-      not re.search(r'offer|price', ' '.join(home.ld + privacy.ld + nf.ld), re.I))
+
+
+# ---------------------------------------------------------------------------------------------
+# 7b. Search and answer engines (Round 7, Sundeep, 4 Nov 2026): the verification tag, the social tags, the
+#     structured data generated from the page, the sitemap dates and security.txt.
+# ---------------------------------------------------------------------------------------------
+VERIFICATION = '<meta name="google-site-verification" content="JVD48nYlvicZNZ-kgTofBwZAX-47k2G1xlk4nWepCzQ">'
+check('Home: the Google Search Console verification tag, exactly as issued, in the head (keep it permanently)',
+      home_src.count(VERIFICATION) == 1 and home_src.index(VERIFICATION) < home_src.index('</head>')
+      and home.meta.get('google-site-verification') == 'JVD48nYlvicZNZ-kgTofBwZAX-47k2G1xlk4nWepCzQ')
+PRIVACY_DESC = 'How Intellumia handles personal data: this website collects nothing about you; what you send us is used only to reply.'
+for label, pg, title, desc in (('Home', home, TITLE, DESCRIPTION), ('Privacy', privacy, 'Privacy notice | Intellumia', PRIVACY_DESC)):
+    check(f'{label}: og:locale en_GB, and the Twitter title, description, image and its alt text set explicitly',
+          pg.meta.get('og:locale') == 'en_GB' and pg.meta.get('twitter:card') == 'summary_large_image'
+          and pg.meta.get('twitter:title') == title == pg.meta.get('og:title')
+          and pg.meta.get('twitter:description') == desc == pg.meta.get('og:description')
+          and pg.meta.get('twitter:image') == SITE + 'assets/social-preview.jpg' == pg.meta.get('og:image')
+          and pg.meta.get('twitter:image:alt') == HERO, f"{[pg.meta.get(k) for k in ('og:locale', 'twitter:title')]}")
+home_ld = json.loads(home.ld[0]) if home.ld else {}
+privacy_ld = json.loads(privacy.ld[0]) if privacy.ld else {}
+nodes = {n.get('@type'): n for n in home_ld.get('@graph', [])}
+webpage = nodes.get('WebPage', {})
+check('Home structured data: Organization, Person, WebSite, WebPage, FAQPage and Service, nothing else',
+      sorted(nodes) == ['FAQPage', 'Organization', 'Person', 'Service', 'WebPage', 'WebSite']
+      and len(home_ld.get('@graph', [])) == 6 and home_ld.get('@context') == 'https://schema.org', f'{sorted(nodes)}')
+check('Home structured data is exactly what scripts/make_structured_data.py makes from the page (run it if not)',
+      home_ld == msd.home_graph(home_src, webpage.get('dateModified', '')))
+faq_ld = [(q['name'], q['acceptedAnswer']['text']) for q in nodes.get('FAQPage', {}).get('mainEntity', [])
+          if q.get('@type') == 'Question' and q.get('acceptedAnswer', {}).get('@type') == 'Answer']
+check('FAQPage: the eight questions and answers word for word as the page shows them, in order',
+      faq_ld == FAQS == [(norm(q), norm(a)) for _, q, a in details] == [(norm(q), norm(a)) for q, a in msd.faq_from_page(home_src)],
+      f'{len(faq_ld)} questions in the structured data')
+steps_ld = [(x['name'], x['description']) for x in nodes.get('Service', {}).get('hasOfferCatalog', {}).get('itemListElement', [])]
+check('Service: AI advisory and delivery for owner-run businesses, area served India, and a catalogue of Map, Run and Guide '
+      "with the page's one-line descriptions",
+      nodes.get('Service', {}).get('serviceType') == 'AI advisory and delivery for owner-run businesses'
+      and nodes.get('Service', {}).get('areaServed') == {'@type': 'Country', 'name': 'India'}
+      and steps_ld == [(HOW[4], HOW[5]), (HOW[9], HOW[10]), (HOW[14], HOW[15])], f'{steps_ld}')
+check('Organization: ProfessionalService, area served India, what it knows about, and a sales contact in English '
+      '(Hindi only once Sundeep confirms it); no company LinkedIn page until its exact address is on record',
+      org.get('additionalType') == 'https://schema.org/ProfessionalService'
+      and org.get('areaServed') == {'@type': 'Country', 'name': 'India'} and len(org.get('knowsAbout', [])) == 5
+      and org.get('contactPoint', {}).get('contactType') == 'sales' and org.get('contactPoint', {}).get('email') == EMAIL
+      and set(org.get('contactPoint', {}).get('availableLanguage', [])) <= {'English', 'Hindi'}
+      and 'sameAs' not in org, f'{org.get("contactPoint")}')
+check('WebSite and WebPage: name, address, language en-GB; the page is part of the site and about the Organization',
+      nodes.get('WebSite', {}).get('url') == SITE and nodes.get('WebSite', {}).get('inLanguage') == 'en-GB'
+      and webpage.get('url') == SITE and webpage.get('name') == TITLE and webpage.get('description') == DESCRIPTION
+      and webpage.get('inLanguage') == 'en-GB' and webpage.get('isPartOf') == {'@id': SITE + '#website'}
+      and webpage.get('about') == {'@id': SITE + '#organization'})
+
+
+def ids_and_refs(node, ids, refs):
+    if isinstance(node, dict):
+        if '@id' in node:
+            (ids if len(node) > 1 else refs).add(node['@id'])
+        for v in node.values():
+            ids_and_refs(v, ids, refs)
+    elif isinstance(node, list):
+        for v in node:
+            ids_and_refs(v, ids, refs)
+
+
+ids, refs = set(), set()
+ids_and_refs(home_ld, ids, refs)
+check('every reference in the structured data points at a node on the page', refs and refs <= ids, f'{refs - ids}')
+check('Privacy structured data: the same Organization (without the founder link), with the descriptor',
+      privacy_ld == msd.privacy_graph())
+
+
+def price_keys(node):
+    if isinstance(node, dict):
+        return [k for k in node if 'price' in k.lower()] + [str(node.get('@type'))] * (
+            node.get('@type') in ('Offer', 'AggregateOffer', 'PriceSpecification', 'UnitPriceSpecification')) + [
+            x for v in node.values() for x in price_keys(v)]
+    if isinstance(node, list):
+        return [x for v in node for x in price_keys(v)]
+    return []
+
+
+check('structured data has no offers and no prices (no Offer, no price property, no figure with a currency)',
+      not price_keys(home_ld) and not price_keys(privacy_ld)
+      and not re.search(r'[₹$€£]|\b(?:INR|SGD|USD)\b', ' '.join(home.ld + privacy.ld + nf.ld)), f'{price_keys(home_ld)}')
+lastmods = dict(re.findall(r'<loc>([^<]+)</loc><lastmod>([^<]+)</lastmod>', (DOCS / 'sitemap.xml').read_text()))
+today = dt.datetime.now(dt.timezone.utc).date()
+try:
+    home_mod, privacy_mod = dt.date.fromisoformat(lastmods[SITE]), dt.date.fromisoformat(lastmods[SITE + 'privacy/'])
+    dates_ok = (webpage.get('dateModified') == lastmods[SITE] and privacy_mod <= home_mod <= today + dt.timedelta(days=1))
+except (KeyError, ValueError):
+    dates_ok = False
+check("sitemap lastmod: Home's is the release date, the same as the page's dateModified; Privacy's is when it last "
+      'changed', dates_ok, f'{lastmods} {webpage.get("dateModified")}')
+sec_path = DOCS / '.well-known/security.txt'
+sec = dict(re.findall(r'^([A-Za-z-]+): (.+)$', sec_path.read_text(), re.M)) if sec_path.exists() else {}
+try:
+    expires = dt.datetime.fromisoformat(sec.get('Expires', '').replace('Z', '+00:00'))
+    sec_ok = (dt.timedelta(days=30) < expires - dt.datetime.now(dt.timezone.utc) <= dt.timedelta(days=366))
+except ValueError:
+    sec_ok = False
+check('/.well-known/security.txt: contact, Expires within a year (renew it at least a month before), language, canonical; '
+      'published (docs/.nojekyll)',
+      sec_ok and sec.get('Contact') == 'mailto:' + EMAIL and sec.get('Preferred-Languages') == 'en'
+      and sec.get('Canonical') == SITE + '.well-known/security.txt' and (DOCS / '.nojekyll').exists(), f'{sec}')
 
 # ---------------------------------------------------------------------------------------------
 # 8. The fallback at the repository root carries the same words as the live pages.
