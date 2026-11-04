@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Copy and one-page checks for intellumia.com (strategy v5.0, Brand System v5.0.8, Round 5).
+"""Copy and one-page checks for intellumia.com (strategy v5.0, Brand System v5.0.8, Rounds 5 and 6).
 
 Run before every pull request, from the repository root:
 
@@ -7,7 +7,8 @@ Run before every pull request, from the repository root:
 
 Standard library only. Prints one line per check and exits 1 if any check fails.
 The rules are in CLAUDE.md. The page is the approved Round 5 mockup of 4 Nov 2026 (Drive Intellumia/website/
-mockup/index-round5.html, also reference-mockup.html in round5-assets.zip); the lines below are the only words it
+mockup/index-round5.html, also reference-mockup.html in round5-assets.zip) with the Round 6 changes of the same day
+(mockup/round6-reference.html, the same as index-round6.html); the lines below are the only words it
 may carry, in this order. To change a line, change it here and on the page in the same commit, with Sundeep's
 approval.
 """
@@ -38,15 +39,17 @@ NOTE = '30 minutes, by video. Nothing to prepare.'  # beside the hero and closin
 BAR_NOTE = '30 minutes, by video'
 NAV = [('#h-how', 'How it works'), ('#h-map', 'The Map'), ('#h-rules', 'Our rules'), ('#h-sk', 'About'), ('#h-faq', 'FAQ')]
 FOUNDER_LINE = 'Led by Sundeep, Founder & CEO'  # under the hero button, to #h-sk, with the round portrait (alt "")
-# "Sound familiar?": the six problem scenes, in order, with their alt text and their question.
+# The scenes panel (Round 6): its heading, the six problem scenes in order with their alt text and their question,
+# and its caption.
 SCENES = [('scene-1-margin', 'A bench vice squeezing a stack of coins', 'Costs up, prices stuck?'),
           ('scene-2-cash', 'A padlocked jar of coins beside a tied stack of invoices', 'Customers paying late?'),
           ('scene-3-people', 'A workbench with one empty place and coins rolling off it', 'Good people leaving?'),
           ('scene-4-numbers', 'A pile of ledgers under a lamp late at night, coins slipping out', 'Numbers always late?'),
           ('scene-5-rework', 'Rejected boxes on a pallet spilling coins', 'Too much made twice?'),
           ('scene-6-owner', 'An empty chair at a desk buried in files, coins trapped under them', 'All on your desk?')]
-SCENES_CAPTION = 'Where money quietly leaks in most owner-run businesses.'
-HERO_BLOCK = ([CATEGORY, HERO, HERO_LINE, BUTTON, NOTE, '[img] ', FOUNDER_LINE, 'Sound familiar?']
+SCENES_HEADING = 'Most owner-run businesses have money hiding in plain sight.'  # Round 6; replaces "Sound familiar?"
+SCENES_CAPTION = 'Fix what holds it back, and it is yours to claim.'  # Round 6
+HERO_BLOCK = ([CATEGORY, HERO, HERO_LINE, BUTTON, NOTE, '[img] ', FOUNDER_LINE, SCENES_HEADING]
               + [x for _, alt, q in SCENES for x in ('[img] ' + alt, q)] + [SCENES_CAPTION])
 WHO_LINE = ('Owners, promoters and the leaders they trust, in businesses everywhere, who want AI to show up in '
             'their numbers.')
@@ -60,7 +63,9 @@ CARDS = [('Costs up, prices stuck', 'Your costliest process, done a better way')
          ('Numbers always late', 'One page across your companies, every week'),
          ('Too much made twice', 'Defects caught earlier'),
          ('All on your desk', 'Decisions arrive with the facts ready')]
-WHAT_WE_DO = (['What we do about it', 'AI does the work. Your people make the calls.']
+WHY_AI = ('These leaks are not new. Fixing them took hours of checking, chasing and counting that nobody had time for. '
+          'AI now does that work every day, so the money stops slipping away.')  # Round 6
+WHAT_WE_DO = (['What we do about it', 'AI does the work. Your people make the calls.', WHY_AI]
               + [x for i, (p, g) in enumerate(CARDS) for x in ([p, g, OFTEN_FIRST] if i == 1 else [p, g])])
 HOW = ['How it works', 'A Map first. Then we run the parts that pay.',
        '1', 'Start here', 'Map',
@@ -130,6 +135,13 @@ FAQS = [('Do we need to know where AI fits first?',
         ('What does a Map cost?',
          'A fixed fee, agreed before we start and always paid. We share it on the first call, once we know the size '
          'of your business.'),
+        ('And after the Map, what does it cost to run?',
+         'We price it after the Map, because only then do we know the right way to do it. Sometimes that is a ready-made '
+         'product, sometimes your own team, sometimes a simpler fix that needs no AI at all. We tell you which, and what '
+         'it will cost, before you commit.'),  # Round 6
+        ('Is my business big enough?',
+         'If you want AI to move your numbers, it is. A 30-minute call will tell us both whether a Map is worth it for '
+         'you.'),  # Round 6
         ('Will it work with our systems?',
          'We start from what you already have: Tally, Excel, your ERP, even paper. The Map needs no new software, '
          'and week 1 finds out what data exists.'),
@@ -156,7 +168,7 @@ HEADER = ['[img] Intellumia', BUTTON]  # Privacy and the 404 page
 HOME_HEADER = ['[img] Intellumia', *[t for _, t in NAV], BUTTON]
 FOOTER = ['[img] Intellumia', 'Working with owners across India.', ADDRESS, EMAIL, 'Privacy', SIGN_OFF]
 BAR = [BAR_NOTE, BUTTON]
-HOME = (HOME_HEADER + HERO_BLOCK + WHO + WHAT_WE_DO + HOW + THE_MAP + RULES + PERSON + FAQ + PLATE
+HOME = (HOME_HEADER + HERO_BLOCK + WHAT_WE_DO + WHO + HOW + THE_MAP + RULES + PERSON + FAQ + PLATE
         + FOOTER + BAR)
 PAGE_404 = HEADER + NOT_FOUND + FOOTER
 
@@ -452,10 +464,10 @@ check('the social preview image is 1200 x 630, and its alt text is the headline 
       jpeg_size(DOCS / 'assets/social-preview.jpg') == (1200, 630)
       and home.meta.get('og:image:alt') == HERO and read(DOCS / 'privacy/index.html').meta.get('og:image:alt') == HERO,
       f"{jpeg_size(DOCS / 'assets/social-preview.jpg')} {home.meta.get('og:image:alt')}")
-hero_src = between(home_src, '<!-- HERO -->', '<!-- WHO -->')
+hero_src = between(home_src, '<!-- HERO -->', '<!-- WHAT WE DO -->')
 start = len(HOME_HEADER)
 check('Home: the centred hero holds the label, the headline, the line, the button and its note, the founder line, '
-      'then "Sound familiar?" with its six scenes',
+      'then the scenes panel: its heading, the six scenes and its caption (Round 6)',
       '<section class="wrap heroC" id="hero">' in hero_src and home.blocks[start:start + len(HERO_BLOCK)] == HERO_BLOCK
       and '.heroC{display:block;text-align:center;' in css
       and 'text-wrap:balance' in (re.search(r'\.heroC \.proofA\{[^}]*\}', css) or re.match('', '')).group(0),
@@ -473,9 +485,9 @@ check('"Talk to Sundeep" and the old hero line appear nowhere on the site (the b
 faq_src = between(home_src, '<!-- FAQ -->', '<!-- CLOSE -->')
 details = re.findall(r'<details class="fq"( open)?><summary><span>([^<]+)</span><span class="pl" aria-hidden="true"></span>'
                      r'</summary><p>([^<]+)</p></details>', faq_src)
-check('the FAQ: six native questions (details and summary), the first open, placed before the closing plate',
+check('the FAQ: eight native questions (details and summary), the first open, placed before the closing plate (Round 6)',
       [(o, norm(q), norm(a)) for o, q, a in details] == [(' open' if i == 0 else '', q, a) for i, (q, a) in enumerate(FAQS)]
-      and faq_src.count('<details') == 6 and 'id="h-faq"' in faq_src
+      and faq_src.count('<details') == 8 and len(FAQS) == 8 and 'id="h-faq"' in faq_src
       and home_src.index('<!-- FAQ -->') < home_src.index('id="close"'), f'{len(details)} questions read')
 
 # ---------------------------------------------------------------------------------------------
@@ -542,12 +554,27 @@ check('the scenes: 720 px files as supplied, with a 360 px copy for small slots;
               for a, (n, _, _) in zip(scene_tags, SCENES))
       and all(jpeg_size(DOCS / f'assets/scenes/{n}.jpg') == (720, 720)
               and jpeg_size(DOCS / f'assets/scenes/{n}-360.jpg') == (360, 360) for n, _, _ in SCENES))
-check('"Sound familiar?": white panel with a thin rule border; two across on phones, three from 700 px, six from 1000 px',
+check('the scenes panel: white with a thin rule border; two across on phones, three from 700 px, six from 1000 px',
       '<figure class="probs probs--scenes" aria-labelledby="probs-h">' in hero_src
       and '.probs--scenes{background:#fff;border:1px solid var(--rule)}' in css
       and '.ps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}' in css
       and '@media(min-width:700px){.ps-grid{grid-template-columns:repeat(3,1fr);gap:16px}}' in css
       and '@media(min-width:1000px){.ps-grid{grid-template-columns:repeat(6,1fr)}' in css)
+check('the scenes panel (Round 6): no "Sound familiar?" label; the heading is the panel\'s label, centred, condensed, '
+      '30 to 50 px, one line from 1000 px and balanced below; the caption centred, balanced, ink, weight 560, 18 to 22 px',
+      'Sound familiar' not in home_src
+      and f'<h2 class="probs-h" id="probs-h">{SCENES_HEADING}</h2>' in hero_src
+      and hero_src.index('id="probs-h"') < hero_src.index('<ul class="ps-grid">') < hero_src.index(f'<figcaption>{SCENES_CAPTION}</figcaption>')
+      and '.probs--scenes .probs-h{font-weight:650;font-stretch:80%;letter-spacing:-.01em;line-height:1.05;text-align:center;'
+          'max-width:none;margin:4px auto 28px;font-size:clamp(30px,2.6vw + 14px,50px);text-wrap:balance}' in css
+      and '@media(min-width:1000px){.probs--scenes .probs-h{white-space:nowrap}}' in css
+      and '.probs--scenes figcaption{text-align:center;text-wrap:balance;font-size:clamp(18px,.5vw + 15px,22px);'
+          'font-weight:560;color:var(--ink);margin-top:24px}' in css)
+check('"What we do about it" (Round 6): its paragraph under the heading, then the cards; "Who we work with" follows it',
+      f'<h2 class="hd" id="h-doors">AI does the work. Your people make the calls.</h2>\n  <p class="why-ai">{WHY_AI}</p>' in home_src
+      and '.why-ai{margin-top:16px;font-size:clamp(18px,.4vw + 16px,21px);line-height:1.45;color:#2a2926;max-width:52ch}' in css
+      and home_src.index('<!-- HERO -->') < home_src.index('<!-- WHAT WE DO -->') < home_src.index('<!-- WHO -->')
+      < home_src.index('<!-- HOW IT WORKS -->'))
 check('the portrait in "Who you will work with": alt text, width and height, lazy',
       re.search(rf'<img src="/assets/imagery/sundeep-portrait-2026_720\.jpg"[^>]+width="720" height="720" '
                 rf'alt="{PORTRAIT_ALT}" loading="lazy"', home_src) is not None)
@@ -631,7 +658,8 @@ check("apostrophes on the pages are curly (owner’s, India’s, staff’s), nev
 llms = norm((DOCS / 'llms.txt').read_text())
 llms_want = (HERO, HERO_LINE, DESCRIPTION, f'[{BUTTON}]({BOOKING})', NOTE, 'What we do about it', 'How it works',
              'The Map', 'Our rules', 'Questions owners ask', 'Who you will work with', QUOTE.strip('“”'), FOUNDER,
-             LINKEDIN, QUESTION, CLOSE_LINE, *[q for q, _ in FAQS], *[a for _, a in FAQS])
+             LINKEDIN, QUESTION, CLOSE_LINE, SCENES_HEADING, SCENES_CAPTION, WHY_AI, *[q for q, _ in FAQS],
+             *[a for _, a in FAQS])
 check('llms.txt repeats the page: the headline, the 25 words, the sections, the FAQ and the booking link',
       all(s in llms for s in llms_want), f'{[s for s in llms_want if s not in llms]}')
 
@@ -655,7 +683,7 @@ check('vermilion in the stylesheet: the token once, used by the hero word, the "
       css.count('#FF3D00') == 1 and [r.strip() for r in fire_rules] == [
           '.fire{color:var(--fire)}', '.dtag.is-first.red{background:var(--fire);border-color:var(--fire);color:var(--ink)}',
           '.r2-key .r2-t{color:var(--fire)}'], f'{fire_rules}')
-what_src = between(home_src, '<!-- WHAT WE DO -->', '<!-- HOW IT WORKS -->')
+what_src = between(home_src, '<!-- WHAT WE DO -->', '<!-- WHO -->')
 rules_src = between(home_src, '<!-- RULES -->', '<!-- SUNDEEP -->')
 red_tags = re.findall(r'<span class="dtag is-first red">([^<]+)</span>', home_src)
 cash_card = re.findall(r'<li class="fx">.*?</li>', what_src, re.S)
