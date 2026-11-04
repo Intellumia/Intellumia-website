@@ -4,7 +4,7 @@ The public website of Intellumia, served at <https://intellumia.com> by GitHub P
 
 Intellumia, the AI partner for owner-run businesses. Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.
 
-Since 3 November 2026 (strategy v5.0) the site is **one page with one action, "Book a call"**, plus the Privacy notice, until Intellumia has 5 to 10 paying clients. The page follows the Round 5 mockup Sundeep approved on 4 November 2026 (Brand System v5.0.8: the centred hero with the founder line and six problem scenes, what we do about it, a worked example, the Map as a heat map, the rules as cards and the questions owners ask). Round 5 goes live only once the chartered accountant reviewer is engaged. The rules for every change are in [`CLAUDE.md`](CLAUDE.md).
+Since 3 November 2026 (strategy v5.0) the site is **one page with one action, "Book a call"**, plus the Privacy notice, until Intellumia has 5 to 10 paying clients. The page follows the Round 5 mockup Sundeep approved on 4 November 2026 (Brand System v5.0.8: the centred hero with the founder line and six problem scenes, what we do about it, a worked example, the Map as a heat map, the rules as cards and the questions owners ask). The rules for every change are in [`CLAUDE.md`](CLAUDE.md).
 
 ## What is here
 
