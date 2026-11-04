@@ -84,8 +84,10 @@ HOW = ['How it works', 'A Map first. Then we run the parts that pay.',
        'Illustrative, not a client.']
 MAP_LABEL = ('Illustration of a Map as a heat map: the darker the cell, the more money at stake. Collections is the '
              'first move; passing on costs and quality checks are the next moves.')
+MAP_LABEL_PHONE = ('Illustration of a Map as a heat map, sales and finance shown: the darker the cell, the more money '
+                   'at stake. Collections is the first move; passing on costs is the next move.')  # what the phone drawing shows
 MAP_CAPTION = 'Illustration of a Map, not a client.'
-THE_MAP = ['The Map', 'Two to three weeks. Your numbers. Your choice.', '[svg] ' + MAP_LABEL, '[svg] ' + MAP_LABEL,
+THE_MAP = ['The Map', 'Two to three weeks. Your numbers. Your choice.', '[svg] ' + MAP_LABEL, '[svg] ' + MAP_LABEL_PHONE,
            MAP_CAPTION, 'Every move answers four questions',
            '1', 'What could it make you?', '2', 'What would it cost?', '3', 'What needs to be true?',
            '4', 'How will we measure it?', 'You see the working. You choose the moves.',
@@ -557,10 +559,10 @@ check('the scene bands, the plant loop and the leaks diagram stay retired (in _a
 map_src = between(home_src, '<!-- THE MAP -->', '<!-- RULES -->')
 map_svgs = re.findall(r'<svg class="map-(lg|sm)" viewBox="([^"]+)" role="img" aria-label="([^"]+)">', map_src)
 check('the Map drawing: a full-width heat map (inline SVG, labelled for screen readers); Sales and Finance only below 600 px',
-      map_svgs == [('lg', '0 0 1190 400', MAP_LABEL), ('sm', '0 0 340 360', MAP_LABEL)]
+      map_svgs == [('lg', '0 0 1190 400', MAP_LABEL), ('sm', '0 0 340 360', MAP_LABEL_PHONE)]
       and '.m3 .mapwide{margin:0;max-width:none}' in css
       and '.map-sm{display:block}.map-lg{display:none!important}@media(min-width:600px){.map-sm{display:none!important}.map-lg{display:block!important}}' in css)
-map_words = [w for label, w in home.drawings if label == '[svg] ' + MAP_LABEL]
+map_words = [w for label, w in home.drawings if label in ('[svg] ' + MAP_LABEL, '[svg] ' + MAP_LABEL_PHONE)]
 check("the heat map carries the mockup's words only, in order: eight areas, 32 activities, the key",
       map_words == [MAP_WORDS_WIDE, MAP_WORDS_PHONE] and sum(len(ws) - ws.count('MOVE 2') - ws.count('MOVE 3')
                                                                - ws.count('FIRST MOVE') for _, ws in AREAS) == 32,
@@ -573,9 +575,9 @@ check('no figure beside the rupee sign: it marks a coin in the drawings, never a
 html_and_css = [(f, (DOCS / f).read_text()) for f in html_files] + [('assets/site.css', css)]
 keyframes = [(f, k) for f, t in html_and_css for k in re.findall(r'@keyframes\s+([\w-]+)', t)]
 animations = [f for f, t in html_and_css if re.search(r'animation(?:-name|-delay)?\s*:', t)]
-check('motion: none; no animation anywhere on the site (Round 5)', not keyframes and not animations,
+check('motion: no decorative motion; no animation anywhere on the site (Round 5)', not keyframes and not animations,
       f'{keyframes} {animations}')
-check('no video and no other motion: transitions only on the phone bar, no GIFs, no script-driven motion',
+check("no video and no other motion: the only transition is the phone bar's slide (off for reduced motion), no GIFs, no script-driven motion",
       not any('<video' in (DOCS / f).read_text() for f in html_files)
       and re.findall(r'transition:[^;}]+', css) == ['transition:transform .2s ease', 'transition:none']
       and not any(p.suffix in ('.gif', '.mp4', '.webm') for p in DOCS.rglob('*'))
@@ -618,6 +620,13 @@ check('"Intellumia" is capitalised in text', not lower_name, f'{lower_name}')
 check('"owner-run", never "owner-led"', 'owner-led' not in all_text.lower())
 italic = [f for f in html_files if re.search(r'<(em|i|cite)[\s>]', (DOCS / f).read_text())]
 check('no italics', 'italic' not in css.lower() and not italic, f'italic markup in {italic}')
+straight = {}
+for f in ('index.html', 'privacy/index.html', '404.html'):
+    words = re.sub(r'<(script|style)\b.*?</\1>', '', (DOCS / f).read_text(), flags=re.S)
+    hits = [t.strip()[:60] for t in re.findall(r'>([^<]*)<', words) if "'" in t]
+    if hits:
+        straight[f] = hits
+check("apostrophes on the pages are curly (owner’s, India’s, staff’s), never straight", not straight, f'{straight}')
 llms = norm((DOCS / 'llms.txt').read_text())
 llms_want = (HERO, HERO_LINE, DESCRIPTION, f'[{BUTTON}]({BOOKING})', NOTE, 'What we do about it', 'How it works',
              'The Map', 'Our rules', 'Questions owners ask', 'Who you will work with', QUOTE.strip('“”'), FOUNDER,
@@ -643,7 +652,7 @@ check('no gradients, shadows or dark mode', not re.search(r'gradient|shadow|pref
 fire_rules = re.findall(r'[^{}]+\{[^{}]*var\(--fire\)[^{}]*\}', css)
 check('vermilion in the stylesheet: the token once, used by the hero word, the "Often first" tag and the title of rule 04 only',
       css.count('#FF3D00') == 1 and [r.strip() for r in fire_rules] == [
-          '.fire{color:var(--fire)}', '.dtag.is-first.red{background:var(--fire);border-color:var(--fire)}',
+          '.fire{color:var(--fire)}', '.dtag.is-first.red{background:var(--fire);border-color:var(--fire);color:var(--ink)}',
           '.r2-key .r2-t{color:var(--fire)}'], f'{fire_rules}')
 what_src = between(home_src, '<!-- WHAT WE DO -->', '<!-- HOW IT WORKS -->')
 rules_src = between(home_src, '<!-- RULES -->', '<!-- SUNDEEP -->')
@@ -660,6 +669,8 @@ check('four red things on the page, no more (v5.0.7): "money" in the hero, the "
       and red_map == [2, 1] and re.search(r'fill="#FF3D00"/><text class="tkw"[^>]*>FIRST MOVE</text><text class="tw"'
                                           r'[^>]*>Collections</text>', map_block[0]) is not None
       and home_src.count('#FF3D00') == 3, f'{home.fire} {red_tags} {red_map}')
+check('the "Often first" tag: ink words on vermilion (5.4:1, WCAG AA), never white (3.5:1)',
+      '.dtag.is-first.red{background:var(--fire);border-color:var(--fire);color:var(--ink)}' in css)
 check('no red on Privacy or the 404 page', all('fire' not in (DOCS / f).read_text() and '#FF3D00' not in (DOCS / f).read_text()
                                               for f in ('privacy/index.html', '404.html')))
 check('the hero is set in the Statement style', '<h1 class="st">' in home_src)
