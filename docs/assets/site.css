@@ -93,9 +93,8 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 .founder:hover span{text-decoration:underline}
 @media(max-width:599px){.founder{display:flex;flex-direction:column;text-align:center;gap:8px}}
 
-/* "Sound familiar?": the six problem scenes, each labelled with its question */
+/* the scenes panel: its heading, the six problem scenes, each labelled with its question, and its caption (Round 6) */
 .probs{margin:48px 0 0;background:var(--bone);border-radius:10px;padding:24px;text-align:left}
-.probs > .label{color:var(--ink);margin-bottom:16px}
 .probs figcaption{margin-top:16px;font-size:14px;line-height:1.45;color:var(--muted)}
 @media(min-width:1000px){.probs{padding:40px;margin-top:56px}}
 
@@ -228,6 +227,12 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 .fq p{margin:0 0 22px;font-size:17px;line-height:1.5;color:#2a2926;max-width:60ch}
 @media(min-width:1000px){.faqgrid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px;align-items:start}.faqgrid .sec-head{margin-bottom:0}}
 .cl-sub{color:#fff;opacity:.92;font-size:clamp(18px,.4vw + 16px,21px);line-height:1.45;max-width:46ch;margin:20px 0 28px}
+/* Round 6: the scenes panel's heading and caption, and the paragraph under "What we do about it" */
+.probs-h{font-weight:650;font-size:clamp(22px,1.2vw + 16px,32px);line-height:1.2;margin:0 0 24px;max-width:30ch}
+.why-ai{margin-top:16px;font-size:clamp(18px,.4vw + 16px,21px);line-height:1.45;color:#2a2926;max-width:52ch}
+.probs--scenes .probs-h{font-weight:650;font-stretch:80%;letter-spacing:-.01em;line-height:1.05;text-align:center;max-width:none;margin:4px auto 28px;font-size:clamp(30px,2.6vw + 14px,50px);text-wrap:balance}
+.probs--scenes figcaption{text-align:center;text-wrap:balance;font-size:clamp(18px,.5vw + 15px,22px);font-weight:560;color:var(--ink);margin-top:24px}
+@media(min-width:1000px){.probs--scenes .probs-h{white-space:nowrap}}
 
 /* Privacy and the 404 page */
 .page{padding-top:48px;padding-bottom:72px;max-width:44em}
