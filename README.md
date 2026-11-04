@@ -17,6 +17,7 @@ Since 3 November 2026 (strategy v5.0) the site is **one page with one action, "B
 | Every other HTML file in `docs/` | A redirect to the page, so old links still land on intellumia.com. |
 | `docs/CNAME` | The custom domain, `intellumia.com`. Do not change it. |
 | `docs/llms.txt`, `docs/robots.txt`, `docs/sitemap.xml` | For answer engines and crawlers. The sitemap lists Home and Privacy only, with lastmod dates. |
+| `docs/googlebe2efba1afc3cbe9.html` | Google Search Console's verification file (one line). Keep it. |
 | `docs/.well-known/security.txt` | Who to contact about a security issue (RFC 9116); renew its Expires date each year. |
 | `.github/workflows/indexnow.yml` | After each push to `main` that touches `docs/`, waits for the deploy and sends the sitemap URLs to IndexNow (Bing). |
 | `scripts/check_copy.py` | The copy and one-page checks. Run before every pull request. |
