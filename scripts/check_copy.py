@@ -206,7 +206,8 @@ COLOURS = TOKENS | {'#2A2926', '#E6E6FF'}
 CYAN = {'#E0F8FF', '#99E6FF', '#00C2FF'}
 MAP_COLOURS = {'#FFFFFF', '#101010', '#5E5B55', '#DDD8CC', '#FF3D00'} | CYAN
 DRAWING_COLOURS = (COLOURS - {'#FF3D00'}) | {'#FFC800'}
-# Retired from the page: the scene bands and the plant loop (v5.0.5) and the leaks diagram (Round 5), in _archive/.
+# Retired from the page: the scene bands (v5.0.5, in _archive/), the plant loop (deleted 4 Nov 2026, in the git history)
+# and the leaks diagram (Round 5, in the git history).
 RETIRED = ['plant2-band', 'plant-loop', 'corridor', 'leak-lg', 'class="drop"', 'figure class="leaks"']
 SCENE_FILES = {f'assets/scenes/{n}{s}.jpg' for n, _, _ in SCENES for s in ('', '-360')}
 ASSETS = {'assets/site.css', 'assets/site.js', 'assets/social-preview.jpg', 'assets/intellumia-wordmark-ultramarine.svg',
