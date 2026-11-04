@@ -50,5 +50,6 @@ Last resort, if `docs/` is unusable: in the repository's Pages settings, switch 
 | 3 Nov 2026 | One floating "Book a Map" button on every page, in place of three (#40) | `d94135d` | `f381a0e` |
 | 3 Nov 2026 | Brand System v5.0.2: the button reads "Talk to Sundeep"; the Map named; new time line; the close; LinkedIn (#41) | `b2c367e` | `6fe9506` |
 | 3 Nov 2026 | The one page from the approved mockup (Brand System v5.0.4): who we work with, where it starts, how it works, the Map, our rules, Sundeep and the close; the plant band as a slow loop with its Pause button, and the corridor band; the phone bottom bar (#42) | `5cbdc4f` | `98f18de` |
+| 4 Nov 2026 | The corridor scene band removed on Sundeep's word; its files moved to `_archive/corridor-band-2026-11-03/` (#43) | `bb726b3` | `d72db18` |
 
 Add a row for every merge to `main` that changes `docs/`.
