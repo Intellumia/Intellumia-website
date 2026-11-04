@@ -24,7 +24,7 @@ BOOKING = 'https://cal.com/intellumia/meetsk'
 LINKEDIN = 'https://www.linkedin.com/in/kumarsundeep'
 
 # ---------------------------------------------------------------------------------------------
-# Approved lines (Brand System v5.0.3; the mockup). Nothing else goes on the page.
+# Approved lines (Brand System v5.0.5; the mockup index-leaks.html). Nothing else goes on the page.
 # ---------------------------------------------------------------------------------------------
 TITLE = 'Intellumia, the AI partner for owner-run businesses'
 DESCRIPTION = ('Intellumia shows owner-run businesses where AI makes them money, runs the parts that do '
@@ -49,17 +49,32 @@ MAP_CAPTION = ('Illustration of a Map, not a client. Shown here: two of four fun
 WHO = 'For owner-run companies across India, where the owner decides and signs the cheque.'
 INDUSTRIES = ['Construction, EPC and roads', 'Specialty and agro chemicals', 'Auto components',
               'Pharma and APIs', 'Hospitals and healthcare chains']
-SCENE = '[img] '  # decorative, alt=""
-PAUSE = 'Pause'  # the plant loop's button (reads 'Play' once paused)
-DOORS = ['Where it starts', 'We start with your money. AI is how we do it.',
-         '01', 'Costs are up and you cannot pass them on.',
+# The leaks diagram (Brand System v5.0.5): opens "Where it starts", from 900 px only. Read by its title and desc.
+LEAKS_DRAWING = ('[svg] Where money leaks in an owner-run business | Illustration: a business drawn as five rooms, '
+                 "plant and operations, finance, MIS and reporting, IT and vendors, and the owner's office. Money "
+                 'drips out of each into a tray marked money lost every month. The finance leak is plugged as the '
+                 'first move; the plant leak is marked as the next move.')
+LEAKS_CAPTION = ('Illustration, not a client. Where money usually leaks in an owner-run business. Your Map finds '
+                 'your leaks, puts a rupee figure on each, and names the one to plug first.')
+# Every word drawn inside the leaks diagram, in order (pinned here rather than scanned for banned words:
+# "Decisions that live in one head" uses "live" as a verb, not for a product).
+LEAKS_WORDS = ['YOUR BUSINESS',
+               '01', 'PLANT AND OPERATIONS', 'Costs rising faster', 'than prices', 'NEXT MOVE',
+               '02', 'FINANCE', 'Cash stuck with', 'customers', 'FIRST MOVE', 'PLUGGED',
+               '03', 'MIS AND REPORTING', 'Numbers late,', 'built by hand',
+               '04', 'IT AND VENDORS', 'AI tools and renewals', 'nobody tracks',
+               '05', "OWNER'S OFFICE", 'Decisions that live', 'in one head',
+               'MONEY LOST EVERY MONTH']
+FIRST_MOVE, NEXT_MOVE = 'First move', 'Next move'
+DOORS = ['Where it starts', 'We start with your money. AI is how we do it.', LEAKS_DRAWING, LEAKS_CAPTION,
+         '01', 'Plant and operations', NEXT_MOVE, 'Costs are up and you cannot pass them on.',
          'Your costliest process, done a better way, tested on your own past records before anyone changes how they work.',
-         '02', 'Customers owe you more than they should.',
+         '02', 'Finance', FIRST_MOVE, 'Customers owe you more than they should.',
          'What is owed to you across your companies, sorted, and a steady routine to bring it in.',
-         '03', 'You find out late, from numbers built by hand.', 'One page across every company you own.',
-         '04', 'Your staff already use AI tools, and vendors want renewals.',
+         '03', 'MIS and reporting', 'You find out late, from numbers built by hand.', 'One page across every company you own.',
+         '04', 'IT and vendors', 'Your staff already use AI tools, and vendors want renewals.',
          'AI in your business, listed and under your control.',
-         '05', 'A handover, a new chief executive, a sale or a listing.',
+         '05', "Owner's office", 'A handover, a new chief executive, a sale or a listing.',
          'The decisions only you make, written down and tested.']
 HOW = ['How it works', 'A Map first. Then we run the parts that pay.',
        '1', 'Start here', 'Map', 'A review across the whole business, two to three weeks, for a fee agreed up front.',
@@ -113,7 +128,7 @@ HEADER = ['[img] Intellumia', BUTTON]
 FOOTER = ['[img] Intellumia', 'Working with owners across India.', ADDRESS, EMAIL, 'Privacy', SIGN_OFF]
 BAR = ['30 minutes with Sundeep', BUTTON]
 HOME = (HEADER + [CATEGORY, HERO, HERO_STATEMENT, PROOF, BUTTON, HERO_NOTE, MAP_DRAWING_WIDE, MAP_DRAWING_PHONE,
-                  MAP_CAPTION, WHO, *INDUSTRIES, SCENE, PAUSE] + DOORS + HOW + THE_MAP + RULES + PERSON + PLATE
+                  MAP_CAPTION, WHO, *INDUSTRIES] + DOORS + HOW + THE_MAP + RULES + PERSON + PLATE
         + FOOTER + BAR)
 PAGE_404 = HEADER + NOT_FOUND + FOOTER
 
@@ -150,14 +165,15 @@ BANNED = {
 }
 # The seven brand tokens, plus the mockup's two tints: #2A2926 (near-ink second text) and #E6E6FF (words on
 # ultramarine). In the page's Map drawing only: #EEEAE0 and #5252FF (the empty part of a worth bar).
+# In the leaks drawing only: yellow #FFC800 for the money (the drops and the tray).
 COLOURS = {'#FFFFFF', '#101010', '#1A1AFF', '#FF3D00', '#F3EFE6', '#DDD8CC', '#5E5B55', '#2A2926', '#E6E6FF'}
 DRAWING_COLOURS = COLOURS - {'#FF3D00'} | {'#EEEAE0', '#5252FF'}
-SCENES = ['plant2-band']  # the corridor band was retired by Sundeep, 3 Nov 2026 (_archive/corridor-band-2026-11-03/)
+LEAKS_COLOURS = {'#101010', '#5E5B55', '#1A1AFF', '#FFC800'}
+# Retired from the page (Brand System v5.0.5): the scene bands and the plant loop, kept in _archive/.
+RETIRED = ['plant2-band', 'plant-loop', 'corridor', 'scene']
 ASSETS = {'assets/site.css', 'assets/site.js', 'assets/social-preview.jpg', 'assets/intellumia-wordmark-ultramarine.svg',
           'assets/fonts/AnekLatin-latin.woff2', 'assets/fonts/AnekLatin-latinext.woff2', 'assets/fonts/OFL-Anek.txt',
-          'assets/imagery/sundeep-portrait-2026_720.jpg', 'assets/imagery/sundeep-portrait-2026_890.jpg',
-          'assets/imagery/plant-loop.webm', 'assets/imagery/plant-loop.mp4'} | {
-          f'assets/imagery/{s}{ext}' for s in SCENES for ext in ('.jpg', '.webp', '-768.webp')}
+          'assets/imagery/sundeep-portrait-2026_720.jpg', 'assets/imagery/sundeep-portrait-2026_890.jpg'}
 EMOJI = re.compile('[\U0001F000-\U0001FAFF☀-➿️‍]')
 
 # ---------------------------------------------------------------------------------------------
@@ -175,7 +191,9 @@ def norm(s):
 
 class Page(HTMLParser):
     """Reads a page into ordered text blocks plus the facts the checks need.
-    A drawing with role="img" becomes one block, '[svg] ' and its label; decorative svg (aria-hidden) is skipped."""
+    A drawing with role="img" becomes one block, '[svg] ' and its label (its aria-label, or the title and desc it
+    is labelled by, as 'title | desc'); decorative svg (aria-hidden) is skipped. The words drawn inside each
+    labelled drawing are kept in self.drawings, as (label, [words])."""
     FLUSH = {'p', 'h1', 'h2', 'h3', 'li', 'a', 'div', 'section', 'header', 'footer', 'main', 'ul', 'ol',
              'nav', 'button', 'figure', 'figcaption', 'title', 'body', 'span'}
     KEEP_SPAN = {'fire', 'nw', 'sm-only'}  # spans inside a line: no break
@@ -187,6 +205,8 @@ class Page(HTMLParser):
         self.title, self.fire, self.header_links, self.ld = '', [], [], []
         self.in_script = self.in_style = self.in_title = False
         self.svg = 0
+        self.svg_part, self.svg_parts, self.svg_words, self.svg_block = None, {}, [], None
+        self.drawings = []
         self.spans = []  # for each open span: does it break the line?
         self.feed(text)
         self.flush()
@@ -208,10 +228,15 @@ class Page(HTMLParser):
             if self.svg == 0 and a.get('role') == 'img':
                 self.flush()
                 self.blocks.append('[svg] ' + norm(a.get('aria-label', '')))
+                self.svg_block, self.svg_parts, self.svg_words = len(self.blocks) - 1, {}, []
+                self.svg_labelledby = (a.get('aria-labelledby') or '').split()
             self.svg += 1
         if self.svg:
             if tag == 'style':
                 self.in_style = True
+            if tag in ('title', 'desc', 'text'):
+                self.svg_part = (tag, a.get('id', ''))
+                self.svg_parts.setdefault(self.svg_part, '')
             return
         if tag == 'span':
             self.spans.append(self.breaks(tag, cls))
@@ -245,8 +270,18 @@ class Page(HTMLParser):
         if tag == 'style':
             self.in_style = False
         if self.svg:
+            if tag in ('title', 'desc', 'text'):
+                if tag == 'text' and self.svg_part:
+                    self.svg_words.append(norm(self.svg_parts.pop(self.svg_part, '')))
+                self.svg_part = None
             if tag == 'svg':
                 self.svg -= 1
+                if self.svg == 0 and self.svg_block is not None:
+                    if self.svg_labelledby:
+                        ids = {i: norm(t) for (k, i), t in self.svg_parts.items() if k in ('title', 'desc')}
+                        self.blocks[self.svg_block] = '[svg] ' + ' | '.join(ids.get(i, '') for i in self.svg_labelledby)
+                    self.drawings.append((self.blocks[self.svg_block], self.svg_words))
+                    self.svg_block = None
             return
         if tag == 'span':
             if self.spans.pop() if self.spans else True:
@@ -262,6 +297,9 @@ class Page(HTMLParser):
                 pass
 
     def handle_data(self, data):
+        if self.svg and self.svg_part and not self.in_style:
+            self.svg_parts[self.svg_part] += data
+            return
         if self.svg or self.in_style:
             return
         if self.in_script:
@@ -388,39 +426,58 @@ check('404: every path is absolute, so it works at any address',
       not re.search(r'(?:href|src)="(?!/|https://|mailto:|#)', (DOCS / '404.html').read_text()))
 
 # ---------------------------------------------------------------------------------------------
-# 4. Pictures: the portrait and one decorative scene band, the plant loop; no words on it but its Pause button.
+# 4. Pictures and drawings (Brand System v5.0.5): the portrait is the only picture; no scene bands,
+#    no video. The leaks diagram opens "Where it starts" from 900 px; its drops are the one animation,
+#    and only for readers who have not asked for reduced motion.
 # ---------------------------------------------------------------------------------------------
 css_text = (DOCS / 'assets/site.css').read_text()
 js_text = (DOCS / 'assets/site.js').read_text()
-scenes = re.findall(r'<figure class="scene[^"]*">(.*?)</figure>', home_src, re.S)
-scene_text = [norm(re.sub(r'<[^>]+>', ' ', s)) for s in scenes]
-check('one scene band, the plant loop, with no words on it but its Pause button', len(scenes) == 1 and scene_text == [PAUSE],
-      f'{scene_text}')
-check('the corridor band stays retired (Sundeep, 3 Nov 2026): nothing published refers to it',
-      not any('corridor' in f.read_text(errors='ignore') for f in DOCS.rglob('*') if f.suffix in ('.html', '.css', '.js', '.txt', '.xml'))
-      and not any('corridor' in f.name for f in DOCS.rglob('*')))
-for name, s in zip(SCENES, scenes):
-    check(f'scene {name}: WebP first, the JPG as fallback, alt="", width and height set, lazy',
-          f'<source type="image/webp" srcset="/assets/imagery/{name}-768.webp 768w, /assets/imagery/{name}.webp' in s
-          and re.search(rf'<img (?:class="scene-still" )?src="/assets/imagery/{name}\.jpg" width="\d+" height="\d+" alt="" loading="lazy"', s)
-          is not None)
-plant = scenes[0] if scenes else ''
-check('the plant loop (v5.0.4): autoplay, muted, looping, inline, preload="none", hidden from screen readers; '
-      'poster and video set only near the screen (WebM, or MP4 for Safari)',
-      '<video class="scene-v" autoplay muted loop playsinline preload="none" aria-hidden="true" '
-      'data-poster="/assets/imagery/plant2-band.webp" data-webm="/assets/imagery/plant-loop.webm" '
-      'data-mp4="/assets/imagery/plant-loop.mp4"></video>' in plant and 'src=' not in plant.split('<picture>')[0])
-check('the plant loop: the still is its poster and the only thing shown for reduced motion',
-      'class="scene-still"' in plant and '@media(prefers-reduced-motion:reduce){.scene--motion video,.scene-pause{display:none}'
-      '.scene--motion .scene-still{display:block}}' in css_text)
-check('the plant loop: a Pause button that becomes Play, with its label (WCAG 2.2.2)',
-      '<button class="scene-pause" type="button" aria-label="Pause the animation" hidden>Pause</button>' in plant
-      and "'Play the animation'" in js_text and "'Pause the animation'" in js_text and "x ? 'Play' : 'Pause'" in js_text)
-check('no other motion: no animations, one video, transitions only on the phone bar',
-      not re.search(r'@keyframes|animation\s*:', css_text) and home_src.count('<video') == 1
-      and all('<video' not in (DOCS / f).read_text() for f in html_files if f != 'index.html')
+imgs = [a.get('src') for t, a in home.tags if t == 'img']
+check('the portrait is the only picture: no scene bands, no video, no other image',
+      imgs == ['/assets/intellumia-wordmark-ultramarine.svg', '/assets/imagery/sundeep-portrait-2026_720.jpg',
+               '/assets/intellumia-wordmark-ultramarine.svg']
+      and not any(t in ('video', 'picture', 'source') for t, _ in home.tags), f'{imgs}')
+published_files = [f for f in DOCS.rglob('*') if f.is_file()]
+retired_hits = sorted({w for f in published_files for w in RETIRED
+                       if w in f.name or (f.suffix in ('.html', '.css', '.js', '.txt', '.xml')
+                                          and w in f.read_text(errors='ignore'))})
+check('the scene bands and the plant loop stay retired (in _archive/): nothing published refers to them',
+      not retired_hits, f'{retired_hits}')
+doors_src = home_src[home_src.index('aria-labelledby="h-doors"'):home_src.index('<!-- HOW IT WORKS -->')]
+leaks_src = re.search(r'<figure class="leaks".*?</figure>', doors_src, re.S)
+leaks_src = leaks_src.group(0) if leaks_src else ''
+check('the leaks figure opens "Where it starts": a figure on the bone panel, inline SVG with its title and desc',
+      doors_src.index('</div>\n <figure class="leaks" aria-label="Where money leaks">') < doors_src.index('<ol class="doors">')
+      and '<svg class="leak-lg" viewBox="0 0 1200 460" role="img" aria-labelledby="leak-t leak-d">' in leaks_src
+      and '<title id="leak-t">' in leaks_src and '<desc id="leak-d">' in leaks_src
+      and '.leaks{margin:0 0 56px;background:var(--bone);border-radius:10px;padding:24px}' in css_text)
+check('the leaks figure: hidden below 900 px, shown from 900 px',
+      '.leaks{display:none}\n@media(min-width:900px){.leaks{display:block;padding:40px}}' in css_text)
+leaks_drawing = [w for label, w in home.drawings if label == LEAKS_DRAWING]
+check("the leaks drawing carries the mockup's words only, in order",
+      leaks_drawing == [LEAKS_WORDS], f'{leaks_drawing}')
+leaks_hexes = {h.upper() for h in re.findall(r'#[0-9A-Fa-f]{6}\b', leaks_src)}
+check('the leaks drawing: ink, muted, ultramarine, and yellow #FFC800 for the money; no red',
+      leaks_hexes <= LEAKS_COLOURS and '#FFC800' in leaks_hexes, f'{leaks_hexes - LEAKS_COLOURS}')
+check('the door stories carry their department; First move on Finance and Next move on Plant, at every width',
+      doors_src.count('<span class="dept"><span class="label muted">') == 5
+      and doors_src.count('<span class="dtag is-first">First move</span>') == 1
+      and doors_src.count('<span class="dtag">Next move</span>') == 1
+      and '.dtag{' in css_text and not re.search(r'@media[^{]*\{[^}]*\.dtag\{display:none', css_text))
+motion_src = [(f, (DOCS / f).read_text()) for f in html_files] + [('assets/site.css', css_text)]
+keyframes = [(f, k) for f, t in motion_src for k in re.findall(r'@keyframes\s+([\w-]+)', t)]
+animations = [f for f, t in motion_src if re.search(r'animation(?:-name)?\s*:', t)]
+check('motion: one animation, the drops falling, inside the leaks drawing, only under prefers-reduced-motion: no-preference',
+      keyframes == [('index.html', 'fall')] and animations == ['index.html']
+      and all(re.search(r'animation', block) is None
+              for block in re.split(r'@media \(prefers-reduced-motion:no-preference\)\{[^@]*?\}\}', leaks_src))
+      and '@media (prefers-reduced-motion:no-preference){.drip .drop{animation:fall 2.7s linear infinite}' in leaks_src
+      and leaks_src.count('class="drop"') == 12, f'{keyframes} {animations}')
+check('no video and no other motion: transitions only on the phone bar, no GIFs, no script-driven motion',
+      not any('<video' in (DOCS / f).read_text() for f in html_files)
       and re.findall(r'transition:[^;}]+', css_text) == ['transition:transform .2s ease', 'transition:none']
-      and not any(p.suffix == '.gif' for p in DOCS.rglob('*')))
+      and not any(p.suffix in ('.gif', '.mp4', '.webm') for p in DOCS.rglob('*'))
+      and not re.search(r'video|animate|requestAnimationFrame|scene', js_text))
 check('the portrait: alt text, width and height, lazy',
       re.search(rf'<img src="/assets/imagery/sundeep-portrait-2026_720\.jpg"[^>]+width="720" height="720" '
                 rf'alt="{PORTRAIT_ALT}" loading="lazy"', home_src) is not None)
@@ -468,9 +525,10 @@ check('no italics', 'italic' not in css.lower() and not italic, f'italic markup 
 hexes = {h.upper() for h in re.findall(r'#[0-9A-Fa-f]{6}\b', css)}
 check('stylesheet colours: the seven brand tokens and the mockup tints only', hexes <= COLOURS,
       f'other colours: {hexes - COLOURS}')
-drawing = {h.upper() for h in re.findall(r'#[0-9A-Fa-f]{6}\b', re.sub(r'<script.*?</script>', '', home_src, flags=re.S))}
-check('page colours (the Map drawing): no red, brand tokens and the drawing tints only', drawing <= DRAWING_COLOURS,
-      f'other colours: {drawing - DRAWING_COLOURS}')
+page_src = re.sub(r'<script.*?</script>|<figure class="leaks".*?</figure>', '', home_src, flags=re.S)
+drawing = {h.upper() for h in re.findall(r'#[0-9A-Fa-f]{6}\b', page_src)}
+check('page colours outside the leaks drawing (the Map drawing): no red, brand tokens and the drawing tints only',
+      drawing <= DRAWING_COLOURS, f'other colours: {drawing - DRAWING_COLOURS}')
 check('no gradients, shadows or dark mode', not re.search(r'gradient|shadow|prefers-color-scheme', css, re.I))
 check('vermilion is set once, on the .fire class only',
       css.count('#FF3D00') == 1 and css.count('var(--fire)') == 1 and '.fire{color:var(--fire)}' in css)
@@ -486,9 +544,11 @@ check('only Anek font files are published, with the licence beside them',
       f'{fonts}')
 check('corners: 6 for buttons and chips, 10 for panels and cards, 0 for pictures',
       set(re.findall(r'border-radius:(\d+)px', css)) <= {'6', '10'})
-check('the heads of "Where it starts" and "Our rules" are sticky on wide screens',
+check('the head of "Our rules" is sticky on wide screens; "Where it starts" is not (v5.0.5)',
       '.split>.sec-head{margin-bottom:0;position:sticky;top:32px}' in css
-      and home_src.count('class="wrap sec split"') == 2)
+      and home_src.count('class="wrap sec split"') == 1
+      and '<section class="wrap sec" aria-labelledby="h-doors">' in home_src
+      and '<div class="wrap sec split">\n <div class="sec-head">\n <p class="label">Our rules</p>' in home_src)
 check('the bottom bar: phones only, and no slide for reduced motion',
       '@media(min-width:900px){.bar{display:none}}' in css
       and '@media(prefers-reduced-motion:reduce){.bar{transition:none}' in css)
