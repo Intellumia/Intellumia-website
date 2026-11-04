@@ -17,12 +17,16 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="docs/assets/fonts/AnekLatin-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* intellumia.com, one page. Brand System v5.0.6 (strategy v5.0): the approved mockup of 4 Nov 2026,
-   Drive Intellumia/website/mockup/index-final.html. Anek Latin only, self-hosted; see CLAUDE.md. */
+/* intellumia.com, one page. Brand System v5.0.8 (strategy v5.0): Round 5, the approved mockup of 4 Nov 2026,
+   Drive Intellumia/website/mockup/index-round5.html (round5-assets.zip, reference-mockup.html). The mockup's rules
+   that the page uses, in the mockup's order. Anek Latin only, self-hosted; no animation; see CLAUDE.md. */
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latin.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap}
-@font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latinext.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20CF,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latinext.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20B8,U+20BA-20CF,U+2C60-2C7F,U+A720-A7FF}
+/* The rupee sign alone (1.7 KB, cut from the file above with fontTools), so the coins in the drawings do not pull the 82 KB file */
+@font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-rupee.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+20B9}
 
-/* Colour tokens (Brand System 2). Vermilion is used once, on one word of the hero. */
+/* Colour tokens (Brand System 2). Vermilion marks four things on the page, never two on one screen (v5.0.7):
+   the hero word "money", the "Often first" tag, the Map's first move and the title of rule 04. */
 :root{--ground:#FFFFFF;--ink:#101010;--klein:#1A1AFF;--fire:#FF3D00;--bone:#F3EFE6;--rule:#DDD8CC;--muted:#5E5B55;--gut:16px;--max:1200px}
 @media(min-width:600px){:root{--gut:24px}}
 @media(min-width:1100px){:root{--gut:48px}}
@@ -63,59 +67,60 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 .hdr--always .btn{display:inline-flex}
 @media(min-width:768px){.hdr{padding-top:28px;padding-bottom:28px}.hdr img{width:148px}}
 
-/* hero (Brand System v5.0.6, mockup index-final.html): centred, nothing else in it; the leaks diagram sits under it */
+/* hero: centred; the headline, the line, the button and its note, the founder line, then "Sound familiar?" */
 .cta{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
 .cta .note{color:var(--muted);font-size:15px}
-.heroC{display:block;text-align:center;padding-top:40px;padding-bottom:40px}
-.heroC .st{font-size:clamp(48px,5vw + 20px,96px);max-width:11em;margin:0 auto}
-.heroC .label{margin-bottom:20px}
-.heroC .proofA{margin:28px auto 0;max-width:34em;font-weight:500;font-size:clamp(19px,.4vw + 17px,22px);line-height:1.45;color:#2a2926;text-wrap:balance}
-.heroC .cta{justify-content:center}
-.heroC .leaks{margin:56px 0 0;text-align:left}
 
-/* money map figure */
+/* the Map drawing (a heat map, v5.0.7): the wide one from 600 px, Sales and Finance only below */
 .mapfig{background:var(--bone);border-radius:10px;padding:20px}
 .mapfig svg{width:100%;height:auto;display:block}.map-sm{display:block}.map-lg{display:none!important}@media(min-width:600px){.map-sm{display:none!important}.map-lg{display:block!important}}
 .mapfig figcaption{margin-top:14px;font-size:14px;line-height:1.45;color:var(--muted)}
 @media(min-width:768px){.mapfig{padding:28px}}
-/* the Map drawing and the meeting statement sit in "The Map" (v5.0.6) */
-.mapwide{margin:0 0 56px;max-width:760px}
-.meeting{font-weight:500}
 
 /* who band */
 .who{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:28px 0;display:grid;gap:16px}
 .who p.ld{max-width:34em}
+.who .label{margin-bottom:10px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips li.more{background:none;color:var(--muted);padding-left:4px}
 .chips li{background:var(--bone);border-radius:6px;padding:7px 12px;font-size:15px;line-height:1.3}
 @media(min-width:1000px){.who{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:center;padding:36px 0}}
 
-/* sections; the heads of "Where it starts" and "Our rules" (.split) are sticky from 1000 px */
+/* sections */
 .sec{padding-top:72px;padding-bottom:72px}
 @media(min-width:1000px){.sec{padding-top:112px;padding-bottom:112px}}
 .sec-head{display:grid;gap:16px;margin-bottom:40px;max-width:46em}
 .sec-head .label{color:var(--muted)}
-@media(min-width:1000px){.sec-head{margin-bottom:56px}.split{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px;align-items:start}.split>.sec-head{margin-bottom:0;position:sticky;top:32px}}
+@media(min-width:1000px){.sec-head{margin-bottom:56px}}
 
-/* the leaks diagram (Brand System v5.0.5; v5.0.6 moves it into the hero, under the button), from 900 px only.
-   An inline drawing on a bone panel; its drops fall only for readers who have not asked for reduced motion
-   (that CSS lives inside the drawing). */
-.leaks{margin:0 0 56px;background:var(--bone);border-radius:10px;padding:24px}
-.leaks svg{width:100%;height:auto;display:block}
-.leaks figcaption{margin-top:16px;font-size:14px;line-height:1.45;color:var(--muted);max-width:60em}
-.leaks{display:none}
-@media(min-width:900px){.leaks{display:block;padding:40px}}
+.mapwide{margin:0 0 56px;max-width:760px}
+.heroC{display:block;text-align:center;padding-top:40px;padding-bottom:40px}
+.heroC .st{font-size:clamp(48px,5vw + 20px,96px);max-width:11em;margin:0 auto}
+.heroC .label{margin-bottom:20px}
+.heroC .proofA{text-wrap:balance;margin:28px auto 0;max-width:34em;font-weight:500;font-size:clamp(19px,.4vw + 17px,22px);line-height:1.45;color:#2a2926}
+.heroC .cta{justify-content:center}
 
-/* door stories */
-.doors{border-top:1px solid var(--ink)}
-.door{display:grid;gap:8px;padding:24px 0;border-bottom:1px solid var(--rule)}
-.door .n{font-weight:650;font-stretch:80%;font-size:15px;color:var(--muted)}
-.door .dept{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:8px}
+/* header links, wide screens only (1000 px up) */
+.nav{display:none;gap:28px;margin-left:auto;margin-right:28px}
+.nav a{color:var(--ink);text-decoration:none;font-size:16px;font-weight:500}
+.nav a:hover{color:var(--klein);text-decoration:underline}
+@media(min-width:1000px){.nav{display:flex}}
+/* the founder line under the hero button: the round black-and-white portrait, centred on phones */
+.founder{display:inline-flex;justify-content:center;align-items:center;gap:12px;margin-top:28px;color:var(--muted);text-decoration:none;font-size:15px;line-height:1.35;text-align:left}
+.founder img{width:40px;height:40px;border-radius:50%;object-fit:cover;filter:grayscale(1)}
+.founder b{color:var(--ink);font-weight:600}
+.founder:hover span{text-decoration:underline}
+@media(max-width:599px){.founder{display:flex;flex-direction:column;text-align:center;gap:8px}}
+
+/* "Sound familiar?": the six problem scenes, each labelled with its question */
+.probs{margin:48px 0 0;background:var(--bone);border-radius:10px;padding:24px;text-align:left}
+.probs > .label{color:var(--ink);margin-bottom:16px}
+.probs figcaption{margin-top:16px;font-size:14px;line-height:1.45;color:var(--muted)}
+@media(min-width:1000px){.probs{padding:40px;margin-top:56px}}
+
+/* move tags: "Often first" (the section's red thing) */
 .dtag{font-weight:600;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--klein);border:1.5px dashed var(--klein);border-radius:6px;padding:2px 8px}
 .dtag.is-first{background:var(--klein);color:#fff;border-style:solid}
-.door .pain{font-weight:620;font-size:22px;line-height:1.25}
-.door .give{color:#2a2926}
-.door .give{display:flex;gap:12px}.door .give svg{flex:none;width:18px;height:18px;margin-top:5px;color:var(--klein)}
-@media(min-width:900px){.door{grid-template-columns:40px minmax(0,5fr) minmax(0,6fr);gap:32px;align-items:baseline;padding:22px 0}}
 
 /* how it works */
 .how{background:var(--bone)}
@@ -134,30 +139,6 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
  .steps::before{content:"";position:absolute;left:24px;right:24px;top:38px;border-top:1.5px solid var(--ink);z-index:0}
  .step{z-index:1;padding:28px}
 }
-.how .foot{margin-top:28px;max-width:46em}
-
-/* map detail */
-.mapgrid{display:grid;gap:40px}
-@media(min-width:1000px){.mapgrid{grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:64px;align-items:start}}
-.gets-head{margin-bottom:16px}
-.gets li{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:16px 0;border-top:1px solid var(--rule)}
-.gets li:last-child{border-bottom:1px solid var(--rule)}
-.gets li svg{width:20px;height:20px;margin-top:4px}
-.time{margin-top:24px}
-.weeks{position:relative}
-.wk{display:grid;grid-template-columns:104px 1fr;gap:16px;padding:0 0 26px;position:relative}
-.wk::before{content:"";position:absolute;left:5px;top:12px;bottom:-2px;border-left:1.5px solid var(--rule)}
-.wk:last-child::before{display:none}
-.wk .w{font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding-left:24px;position:relative;line-height:1.6;white-space:nowrap}
-.wk .w::before{content:"";position:absolute;left:0;top:5px;width:12px;height:12px;border-radius:50%;border:1.5px solid var(--ink);background:#fff}
-.wk:last-child .w::before{background:var(--klein);border-color:var(--klein)}
-.wk p{line-height:1.5}
-.weeks-head{margin-bottom:20px}
-
-/* rules */
-.rules{display:grid;gap:0;border-top:1px solid var(--ink)}
-.rule{display:grid;grid-template-columns:36px 1fr;gap:8px;padding:22px 0;border-bottom:1px solid var(--rule);font-weight:500;font-size:clamp(18px,.3vw + 17px,20px);line-height:1.45}
-.rule .n{font-weight:650;font-stretch:80%;font-size:15px;color:var(--muted);padding-top:3px}
 
 /* person: the portrait, corners 0 */
 .person{display:grid;gap:32px}
@@ -190,6 +171,82 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 @media(min-width:900px){.bar{display:none}}
 @media(max-width:899px){html:has(.bar){scroll-padding-bottom:88px}}
 @media(prefers-reduced-motion:reduce){.bar{transition:none}html{scroll-behavior:auto}}
+
+/* the scenes: two across on phones, three from 700 px, one row of six from 1000 px; corners 6 */
+.probs--scenes{background:#fff;border:1px solid var(--rule)}
+.ps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.ps{display:grid;gap:8px;align-content:start}
+.ps img{width:100%;height:auto;aspect-ratio:1;border-radius:6px;background:var(--bone);display:block}
+.ps span{font-weight:620;font-size:15px;line-height:1.25}
+@media(min-width:700px){.ps-grid{grid-template-columns:repeat(3,1fr);gap:16px}}
+@media(min-width:1000px){.ps-grid{grid-template-columns:repeat(6,1fr)}.ps span{font-size:17px}}
+
+/* "One example, step by step": four drawn steps; the people's step has a 2 px ultramarine edge */
+.ex{margin-top:48px;background:#fff;border-radius:10px;padding:24px}
+.ex-h{margin:8px 0 20px}
+.ex-grid{display:grid;gap:12px;counter-reset:none}
+.ex-grid li{border:1px solid var(--rule);border-radius:6px;padding:16px;display:grid;gap:6px;align-content:start;grid-auto-rows:min-content;grid-template-columns:auto 1fr;column-gap:10px}
+.ex-grid h4,.ex-grid p{grid-column:1/-1}
+.ex-n{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-weight:650;font-size:13px}
+.ex-who{align-self:center;font-weight:600;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--klein)}
+.ex-grid li.ex-people{border:2px solid var(--klein);padding:15px}
+.ex-grid h4{font-weight:650;font-size:19px;line-height:1.2;margin:4px 0 0}.ex-grid p{margin:0}
+.ex-grid p{font-size:15.5px;line-height:1.45;color:#2a2926}
+.ex-cap{margin-top:14px;font-size:14px;color:var(--muted)}
+@media(min-width:800px){.ex-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1100px){.ex{padding:40px}.ex-grid{grid-template-columns:repeat(4,1fr);gap:16px}}
+.ex-art{grid-column:1/-1;display:block;background:var(--bone);border-radius:6px;margin:6px 0 4px}
+.ex-art svg{display:block;width:100%;height:auto}
+@media(min-width:1100px){.ex-grid{position:relative}.ex-grid li:not(:last-child)::after{content:"";position:absolute;right:-13px;top:50%;width:10px;height:10px;border-top:2.5px solid var(--klein);border-right:2.5px solid var(--klein);transform:rotate(45deg)}.ex-grid li{position:relative}.ex-grid li.ex-people::after{right:-14px}}
+
+/* the Map: the heat map at full width, the four questions, the timeline and the staff-time note */
+.qn{font-weight:650;font-stretch:80%;font-size:28px;color:var(--klein);line-height:1}
+.q4s{display:grid;gap:0;border-top:1px solid var(--ink)}
+.q4s li{display:flex;gap:16px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--rule);font-weight:620;font-size:22px;line-height:1.25}
+.q4s .qn{font-weight:650;font-stretch:80%;font-size:26px;color:var(--klein);min-width:20px}
+.m2-note{margin-top:14px;color:var(--muted);font-size:15.5px}
+.wk2{margin-top:48px;display:grid;gap:0;border-top:1px solid var(--ink)}
+.wk2 li{display:grid;grid-template-columns:90px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);font-size:17px;line-height:1.35}
+.w2{font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--klein);padding-top:3px}
+@media(min-width:1000px){.wk2{grid-template-columns:repeat(4,1fr);border-top:none}.wk2 li{grid-template-columns:1fr;border-bottom:none;border-top:3px solid var(--klein);padding:14px 20px 0 0;gap:6px}}
+.m3{display:grid;gap:40px}.m3 .mapwide{margin:0;max-width:none}
+.m3-q .h3{margin-bottom:12px}
+@media(min-width:1000px){.m3-q .q4s{grid-template-columns:repeat(4,1fr);border-top:none;gap:24px}.m3-q .q4s li{border-bottom:none;border-top:1px solid var(--ink);padding-top:14px;flex-direction:column;gap:6px;font-size:21px}}
+
+/* our rules: six cards, each with its drawing, number, title and line; rule 04's title is the section's red thing */
+.r2s{display:grid;gap:12px}
+.r2{background:#fff;border-radius:10px;padding:22px;display:grid;gap:10px;align-content:start;grid-template-columns:auto}
+.n2{font-weight:650;font-stretch:80%;font-size:15px;line-height:1;color:var(--klein);letter-spacing:.04em}
+.r2 p{margin:0;font-weight:450;font-size:16.5px;line-height:1.4;color:#2a2926}
+@media(min-width:700px){.r2s{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.r2s{grid-template-columns:repeat(3,1fr);gap:16px}.r2{padding:28px}}
+.dtag.is-first.red{background:var(--fire);border-color:var(--fire)}
+
+/* what we do about it: six compact cards, in the order of the scenes */
+.fxs{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.fx{border:1px solid var(--rule);border-radius:10px;padding:16px;display:grid;gap:6px;align-content:start;justify-items:start}
+.fx-ic svg{width:40px;height:40px;display:block}
+.fx-p{font-size:13px;color:var(--muted);font-weight:500}
+.fx-g{font-weight:620;font-size:17px;line-height:1.3}
+.fx .dtag{white-space:nowrap}
+@media(min-width:1000px){.fxs{grid-template-columns:repeat(6,1fr);gap:16px}.fx{padding:20px}.fx-g{font-size:18px}.sec--tight{padding-top:80px;padding-bottom:80px}}
+.r2-ic svg{width:84px;height:56px;display:block;margin-bottom:6px}
+@media(min-width:1000px){.r2-ic svg{width:96px;height:64px}}
+.r2-t{font-weight:650;font-size:24px;line-height:1.15;margin:0}
+.r2-key .r2-t{color:var(--fire)}
+
+/* questions owners ask: native details, the first one open */
+.fqs{border-top:1px solid var(--ink)}
+.fq{border-bottom:1px solid var(--rule)}
+.fq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-weight:620;font-size:21px;line-height:1.3}
+.fq summary::-webkit-details-marker{display:none}
+.pl{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--klein);position:relative}
+.pl::before,.pl::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--klein);transform:translate(-50%,-50%)}
+.pl::after{transform:translate(-50%,-50%) rotate(90deg)}
+.fq[open] .pl::after{display:none}
+.fq p{margin:0 0 22px;font-size:17px;line-height:1.5;color:#2a2926;max-width:60ch}
+@media(min-width:1000px){.faqgrid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px;align-items:start}.faqgrid .sec-head{margin-bottom:0}}
+.cl-sub{color:#fff;opacity:.92;font-size:clamp(18px,.4vw + 16px,21px);line-height:1.45;max-width:46ch;margin:20px 0 28px}
 
 /* Privacy and the 404 page */
 .page{padding-top:48px;padding-bottom:72px;max-width:44em}

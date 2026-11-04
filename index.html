@@ -16,12 +16,16 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="docs/assets/fonts/AnekLatin-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* intellumia.com, one page. Brand System v5.0.6 (strategy v5.0): the approved mockup of 4 Nov 2026,
-   Drive Intellumia/website/mockup/index-final.html. Anek Latin only, self-hosted; see CLAUDE.md. */
+/* intellumia.com, one page. Brand System v5.0.8 (strategy v5.0): Round 5, the approved mockup of 4 Nov 2026,
+   Drive Intellumia/website/mockup/index-round5.html (round5-assets.zip, reference-mockup.html). The mockup's rules
+   that the page uses, in the mockup's order. Anek Latin only, self-hosted; no animation; see CLAUDE.md. */
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latin.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap}
-@font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latinext.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20CF,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latinext.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20B8,U+20BA-20CF,U+2C60-2C7F,U+A720-A7FF}
+/* The rupee sign alone (1.7 KB, cut from the file above with fontTools), so the coins in the drawings do not pull the 82 KB file */
+@font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-rupee.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+20B9}
 
-/* Colour tokens (Brand System 2). Vermilion is used once, on one word of the hero. */
+/* Colour tokens (Brand System 2). Vermilion marks four things on the page, never two on one screen (v5.0.7):
+   the hero word "money", the "Often first" tag, the Map's first move and the title of rule 04. */
 :root{--ground:#FFFFFF;--ink:#101010;--klein:#1A1AFF;--fire:#FF3D00;--bone:#F3EFE6;--rule:#DDD8CC;--muted:#5E5B55;--gut:16px;--max:1200px}
 @media(min-width:600px){:root{--gut:24px}}
 @media(min-width:1100px){:root{--gut:48px}}
@@ -62,59 +66,60 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 .hdr--always .btn{display:inline-flex}
 @media(min-width:768px){.hdr{padding-top:28px;padding-bottom:28px}.hdr img{width:148px}}
 
-/* hero (Brand System v5.0.6, mockup index-final.html): centred, nothing else in it; the leaks diagram sits under it */
+/* hero: centred; the headline, the line, the button and its note, the founder line, then "Sound familiar?" */
 .cta{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
 .cta .note{color:var(--muted);font-size:15px}
-.heroC{display:block;text-align:center;padding-top:40px;padding-bottom:40px}
-.heroC .st{font-size:clamp(48px,5vw + 20px,96px);max-width:11em;margin:0 auto}
-.heroC .label{margin-bottom:20px}
-.heroC .proofA{margin:28px auto 0;max-width:34em;font-weight:500;font-size:clamp(19px,.4vw + 17px,22px);line-height:1.45;color:#2a2926;text-wrap:balance}
-.heroC .cta{justify-content:center}
-.heroC .leaks{margin:56px 0 0;text-align:left}
 
-/* money map figure */
+/* the Map drawing (a heat map, v5.0.7): the wide one from 600 px, Sales and Finance only below */
 .mapfig{background:var(--bone);border-radius:10px;padding:20px}
 .mapfig svg{width:100%;height:auto;display:block}.map-sm{display:block}.map-lg{display:none!important}@media(min-width:600px){.map-sm{display:none!important}.map-lg{display:block!important}}
 .mapfig figcaption{margin-top:14px;font-size:14px;line-height:1.45;color:var(--muted)}
 @media(min-width:768px){.mapfig{padding:28px}}
-/* the Map drawing and the meeting statement sit in "The Map" (v5.0.6) */
-.mapwide{margin:0 0 56px;max-width:760px}
-.meeting{font-weight:500}
 
 /* who band */
 .who{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:28px 0;display:grid;gap:16px}
 .who p.ld{max-width:34em}
+.who .label{margin-bottom:10px}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips li.more{background:none;color:var(--muted);padding-left:4px}
 .chips li{background:var(--bone);border-radius:6px;padding:7px 12px;font-size:15px;line-height:1.3}
 @media(min-width:1000px){.who{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:center;padding:36px 0}}
 
-/* sections; the heads of "Where it starts" and "Our rules" (.split) are sticky from 1000 px */
+/* sections */
 .sec{padding-top:72px;padding-bottom:72px}
 @media(min-width:1000px){.sec{padding-top:112px;padding-bottom:112px}}
 .sec-head{display:grid;gap:16px;margin-bottom:40px;max-width:46em}
 .sec-head .label{color:var(--muted)}
-@media(min-width:1000px){.sec-head{margin-bottom:56px}.split{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px;align-items:start}.split>.sec-head{margin-bottom:0;position:sticky;top:32px}}
+@media(min-width:1000px){.sec-head{margin-bottom:56px}}
 
-/* the leaks diagram (Brand System v5.0.5; v5.0.6 moves it into the hero, under the button), from 900 px only.
-   An inline drawing on a bone panel; its drops fall only for readers who have not asked for reduced motion
-   (that CSS lives inside the drawing). */
-.leaks{margin:0 0 56px;background:var(--bone);border-radius:10px;padding:24px}
-.leaks svg{width:100%;height:auto;display:block}
-.leaks figcaption{margin-top:16px;font-size:14px;line-height:1.45;color:var(--muted);max-width:60em}
-.leaks{display:none}
-@media(min-width:900px){.leaks{display:block;padding:40px}}
+.mapwide{margin:0 0 56px;max-width:760px}
+.heroC{display:block;text-align:center;padding-top:40px;padding-bottom:40px}
+.heroC .st{font-size:clamp(48px,5vw + 20px,96px);max-width:11em;margin:0 auto}
+.heroC .label{margin-bottom:20px}
+.heroC .proofA{text-wrap:balance;margin:28px auto 0;max-width:34em;font-weight:500;font-size:clamp(19px,.4vw + 17px,22px);line-height:1.45;color:#2a2926}
+.heroC .cta{justify-content:center}
 
-/* door stories */
-.doors{border-top:1px solid var(--ink)}
-.door{display:grid;gap:8px;padding:24px 0;border-bottom:1px solid var(--rule)}
-.door .n{font-weight:650;font-stretch:80%;font-size:15px;color:var(--muted)}
-.door .dept{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:8px}
+/* header links, wide screens only (1000 px up) */
+.nav{display:none;gap:28px;margin-left:auto;margin-right:28px}
+.nav a{color:var(--ink);text-decoration:none;font-size:16px;font-weight:500}
+.nav a:hover{color:var(--klein);text-decoration:underline}
+@media(min-width:1000px){.nav{display:flex}}
+/* the founder line under the hero button: the round black-and-white portrait, centred on phones */
+.founder{display:inline-flex;justify-content:center;align-items:center;gap:12px;margin-top:28px;color:var(--muted);text-decoration:none;font-size:15px;line-height:1.35;text-align:left}
+.founder img{width:40px;height:40px;border-radius:50%;object-fit:cover;filter:grayscale(1)}
+.founder b{color:var(--ink);font-weight:600}
+.founder:hover span{text-decoration:underline}
+@media(max-width:599px){.founder{display:flex;flex-direction:column;text-align:center;gap:8px}}
+
+/* "Sound familiar?": the six problem scenes, each labelled with its question */
+.probs{margin:48px 0 0;background:var(--bone);border-radius:10px;padding:24px;text-align:left}
+.probs > .label{color:var(--ink);margin-bottom:16px}
+.probs figcaption{margin-top:16px;font-size:14px;line-height:1.45;color:var(--muted)}
+@media(min-width:1000px){.probs{padding:40px;margin-top:56px}}
+
+/* move tags: "Often first" (the section's red thing) */
 .dtag{font-weight:600;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--klein);border:1.5px dashed var(--klein);border-radius:6px;padding:2px 8px}
 .dtag.is-first{background:var(--klein);color:#fff;border-style:solid}
-.door .pain{font-weight:620;font-size:22px;line-height:1.25}
-.door .give{color:#2a2926}
-.door .give{display:flex;gap:12px}.door .give svg{flex:none;width:18px;height:18px;margin-top:5px;color:var(--klein)}
-@media(min-width:900px){.door{grid-template-columns:40px minmax(0,5fr) minmax(0,6fr);gap:32px;align-items:baseline;padding:22px 0}}
 
 /* how it works */
 .how{background:var(--bone)}
@@ -133,30 +138,6 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
  .steps::before{content:"";position:absolute;left:24px;right:24px;top:38px;border-top:1.5px solid var(--ink);z-index:0}
  .step{z-index:1;padding:28px}
 }
-.how .foot{margin-top:28px;max-width:46em}
-
-/* map detail */
-.mapgrid{display:grid;gap:40px}
-@media(min-width:1000px){.mapgrid{grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:64px;align-items:start}}
-.gets-head{margin-bottom:16px}
-.gets li{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:16px 0;border-top:1px solid var(--rule)}
-.gets li:last-child{border-bottom:1px solid var(--rule)}
-.gets li svg{width:20px;height:20px;margin-top:4px}
-.time{margin-top:24px}
-.weeks{position:relative}
-.wk{display:grid;grid-template-columns:104px 1fr;gap:16px;padding:0 0 26px;position:relative}
-.wk::before{content:"";position:absolute;left:5px;top:12px;bottom:-2px;border-left:1.5px solid var(--rule)}
-.wk:last-child::before{display:none}
-.wk .w{font-weight:600;font-size:13px;letter-spacing:.1em;text-transform:uppercase;padding-left:24px;position:relative;line-height:1.6;white-space:nowrap}
-.wk .w::before{content:"";position:absolute;left:0;top:5px;width:12px;height:12px;border-radius:50%;border:1.5px solid var(--ink);background:#fff}
-.wk:last-child .w::before{background:var(--klein);border-color:var(--klein)}
-.wk p{line-height:1.5}
-.weeks-head{margin-bottom:20px}
-
-/* rules */
-.rules{display:grid;gap:0;border-top:1px solid var(--ink)}
-.rule{display:grid;grid-template-columns:36px 1fr;gap:8px;padding:22px 0;border-bottom:1px solid var(--rule);font-weight:500;font-size:clamp(18px,.3vw + 17px,20px);line-height:1.45}
-.rule .n{font-weight:650;font-stretch:80%;font-size:15px;color:var(--muted);padding-top:3px}
 
 /* person: the portrait, corners 0 */
 .person{display:grid;gap:32px}
@@ -190,6 +171,82 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 @media(max-width:899px){html:has(.bar){scroll-padding-bottom:88px}}
 @media(prefers-reduced-motion:reduce){.bar{transition:none}html{scroll-behavior:auto}}
 
+/* the scenes: two across on phones, three from 700 px, one row of six from 1000 px; corners 6 */
+.probs--scenes{background:#fff;border:1px solid var(--rule)}
+.ps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.ps{display:grid;gap:8px;align-content:start}
+.ps img{width:100%;height:auto;aspect-ratio:1;border-radius:6px;background:var(--bone);display:block}
+.ps span{font-weight:620;font-size:15px;line-height:1.25}
+@media(min-width:700px){.ps-grid{grid-template-columns:repeat(3,1fr);gap:16px}}
+@media(min-width:1000px){.ps-grid{grid-template-columns:repeat(6,1fr)}.ps span{font-size:17px}}
+
+/* "One example, step by step": four drawn steps; the people's step has a 2 px ultramarine edge */
+.ex{margin-top:48px;background:#fff;border-radius:10px;padding:24px}
+.ex-h{margin:8px 0 20px}
+.ex-grid{display:grid;gap:12px;counter-reset:none}
+.ex-grid li{border:1px solid var(--rule);border-radius:6px;padding:16px;display:grid;gap:6px;align-content:start;grid-auto-rows:min-content;grid-template-columns:auto 1fr;column-gap:10px}
+.ex-grid h4,.ex-grid p{grid-column:1/-1}
+.ex-n{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--ink);display:grid;place-items:center;font-weight:650;font-size:13px}
+.ex-who{align-self:center;font-weight:600;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--klein)}
+.ex-grid li.ex-people{border:2px solid var(--klein);padding:15px}
+.ex-grid h4{font-weight:650;font-size:19px;line-height:1.2;margin:4px 0 0}.ex-grid p{margin:0}
+.ex-grid p{font-size:15.5px;line-height:1.45;color:#2a2926}
+.ex-cap{margin-top:14px;font-size:14px;color:var(--muted)}
+@media(min-width:800px){.ex-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1100px){.ex{padding:40px}.ex-grid{grid-template-columns:repeat(4,1fr);gap:16px}}
+.ex-art{grid-column:1/-1;display:block;background:var(--bone);border-radius:6px;margin:6px 0 4px}
+.ex-art svg{display:block;width:100%;height:auto}
+@media(min-width:1100px){.ex-grid{position:relative}.ex-grid li:not(:last-child)::after{content:"";position:absolute;right:-13px;top:50%;width:10px;height:10px;border-top:2.5px solid var(--klein);border-right:2.5px solid var(--klein);transform:rotate(45deg)}.ex-grid li{position:relative}.ex-grid li.ex-people::after{right:-14px}}
+
+/* the Map: the heat map at full width, the four questions, the timeline and the staff-time note */
+.qn{font-weight:650;font-stretch:80%;font-size:28px;color:var(--klein);line-height:1}
+.q4s{display:grid;gap:0;border-top:1px solid var(--ink)}
+.q4s li{display:flex;gap:16px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--rule);font-weight:620;font-size:22px;line-height:1.25}
+.q4s .qn{font-weight:650;font-stretch:80%;font-size:26px;color:var(--klein);min-width:20px}
+.m2-note{margin-top:14px;color:var(--muted);font-size:15.5px}
+.wk2{margin-top:48px;display:grid;gap:0;border-top:1px solid var(--ink)}
+.wk2 li{display:grid;grid-template-columns:90px 1fr;gap:12px;padding:14px 0;border-bottom:1px solid var(--rule);font-size:17px;line-height:1.35}
+.w2{font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--klein);padding-top:3px}
+@media(min-width:1000px){.wk2{grid-template-columns:repeat(4,1fr);border-top:none}.wk2 li{grid-template-columns:1fr;border-bottom:none;border-top:3px solid var(--klein);padding:14px 20px 0 0;gap:6px}}
+.m3{display:grid;gap:40px}.m3 .mapwide{margin:0;max-width:none}
+.m3-q .h3{margin-bottom:12px}
+@media(min-width:1000px){.m3-q .q4s{grid-template-columns:repeat(4,1fr);border-top:none;gap:24px}.m3-q .q4s li{border-bottom:none;border-top:1px solid var(--ink);padding-top:14px;flex-direction:column;gap:6px;font-size:21px}}
+
+/* our rules: six cards, each with its drawing, number, title and line; rule 04's title is the section's red thing */
+.r2s{display:grid;gap:12px}
+.r2{background:#fff;border-radius:10px;padding:22px;display:grid;gap:10px;align-content:start;grid-template-columns:auto}
+.n2{font-weight:650;font-stretch:80%;font-size:15px;line-height:1;color:var(--klein);letter-spacing:.04em}
+.r2 p{margin:0;font-weight:450;font-size:16.5px;line-height:1.4;color:#2a2926}
+@media(min-width:700px){.r2s{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.r2s{grid-template-columns:repeat(3,1fr);gap:16px}.r2{padding:28px}}
+.dtag.is-first.red{background:var(--fire);border-color:var(--fire)}
+
+/* what we do about it: six compact cards, in the order of the scenes */
+.fxs{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+.fx{border:1px solid var(--rule);border-radius:10px;padding:16px;display:grid;gap:6px;align-content:start;justify-items:start}
+.fx-ic svg{width:40px;height:40px;display:block}
+.fx-p{font-size:13px;color:var(--muted);font-weight:500}
+.fx-g{font-weight:620;font-size:17px;line-height:1.3}
+.fx .dtag{white-space:nowrap}
+@media(min-width:1000px){.fxs{grid-template-columns:repeat(6,1fr);gap:16px}.fx{padding:20px}.fx-g{font-size:18px}.sec--tight{padding-top:80px;padding-bottom:80px}}
+.r2-ic svg{width:84px;height:56px;display:block;margin-bottom:6px}
+@media(min-width:1000px){.r2-ic svg{width:96px;height:64px}}
+.r2-t{font-weight:650;font-size:24px;line-height:1.15;margin:0}
+.r2-key .r2-t{color:var(--fire)}
+
+/* questions owners ask: native details, the first one open */
+.fqs{border-top:1px solid var(--ink)}
+.fq{border-bottom:1px solid var(--rule)}
+.fq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-weight:620;font-size:21px;line-height:1.3}
+.fq summary::-webkit-details-marker{display:none}
+.pl{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--klein);position:relative}
+.pl::before,.pl::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--klein);transform:translate(-50%,-50%)}
+.pl::after{transform:translate(-50%,-50%) rotate(90deg)}
+.fq[open] .pl::after{display:none}
+.fq p{margin:0 0 22px;font-size:17px;line-height:1.5;color:#2a2926;max-width:60ch}
+@media(min-width:1000px){.faqgrid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px;align-items:start}.faqgrid .sec-head{margin-bottom:0}}
+.cl-sub{color:#fff;opacity:.92;font-size:clamp(18px,.4vw + 16px,21px);line-height:1.45;max-width:46ch;margin:20px 0 28px}
+
 /* Privacy and the 404 page */
 .page{padding-top:48px;padding-bottom:72px;max-width:44em}
 .page .label{margin-bottom:16px;color:var(--muted)}
@@ -215,6 +272,7 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 
 <header class="wrap hdr">
  <a href="#top" aria-label="Intellumia, home"><img src="docs/assets/intellumia-wordmark-ultramarine.svg" alt="Intellumia" width="148" height="24"></a>
+ <nav class="nav" aria-label="Page"><a href="#h-how">How it works</a><a href="#h-map">The Map</a><a href="#h-rules">Our rules</a><a href="#h-sk">About</a><a href="#h-faq">FAQ</a></nav>
  <a class="btn btn--sm" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Book a call</a>
 </header>
 
@@ -226,223 +284,148 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
  <h1 class="st">Where can AI make you <span class="fire">money</span>?</h1>
  <p class="proofA">We find it in your numbers. Then we run it for you.</p>
  <div class="cta">
- <a class="btn" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Book a call
- <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
- <span class="note">30 minutes, by video. Nothing to prepare.</span>
- </div>
- <figure class="leaks" aria-label="Where money leaks">
- <svg class="leak-lg" viewBox="0 0 1200 460" role="img" aria-labelledby="leak-t leak-d">
-<title id="leak-t">Where money leaks in an owner-run business</title>
-<desc id="leak-d">Illustration: a business drawn as five rooms, plant and operations, finance, MIS and reporting, IT and vendors, and the owner's office. Money drips out of each into a tray marked money lost every month. The finance leak is plugged as the first move; the plant leak is marked as the next move.</desc>
-<style>.lk-lab{font:600 12.5px 'Anek Latin',sans-serif;letter-spacing:.12em;fill:#5E5B55}.lk-n{font:650 16px 'Anek Latin',sans-serif;fill:#101010}.lk-t{font:500 19px 'Anek Latin',sans-serif;fill:#101010}.lk-k{font:600 11.5px 'Anek Latin',sans-serif;letter-spacing:.1em}.lk-tray{font:600 13px 'Anek Latin',sans-serif;letter-spacing:.12em;fill:#5E5B55}.drop{fill:#FFC800;stroke:#101010;stroke-width:1}.drip .drop:nth-child(2){transform:translateY(26px)}.drip .drop:nth-child(3){transform:translateY(52px)}@media (prefers-reduced-motion:no-preference){.drip .drop{animation:fall 2.7s linear infinite}.drip .drop:nth-child(2){animation-delay:.9s}.drip .drop:nth-child(3){animation-delay:1.8s}}@keyframes fall{0%{transform:translateY(0);opacity:0}10%{opacity:1}80%{opacity:1}100%{transform:translateY(78px);opacity:0}}</style>
-<path d="M40 100 L600 30 L1160 100" fill="#fff" stroke="#101010" stroke-width="2"/>
-<text class="lk-lab" x="600" y="82" text-anchor="middle">YOUR BUSINESS</text>
-<rect x="40" y="100" width="1120" height="168" fill="#fff" stroke="#101010" stroke-width="2"/>
-<text class="lk-n" x="60.0" y="132">01</text>
-<text class="lk-lab" x="60.0" y="156">PLANT AND OPERATIONS</text>
-<text class="lk-t" x="60.0" y="196">Costs rising faster</text>
-<text class="lk-t" x="60.0" y="220">than prices</text>
-<path d="M200 268 l8 -6 l6 6 l6 -6 l8 6" fill="#fff" stroke="#101010" stroke-width="1.5"/>
-<g class="drip"><path class="drop" d="M214 276 c5 9 8 13 8 17 a8 8 0 0 1 -16 0 c0 -4 3 -8 8 -17z"/><path class="drop" d="M214 276 c5 9 8 13 8 17 a8 8 0 0 1 -16 0 c0 -4 3 -8 8 -17z"/><path class="drop" d="M214 276 c5 9 8 13 8 17 a8 8 0 0 1 -16 0 c0 -4 3 -8 8 -17z"/></g>
-<rect x="60.0" y="290" width="96" height="26" rx="6" fill="#fff" stroke="#1A1AFF" stroke-width="1.5" stroke-dasharray="4 3"/><text class="lk-k" x="108.0" y="307.5" text-anchor="middle" fill="#1A1AFF">NEXT MOVE</text>
-<line x1="264.0" y1="100" x2="264.0" y2="268" stroke="#101010" stroke-width="1.5"/>
-<text class="lk-n" x="284.0" y="132">02</text>
-<text class="lk-lab" x="284.0" y="156">FINANCE</text>
-<text class="lk-t" x="284.0" y="196">Cash stuck with</text>
-<text class="lk-t" x="284.0" y="220">customers</text>
-<rect x="416" y="263" width="44" height="12" rx="3" fill="#1A1AFF"/>
-<rect x="284.0" y="290" width="96" height="26" rx="6" fill="#1A1AFF"/><text class="lk-k" x="332.0" y="307.5" text-anchor="middle" fill="#fff">FIRST MOVE</text>
-<text class="lk-k" x="284.0" y="334" fill="#5E5B55">PLUGGED</text>
-<line x1="488.0" y1="100" x2="488.0" y2="268" stroke="#101010" stroke-width="1.5"/>
-<text class="lk-n" x="508.0" y="132">03</text>
-<text class="lk-lab" x="508.0" y="156">MIS AND REPORTING</text>
-<text class="lk-t" x="508.0" y="196">Numbers late,</text>
-<text class="lk-t" x="508.0" y="220">built by hand</text>
-<path d="M648 268 l8 -6 l6 6 l6 -6 l8 6" fill="#fff" stroke="#101010" stroke-width="1.5"/>
-<g class="drip"><path class="drop" d="M662 276 c5 9 8 13 8 17 a8 8 0 0 1 -16 0 c0 -4 3 -8 8 -17z"/><path class="drop" d="M662 276 c5 9 8 13 8 17 a8 8 0 0 1 -16 0 c0 -4 3 -8 8 -17z"/><path class="drop" d="M662 276 c5 9 8 13 8 17 a8 8 0 0 1 -16 0 c0 -4 3 -8 8 -17z"/></g>
-<line x1="712.0" y1="100" x2="712.0" y2="268" stroke="#101010" stroke-width="1.5"/>
-<text class="lk-n" x="732.0" y="132">04</text>
-<text class="lk-lab" x="732.0" y="156">IT AND VENDORS</text>
-<text class="lk-t" x="732.0" y="196">AI tools and renewals</text>
-<text class="lk-t" x="732.0" y="220">nobody tracks</text>
-<path d="M872 268 l8 -6 l6 6 l6 -6 l8 6" fill="#fff" stroke="#101010" stroke-width="1.5"/>
-<g class="drip"><path class="drop" d="M886 276 c5 9 8 13 8 17 a8 8 0 0 1 -16 0 c0 -4 3 -8 8 -17z"/><path class="drop" d="M886 276 c5 9 8 13 8 17 a8 8 0 0 1 -16 0 c0 -4 3 -8 8 -17z"/><path class="drop" d="M886 276 c5 9 8 13 8 17 a8 8 0 0 1 -16 0 c0 -4 3 -8 8 -17z"/></g>
-<line x1="936.0" y1="100" x2="936.0" y2="268" stroke="#101010" stroke-width="1.5"/>
-<text class="lk-n" x="956.0" y="132">05</text>
-<text class="lk-lab" x="956.0" y="156">OWNER'S OFFICE</text>
-<text class="lk-t" x="956.0" y="196">Decisions that live</text>
-<text class="lk-t" x="956.0" y="220">in one head</text>
-<path d="M1096 268 l8 -6 l6 6 l6 -6 l8 6" fill="#fff" stroke="#101010" stroke-width="1.5"/>
-<g class="drip"><path class="drop" d="M1110 276 c5 9 8 13 8 17 a8 8 0 0 1 -16 0 c0 -4 3 -8 8 -17z"/><path class="drop" d="M1110 276 c5 9 8 13 8 17 a8 8 0 0 1 -16 0 c0 -4 3 -8 8 -17z"/><path class="drop" d="M1110 276 c5 9 8 13 8 17 a8 8 0 0 1 -16 0 c0 -4 3 -8 8 -17z"/></g>
-<path d="M40 372 L60 412 L1140 412 L1160 372" fill="#fff" stroke="#101010" stroke-width="2"/>
-<path d="M52 398 Q 600 390 1148 398 L1144 408 L56 408Z" fill="#FFC800" opacity=".6"/>
-<text class="lk-tray" x="600" y="440" text-anchor="middle">MONEY LOST EVERY MONTH</text>
-</svg>
- <figcaption>Illustration, not a client. Where money usually leaks in an owner-run business. Your Map finds your leaks, puts a rupee figure on each, and names the one to plug first.</figcaption>
+   <a class="btn" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Book a call
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
+   <span class="note">30 minutes, by video. Nothing to prepare.</span>
+  </div>
+ <a class="founder" href="#h-sk"><img src="docs/assets/imagery/sundeep-portrait-2026_120.jpg" alt="" width="40" height="40"><span>Led by <b>Sundeep</b>, Founder &amp; CEO</span></a>
+ <figure class="probs probs--scenes" aria-labelledby="probs-h">
+ <p class="label" id="probs-h">Sound familiar?</p>
+ <ul class="ps-grid"><li class="ps"><img src="docs/assets/scenes/scene-1-margin.jpg" srcset="docs/assets/scenes/scene-1-margin-360.jpg 360w, docs/assets/scenes/scene-1-margin.jpg 720w" sizes="(min-width: 1000px) 180px, (min-width: 700px) calc(33vw - 40px), calc(50vw - 46px)" alt="A bench vice squeezing a stack of coins" width="720" height="720" loading="lazy"><span>Costs up, prices stuck?</span></li><li class="ps"><img src="docs/assets/scenes/scene-2-cash.jpg" srcset="docs/assets/scenes/scene-2-cash-360.jpg 360w, docs/assets/scenes/scene-2-cash.jpg 720w" sizes="(min-width: 1000px) 180px, (min-width: 700px) calc(33vw - 40px), calc(50vw - 46px)" alt="A padlocked jar of coins beside a tied stack of invoices" width="720" height="720" loading="lazy"><span>Customers paying late?</span></li><li class="ps"><img src="docs/assets/scenes/scene-3-people.jpg" srcset="docs/assets/scenes/scene-3-people-360.jpg 360w, docs/assets/scenes/scene-3-people.jpg 720w" sizes="(min-width: 1000px) 180px, (min-width: 700px) calc(33vw - 40px), calc(50vw - 46px)" alt="A workbench with one empty place and coins rolling off it" width="720" height="720" loading="lazy"><span>Good people leaving?</span></li><li class="ps"><img src="docs/assets/scenes/scene-4-numbers.jpg" srcset="docs/assets/scenes/scene-4-numbers-360.jpg 360w, docs/assets/scenes/scene-4-numbers.jpg 720w" sizes="(min-width: 1000px) 180px, (min-width: 700px) calc(33vw - 40px), calc(50vw - 46px)" alt="A pile of ledgers under a lamp late at night, coins slipping out" width="720" height="720" loading="lazy"><span>Numbers always late?</span></li><li class="ps"><img src="docs/assets/scenes/scene-5-rework.jpg" srcset="docs/assets/scenes/scene-5-rework-360.jpg 360w, docs/assets/scenes/scene-5-rework.jpg 720w" sizes="(min-width: 1000px) 180px, (min-width: 700px) calc(33vw - 40px), calc(50vw - 46px)" alt="Rejected boxes on a pallet spilling coins" width="720" height="720" loading="lazy"><span>Too much made twice?</span></li><li class="ps"><img src="docs/assets/scenes/scene-6-owner.jpg" srcset="docs/assets/scenes/scene-6-owner-360.jpg 360w, docs/assets/scenes/scene-6-owner.jpg 720w" sizes="(min-width: 1000px) 180px, (min-width: 700px) calc(33vw - 40px), calc(50vw - 46px)" alt="An empty chair at a desk buried in files, coins trapped under them" width="720" height="720" loading="lazy"><span>All on your desk?</span></li></ul>
+ <figcaption>Where money quietly leaks in most owner-run businesses.</figcaption>
 </figure>
 </section>
 
 <!-- WHO -->
 <div class="wrap">
  <section class="who" aria-label="Who we work with">
- <p class="ld">For owner-run companies across India, where the owner decides and signs the cheque.</p>
- <ul class="chips" aria-label="Where we start">
- <li>Construction, EPC and roads</li><li>Specialty and agro chemicals</li><li>Auto components</li><li>Pharma and APIs</li><li>Hospitals and healthcare chains</li>
- </ul>
+  <div><p class="label muted">Who we work with</p><p class="ld">Owners, promoters and the leaders they trust, in businesses everywhere, who want AI to show up in their numbers.</p></div>
+  <div><p class="label muted">Where AI is already proven</p><ul class="chips" aria-label="Where AI is already proven"><li>Customer service</li><li>Finance and accounting</li><li>Sales and marketing</li><li>Supply chain and inventory</li><li>Plant operations and quality</li><li>Claims, compliance and documents</li><li class="more">in every industry</li></ul></div>
  </section>
 </div>
 
-
-<!-- DOOR STORIES -->
-<section class="wrap sec" aria-labelledby="h-doors">
+<!-- WHAT WE DO -->
+<section class="wrap sec sec--tight" aria-labelledby="h-doors">
  <div class="sec-head">
- <p class="label">Where it starts</p>
- <h2 class="hd" id="h-doors">We start with your money. AI is how we do it.</h2>
+  <p class="label">What we do about it</p>
+  <h2 class="hd" id="h-doors">AI does the work. Your people make the calls.</h2>
  </div>
- <ol class="doors">
- <li class="door"><span class="n">01</span><div class="painwrap"><span class="dept"><span class="label muted">Plant and operations</span> <span class="dtag">Next move</span></span><p class="pain">Costs are up and you cannot pass them on.</p></div><p class="bd give"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10h12M11 5l5 5-5 5"/></svg><span>Your costliest process, done a better way, tested on your own past records before anyone changes how they work.</span></p></li>
- <li class="door"><span class="n">02</span><div class="painwrap"><span class="dept"><span class="label muted">Finance</span> <span class="dtag is-first">First move</span></span><p class="pain">Customers owe you more than they should.</p></div><p class="bd give"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10h12M11 5l5 5-5 5"/></svg><span>What is owed to you across your companies, sorted, and a steady routine to bring it in.</span></p></li>
- <li class="door"><span class="n">03</span><div class="painwrap"><span class="dept"><span class="label muted">MIS and reporting</span></span><p class="pain">You find out late, from numbers built by hand.</p></div><p class="bd give"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10h12M11 5l5 5-5 5"/></svg><span>One page across every company you own.</span></p></li>
- <li class="door"><span class="n">04</span><div class="painwrap"><span class="dept"><span class="label muted">IT and vendors</span></span><p class="pain">Your staff already use AI tools, and vendors want renewals.</p></div><p class="bd give"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10h12M11 5l5 5-5 5"/></svg><span>AI in your business, listed and under your control.</span></p></li>
- <li class="door"><span class="n">05</span><div class="painwrap"><span class="dept"><span class="label muted">Owner's office</span></span><p class="pain">A handover, a new chief executive, a sale or a listing.</p></div><p class="bd give"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 10h12M11 5l5 5-5 5"/></svg><span>The decisions only you make, written down and tested.</span></p></li>
- </ol>
+ <ul class="fxs"><li class="fx"><span class="fx-ic"><svg viewBox="0 0 96 96" aria-hidden="true"><rect x="8" y="34" width="14" height="30" rx="2" fill="#fff" stroke="#101010" stroke-width="3"/><rect x="74" y="34" width="14" height="30" rx="2" fill="#fff" stroke="#101010" stroke-width="3"/>
+<path d="M22 49 H32 M64 49 H74" stroke="#101010" stroke-width="3" stroke-linecap="round"/>
+<path d="M2 49 H8 M88 49 H94" stroke="#1A1AFF" stroke-width="3" stroke-linecap="round"/><path d="M3 43 L9 49 L3 55 M93 43 L87 49 L93 55" fill="none" stroke="#1A1AFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="48" cy="49" rx="11" ry="17" fill="#FFC800" stroke="#101010" stroke-width="3"/><text x="48" y="55" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="700" font-size="15" fill="#101010">₹</text>
+<path d="M48 70 c3 5 4 7 4 9 a4 4 0 0 1 -8 0 c0 -2 1 -4 4 -9z" fill="#FFC800" stroke="#101010" stroke-width="1.5"/></svg></span><span class="fx-p">Costs up, prices stuck</span><span class="fx-g">Your costliest process, done a better way</span></li><li class="fx"><span class="fx-ic"><svg viewBox="0 0 96 96" aria-hidden="true"><rect x="18" y="14" width="46" height="60" rx="3" fill="#fff" fill="none" stroke="#101010" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M28 28 H54 M28 38 H54 M28 48 H44" fill="none" stroke="#101010" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="66" cy="66" r="16" fill="#fff" stroke="#1A1AFF" stroke-width="3"/>
+<path d="M66 57 V66 L73 71" fill="none" stroke="#1A1AFF" stroke-width="3" stroke-linecap="round"/>
+<circle cx="30" cy="64" r="9" fill="#FFC800" stroke="#101010" stroke-width="2"/><text x="30" y="68.5" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="700" font-size="12" fill="#101010">₹</text></svg></span><span class="fx-p">Customers paying late</span><span class="fx-g">Every overdue invoice, followed up on time</span><span class="dtag is-first red">Often first</span></li><li class="fx"><span class="fx-ic"><svg viewBox="0 0 96 96" aria-hidden="true"><circle cx="22" cy="34" r="8" fill="none" stroke="#101010" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 64 C10 52 34 52 34 64" fill="none" stroke="#101010" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="48" cy="34" r="8" fill="none" stroke="#101010" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 64 C36 52 60 52 60 64" fill="none" stroke="#101010" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="74" cy="34" r="8" fill="none" stroke="#101010" stroke-width="3" stroke-dasharray="3 4"/><path d="M62 64 C62 52 86 52 86 64" fill="none" stroke="#101010" stroke-width="3" stroke-dasharray="3 4" stroke-linecap="round"/>
+<path d="M66 78 H88 M82 72 L88 78 L82 84" fill="none" stroke="#1A1AFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="fx-p">Good people leaving</span><span class="fx-g">Routine work off your best people</span></li><li class="fx"><span class="fx-ic"><svg viewBox="0 0 96 96" aria-hidden="true"><rect x="14" y="20" width="56" height="56" rx="3" fill="#fff" fill="none" stroke="#101010" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14 34 H70 M28 14 V26 M56 14 V26" fill="none" stroke="#101010" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M24 46 H36 M44 46 H60 M24 58 H36 M44 58 H60" fill="none" stroke="#101010" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="72" cy="70" r="14" fill="#fff" stroke="#1A1AFF" stroke-width="3"/>
+<path d="M72 62 V70 L78 74" fill="none" stroke="#1A1AFF" stroke-width="3" stroke-linecap="round"/></svg></span><span class="fx-p">Numbers always late</span><span class="fx-g">One page across your companies, every week</span></li><li class="fx"><span class="fx-ic"><svg viewBox="0 0 96 96" aria-hidden="true"><path d="M20 44 L48 32 L76 44 L76 74 L48 86 L20 74 Z" fill="#fff" stroke="#101010" stroke-width="3" stroke-linejoin="round"/>
+<path d="M20 44 L48 56 L76 44 M48 56 V86" fill="none" stroke="#101010" stroke-width="3" stroke-linejoin="round"/>
+<path d="M30 20 A20 13 0 0 1 70 20" fill="none" stroke="#1A1AFF" stroke-width="3.5" stroke-linecap="round"/>
+<path d="M63 13 L70 20 L62 25" fill="none" stroke="#1A1AFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M40 62 L56 74 M56 62 L40 74" stroke="#1A1AFF" stroke-width="3.5" stroke-linecap="round" transform="translate(-14 4)"/></svg></span><span class="fx-p">Too much made twice</span><span class="fx-g">Defects caught earlier</span></li><li class="fx"><span class="fx-ic"><svg viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="44" r="9" fill="#FFC800" stroke="#101010" stroke-width="3"/><path d="M34 74 C34 58 62 58 62 74" fill="none" stroke="#101010" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10 20 L30 34 M86 20 L66 34 M8 50 L28 48 M88 50 L68 48 M48 8 V24" fill="none" stroke="#1A1AFF" stroke-width="3" stroke-linecap="round"/>
+<path d="M26 30 L30 34 L25 36 M70 30 L66 34 L71 36 M24 45 L28 48 L24 51 M72 45 L68 48 L72 51 M44 20 L48 24 L52 20" fill="none" stroke="#1A1AFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="fx-p">All on your desk</span><span class="fx-g">Decisions arrive with the facts ready</span></li></ul>
 </section>
 
 <!-- HOW IT WORKS -->
 <section class="how" aria-labelledby="h-how">
  <div class="wrap sec">
- <div class="sec-head">
- <p class="label">How it works</p>
- <h2 class="hd" id="h-how">A Map first. Then we run the parts that pay.</h2>
- </div>
- <ol class="steps">
- <li class="step step--first"><div class="k"><span class="dot">1</span><span class="label">Start here</span></div><h3 class="h3">Map</h3><p class="bd">A review across the whole business, two to three weeks, for a fee agreed up front.</p><p class="tag">Always paid, and the fee never depends on what you buy next.</p></li>
- <li class="step"><div class="k"><span class="dot">2</span><span class="label muted">If you choose</span></div><h3 class="h3">Run</h3><p class="bd">AI agents do the work, named professionals sign off, and you see the result every week.</p><p class="tag">We connect, test on your past records, run in shadow beside your people, and switch on only with your sign-off, within 90 days.</p></li>
- <li class="step"><div class="k"><span class="dot">3</span><span class="label muted">Alongside</span></div><h3 class="h3">Guide</h3><p class="bd">Independent advice on your side, on AI, vendors and the board, with no fees from vendors.</p><p class="tag">Covers AI policy and oversight, vendor choice and renewals, readiness for India’s data protection duties, and a quarterly review of your Map.</p></li>
- </ol>
+  <div class="sec-head">
+   <p class="label">How it works</p>
+   <h2 class="hd" id="h-how">A Map first. Then we run the parts that pay.</h2>
+  </div>
+  <ol class="steps">
+   <li class="step step--first"><div class="k"><span class="dot">1</span><span class="label">Start here</span></div><h3 class="h3">Map</h3><p class="bd">We find where AI would make you the most money, across the whole business, in two to three weeks.</p><p class="tag">Always paid, for a fee agreed up front. It never depends on what you buy next.</p></li>
+   <li class="step"><div class="k"><span class="dot">2</span><span class="label muted">If you choose</span></div><h3 class="h3">Run</h3><p class="bd">We run the moves you choose. AI does the routine work, a named professional checks it and signs off, and you see the result every week.</p><p class="tag">Live within 90 days, and only with your sign-off. No AI and no one from Intellumia ever signs your statutory filings.</p></li>
+   <li class="step"><div class="k"><span class="dot">3</span><span class="label muted">Alongside</span></div><h3 class="h3">Guide</h3><p class="bd">Independent advice on AI, vendors and your board. We take no fees from vendors.</p><p class="tag">Covers AI policy and oversight, vendor choice and renewals, readiness for India’s data protection duties, and a quarterly review of your Map.</p></li>
+  </ol>
+  <div class="ex">
+   <p class="label">One example, step by step</p>
+   <h3 class="h3 ex-h">From an overdue invoice to money collected.</h3>
+   <ol class="ex-grid">
+    <li><span class="ex-n">1</span><span class="ex-who">AI</span><span class="ex-art"><svg viewBox="0 0 240 140" aria-hidden="true"><rect x="18" y="22" width="54" height="70" rx="3" fill="#fff" stroke="#101010" stroke-width="2"/><path d="M28 40h34" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M28 48h24" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M28 56h34" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M28 64h24" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><circle cx="58" cy="78" r="9" fill="#FFC800" stroke="#101010" stroke-width="1.8"/><text x="58" y="82" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="700" font-size="10" fill="#101010">₹</text><rect x="26" y="100" width="46" height="24" rx="3" fill="#fff" stroke="#101010" stroke-width="2"/><path d="M34 112h16" stroke="#1A1AFF" stroke-width="3" stroke-linecap="round"/><rect x="84" y="34" width="56" height="38" rx="3" fill="#fff" stroke="#101010" stroke-width="2"/><path d="M84 36l28 20 28-20" fill="none" stroke="#101010" stroke-width="2"/><path d="M150 64h20m-6-6l6 6-6 6" fill="none" stroke="#1A1AFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="178" y="30" width="48" height="64" rx="3" fill="#fff" stroke="#1A1AFF" stroke-width="2" stroke-dasharray="5 4"/><text x="202" y="72" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="700" font-size="30" fill="#1A1AFF">?</text><text x="202" y="114" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="600" font-size="11" letter-spacing="1" fill="#1A1AFF">MISSING</text></svg></span><h4>Reads the record</h4><p>Invoice, payments and emails in one view. It spots that the customer asked for a delivery note.</p></li>
+    <li><span class="ex-n">2</span><span class="ex-who">AI</span><span class="ex-art"><svg viewBox="0 0 240 140" aria-hidden="true"><rect x="22" y="26" width="56" height="74" rx="3" fill="#fff" stroke="#101010" stroke-width="2"/><path d="M32 44h36" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M32 52h26" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M32 60h36" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M32 68h26" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M32 76h36" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M30 100l10-12 8 8 14-18" fill="none" stroke="#1A1AFF" stroke-width="0"/><rect x="40" y="18" width="18" height="16" rx="3" fill="#1A1AFF"/><path d="M45 26l3 3 6-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M88 64h16m-6-6l6 6-6 6" fill="none" stroke="#1A1AFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="114" y="22" width="106" height="88" rx="4" fill="#fff" stroke="#101010" stroke-width="2"/><path d="M114 40h106" stroke="#DDD8CC" stroke-width="2"/><path d="M126 54h80" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M126 62h70" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M126 70h80" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M126 78h70" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M190 90l12 0" stroke="#DDD8CC" stroke-width="3"/><rect x="126" y="88" width="34" height="12" rx="3" fill="none" stroke="#101010" stroke-width="1.6"/><path d="M131 94h24" stroke="#101010" stroke-width="1.6"/><text x="208" y="35" text-anchor="end" font-family="Anek Latin,sans-serif" font-weight="600" font-size="10" letter-spacing="1" fill="#5E5B55">DRAFT</text></svg></span><h4>Prepares the next step</h4><p>It finds the delivery note and drafts the follow-up.</p></li>
+    <li class="ex-people"><span class="ex-n">3</span><span class="ex-who">Your people</span><span class="ex-art"><svg viewBox="0 0 240 140" aria-hidden="true"><rect x="30" y="16" width="180" height="108" rx="4" fill="#fff" stroke="#101010" stroke-width="2"/><path d="M44 34h120" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M44 42h110" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M44 50h120" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><rect x="44" y="76" width="96" height="30" rx="6" fill="#1A1AFF"/><path d="M58 91l6 6 11-12" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><text x="84" y="96" font-family="Anek Latin,sans-serif" font-weight="600" font-size="14" fill="#fff">Approve</text><rect x="150" y="76" width="46" height="30" rx="6" fill="#fff" stroke="#101010" stroke-width="1.8"/><text x="173" y="96" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="600" font-size="14" fill="#101010">Edit</text></svg></span><h4>Decide</h4><p>Your finance team approves what goes to the customer. A named professional reviews the exceptions.</p></li>
+    <li><span class="ex-n">4</span><span class="ex-who">You</span><span class="ex-art"><svg viewBox="0 0 240 140" aria-hidden="true"><path d="M24 112h192" stroke="#101010" stroke-width="2"/><rect x="34" y="48" width="16" height="64" rx="2" fill="#1A1AFF" opacity="0.35"/><rect x="60" y="56" width="16" height="56" rx="2" fill="#1A1AFF" opacity="0.48"/><rect x="86" y="66" width="16" height="46" rx="2" fill="#1A1AFF" opacity="0.61"/><rect x="112" y="74" width="16" height="38" rx="2" fill="#1A1AFF" opacity="0.74"/><rect x="138" y="82" width="16" height="30" rx="2" fill="#1A1AFF" opacity="0.87"/><rect x="164" y="90" width="16" height="22" rx="2" fill="#1A1AFF" opacity="1.00"/><path d="M42 40 L190 30" stroke="#DDD8CC" stroke-width="0"/><circle cx="204" cy="34" r="13" fill="#FFC800" stroke="#101010" stroke-width="1.8"/><text x="204" y="38" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="700" font-size="15" fill="#101010">₹</text><path d="M170 46l20-8" stroke="#1A1AFF" stroke-width="0"/><text x="24" y="130" font-family="Anek Latin,sans-serif" font-weight="600" font-size="10" letter-spacing="1" fill="#5E5B55">OVERDUE, WEEK BY WEEK</text></svg></span><h4>See the result</h4><p>Every week: days to collect, overdue balance and the time your team spent.</p></li>
+   </ol>
+   <p class="ex-cap">Illustrative, not a client.</p>
+  </div>
  </div>
 </section>
 
 <!-- THE MAP -->
 <section class="wrap sec" aria-labelledby="h-map">
  <div class="sec-head">
- <p class="label">The Map</p>
- <h2 class="hd" id="h-map">Two to three weeks. Your numbers. Your choice.</h2>
- <p class="ld meeting">In two to three weeks, starting from summaries of your own books, we show you the two or three places AI would make your business the most money, and what each is worth. Then we run the ones you choose.</p>
+  <p class="label">The Map</p>
+  <h2 class="hd" id="h-map">Two to three weeks. Your numbers. Your choice.</h2>
  </div>
- <div class="mapwide"><figure class="mapfig">
- <svg class="map-lg" viewBox="0 0 560 400" role="img" aria-label="Illustration of a Map: sixteen activities across sales, operations, finance and people, each with a bar for what it is worth. Collections is the first move; passing on costs and quality checks are the next moves.">
-<style>.t{font:500 14px 'Anek Latin',sans-serif;fill:#101010}.th{font:600 11.5px 'Anek Latin',sans-serif;letter-spacing:.12em;fill:#5E5B55}.tw{font:600 14px 'Anek Latin',sans-serif;fill:#fff}.tk{font:600 10.5px 'Anek Latin',sans-serif;letter-spacing:.1em;fill:#1A1AFF}.tkw{font:600 10.5px 'Anek Latin',sans-serif;letter-spacing:.1em;fill:#fff}.lg{font:500 13px 'Anek Latin',sans-serif;fill:#5E5B55}</style>
-<text class="th" x="0" y="16">SALES</text>
-<text class="th" x="142" y="16">OPERATIONS</text>
-<text class="th" x="284" y="16">FINANCE</text>
-<text class="th" x="426" y="16">PEOPLE</text>
-<line x1="0" y1="27" x2="560" y2="27" stroke="#101010"/>
-<g transform="translate(0,40)"><rect x=".5" y=".5" width="133" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t" x="10" y="40">Quoting</text></g>
-<g transform="translate(0,118)"><rect x=".75" y=".75" width="132.5" height="68.5" rx="4" fill="#fff" stroke="#1A1AFF" stroke-width="1.5"/><text class="tk" x="10" y="20">MOVE 2</text><text class="t" x="10" y="40">Passing on costs</text><rect x="10" y="54" width="114" height="6" rx="3" fill="#EEEAE0"/><rect x="10" y="54" width="96" height="6" rx="3" fill="#1A1AFF"/></g>
-<g transform="translate(0,196)"><rect x=".5" y=".5" width="133" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t" x="10" y="40">Order intake</text></g>
-<g transform="translate(0,274)"><rect x=".5" y=".5" width="133" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t" x="10" y="40">Discount control</text></g>
-<g transform="translate(142,40)"><rect x=".5" y=".5" width="133" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t" x="10" y="40">Scheduling</text></g>
-<g transform="translate(142,118)"><rect x=".5" y=".5" width="133" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t" x="10" y="40">Purchase</text></g>
-<g transform="translate(142,196)"><rect x=".75" y=".75" width="132.5" height="68.5" rx="4" fill="#fff" stroke="#1A1AFF" stroke-width="1.5"/><text class="tk" x="10" y="20">MOVE 3</text><text class="t" x="10" y="40">Quality checks</text><rect x="10" y="54" width="114" height="6" rx="3" fill="#EEEAE0"/><rect x="10" y="54" width="80" height="6" rx="3" fill="#1A1AFF"/></g>
-<g transform="translate(142,274)"><rect x=".5" y=".5" width="133" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t" x="10" y="40">Dispatch</text></g>
-<g transform="translate(284,40)"><rect x=".5" y=".5" width="133" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t" x="10" y="40">Billing</text></g>
-<g transform="translate(284,118)"><rect width="134" height="70" rx="4" fill="#1A1AFF"/><text class="tkw" x="10" y="20">FIRST MOVE</text><text class="tw" x="10" y="40">Collections</text><rect x="10" y="54" width="114" height="6" rx="3" fill="#5252FF"/><rect x="10" y="54" width="109" height="6" rx="3" fill="#fff"/></g>
-<g transform="translate(284,196)"><rect x=".5" y=".5" width="133" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t" x="10" y="40">Reconciliation</text></g>
-<g transform="translate(284,274)"><rect x=".5" y=".5" width="133" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t" x="10" y="40">Cash forecast</text></g>
-<g transform="translate(426,40)"><rect x=".5" y=".5" width="133" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t" x="10" y="40">Hiring</text></g>
-<g transform="translate(426,118)"><rect x=".5" y=".5" width="133" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t" x="10" y="40">Training</text></g>
-<g transform="translate(426,196)"><rect x=".5" y=".5" width="133" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t" x="10" y="40">Shift planning</text></g>
-<g transform="translate(426,274)"><rect x=".5" y=".5" width="133" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t" x="10" y="40">Shift handovers</text></g>
-<line x1="0" y1="360" x2="560" y2="360" stroke="#DDD8CC"/>
-
-<rect x="0" y="376" width="14" height="14" rx="3" fill="#1A1AFF"/><text class="lg" x="21" y="387">First move</text>
-<rect x="116.75" y="376.75" width="12.5" height="12.5" rx="3" fill="#fff" stroke="#1A1AFF" stroke-width="1.5"/><text class="lg" x="137" y="387">Next moves</text>
-</svg>
-<svg class="map-sm" viewBox="0 0 340 352" role="img" aria-label="Illustration of a Map, sales and finance shown: collections is the first move, passing on costs the next.">
-<style>.t2{font:500 15px 'Anek Latin',sans-serif;fill:#101010}.th2{font:600 11.5px 'Anek Latin',sans-serif;letter-spacing:.12em;fill:#5E5B55}.tw2{font:600 15px 'Anek Latin',sans-serif;fill:#fff}.tk2{font:600 11px 'Anek Latin',sans-serif;letter-spacing:.1em;fill:#1A1AFF}.tkw2{font:600 11px 'Anek Latin',sans-serif;letter-spacing:.1em;fill:#fff}</style>
-<text class="th2" x="0" y="16">SALES</text>
-<text class="th2" x="174" y="16">FINANCE</text>
-<line x1="0" y1="27" x2="340" y2="27" stroke="#101010"/>
-<g transform="translate(0,40)"><rect x=".5" y=".5" width="165" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t2" x="10" y="40">Quoting</text></g>
-<g transform="translate(0,118)"><rect x=".75" y=".75" width="164.5" height="68.5" rx="4" fill="#fff" stroke="#1A1AFF" stroke-width="1.5"/><text class="tk2" x="10" y="20">MOVE 2</text><text class="t2" x="10" y="41">Passing on costs</text><rect x="10" y="54" width="146" height="6" rx="3" fill="#EEEAE0"/><rect x="10" y="54" width="123" height="6" rx="3" fill="#1A1AFF"/></g>
-<g transform="translate(0,196)"><rect x=".5" y=".5" width="165" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t2" x="10" y="40">Order intake</text></g>
-<g transform="translate(0,274)"><rect x=".5" y=".5" width="165" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t2" x="10" y="40">Discount control</text></g>
-<g transform="translate(174,40)"><rect x=".5" y=".5" width="165" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t2" x="10" y="40">Billing</text></g>
-<g transform="translate(174,118)"><rect width="166" height="70" rx="4" fill="#1A1AFF"/><text class="tkw2" x="10" y="20">FIRST MOVE</text><text class="tw2" x="10" y="41">Collections</text><rect x="10" y="54" width="146" height="6" rx="3" fill="#5252FF"/><rect x="10" y="54" width="140" height="6" rx="3" fill="#fff"/></g>
-<g transform="translate(174,196)"><rect x=".5" y=".5" width="165" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t2" x="10" y="40">Reconciliation</text></g>
-<g transform="translate(174,274)"><rect x=".5" y=".5" width="165" height="69" rx="4" fill="#fff" stroke="#DDD8CC"/><text class="t2" x="10" y="40">Cash forecast</text></g>
-</svg>
- <figcaption>Illustration of a Map, not a client.</figcaption>
+ <div class="m3">
+  <div class="mapwide"><figure class="mapfig">
+  <svg class="map-lg" viewBox="0 0 1190 400" role="img" aria-label="Illustration of a Map as a heat map: the darker the cell, the more money at stake. Collections is the first move; passing on costs and quality checks are the next moves."><style>.t{font:500 15px 'Anek Latin',sans-serif;fill:#101010}.th{font:600 12px 'Anek Latin',sans-serif;letter-spacing:.12em;fill:#5E5B55}.tw{font:600 15px 'Anek Latin',sans-serif;fill:#fff}.tk{font:600 10.5px 'Anek Latin',sans-serif;letter-spacing:.1em;fill:#101010}.tkw{font:600 10.5px 'Anek Latin',sans-serif;letter-spacing:.1em;fill:#fff}.lg{font:500 13px 'Anek Latin',sans-serif;fill:#5E5B55}</style><text class="th" x="0" y="16">SALES</text><g transform="translate(0,40)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">Quoting</text></g><g transform="translate(0,118)"><rect width="140" height="70" rx="4" fill="#00C2FF"/><text class="tk" x="10" y="24">MOVE 2</text><text class="t" x="10" y="48">Passing on costs</text></g><g transform="translate(0,196)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#FFFFFF" stroke="#DDD8CC"/><text class="t" x="10" y="41">Order intake</text></g><g transform="translate(0,274)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#99E6FF" stroke="none"/><text class="t" x="10" y="41">Discount control</text></g><text class="th" x="150" y="16">MARKETING</text><g transform="translate(150,40)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">Lead follow-up</text></g><g transform="translate(150,118)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#FFFFFF" stroke="#DDD8CC"/><text class="t" x="10" y="41">Campaigns</text></g><g transform="translate(150,196)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#FFFFFF" stroke="#DDD8CC"/><text class="t" x="10" y="41">Dealer network</text></g><g transform="translate(150,274)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#FFFFFF" stroke="#DDD8CC"/><text class="t" x="10" y="41">Market insight</text></g><text class="th" x="300" y="16">SERVICE</text><g transform="translate(300,40)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#99E6FF" stroke="none"/><text class="t" x="10" y="41">Customer queries</text></g><g transform="translate(300,118)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">Complaints</text></g><g transform="translate(300,196)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">Warranty claims</text></g><g transform="translate(300,274)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#FFFFFF" stroke="#DDD8CC"/><text class="t" x="10" y="41">Service visits</text></g><text class="th" x="450" y="16">OPERATIONS</text><g transform="translate(450,40)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">Scheduling</text></g><g transform="translate(450,118)"><rect width="140" height="70" rx="4" fill="#00C2FF"/><text class="tk" x="10" y="24">MOVE 3</text><text class="t" x="10" y="48">Quality checks</text></g><g transform="translate(450,196)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#99E6FF" stroke="none"/><text class="t" x="10" y="41">Maintenance</text></g><g transform="translate(450,274)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#FFFFFF" stroke="#DDD8CC"/><text class="t" x="10" y="41">Dispatch</text></g><text class="th" x="600" y="16">SUPPLY CHAIN</text><g transform="translate(600,40)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#99E6FF" stroke="none"/><text class="t" x="10" y="41">Purchase</text></g><g transform="translate(600,118)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#99E6FF" stroke="none"/><text class="t" x="10" y="41">Inventory</text></g><g transform="translate(600,196)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#FFFFFF" stroke="#DDD8CC"/><text class="t" x="10" y="41">Vendor follow-up</text></g><g transform="translate(600,274)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">Logistics</text></g><text class="th" x="750" y="16">FINANCE</text><g transform="translate(750,40)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">Billing</text></g><g transform="translate(750,118)"><rect width="140" height="70" rx="4" fill="#FF3D00"/><text class="tkw" x="10" y="24">FIRST MOVE</text><text class="tw" x="10" y="48">Collections</text></g><g transform="translate(750,196)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#99E6FF" stroke="none"/><text class="t" x="10" y="41">Reconciliation</text></g><g transform="translate(750,274)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">Cash forecast</text></g><text class="th" x="900" y="16">PEOPLE</text><g transform="translate(900,40)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#FFFFFF" stroke="#DDD8CC"/><text class="t" x="10" y="41">Hiring</text></g><g transform="translate(900,118)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#FFFFFF" stroke="#DDD8CC"/><text class="t" x="10" y="41">Training</text></g><g transform="translate(900,196)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">Shift planning</text></g><g transform="translate(900,274)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#FFFFFF" stroke="#DDD8CC"/><text class="t" x="10" y="41">Payroll</text></g><text class="th" x="1050" y="16">COMPLIANCE</text><g transform="translate(1050,40)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">GST and tax</text></g><g transform="translate(1050,118)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#FFFFFF" stroke="#DDD8CC"/><text class="t" x="10" y="41">Contracts</text></g><g transform="translate(1050,196)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#FFFFFF" stroke="#DDD8CC"/><text class="t" x="10" y="41">Audits</text></g><g transform="translate(1050,274)"><rect x=".5" y=".5" width="139" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">Documentation</text></g><line x1="0" y1="27" x2="1190" y2="27" stroke="#101010"/><line x1="0" y1="360" x2="1190" y2="360" stroke="#DDD8CC"/><rect x="0" y="376" width="14" height="14" rx="3" fill="#FF3D00"/><text class="lg" x="21" y="387">First move</text><text class="lg" x="130" y="387">Less</text><rect x="164" y="376" width="16" height="14" rx="3" fill="#FFFFFF" stroke="#DDD8CC" stroke-width="1"/><rect x="184" y="376" width="16" height="14" rx="3" fill="#E0F8FF" stroke="#DDD8CC" stroke-width="0"/><rect x="204" y="376" width="16" height="14" rx="3" fill="#99E6FF" stroke="#DDD8CC" stroke-width="0"/><rect x="224" y="376" width="16" height="14" rx="3" fill="#00C2FF" stroke="#DDD8CC" stroke-width="0"/><text class="lg" x="248" y="387">More money at stake</text></svg>
+<svg class="map-sm" viewBox="0 0 340 360" role="img" aria-label="Illustration of a Map as a heat map: the darker the cell, the more money at stake. Collections is the first move; passing on costs and quality checks are the next moves."><style>.t{font:500 15px 'Anek Latin',sans-serif;fill:#101010}.th{font:600 12px 'Anek Latin',sans-serif;letter-spacing:.12em;fill:#5E5B55}.tw{font:600 15px 'Anek Latin',sans-serif;fill:#fff}.tk{font:600 10.5px 'Anek Latin',sans-serif;letter-spacing:.1em;fill:#101010}.tkw{font:600 10.5px 'Anek Latin',sans-serif;letter-spacing:.1em;fill:#fff}.lg{font:500 13px 'Anek Latin',sans-serif;fill:#5E5B55}</style><text class="th" x="0" y="16">SALES</text><g transform="translate(0,40)"><rect x=".5" y=".5" width="164" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">Quoting</text></g><g transform="translate(0,118)"><rect width="165" height="70" rx="4" fill="#00C2FF"/><text class="tk" x="10" y="24">MOVE 2</text><text class="t" x="10" y="48">Passing on costs</text></g><g transform="translate(0,196)"><rect x=".5" y=".5" width="164" height="69" rx="4" fill="#FFFFFF" stroke="#DDD8CC"/><text class="t" x="10" y="41">Order intake</text></g><g transform="translate(0,274)"><rect x=".5" y=".5" width="164" height="69" rx="4" fill="#99E6FF" stroke="none"/><text class="t" x="10" y="41">Discount control</text></g><text class="th" x="175" y="16">FINANCE</text><g transform="translate(175,40)"><rect x=".5" y=".5" width="164" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">Billing</text></g><g transform="translate(175,118)"><rect width="165" height="70" rx="4" fill="#FF3D00"/><text class="tkw" x="10" y="24">FIRST MOVE</text><text class="tw" x="10" y="48">Collections</text></g><g transform="translate(175,196)"><rect x=".5" y=".5" width="164" height="69" rx="4" fill="#99E6FF" stroke="none"/><text class="t" x="10" y="41">Reconciliation</text></g><g transform="translate(175,274)"><rect x=".5" y=".5" width="164" height="69" rx="4" fill="#E0F8FF" stroke="none"/><text class="t" x="10" y="41">Cash forecast</text></g><line x1="0" y1="27" x2="340" y2="27" stroke="#101010"/></svg>
+  <figcaption>Illustration of a Map, not a client.</figcaption>
  </figure></div>
- <div class="mapgrid">
- <div>
- <h3 class="h3 gets-head">What the Map gives you</h3>
- <ul class="gets bd">
- <li><svg viewBox="0 0 20 20" fill="none" stroke="#1A1AFF" stroke-width="1.8" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>A one-page map of the money in your business.</span></li>
- <li><svg viewBox="0 0 20 20" fill="none" stroke="#1A1AFF" stroke-width="1.8" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>Two or three priced moves, with one named first move.</span></li>
- <li><svg viewBox="0 0 20 20" fill="none" stroke="#1A1AFF" stroke-width="1.8" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>A baseline for each move, measured on your own data.</span></li>
- <li><svg viewBox="0 0 20 20" fill="none" stroke="#1A1AFF" stroke-width="1.8" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>One working proof on your data for the first move.</span></li>
- <li><svg viewBox="0 0 20 20" fill="none" stroke="#1A1AFF" stroke-width="1.8" aria-hidden="true"><path d="M4 10.5l4 4 8-9"/></svg><span>At least two ways to do each move, one of them not Intellumia.</span></li>
- </ul>
- <p class="bd muted time">Your time: about 20 to 40 hours of your staff across the two to three weeks. We agree it with you before we start.</p>
+  <div class="m3-q"><h3 class="h3">Every move answers four questions</h3><ol class="q4s"><li><span class="qn">1</span>What could it make you?</li><li><span class="qn">2</span>What would it cost?</li><li><span class="qn">3</span>What needs to be true?</li><li><span class="qn">4</span>How will we measure it?</li></ol><p class="m2-note">You see the working. You choose the moves.</p></div>
  </div>
- <div>
- <h3 class="h3 weeks-head">How the weeks run</h3>
- <ol class="weeks">
- <li class="wk"><span class="w">Start</span><p class="bd">Kick-off. We ask for summaries only, never all your books on day one.</p></li>
- <li class="wk"><span class="w">Week 1</span><p class="bd">Interviews with you and four to six heads of function. We find out what systems and data you have.</p></li>
- <li class="wk"><span class="w">Week 2</span><p class="bd">We value each move and test the top ones on your past records.</p></li>
- <li class="wk"><span class="w">Week 3</span><p class="bd">The readout, to you alone.</p></li>
- </ol>
- </div>
- </div>
+ <ol class="wk2"><li><span class="w2">Start</span><span>Summaries only</span></li><li><span class="w2">Week 1</span><span>Interviews with you and your team</span></li><li><span class="w2">Week 2</span><span>Each move valued and tested on your records</span></li><li><span class="w2">Week 3</span><span>The readout, to you alone</span></li></ol>
+ <p class="m2-note">About 20 to 40 hours of your staff's time, agreed before we start.</p>
 </section>
 
 <!-- RULES -->
 <section class="how" aria-labelledby="h-rules">
- <div class="wrap sec split">
- <div class="sec-head">
- <p class="label">Our rules</p>
- <h2 class="hd" id="h-rules">On your side of the table, in writing.</h2>
- </div>
- <ol class="rules">
- <li class="rule"><span class="n">01</span><span>Every move is valued in your numbers before you spend anything.</span></li>
- <li class="rule"><span class="n">02</span><span>You choose each move, in writing, from at least two ways to do it.</span></li>
- <li class="rule"><span class="n">03</span><span>We take no fees from vendors. No referral fees, no resale margins.</span></li>
- <li class="rule"><span class="n">04</span><span>Where we run the work, a named professional signs off.</span></li>
- <li class="rule"><span class="n">05</span><span>Your data stays in your environment, with models that neither keep nor train on it.</span></li>
- <li class="rule"><span class="n">06</span><span>Your data, your configuration and your running instance are yours, with the right to run it without us.</span></li>
- </ol>
+ <div class="wrap sec">
+  <div class="sec-head">
+   <p class="label">Our rules</p>
+   <h2 class="hd" id="h-rules">On your side of the table, in writing.</h2>
+  </div>
+  <ol class="r2s"><li class="r2"><span class="r2-ic"><svg viewBox="0 0 96 64" aria-hidden="true"><path d="M8 56h64" stroke="#101010" stroke-width="2.5" stroke-linecap="round"/><rect x="14" y="38" width="10" height="18" rx="1.5" fill="#fff" stroke="#101010" stroke-width="2.5"/><rect x="32" y="28" width="10" height="28" rx="1.5" fill="#fff" stroke="#101010" stroke-width="2.5"/><rect x="50" y="18" width="10" height="38" rx="1.5" fill="#1A1AFF" stroke="#101010" stroke-width="2.5"/><g opacity="1"><circle cx="76" cy="16" r="10" fill="#FFC800" stroke="#101010" stroke-width="2"/><text x="76" y="20.5" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="700" font-size="12" fill="#101010">₹</text></g></svg></span><span class="n2">01</span><h3 class="r2-t">Valued first</h3><p>Every move is valued in your numbers before you commit to any build.</p></li><li class="r2"><span class="r2-ic"><svg viewBox="0 0 96 64" aria-hidden="true"><g opacity="1"><circle cx="26" cy="32" r="16" fill="#FFC800" stroke="#101010" stroke-width="2"/><text x="26" y="39.2" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="700" font-size="20" fill="#101010">₹</text></g><path d="M44 26l8 6-8 6" fill="none" stroke="#101010" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><g opacity=".35"><circle cx="72" cy="32" r="16" fill="#fff" stroke="#101010" stroke-width="2.5"/><path d="M72 22v10l7 5" fill="none" stroke="#101010" stroke-width="2.5" stroke-linecap="round"/></g></svg></span><span class="n2">02</span><h3 class="r2-t">Cash over hours</h3><p>Cash counts at close to full value. Hours saved count for little until we name how they will be used.</p></li><li class="r2"><span class="r2-ic"><svg viewBox="0 0 96 64" aria-hidden="true"><path d="M10 32h22M32 32c10 0 14-14 26-14M32 32c10 0 14 14 26 14" fill="none" stroke="#101010" stroke-width="2.5" stroke-linecap="round"/><circle cx="68" cy="18" r="10" fill="#1A1AFF"/><path d="M63 18l4 4 7-8" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="68" cy="46" r="10" fill="#fff" stroke="#101010" stroke-width="2.5"/></svg></span><span class="n2">03</span><h3 class="r2-t">Your choice, in writing</h3><p>You choose each move, in writing, with at least one way to do it that is not us.</p></li><li class="r2 r2-key"><span class="r2-ic"><svg viewBox="0 0 96 64" aria-hidden="true"><g opacity="1"><circle cx="48" cy="32" r="18" fill="#FFC800" stroke="#101010" stroke-width="2"/><text x="48" y="40.1" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="700" font-size="22" fill="#101010">₹</text></g><circle cx="48" cy="32" r="25" fill="none" stroke="#1A1AFF" stroke-width="3"/><path d="M30 14l36 36" stroke="#1A1AFF" stroke-width="3.5" stroke-linecap="round"/></svg></span><span class="n2">04</span><h3 class="r2-t">No vendor fees</h3><p>No referral fees and no resale margins, ever. Our advice is paid for by you alone.</p></li><li class="r2"><span class="r2-ic"><svg viewBox="0 0 96 64" aria-hidden="true"><rect x="20" y="14" width="40" height="40" rx="4" fill="#fff" stroke="#101010" stroke-width="2.5"/><path d="M28 26h24M28 34h24M28 42h14" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><rect x="56" y="34" width="24" height="20" rx="3" fill="#1A1AFF"/><path d="M61 34v-5a7 7 0 0 1 14 0v5" fill="none" stroke="#1A1AFF" stroke-width="3"/><circle cx="68" cy="44" r="2.6" fill="#fff"/></svg></span><span class="n2">05</span><h3 class="r2-t">Your data stays put</h3><p>In your own environment, with models that neither keep nor train on it.</p></li><li class="r2"><span class="r2-ic"><svg viewBox="0 0 96 64" aria-hidden="true"><circle cx="30" cy="32" r="13" fill="#fff" stroke="#101010" stroke-width="2.5"/><circle cx="30" cy="32" r="4.5" fill="#1A1AFF"/><path d="M43 32h36M68 32v9M76 32v7" fill="none" stroke="#101010" stroke-width="2.5" stroke-linecap="round"/></svg></span><span class="n2">06</span><h3 class="r2-t">Yours to keep</h3><p>What we build with you is yours, with the right to run it without us.</p></li></ol>
  </div>
 </section>
 
 <!-- SUNDEEP -->
 <section class="wrap sec" aria-labelledby="h-sk">
  <div class="person">
- <img src="docs/assets/imagery/sundeep-portrait-2026_720.jpg" srcset="docs/assets/imagery/sundeep-portrait-2026_720.jpg 720w, docs/assets/imagery/sundeep-portrait-2026_890.jpg 890w" sizes="(min-width: 900px) 420px, calc(100vw - 32px)" width="720" height="720" alt="Sundeep Kumar, Founder and CEO of Intellumia" loading="lazy" decoding="async">
- <div>
- <p class="label muted">Who you will work with</p>
- <p class="q">“We will never tell you only Intellumia can solve it. What we build with you is yours.”</p>
- <div class="meta">
- <h2 class="h3" id="h-sk">Sundeep Kumar, Founder &amp; CEO</h2>
- <p class="bd muted">More than two decades at IBM and Microsoft helping large companies across Asia-Pacific change how they work, now on the owner’s side. Based in India.</p>
- <p class="bd"><a href="https://www.linkedin.com/in/kumarsundeep" target="_blank" rel="noopener">Sundeep on LinkedIn</a></p>
+  <img src="docs/assets/imagery/sundeep-portrait-2026_720.jpg" srcset="docs/assets/imagery/sundeep-portrait-2026_720.jpg 720w, docs/assets/imagery/sundeep-portrait-2026_890.jpg 890w" sizes="(min-width: 900px) 420px, calc(100vw - 32px)" width="720" height="720" alt="Sundeep Kumar, Founder and CEO of Intellumia" loading="lazy" decoding="async">
+  <div>
+   <p class="label muted">Who you will work with</p>
+   <p class="q">“AI will do for business what electricity did for factories. The owners who wire up first set the pace for everyone else.”</p>
+   <div class="meta">
+    <h2 class="h3" id="h-sk">Sundeep Kumar, Founder &amp; CEO</h2>
+    <p class="bd muted">Two decades making technology pay for Fortune 1000 companies. Now on the owner’s side.</p>
+    <p class="bd"><a href="https://www.linkedin.com/in/kumarsundeep" target="_blank" rel="noopener">Sundeep on LinkedIn</a></p>
+   </div>
+  </div>
  </div>
- </div>
+</section>
+
+<!-- FAQ -->
+<section class="wrap sec sec--tight" aria-labelledby="h-faq">
+ <div class="faqgrid">
+  <div class="sec-head"><p class="label">Questions owners ask</p><h2 class="hd" id="h-faq">Before you book.</h2></div>
+  <div class="fqs"><details class="fq" open><summary><span>Do we need to know where AI fits first?</span><span class="pl" aria-hidden="true"></span></summary><p>No. Bring the business and the problem. Finding where AI pays is our job, and sometimes the answer is a simpler fix without AI.</p></details><details class="fq"><summary><span>What does a Map cost?</span><span class="pl" aria-hidden="true"></span></summary><p>A fixed fee, agreed before we start and always paid. We share it on the first call, once we know the size of your business.</p></details><details class="fq"><summary><span>Will it work with our systems?</span><span class="pl" aria-hidden="true"></span></summary><p>We start from what you already have: Tally, Excel, your ERP, even paper. The Map needs no new software, and week 1 finds out what data exists.</p></details><details class="fq"><summary><span>Is our data safe?</span><span class="pl" aria-hidden="true"></span></summary><p>We start with summaries, never all your books on day one. Your data stays in your own environment, with models that neither keep nor train on it.</p></details><details class="fq"><summary><span>Will this replace our people?</span><span class="pl" aria-hidden="true"></span></summary><p>It is not built to cut jobs. AI takes the routine work, and your people review and decide. The Map shows where time is freed; what you do with it is your call.</p></details><details class="fq"><summary><span>Are we tied in after the Map?</span><span class="pl" aria-hidden="true"></span></summary><p>No. You keep everything the Map produces. Each move names at least one way to do it without us, and the fee never depends on what you choose next.</p></details></div>
  </div>
 </section>
 
 <!-- CLOSE -->
 <section class="plate" id="close" aria-labelledby="h-close">
  <div class="wrap inner">
- <p class="label">Start with one question</p>
- <h2 class="hd" id="h-close">Where does your business lose the most cash, days or margin today?</h2>
- <div class="cta">
- <a class="btn btn--inv" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Book a call
- <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
- <span class="note">30 minutes, by video. Nothing to prepare.</span>
- </div>
+  <div>
+   <p class="label">Start with one question</p>
+   <h2 class="hd" id="h-close">Where does your business lose the most cash, days or margin today?</h2>
+   <p class="cl-sub">Bring the answer. Leave knowing where AI could pay.</p>
+   <div class="cta">
+    <a class="btn btn--inv" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Book a call
+     <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
+    <span class="note">30 minutes, by video. Nothing to prepare.</span>
+   </div>
+  </div>
  </div>
 </section>
 
