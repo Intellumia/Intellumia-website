@@ -17,8 +17,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="docs/assets/fonts/AnekLatin-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* intellumia.com, one page. Brand System v5.0.4 (strategy v5.0): the approved mockup of 3 Nov 2026,
-   Drive Intellumia/website/mockup/index-motion.html. Anek Latin only, self-hosted; see CLAUDE.md. */
+/* intellumia.com, one page. Brand System v5.0.5 (strategy v5.0): the approved mockup of 4 Nov 2026,
+   Drive Intellumia/website/mockup/index-leaks.html. Anek Latin only, self-hosted; see CLAUDE.md. */
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latin.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap}
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latinext.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20CF,U+2C60-2C7F,U+A720-A7FF}
 
@@ -31,7 +31,6 @@ html{background:var(--ground);color-scheme:light;-webkit-text-size-adjust:100%;s
 body{margin:0;background:var(--ground);color:var(--ink);font-family:'Anek Latin',system-ui,sans-serif;font-size:17px;line-height:1.55;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
 h1,h2,h3,p,ul,ol,figure{margin:0}
-button{font:inherit}
 ul,ol{padding:0;list-style:none}
 a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 :focus-visible{outline:2px solid var(--klein);outline-offset:3px}
@@ -93,26 +92,22 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 .sec-head .label{color:var(--muted)}
 @media(min-width:1000px){.sec-head{margin-bottom:56px}.split{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px;align-items:start}.split>.sec-head{margin-bottom:0;position:sticky;top:32px}}
 
-/* the scene band: a decorative picture, never with words on it (its Pause button aside) */
-.scene{margin:56px 0 0}
-.scene img{width:100%;height:auto;max-height:560px;object-fit:cover}
-/* the plant band (Brand System v5.0.4, mockup index-motion.html): a slow silent loop, the still as poster and for
-   reduced motion, and a small Pause button. site.js adds .js-motion and starts the loop only near the screen;
-   without it, or with reduced motion, the band shows the still. The still takes the video's shape, so nothing moves. */
-.scene--motion{position:relative}
-.scene--motion video{width:100%;height:auto;display:block;aspect-ratio:1280/548;object-fit:cover}
-.scene--motion .scene-still{display:none;max-height:none;aspect-ratio:1280/548}
-.scene-pause{position:absolute;right:16px;bottom:16px;min-height:36px;padding:6px 12px;border:1px solid var(--rule);border-radius:6px;background:#fff;color:var(--ink);font:500 14px 'Anek Latin',sans-serif;cursor:pointer}
-.scene-pause[hidden]{display:none}
-html:not(.js-motion) .scene--motion video,html:not(.js-motion) .scene-pause{display:none}
-html:not(.js-motion) .scene--motion .scene-still{display:block}
-@media(prefers-reduced-motion:reduce){.scene--motion video,.scene-pause{display:none}.scene--motion .scene-still{display:block}}
-@media(min-width:1000px){.scene{margin-top:96px}}
+/* the leaks diagram (Brand System v5.0.5, mockup index-leaks.html): opens "Where it starts", from 900 px only.
+   An inline drawing on a bone panel; its drops fall only for readers who have not asked for reduced motion
+   (that CSS lives inside the drawing). */
+.leaks{margin:0 0 56px;background:var(--bone);border-radius:10px;padding:24px}
+.leaks svg{width:100%;height:auto;display:block}
+.leaks figcaption{margin-top:16px;font-size:14px;line-height:1.45;color:var(--muted);max-width:60em}
+.leaks{display:none}
+@media(min-width:900px){.leaks{display:block;padding:40px}}
 
 /* door stories */
 .doors{border-top:1px solid var(--ink)}
 .door{display:grid;gap:8px;padding:24px 0;border-bottom:1px solid var(--rule)}
 .door .n{font-weight:650;font-stretch:80%;font-size:15px;color:var(--muted)}
+.door .dept{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:8px}
+.dtag{font-weight:600;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--klein);border:1.5px dashed var(--klein);border-radius:6px;padding:2px 8px}
+.dtag.is-first{background:var(--klein);color:#fff;border-style:solid}
 .door .pain{font-weight:620;font-size:22px;line-height:1.25}
 .door .give{color:#2a2926}
 .door .give{display:flex;gap:12px}.door .give svg{flex:none;width:18px;height:18px;margin-top:5px;color:var(--klein)}
