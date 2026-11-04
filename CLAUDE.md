@@ -1,6 +1,6 @@
 # intellumia.com: rules for every change
 
-The site follows Intellumia strategy v5.0 and the Brand System v5.0.4 ("Brand System (current).md" in Drive, brand folder). The page itself is the approved mockup of 3 November 2026: Drive Intellumia/website/mockup/index-motion.html (the same as index.html except the plant band), with its section list in "Website page copy (current).md" beside it, less the corridor scene band, which Sundeep removed on 3 November 2026 (its files are in `_archive/corridor-band-2026-11-03/`). If this file and the Brand System or the mockup disagree, they win; say so in the pull request.
+The site follows Intellumia strategy v5.0 and the Brand System v5.0.5 ("Brand System (current).md" in Drive, brand folder). The page itself is the approved mockup of 4 November 2026: Drive Intellumia/website/mockup/index-leaks.html (Brand System v5.0.5: the leaks diagram replaces the scene bands and the plant loop), with its section list in "Website page copy (current).md" beside it. If this file and the Brand System or the mockup disagree, they win; say so in the pull request.
 
 ## The one-page rule
 
@@ -18,16 +18,15 @@ The page carries the mockup's words and nothing else, in the mockup's order. `sc
 1. Header: the ultramarine wordmark, and the "Talk to Sundeep" button on wide screens (see The action). No navigation.
 2. Hero: the Label "The AI partner for owner-run businesses"; the Statement "Where will AI make your business money? We will show you, then run it." with "money" as the one red word; the short meeting statement; the proof line; the button and its note "30 minutes, by video. We start with your numbers, not with AI."; the Map drawing (four columns on wide screens, two on phones, both inline SVG with a label for screen readers) and its caption, "Illustration of a Map, not a client. ...".
 3. Who we work with: "For owner-run companies across India, where the owner decides and signs the cheque." and the five industries.
-4. The plant scene band: a slow silent loop, with its Pause button.
-5. Where it starts: the five door stories, each an owner's situation and what we give.
-6. How it works: Map (start here), Run (if you choose), Guide (alongside).
-7. The Map: what it gives you, "Your time: about 20 to 40 hours of your staff across the two to three weeks. We agree it with you before we start.", and how the weeks run.
-8. Our rules: six rules.
-9. Sundeep: the black and white portrait (alt "Sundeep Kumar, Founder and CEO of Intellumia"), "Who you will work with", the trust line as his quote, "Sundeep Kumar, Founder & CEO", the founder line, and "Sundeep on LinkedIn" (the same profile is `sameAs` on the Person in the structured data). "Based in India", never a city; never IBM figures or IBM client names.
-10. The close: the ultramarine plate with "Start with one question", the opening question "Where does your business lose the most cash, days or margin today?", the white button and its note.
-11. Footer: the wordmark, "Working with owners across India.", the ACRA-registered address, sundeep@intellumia.com, Privacy, "Intelligence, Illuminated."
+4. Where it starts: the leaks figure (from 900 px only, see The look), then the five door stories, each with its department label (Plant and operations, Finance, MIS and reporting, IT and vendors, Owner's office), the owner's situation and what we give. Finance carries the "First move" tag and Plant and operations the "Next move" tag, at every width.
+5. How it works: Map (start here), Run (if you choose), Guide (alongside).
+6. The Map: what it gives you, "Your time: about 20 to 40 hours of your staff across the two to three weeks. We agree it with you before we start.", and how the weeks run.
+7. Our rules: six rules.
+8. Sundeep: the black and white portrait (alt "Sundeep Kumar, Founder and CEO of Intellumia"), "Who you will work with", the trust line as his quote, "Sundeep Kumar, Founder & CEO", the founder line, and "Sundeep on LinkedIn" (the same profile is `sameAs` on the Person in the structured data). "Based in India", never a city; never IBM figures or IBM client names.
+9. The close: the ultramarine plate with "Start with one question", the opening question "Where does your business lose the most cash, days or margin today?", the white button and its note.
+10. Footer: the wordmark, "Working with owners across India.", the ACRA-registered address, sundeep@intellumia.com, Privacy, "Intelligence, Illuminated."
 
-Title and og:title: "Intellumia, the AI partner for owner-run businesses". Description and og:description: the 25 words, "Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees." The descriptor "an AI-native product company, starting with service" appears on Privacy only. `docs/llms.txt` repeats the page in its own words: who we work with, Map, Run, Guide, the Map, the rules and Sundeep.
+Title and og:title: "Intellumia, the AI partner for owner-run businesses". Description and og:description: the 25 words, "Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees." The descriptor "an AI-native product company, starting with service" appears on Privacy only. `docs/llms.txt` repeats the page in its own words: who we work with, where it starts, Map, Run, Guide, the Map, the rules and Sundeep.
 
 Never on any published surface (page, Privacy, llms.txt, structured data):
 
@@ -45,15 +44,15 @@ Never on any published surface (page, Privacy, llms.txt, structured data):
 
 The mockup's CSS lives in `docs/assets/site.css`, the one stylesheet. Keep its breakpoints (600, 768, 900, 1000 and 1100 px) and sizes.
 
-- Colours: white ground `#FFFFFF`, ink `#101010`, ultramarine `#1A1AFF` for buttons, links, the first step and the closing plate. Bone `#F3EFE6` for the Map figure, the industry chips and the How it works and Our rules bands. Rule `#DDD8CC`, muted `#5E5B55`. The mockup's two tints: `#2A2926` for second text and `#E6E6FF` for small words on ultramarine; in the Map drawing only, `#EEEAE0` and `#5252FF` for the empty part of a worth bar. No dark mode, gradients or shadows.
+- Colours: white ground `#FFFFFF`, ink `#101010`, ultramarine `#1A1AFF` for buttons, links, the first step and the closing plate. Bone `#F3EFE6` for the Map figure, the industry chips and the How it works and Our rules bands. Rule `#DDD8CC`, muted `#5E5B55`. The mockup's two tints: `#2A2926` for second text and `#E6E6FF` for small words on ultramarine; in the Map drawing only, `#EEEAE0` and `#5252FF` for the empty part of a worth bar; in the leaks drawing only, yellow `#FFC800` for the money (the drops and the tray). No dark mode, gradients or shadows.
 - The one red thing: vermilion `#FF3D00` on the word "money" in the hero, at Statement size only. Never on a button, small text or the plate, and nowhere else.
 - Logo: `docs/assets/intellumia-wordmark-ultramarine.svg`, at least 96 px wide, never on a photograph. Favicons: the ink tile with the white ll.
 - Type, Anek Latin only, self-hosted from `docs/assets/fonts/` with `OFL-Anek.txt` beside the files: Statement 650 width 80, 46 to 80 px (the plate's question 34 to 64 px); Heading 620, 30 to 52 px; Lead 600, 19 to 22 px; Body 400, 17 to 18 px; Label 600, capitals, +0.12em, 12 to 13 px. Tabular figures; emphasis by colour, never italics.
-- Corners: 0 for pictures, 6 for buttons and chips, 10 for the Map figure and the step cards.
-- Pictures: Sundeep's portrait and the plant scene band only. The band is decorative (`alt=""`, width and height set, `loading="lazy"`), served as WebP (768 px and full width) with the JPG as fallback, and carries no words but its Pause button.
-- The plant band (Brand System v5.0.4): `plant-loop` (9.5 s, silent, seamless; WebM, and MP4 for Safari) in `<video autoplay muted loop playsinline preload="none" aria-hidden="true">`, at the video's own shape (1280:548) so nothing shifts. Its still, `plant2-band` (1600 x 685), is the poster and the only thing shown for reduced motion or without the script. Nothing of the band loads until it is within 100 px of the screen, so it never counts toward the first view. The small white Pause button, bottom right, reads "Play" once paused, with its label updated ("Pause the animation" / "Play the animation", WCAG 2.2.2).
-- No other motion anywhere: no animations, no other video; the only transition is the phone bar's slide, which reduced motion removes.
-- The section heads of "Where it starts" and "Our rules" are sticky from 1000 px.
+- Corners: 0 for pictures, 6 for buttons, chips and the move tags, 10 for the Map figure, the leaks panel and the step cards.
+- Pictures: Sundeep's portrait only. No scene bands and no video on the website (Brand System v5.0.5: the house scenes are for decks and LinkedIn); the plant and corridor bands and the plant loop are kept in `_archive/`.
+- The leaks diagram (Brand System v5.0.5), opening "Where it starts": the business as five rooms, money dripping from each into "Money lost every month", finance plugged as the first move, plant marked as the next move. An inline SVG labelled by its `title` and `desc`, on the bone panel, with the caption "Illustration, not a client. Where money usually leaks in an owner-run business. ...". Shown from 900 px, hidden below, where the door stories carry the same departments and tags.
+- Motion: one animation, the leaks drawing's drops falling, by the CSS inside the drawing and only under `prefers-reduced-motion: no-preference`; everyone else sees the drops still. No video and no other animation anywhere. The phone bar's slide and smooth scrolling to the top come from the mockup, and reduced motion removes both.
+- The section head of "Our rules" is sticky from 1000 px; "Where it starts" is not.
 - Mobile first: check at 360 px first.
 
 ## The action
@@ -67,7 +66,7 @@ The mockup's CSS lives in `docs/assets/site.css`, the one stylesheet. Keep its b
 
 ## Script
 
-`docs/assets/site.js` is the only script, loaded by the page alone (`script-src 'self'` in its security policy; Privacy, the 404 page and the redirects keep `script-src 'none'`). It runs the bottom bar and the plant loop (it sets the poster and the video only near the screen, rests the loop off screen, and works the Pause button) and nothing else: no addresses, no storage, no tracking. Without it the bar stays hidden and the plant band shows its still.
+`docs/assets/site.js` is the only script, loaded by the page alone (`script-src 'self'` in its security policy; Privacy, the 404 page and the redirects keep `script-src 'none'`). It runs the bottom bar and nothing else: no addresses, no storage, no tracking. Without it the bar stays hidden. The leaks drawing needs no script.
 
 ## Files
 
@@ -75,12 +74,12 @@ The mockup's CSS lives in `docs/assets/site.css`, the one stylesheet. Keep its b
 | --- | --- |
 | `docs/index.html`, `docs/privacy/index.html`, `docs/404.html` | The page, Privacy and the not-found page, hand-written HTML. |
 | `docs/assets/site.css`, `docs/assets/site.js` | The one stylesheet and the one script. |
-| `docs/assets/imagery/` | The portrait, the plant scene band (JPG and WebP) and its loop (WebM and MP4). |
+| `docs/assets/imagery/` | Sundeep's portrait (720 and 890 px). |
 | `docs/assets/social-preview.jpg` | 1200 x 630: white, the ultramarine wordmark, the hero line in ink, no red, no picture. |
 | `docs/llms.txt`, `docs/robots.txt`, `docs/sitemap.xml` | The page in words for answer engines; every crawler allowed, AI crawlers named; Home and Privacy only. |
 | `docs/<key>.txt` | The IndexNow key. `.github/workflows/indexnow.yml` pings the sitemap URLs after each deploy. |
 | `index.html`, `privacy.html` at the root | The last-resort fallback, a copy of the page made by `scripts/make_fallback.py`. Never edit by hand. |
-| `_archive/` | Retired pages, assets, fonts and the old fallback. Not published. |
+| `_archive/` | Retired pages, assets (the scene bands and the plant loop among them), fonts and the old fallback. Not published. |
 | `archive/next-app/` and the root Next.js files | The retired Phase 1 app. Not published; never run `npm run build`. |
 
 Structured data (JSON-LD): Organization and Person on Home, Organization on Privacy, no offers or prices.
@@ -89,8 +88,8 @@ Structured data (JSON-LD): Organization and Person on Home, Organization on Priv
 
 1. `python3 scripts/make_fallback.py` (keeps the root fallback in step with `docs/`).
 2. `python3 scripts/check_copy.py`: all checks must pass. Paste the result into the pull request.
-3. In a browser at 360, 390, 768, 1100 and 1440 px: no sideways scroll, Anek only, white ground, the one red word, the action where The action puts it, the bottom bar's show and hide, the plant loop's late load, play, Pause and reduced motion, every old URL lands on the page, an unknown address shows the 404 page, axe-core finds no WCAG 2.2 AA violations.
-4. Lighthouse on Home and Privacy, mobile and desktop. Budgets: LCP 2.0 s on mobile, INP 150 ms (report Total Blocking Time as the lab stand-in), CLS 0.05, under 500 KB on first view (the plant band and its loop are below the fold and lazy).
+3. In a browser at 360, 390, 768, 1100 and 1440 px: no sideways scroll, Anek only, white ground, the one red word, the action where The action puts it, the bottom bar's show and hide, the leaks figure from 900 px and hidden below, the drops falling and still for reduced motion, the door tags at every width, every old URL lands on the page, an unknown address shows the 404 page, axe-core finds no WCAG 2.2 AA violations.
+4. Lighthouse on Home and Privacy, mobile and desktop. Budgets: LCP 2.0 s on mobile, INP 150 ms (report Total Blocking Time as the lab stand-in), CLS 0.05, under 500 KB on first view (the portrait is the only picture, below the fold and lazy).
 5. Screenshots of the whole page at 360 px and 1440 px in the pull request.
 
 Then follow `DEPLOYMENT_AND_ROLLBACK.md`. Open pull requests as drafts. Sundeep merges; nobody else does.
