@@ -8,9 +8,7 @@ Where can AI make you money? We find it in your numbers. Then we run it for you.
 
 Led by Sundeep Kumar, Founder & CEO.
 
-## Sound familiar?
-
-Where money quietly leaks in most owner-run businesses:
+## Most owner-run businesses have money hiding in plain sight.
 
 - Costs up, prices stuck?
 - Customers paying late?
@@ -19,15 +17,13 @@ Where money quietly leaks in most owner-run businesses:
 - Too much made twice?
 - All on your desk?
 
-## Who we work with
-
-Owners, promoters and the leaders they trust, in businesses everywhere, who want AI to show up in their numbers.
-
-Where AI is already proven, in every industry: customer service; finance and accounting; sales and marketing; supply chain and inventory; plant operations and quality; claims, compliance and documents.
+Fix what holds it back, and it is yours to claim.
 
 ## What we do about it
 
 AI does the work. Your people make the calls.
+
+These leaks are not new. Fixing them took hours of checking, chasing and counting that nobody had time for. AI now does that work every day, so the money stops slipping away.
 
 - Costs up, prices stuck: your costliest process, done a better way.
 - Customers paying late: every overdue invoice, followed up on time. Often first.
@@ -35,6 +31,12 @@ AI does the work. Your people make the calls.
 - Numbers always late: one page across your companies, every week.
 - Too much made twice: defects caught earlier.
 - All on your desk: decisions arrive with the facts ready.
+
+## Who we work with
+
+Owners, promoters and the leaders they trust, in businesses everywhere, who want AI to show up in their numbers.
+
+Where AI is already proven, in every industry: customer service; finance and accounting; sales and marketing; supply chain and inventory; plant operations and quality; claims, compliance and documents.
 
 ## How it works
 
@@ -96,6 +98,8 @@ Before you book.
 
 - Do we need to know where AI fits first? No. Bring the business and the problem. Finding where AI pays is our job, and sometimes the answer is a simpler fix without AI.
 - What does a Map cost? A fixed fee, agreed before we start and always paid. We share it on the first call, once we know the size of your business.
+- And after the Map, what does it cost to run? We price it after the Map, because only then do we know the right way to do it. Sometimes that is a ready-made product, sometimes your own team, sometimes a simpler fix that needs no AI at all. We tell you which, and what it will cost, before you commit.
+- Is my business big enough? If you want AI to move your numbers, it is. A 30-minute call will tell us both whether a Map is worth it for you.
 - Will it work with our systems? We start from what you already have: Tally, Excel, your ERP, even paper. The Map needs no new software, and week 1 finds out what data exists.
 - Is our data safe? We start with summaries, never all your books on day one. Your data stays in your own environment, with models that neither keep nor train on it.
 - Will this replace our people? It is not built to cut jobs. AI takes the routine work, and your people review and decide. The Map shows where time is freed; what you do with it is your call.
