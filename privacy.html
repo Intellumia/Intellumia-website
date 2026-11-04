@@ -17,8 +17,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="docs/assets/fonts/AnekLatin-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* intellumia.com, one page. Brand System v5.0.5 (strategy v5.0): the approved mockup of 4 Nov 2026,
-   Drive Intellumia/website/mockup/index-leaks.html. Anek Latin only, self-hosted; see CLAUDE.md. */
+/* intellumia.com, one page. Brand System v5.0.6 (strategy v5.0): the approved mockup of 4 Nov 2026,
+   Drive Intellumia/website/mockup/index-final.html. Anek Latin only, self-hosted; see CLAUDE.md. */
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latin.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap}
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latinext.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20CF,U+2C60-2C7F,U+A720-A7FF}
 
@@ -49,7 +49,7 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 .fire{color:var(--fire)}
 .nw{white-space:nowrap}
 
-/* button: "Talk to Sundeep", ultramarine, corners 6 */
+/* button: "Book a call", ultramarine, corners 6 */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 24px;border-radius:6px;background:var(--klein);color:#fff;font-weight:600;font-size:18px;line-height:1.1;text-decoration:none;white-space:nowrap}
 .btn:hover{text-decoration:underline;text-underline-offset:.2em}
 .btn--sm{min-height:44px;padding:10px 16px;font-size:16px}
@@ -63,20 +63,24 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 .hdr--always .btn{display:inline-flex}
 @media(min-width:768px){.hdr{padding-top:28px;padding-bottom:28px}.hdr img{width:148px}}
 
-/* hero */
-.hero{display:grid;gap:40px;padding-top:24px;padding-bottom:56px}
-.hero .label{color:var(--muted);margin-bottom:20px}
-.hero .ld{margin-top:24px;max-width:30em;font-weight:500;color:#2a2926}
+/* hero (Brand System v5.0.6, mockup index-final.html): centred, nothing else in it; the leaks diagram sits under it */
 .cta{margin-top:32px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
 .cta .note{color:var(--muted);font-size:15px}
-.proof{margin-top:20px;max-width:32em;font-weight:500;font-size:clamp(18px,.3vw + 17px,20px);line-height:1.45;color:var(--ink)}
-@media(min-width:1000px){.hero{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:56px;align-items:center;padding-top:48px;padding-bottom:96px}}
+.heroC{display:block;text-align:center;padding-top:40px;padding-bottom:40px}
+.heroC .st{font-size:clamp(48px,5vw + 20px,96px);max-width:11em;margin:0 auto}
+.heroC .label{margin-bottom:20px}
+.heroC .proofA{margin:28px auto 0;max-width:34em;font-weight:500;font-size:clamp(19px,.4vw + 17px,22px);line-height:1.45;color:#2a2926;text-wrap:balance}
+.heroC .cta{justify-content:center}
+.heroC .leaks{margin:56px 0 0;text-align:left}
 
 /* money map figure */
 .mapfig{background:var(--bone);border-radius:10px;padding:20px}
 .mapfig svg{width:100%;height:auto;display:block}.map-sm{display:block}.map-lg{display:none!important}@media(min-width:600px){.map-sm{display:none!important}.map-lg{display:block!important}}
-.sm-only{display:inline}@media(min-width:600px){.sm-only{display:none}}.mapfig figcaption{margin-top:14px;font-size:14px;line-height:1.45;color:var(--muted)}
+.mapfig figcaption{margin-top:14px;font-size:14px;line-height:1.45;color:var(--muted)}
 @media(min-width:768px){.mapfig{padding:28px}}
+/* the Map drawing and the meeting statement sit in "The Map" (v5.0.6) */
+.mapwide{margin:0 0 56px;max-width:760px}
+.meeting{font-weight:500}
 
 /* who band */
 .who{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:28px 0;display:grid;gap:16px}
@@ -92,7 +96,7 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 .sec-head .label{color:var(--muted)}
 @media(min-width:1000px){.sec-head{margin-bottom:56px}.split{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:64px;align-items:start}.split>.sec-head{margin-bottom:0;position:sticky;top:32px}}
 
-/* the leaks diagram (Brand System v5.0.5, mockup index-leaks.html): opens "Where it starts", from 900 px only.
+/* the leaks diagram (Brand System v5.0.5; v5.0.6 moves it into the hero, under the button), from 900 px only.
    An inline drawing on a bone panel; its drops fall only for readers who have not asked for reduced motion
    (that CSS lives inside the drawing). */
 .leaks{margin:0 0 56px;background:var(--bone);border-radius:10px;padding:24px}
@@ -204,14 +208,14 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 <meta property="og:image" content="https://intellumia.com/docs/assets/social-preview.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Where will AI make your business money? We will show you, then run it.">
+<meta property="og:image:alt" content="Where can AI make you money?">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://intellumia.com/#organization","name":"Intellumia","legalName":"Intellumia Pte. Ltd.","url":"https://intellumia.com/","logo":"https://intellumia.com/docs/assets/intellumia-wordmark-ultramarine.svg","description":"Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.","disambiguatingDescription":"An AI-native product company, starting with service.","email":"sundeep@intellumia.com","address":{"@type":"PostalAddress","streetAddress":"60 Paya Lebar Road, #06-28, Paya Lebar Square","addressLocality":"Singapore","postalCode":"409051","addressCountry":"SG"}}]}</script>
 </head>
 <body>
 <header class="wrap hdr hdr--always">
  <a href="/" aria-label="Intellumia, home"><img src="docs/assets/intellumia-wordmark-ultramarine.svg" alt="Intellumia" width="148" height="24"></a>
- <a class="btn btn--sm" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Talk to Sundeep</a>
+ <a class="btn btn--sm" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Book a call</a>
 </header>
 <main id="main">
 <section class="wrap">

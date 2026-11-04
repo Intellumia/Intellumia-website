@@ -24,28 +24,28 @@ BOOKING = 'https://cal.com/intellumia/meetsk'
 LINKEDIN = 'https://www.linkedin.com/in/kumarsundeep'
 
 # ---------------------------------------------------------------------------------------------
-# Approved lines (Brand System v5.0.5; the mockup index-leaks.html). Nothing else goes on the page.
+# Approved lines (Brand System v5.0.6; the mockup index-final.html). Nothing else goes on the page.
 # ---------------------------------------------------------------------------------------------
 TITLE = 'Intellumia, the AI partner for owner-run businesses'
 DESCRIPTION = ('Intellumia shows owner-run businesses where AI makes them money, runs the parts that do '
                'with named professionals signing off, and takes no vendor fees.')
-BUTTON = 'Talk to Sundeep'  # never 'Book a Map': a Map is paid work priced in a proposal
+BUTTON = 'Book a call'  # never 'Book a Map' (a Map is paid work priced in a proposal), never 'Talk to Sundeep' (v5.0.6)
 CATEGORY = 'The AI partner for owner-run businesses'
-HERO = 'Where will AI make your business money? We will show you, then run it.'
-HERO_STATEMENT = ('In two to three weeks, starting from summaries of your own books, we show you the two or three '
+HERO = 'Where can AI make you money?'  # v5.0.6; 'money' is the one vermilion word
+HERO_LINE = 'We find it in your numbers. Then we run it for you.'
+OLD_HERO = 'Where will AI make your business money? We will show you, then run it.'  # retired 4 Nov 2026
+MEETING = ('In two to three weeks, starting from summaries of your own books, we show you the two or three '
                   'places AI would make your business the most money, and what each is worth. Then we run the '
                   'ones you choose.')
-PROOF = ('We price each move in your own numbers, name at least one way to do it that is not us, and take '
-         'no fees from vendors. Where we run the work, a named professional signs off.')
-HERO_NOTE = '30 minutes, by video. We start with your numbers, not with AI.'
+# The proof line left the hero in v5.0.6 ("Our rules" carries it).
+NOTE = '30 minutes, by video. Nothing to prepare.'  # beside the hero and closing buttons
+BAR_NOTE = '30 minutes, by video'
 MAP_DRAWING_WIDE = ('[svg] Illustration of a Map: sixteen activities across sales, operations, finance and people, '
                     'each with a bar for what it is worth. Collections is the first move; passing on costs and '
                     'quality checks are the next moves.')
 MAP_DRAWING_PHONE = ('[svg] Illustration of a Map, sales and finance shown: collections is the first move, '
                      'passing on costs the next.')
-MAP_CAPTION = ('Illustration of a Map, not a client. Shown here: two of four functions. Yours ranks the 15 to 30 '
-               'activities that matter in your business by what each is worth and how feasible it is, with a '
-               'rupee figure on each from your own numbers.')
+MAP_CAPTION = 'Illustration of a Map, not a client.'
 WHO = 'For owner-run companies across India, where the owner decides and signs the cheque.'
 INDUSTRIES = ['Construction, EPC and roads', 'Specialty and agro chemicals', 'Auto components',
               'Pharma and APIs', 'Hospitals and healthcare chains']
@@ -66,7 +66,7 @@ LEAKS_WORDS = ['YOUR BUSINESS',
                '05', "OWNER'S OFFICE", 'Decisions that live', 'in one head',
                'MONEY LOST EVERY MONTH']
 FIRST_MOVE, NEXT_MOVE = 'First move', 'Next move'
-DOORS = ['Where it starts', 'We start with your money. AI is how we do it.', LEAKS_DRAWING, LEAKS_CAPTION,
+DOORS = ['Where it starts', 'We start with your money. AI is how we do it.',
          '01', 'Plant and operations', NEXT_MOVE, 'Costs are up and you cannot pass them on.',
          'Your costliest process, done a better way, tested on your own past records before anyone changes how they work.',
          '02', 'Finance', FIRST_MOVE, 'Customers owe you more than they should.',
@@ -94,7 +94,8 @@ MAP_ITEMS = [
 ]
 YOUR_TIME = ('Your time: about 20 to 40 hours of your staff across the two to three weeks. '
              'We agree it with you before we start.')
-THE_MAP = ['The Map', 'Two to three weeks. Your numbers. Your choice.', 'What the Map gives you', *MAP_ITEMS,
+THE_MAP = ['The Map', 'Two to three weeks. Your numbers. Your choice.', MEETING,
+           MAP_DRAWING_WIDE, MAP_DRAWING_PHONE, MAP_CAPTION, 'What the Map gives you', *MAP_ITEMS,
            YOUR_TIME, 'How the weeks run',
            'Start', 'Kick-off. We ask for summaries only, never all your books on day one.',
            'Week 1', 'Interviews with you and four to six heads of function. We find out what systems and data you have.',
@@ -116,8 +117,7 @@ PERSON = ['[img] ' + PORTRAIT_ALT, 'Who you will work with',
           '“We will never tell you only Intellumia can solve it. What we build with you is yours.”',
           NAME, FOUNDER, LINKEDIN_TEXT]
 QUESTION = 'Where does your business lose the most cash, days or margin today?'
-PLATE = ['Start with one question', QUESTION, BUTTON,
-         '30 minutes with Sundeep, by video. Bring your answer. You leave knowing whether a Map is worth it for you.']
+PLATE = ['Start with one question', QUESTION, BUTTON, NOTE]
 ADDRESS = 'Intellumia Pte. Ltd., 60 Paya Lebar Road, #06-28, Paya Lebar Square, Singapore 409051'
 EMAIL = 'sundeep@intellumia.com'
 SIGN_OFF = 'Intelligence, Illuminated.'
@@ -126,9 +126,9 @@ NOT_FOUND = ['Page not found', 'There is nothing at this address.', HERO, 'Go to
 
 HEADER = ['[img] Intellumia', BUTTON]
 FOOTER = ['[img] Intellumia', 'Working with owners across India.', ADDRESS, EMAIL, 'Privacy', SIGN_OFF]
-BAR = ['30 minutes with Sundeep', BUTTON]
-HOME = (HEADER + [CATEGORY, HERO, HERO_STATEMENT, PROOF, BUTTON, HERO_NOTE, MAP_DRAWING_WIDE, MAP_DRAWING_PHONE,
-                  MAP_CAPTION, WHO, *INDUSTRIES] + DOORS + HOW + THE_MAP + RULES + PERSON + PLATE
+BAR = [BAR_NOTE, BUTTON]
+HERO_BLOCK = [CATEGORY, HERO, HERO_LINE, BUTTON, NOTE, LEAKS_DRAWING, LEAKS_CAPTION]  # centred; nothing else in it
+HOME = (HEADER + HERO_BLOCK + [WHO, *INDUSTRIES] + DOORS + HOW + THE_MAP + RULES + PERSON + PLATE
         + FOOTER + BAR)
 PAGE_404 = HEADER + NOT_FOUND + FOOTER
 
@@ -147,8 +147,9 @@ BANNED = {
                                    'intelligence layer', 'Decision Sprint', '90-day build', 'Embed',
                                    'Sales Engine', 'Plant Engine', 'Cash Engine', 'owner-led', 'Rent the model',
                                    'research desk', "owner's brief", 'engine', 'engines'],
-    'retired buttons and links ("Book a Map" above all)': ['Book a Map', 'See the Sales Engine work',
-                                                           'Book 30 minutes', 'How we work', 'brief@intellumia.com'],
+    'retired buttons and links ("Book a Map" and "Talk to Sundeep" above all)': [
+        'Book a Map', 'Talk to Sundeep', 'See the Sales Engine work', 'Book 30 minutes', 'How we work',
+        'brief@intellumia.com', OLD_HERO],
     'products described as existing': ['live', 'demo', 'demo opening soon', 'in build', 'opening soon',
                                        'sandbox', 'platform', 'module', 'modules'],
     'proof the business does not have yet': ['case study', 'case studies', 'testimonial', 'testimonials',
@@ -387,6 +388,32 @@ check('Home: meta description and og:description',
 check('Home: social preview declared at 1200 x 630', home.meta.get('og:image') == SITE + 'assets/social-preview.jpg'
       and home.meta.get('og:image:width') == '1200' and home.meta.get('og:image:height') == '630')
 
+
+def jpeg_size(path):
+    data = path.read_bytes()
+    i = 2
+    while i < len(data):
+        marker, length = data[i + 1], int.from_bytes(data[i + 2:i + 4], 'big')
+        if marker in (0xC0, 0xC1, 0xC2):
+            return int.from_bytes(data[i + 7:i + 9], 'big'), int.from_bytes(data[i + 5:i + 7], 'big')
+        i += 2 + length
+    return None
+
+
+check('the social preview image is 1200 x 630, and its alt text is the headline on Home and Privacy (v5.0.6)',
+      jpeg_size(DOCS / 'assets/social-preview.jpg') == (1200, 630)
+      and home.meta.get('og:image:alt') == HERO and read(DOCS / 'privacy/index.html').meta.get('og:image:alt') == HERO,
+      f"{jpeg_size(DOCS / 'assets/social-preview.jpg')} {home.meta.get('og:image:alt')}")
+check('Home: the hero is centred and holds only the label, the headline, the line, the button and its note, then the leaks figure',
+      '<section class="wrap heroC" id="hero">' in home_src and home.blocks[2:2 + len(HERO_BLOCK)] == HERO_BLOCK
+      and '.heroC{display:block;text-align:center;' in (DOCS / 'assets/site.css').read_text()
+      and 'text-wrap:balance}' in re.search(r'\.heroC \.proofA\{[^}]*\}', (DOCS / 'assets/site.css').read_text()).group(0),
+      f'{home.blocks[2:2 + len(HERO_BLOCK)]}')
+talk = sorted(p.relative_to(ROOT).as_posix() for p in list(DOCS.rglob('*')) + [ROOT / 'index.html', ROOT / 'privacy.html']
+              if p.is_file() and p.suffix in ('.html', '.txt', '.xml', '.css', '.js', '.json')
+              and re.search(r'talk to sundeep|where will ai make your business', p.read_text(errors='ignore'), re.I))
+check('"Talk to Sundeep" and the old hero line appear nowhere on the site (the button reads "Book a call")', not talk, f'{talk}')
+
 # ---------------------------------------------------------------------------------------------
 # 3. The action: "Talk to Sundeep", always to the booking page, in a new tab.
 #    Home: the header (wide screens), the hero, the closing plate and the phone bottom bar.
@@ -444,10 +471,13 @@ retired_hits = sorted({w for f in published_files for w in RETIRED
 check('the scene bands and the plant loop stay retired (in _archive/): nothing published refers to them',
       not retired_hits, f'{retired_hits}')
 doors_src = home_src[home_src.index('aria-labelledby="h-doors"'):home_src.index('<!-- HOW IT WORKS -->')]
-leaks_src = re.search(r'<figure class="leaks".*?</figure>', doors_src, re.S)
+hero_src = home_src[home_src.index('<!-- HERO -->'):home_src.index('<!-- WHO -->')]
+leaks_src = re.search(r'<figure class="leaks".*?</figure>', hero_src, re.S)
 leaks_src = leaks_src.group(0) if leaks_src else ''
-check('the leaks figure opens "Where it starts": a figure on the bone panel, inline SVG with its title and desc',
-      doors_src.index('</div>\n <figure class="leaks" aria-label="Where money leaks">') < doors_src.index('<ol class="doors">')
+check('the leaks figure sits directly under the hero, inside it, on the bone panel, inline SVG with its title and desc (v5.0.6)',
+      bool(leaks_src) and hero_src.index('<span class="note">') < hero_src.index('<figure class="leaks" aria-label="Where money leaks">')
+      and hero_src.rstrip().endswith('</figure>\n</section>') and home_src.count('<figure class="leaks"') == 1
+      and '<figure class="leaks"' not in doors_src
       and '<svg class="leak-lg" viewBox="0 0 1200 460" role="img" aria-labelledby="leak-t leak-d">' in leaks_src
       and '<title id="leak-t">' in leaks_src and '<desc id="leak-d">' in leaks_src
       and '.leaks{margin:0 0 56px;background:var(--bone);border-radius:10px;padding:24px}' in css_text)
