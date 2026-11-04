@@ -113,7 +113,7 @@ HEADER = ['[img] Intellumia', BUTTON]
 FOOTER = ['[img] Intellumia', 'Working with owners across India.', ADDRESS, EMAIL, 'Privacy', SIGN_OFF]
 BAR = ['30 minutes with Sundeep', BUTTON]
 HOME = (HEADER + [CATEGORY, HERO, HERO_STATEMENT, PROOF, BUTTON, HERO_NOTE, MAP_DRAWING_WIDE, MAP_DRAWING_PHONE,
-                  MAP_CAPTION, WHO, *INDUSTRIES, SCENE, PAUSE] + DOORS + HOW + THE_MAP + RULES + [SCENE] + PERSON + PLATE
+                  MAP_CAPTION, WHO, *INDUSTRIES, SCENE, PAUSE] + DOORS + HOW + THE_MAP + RULES + PERSON + PLATE
         + FOOTER + BAR)
 PAGE_404 = HEADER + NOT_FOUND + FOOTER
 
@@ -152,7 +152,7 @@ BANNED = {
 # ultramarine). In the page's Map drawing only: #EEEAE0 and #5252FF (the empty part of a worth bar).
 COLOURS = {'#FFFFFF', '#101010', '#1A1AFF', '#FF3D00', '#F3EFE6', '#DDD8CC', '#5E5B55', '#2A2926', '#E6E6FF'}
 DRAWING_COLOURS = COLOURS - {'#FF3D00'} | {'#EEEAE0', '#5252FF'}
-SCENES = ['plant2-band', 'corridor-band']
+SCENES = ['plant2-band']  # the corridor band was retired by Sundeep, 3 Nov 2026 (_archive/corridor-band-2026-11-03/)
 ASSETS = {'assets/site.css', 'assets/site.js', 'assets/social-preview.jpg', 'assets/intellumia-wordmark-ultramarine.svg',
           'assets/fonts/AnekLatin-latin.woff2', 'assets/fonts/AnekLatin-latinext.woff2', 'assets/fonts/OFL-Anek.txt',
           'assets/imagery/sundeep-portrait-2026_720.jpg', 'assets/imagery/sundeep-portrait-2026_890.jpg',
@@ -388,14 +388,17 @@ check('404: every path is absolute, so it works at any address',
       not re.search(r'(?:href|src)="(?!/|https://|mailto:|#)', (DOCS / '404.html').read_text()))
 
 # ---------------------------------------------------------------------------------------------
-# 4. Pictures: the portrait and two decorative scene bands; no words on the scenes.
+# 4. Pictures: the portrait and one decorative scene band, the plant loop; no words on it but its Pause button.
 # ---------------------------------------------------------------------------------------------
 css_text = (DOCS / 'assets/site.css').read_text()
 js_text = (DOCS / 'assets/site.js').read_text()
 scenes = re.findall(r'<figure class="scene[^"]*">(.*?)</figure>', home_src, re.S)
 scene_text = [norm(re.sub(r'<[^>]+>', ' ', s)) for s in scenes]
-check('two scene bands, with no words on them but the plant loop\'s Pause button', len(scenes) == 2 and scene_text == [PAUSE, ''],
+check('one scene band, the plant loop, with no words on it but its Pause button', len(scenes) == 1 and scene_text == [PAUSE],
       f'{scene_text}')
+check('the corridor band stays retired (Sundeep, 3 Nov 2026): nothing published refers to it',
+      not any('corridor' in f.read_text(errors='ignore') for f in DOCS.rglob('*') if f.suffix in ('.html', '.css', '.js', '.txt', '.xml'))
+      and not any('corridor' in f.name for f in DOCS.rglob('*')))
 for name, s in zip(SCENES, scenes):
     check(f'scene {name}: WebP first, the JPG as fallback, alt="", width and height set, lazy',
           f'<source type="image/webp" srcset="/assets/imagery/{name}-768.webp 768w, /assets/imagery/{name}.webp' in s
