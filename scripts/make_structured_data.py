@@ -10,7 +10,8 @@ Standard library only. The FAQPage carries the eight questions and answers word 
 FAQ, and the service catalogue carries the one-line descriptions of Map, Run and Guide from "How it works",
 so the structured data can never drift from what a reader sees (Round 7, Sundeep, 4 Nov 2026). The home
 page's dateModified and its sitemap lastmod are the release date; Privacy's lastmod is the date its file
-last changed. No offers and no prices, anywhere.
+last changed. No offers and no prices, anywhere. The Organization's sameAs is the company LinkedIn page and its one
+contact point carries the site's email and booking link, in English (Round 7c, Sundeep, 5 Nov 2026).
 """
 import argparse
 import datetime as dt
@@ -30,11 +31,13 @@ TITLE = 'Intellumia, the AI partner for owner-run businesses'
 DESCRIPTION = ('Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named '
                'professionals signing off, and takes no vendor fees.')
 EMAIL = 'sundeep@intellumia.com'
+BOOKING = 'https://cal.com/intellumia/meetsk'
+COMPANY_LINKEDIN = 'https://www.linkedin.com/company/intellumia'  # Sundeep, 5 Nov 2026
 INDIA = {'@type': 'Country', 'name': 'India'}
 SERVICE_TYPE = 'AI advisory and delivery for owner-run businesses'
 KNOWS_ABOUT = ['Artificial intelligence', 'Business process automation', 'Accounts receivable', 'Cost and margin',
                'Operations']
-LANGUAGES = ['English']  # Hindi only once Sundeep confirms it
+LANGUAGES = ['English']  # the site's language; no separate Hindi contact (Sundeep, 5 Nov 2026: "same as everything else")
 LD_RE = re.compile(r'<script type="application/ld\+json">.*?</script>', re.S)
 
 
@@ -68,8 +71,9 @@ def organization(with_founder=True):
                     'addressLocality': 'Singapore', 'postalCode': '409051', 'addressCountry': 'SG'},
         'areaServed': INDIA,
         'knowsAbout': KNOWS_ABOUT,
-        'contactPoint': {'@type': 'ContactPoint', 'contactType': 'sales', 'email': EMAIL,
+        'contactPoint': {'@type': 'ContactPoint', 'contactType': 'sales', 'email': EMAIL, 'url': BOOKING,
                          'availableLanguage': LANGUAGES, 'areaServed': INDIA},
+        'sameAs': [COMPANY_LINKEDIN],
     }
     if with_founder:
         org['founder'] = {'@id': PERSON_ID}
