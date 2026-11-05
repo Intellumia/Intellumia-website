@@ -759,13 +759,17 @@ check('the bottom bar: phones only, and no slide for reduced motion',
 #    Round 7, Sundeep, 4 Nov 2026), on Home, Privacy and the 404 page. No forms, no other trackers or scripts.
 #    Structured data without offers or prices.
 # ---------------------------------------------------------------------------------------------
-# The beacon is Cloudflare's own snippet (its address and token), added to the page after it has loaded by a small
-# inline script, so it never competes with the page's first paint (Round 7b). The security policy allows that one
+# The beacon is Cloudflare's own snippet (its address and token), added by a small inline script once the page has
+# loaded and the browser has reported its first contentful paint (at once where paint timing is not supported),
+# so it never competes with the page's first paint (Round 7b). The security policy allows that one
 # inline script by its hash, and nothing else inline.
 BEACON_SRC = 'https://static.cloudflareinsights.com/beacon.min.js'
 BEACON_TOKEN = '{"token": "347f1c5c75ff411ead3e9a43282df8cf"}'
-BEACON_JS = ("addEventListener('load',function(){var s=document.createElement('script');"
-             f"s.src='{BEACON_SRC}';s.setAttribute('data-cf-beacon','{BEACON_TOKEN}');document.body.appendChild(s)}})")
+BEACON_JS = ("addEventListener('load',function(){function a(){var s=document.createElement('script');"
+             f"s.src='{BEACON_SRC}';s.setAttribute('data-cf-beacon','{BEACON_TOKEN}');document.body.appendChild(s)}}"
+             "var P=window.PerformanceObserver;if(!P||!P.supportedEntryTypes||P.supportedEntryTypes.indexOf('paint')<0)return a();"
+             "new P(function(l,o){if(l.getEntriesByName('first-contentful-paint').length){o.disconnect();a()}})"
+             ".observe({type:'paint',buffered:true})})")
 BEACON = '<script>' + BEACON_JS + '</script>'
 BEACON_HASH = "'sha256-" + base64.b64encode(hashlib.sha256(BEACON_JS.encode()).digest()).decode() + "'"
 blocked = {}
