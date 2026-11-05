@@ -777,17 +777,24 @@ for f in html_files:
     pg = read(DOCS / f)
     bad = [t for t, _ in pg.tags if t in ('form', 'input', 'iframe', 'textarea', 'select', 'audio')]
     own = [s.get('src', 'inline script') for s in pg.scripts if s.get('type') != 'application/ld+json']
-    allowed = (['/assets/site.js', 'inline script'] if f == 'index.html' else ['inline script'] if f in pages else [])
+    allowed = (['inline script', '/assets/site.js'] if f == 'index.html' else ['inline script'] if f in pages else [])
     if own != allowed:
         bad += own
     if bad:
         blocked[f] = bad
 check('no forms, frames or chat widgets; scripts: /assets/site.js on Home, the Cloudflare Web Analytics beacon on '
       'Home, Privacy and 404, nothing on the redirects', not blocked, f'{blocked}')
-check('the Cloudflare Web Analytics beacon: its address and token, added after the page has loaded by one inline '
-      'script, once, just before </body>, on Home, Privacy and 404', all((DOCS / f).read_text().count(BEACON) == 1
-                             and (DOCS / f).read_text().count('<script>') == 1
-                             and (DOCS / f).read_text().rstrip().endswith(BEACON + '\n</body>\n</html>') for f in pages)
+def loader_in_head(t):
+    """Once, in the head: after the security policy (so the policy governs it) and just before the stylesheet (so it
+    never waits for it and never holds up parsing: at the end of the body it cost about 40 ms of LCP on a throttled
+    phone, Round 7b)."""
+    return (t.count(BEACON) == 1 and t.count('<script>') == 1 and t.index('http-equiv="Content-Security-Policy"')
+            < t.index(BEACON) < t.index('</head>') and BEACON + '\n<link rel="stylesheet" href="/assets/site.css">' in t)
+
+
+check('the Cloudflare Web Analytics beacon: its address and token, added after the page has loaded and painted by one '
+      'inline script in the head, after the security policy and before the stylesheet, on Home, Privacy and 404',
+      all(loader_in_head((DOCS / f).read_text()) for f in pages)
       and all('cloudflareinsights' not in (DOCS / f).read_text() for f in html_files if f not in pages))
 check('site.js calls nothing outside the page (no addresses, no storage, no tracking)',
       not re.search(r'https?:|fetch\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage|cookie|import\(', js_text))
