@@ -6,16 +6,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy notice | Intellumia, an AI-native product company, starting with service</title>
-<meta name="description" content="How Intellumia handles personal data: this website collects nothing about you; what you send us is used only to reply.">
+<meta name="description" content="How Intellumia handles personal data: this website sets no cookies and counts visits only in total; what you send us is used only to reply.">
 <link rel="canonical" href="https://intellumia.com/privacy/">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src https://static.cloudflareinsights.com 'sha256-C5gQQ9Lj4iXDoxOyCRFmNQeWzYj3css48audjxx35fA='; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'none'">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="favicon.ico" sizes="32x32">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="docs/assets/fonts/AnekLatin-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script>addEventListener('load',function(){function a(){var s=document.createElement('script');s.src='https://static.cloudflareinsights.com/beacon.min.js';s.setAttribute('data-cf-beacon','{"token": "347f1c5c75ff411ead3e9a43282df8cf"}');document.body.appendChild(s)}var P=window.PerformanceObserver;if(!P||!P.supportedEntryTypes||P.supportedEntryTypes.indexOf('paint')<0)return a();new P(function(l,o){if(l.getEntriesByName('first-contentful-paint').length){o.disconnect();a()}}).observe({type:'paint',buffered:true})})</script>
 <style>
 /* intellumia.com, one page. Brand System v5.0.8 (strategy v5.0): Round 5, the approved mockup of 4 Nov 2026,
    Drive Intellumia/website/mockup/index-round5.html (round5-assets.zip, reference-mockup.html). The mockup's rules
@@ -24,6 +25,24 @@
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latinext.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20B8,U+20BA-20CF,U+2C60-2C7F,U+A720-A7FF}
 /* The rupee sign alone (1.7 KB, cut from the file above with fontTools), so the coins in the drawings do not pull the 82 KB file */
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-rupee.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+20B9}
+/* Shown only for the moment before Anek arrives: a font already on the device (Arial or its metric twins; Roboto on
+   Android), scaled so each line is as wide as in Anek and sits on the same baseline, one face per band of the
+   weights the page uses (400; 450 and 500; 560; 600 and 620; 650; 650 condensed). When Anek swaps in, lines
+   break as they did, so the page does not move (no layout shift). Sizes measured over every line of Home, Privacy
+   and the 404 page; overrides are Anek's ascent 0.9 and descent 0.2 over the size-adjust. Not a second typeface:
+   nobody sees it once Anek has loaded. */
+@font-face{font-family:'Anek Fallback';src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans'),local('Arimo'),local('Arimo-Regular');font-weight:100 424;font-stretch:91% 125%;size-adjust:93.4%;ascent-override:96.4%;descent-override:21.4%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans'),local('Arimo'),local('Arimo-Regular');font-weight:425 549;font-stretch:91% 125%;size-adjust:95.3%;ascent-override:94.4%;descent-override:21%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:550 579;font-stretch:91% 125%;size-adjust:88.2%;ascent-override:102%;descent-override:22.7%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:580 639;font-stretch:91% 125%;size-adjust:90.4%;ascent-override:99.6%;descent-override:22.1%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:640 800;font-stretch:91% 125%;size-adjust:91.1%;ascent-override:98.8%;descent-override:22%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:550 800;font-stretch:75% 90%;size-adjust:70.3%;ascent-override:128%;descent-override:28.4%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto'),local('Roboto-Regular');font-weight:100 424;font-stretch:91% 125%;size-adjust:94%;ascent-override:95.7%;descent-override:21.3%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto'),local('Roboto-Regular');font-weight:425 549;font-stretch:91% 125%;size-adjust:95.9%;ascent-override:93.8%;descent-override:20.9%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:550 579;font-stretch:91% 125%;size-adjust:94.3%;ascent-override:95.4%;descent-override:21.2%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:580 639;font-stretch:91% 125%;size-adjust:96.2%;ascent-override:93.6%;descent-override:20.8%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:640 800;font-stretch:91% 125%;size-adjust:96.9%;ascent-override:92.9%;descent-override:20.6%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:550 800;font-stretch:75% 90%;size-adjust:75%;ascent-override:120%;descent-override:26.7%;line-gap-override:0%}
 
 /* Colour tokens (Brand System 2). Vermilion marks four things on the page, never two on one screen (v5.0.7):
    the hero word "money", the "Often first" tag, the Map's first move and the title of rule 04. */
@@ -32,7 +51,7 @@
 @media(min-width:1100px){:root{--gut:48px}}
 *,*::before,*::after{box-sizing:border-box}
 html{background:var(--ground);color-scheme:light;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:'Anek Latin',system-ui,sans-serif;font-size:17px;line-height:1.55;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:'Anek Latin','Anek Fallback','Anek Fallback Roboto',system-ui,sans-serif;font-size:17px;line-height:1.55;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
 h1,h2,h3,p,ul,ol,figure{margin:0}
 ul,ol{padding:0;list-style:none}
@@ -266,7 +285,7 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 <meta property="og:site_name" content="Intellumia">
 <meta property="og:locale" content="en_GB">
 <meta property="og:title" content="Privacy notice | Intellumia">
-<meta property="og:description" content="How Intellumia handles personal data: this website collects nothing about you; what you send us is used only to reply.">
+<meta property="og:description" content="How Intellumia handles personal data: this website sets no cookies and counts visits only in total; what you send us is used only to reply.">
 <meta property="og:url" content="https://intellumia.com/privacy/">
 <meta property="og:image" content="https://intellumia.com/docs/assets/social-preview.jpg">
 <meta property="og:image:width" content="1200">
@@ -274,7 +293,7 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 <meta property="og:image:alt" content="Where can AI make you money?">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Privacy notice | Intellumia">
-<meta name="twitter:description" content="How Intellumia handles personal data: this website collects nothing about you; what you send us is used only to reply.">
+<meta name="twitter:description" content="How Intellumia handles personal data: this website sets no cookies and counts visits only in total; what you send us is used only to reply.">
 <meta name="twitter:image" content="https://intellumia.com/docs/assets/social-preview.jpg">
 <meta name="twitter:image:alt" content="Where can AI make you money?">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://intellumia.com/#organization","additionalType":"https://schema.org/ProfessionalService","name":"Intellumia","legalName":"Intellumia Pte. Ltd.","url":"https://intellumia.com/","logo":"https://intellumia.com/docs/assets/intellumia-wordmark-ultramarine.svg","description":"Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.","email":"sundeep@intellumia.com","address":{"@type":"PostalAddress","streetAddress":"60 Paya Lebar Road, #06-28, Paya Lebar Square","addressLocality":"Singapore","postalCode":"409051","addressCountry":"SG"},"areaServed":{"@type":"Country","name":"India"},"knowsAbout":["Artificial intelligence","Business process automation","Accounts receivable","Cost and margin","Operations"],"contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"sundeep@intellumia.com","availableLanguage":["English"],"areaServed":{"@type":"Country","name":"India"}},"disambiguatingDescription":"An AI-native product company, starting with service."}]}</script>
@@ -289,13 +308,13 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 <div class="page">
 <p class="label">Privacy notice</p>
 <h1 class="hd">How we handle your personal data.</h1>
-<p class="ld">In short: this website collects nothing about you. If you contact us, we use what you send only to reply. Last updated 3 November 2026.</p>
+<p class="ld">In short: this website sets no cookies and counts visits only in total. If you contact us, we use what you send only to reply. Last updated 4 November 2026.</p>
 <div class="notice">
 <div><h2 class="ld">1. Who we are</h2><p class="bd">Intellumia Pte. Ltd., 60 Paya Lebar Road, <span class="nw">#06-28</span>, Paya Lebar Square, Singapore 409051. Data protection officer and grievance contact: Sundeep Kumar, <a href="mailto:sundeep@intellumia.com">sundeep@intellumia.com</a>.</p></div>
-<div><h2 class="ld">2. What this website collects</h2><p class="bd">Nothing about you beyond what any web server records. No cookies, no tracking, no advertising.</p></div>
+<div><h2 class="ld">2. What this website collects</h2><p class="bd">Nothing about you beyond what any web server records. We use Cloudflare Web Analytics to count visits: it sets no cookies, stores nothing on your device and does not track individuals. We see only totals, such as page views, referrers and countries. No advertising.</p></div>
 <div><h2 class="ld">3. What you choose to send us</h2><p class="bd">Booking (cal.com): name, email, time, note. Email: address, name, what you write. Used only to reply and arrange the conversation.</p></div>
 <div><h2 class="ld">4. Consent</h2><p class="bd">We use what you send only with your consent. Withdraw it any time by email; it is as easy as giving it. We then delete your data unless a law requires us to keep it.</p></div>
-<div><h2 class="ld">5. Who else handles it</h2><p class="bd">The services above, under their own terms, possibly outside India or Singapore. We never sell your data, never use it to train AI models, and never share it with another client.</p></div>
+<div><h2 class="ld">5. Who else handles it</h2><p class="bd">The services above, and Cloudflare for the visit counts, under their own terms, possibly outside India or Singapore. We never sell your data, never use it to train AI models, and never share it with another client.</p></div>
 <div><h2 class="ld">6. How long we keep it</h2><p class="bd">As long as the conversation and any work that follows need it; otherwise deleted within twelve months of our last contact.</p></div>
 <div><h2 class="ld">7. Your rights</h2><p class="bd">Access, correction, erasure, withdrawal of consent and, under India&rsquo;s law, nomination. We reply within thirty days. You can complain to the Data Protection Board of India or Singapore&rsquo;s Personal Data Protection Commission.</p></div>
 <div><h2 class="ld">8. Security, children, changes</h2><p class="bd">Reasonable safeguards and breach notice as the law requires. Not for anyone under eighteen. When this notice changes, the date changes.</p></div>
