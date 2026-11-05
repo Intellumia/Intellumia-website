@@ -9,7 +9,7 @@
 <meta name="description" content="How Intellumia handles personal data: this website sets no cookies and counts visits only in total; what you send us is used only to reply.">
 <link rel="canonical" href="https://intellumia.com/privacy/">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src https://static.cloudflareinsights.com 'sha256-p1eFE7YvnwL/569SSKCPmt2aqdw3eMxeFieDIOzAhcE='; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'none'">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="favicon.ico" sizes="32x32">
@@ -24,6 +24,24 @@
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latinext.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20B8,U+20BA-20CF,U+2C60-2C7F,U+A720-A7FF}
 /* The rupee sign alone (1.7 KB, cut from the file above with fontTools), so the coins in the drawings do not pull the 82 KB file */
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-rupee.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+20B9}
+/* Shown only for the moment before Anek arrives: a font already on the device (Arial or its metric twins; Roboto on
+   Android), scaled so each line is as wide as in Anek and sits on the same baseline, one face per band of the
+   weights the page uses (400; 450 and 500; 560; 600 and 620; 650; 650 condensed). When Anek swaps in, lines
+   break as they did, so the page does not move (no layout shift). Sizes measured over every line of Home, Privacy
+   and the 404 page; overrides are Anek's ascent 0.9 and descent 0.2 over the size-adjust. Not a second typeface:
+   nobody sees it once Anek has loaded. */
+@font-face{font-family:'Anek Fallback';src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans'),local('Arimo'),local('Arimo-Regular');font-weight:100 424;font-stretch:91% 125%;size-adjust:93.4%;ascent-override:96.4%;descent-override:21.4%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans'),local('Arimo'),local('Arimo-Regular');font-weight:425 549;font-stretch:91% 125%;size-adjust:95.3%;ascent-override:94.4%;descent-override:21%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:550 579;font-stretch:91% 125%;size-adjust:88.2%;ascent-override:102%;descent-override:22.7%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:580 639;font-stretch:91% 125%;size-adjust:90.4%;ascent-override:99.6%;descent-override:22.1%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:640 800;font-stretch:91% 125%;size-adjust:91.1%;ascent-override:98.8%;descent-override:22%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:550 800;font-stretch:75% 90%;size-adjust:70.3%;ascent-override:128%;descent-override:28.4%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto'),local('Roboto-Regular');font-weight:100 424;font-stretch:91% 125%;size-adjust:94%;ascent-override:95.7%;descent-override:21.3%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto'),local('Roboto-Regular');font-weight:425 549;font-stretch:91% 125%;size-adjust:95.9%;ascent-override:93.8%;descent-override:20.9%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:550 579;font-stretch:91% 125%;size-adjust:94.3%;ascent-override:95.4%;descent-override:21.2%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:580 639;font-stretch:91% 125%;size-adjust:96.2%;ascent-override:93.6%;descent-override:20.8%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:640 800;font-stretch:91% 125%;size-adjust:96.9%;ascent-override:92.9%;descent-override:20.6%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:550 800;font-stretch:75% 90%;size-adjust:75%;ascent-override:120%;descent-override:26.7%;line-gap-override:0%}
 
 /* Colour tokens (Brand System 2). Vermilion marks four things on the page, never two on one screen (v5.0.7):
    the hero word "money", the "Often first" tag, the Map's first move and the title of rule 04. */
@@ -32,7 +50,7 @@
 @media(min-width:1100px){:root{--gut:48px}}
 *,*::before,*::after{box-sizing:border-box}
 html{background:var(--ground);color-scheme:light;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:'Anek Latin',system-ui,sans-serif;font-size:17px;line-height:1.55;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:'Anek Latin','Anek Fallback','Anek Fallback Roboto',system-ui,sans-serif;font-size:17px;line-height:1.55;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%;height:auto}
 h1,h2,h3,p,ul,ol,figure{margin:0}
 ul,ol{padding:0;list-style:none}
@@ -311,6 +329,6 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
  </div>
  <div class="links sm"><a href="mailto:sundeep@intellumia.com">sundeep@intellumia.com</a><a href="privacy.html" aria-current="page">Privacy</a><span class="label muted">Intelligence, Illuminated.</span></div>
 </footer>
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "347f1c5c75ff411ead3e9a43282df8cf"}'></script>
+<script>addEventListener('load',function(){var s=document.createElement('script');s.src='https://static.cloudflareinsights.com/beacon.min.js';s.setAttribute('data-cf-beacon','{"token": "347f1c5c75ff411ead3e9a43282df8cf"}');document.body.appendChild(s)})</script>
 </body>
 </html>

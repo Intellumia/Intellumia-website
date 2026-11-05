@@ -12,7 +12,9 @@ mockup/index-round5.html, also reference-mockup.html in round5-assets.zip) with 
 may carry, in this order. To change a line, change it here and on the page in the same commit, with Sundeep's
 approval.
 """
+import base64
 import datetime as dt
+import hashlib
 import json
 import re
 import sys
@@ -723,8 +725,22 @@ check('no red on Privacy or the 404 page', all('fire' not in (DOCS / f).read_tex
 check('the hero is set in the Statement style', '<h1 class="st">' in home_src)
 families = set(re.findall(r'font-family:([^;}]+)', css))
 svg_families = set(re.findall(r'font-family="([^"]+)"', home_src)) | set(re.findall(r"font:\s*\d+ [\d.]+px '([^']+)'", home_src))
-check('Anek Latin is the only typeface', families <= {"'Anek Latin'", "'Anek Latin',system-ui,sans-serif"}
+STACK = "'Anek Latin','Anek Fallback','Anek Fallback Roboto',system-ui,sans-serif"
+check('Anek Latin is the only typeface (the two fallback faces stand in only until it loads)',
+      families <= {"'Anek Latin'", "'Anek Fallback'", "'Anek Fallback Roboto'", STACK}
+      and f'body{{margin:0;background:var(--ground);color:var(--ink);font-family:{STACK};' in css
       and svg_families <= {'Anek Latin,sans-serif', 'Anek Latin'}, f'{families} {svg_families}')
+# The fallback faces (Round 7b): fonts already on the device, never a download, sized to Anek's widths so the swap
+# does not move the page. Each has a size-adjust and the matching overrides (Anek's ascent 0.9 and descent 0.2).
+fallback_faces = re.findall(r"@font-face\{font-family:'(Anek Fallback(?: Roboto)?)';src:([^;]+);font-weight:([\d ]+);"
+                            r"font-stretch:([\d% ]+);size-adjust:([\d.]+)%;ascent-override:([\d.]+)%;"
+                            r"descent-override:([\d.]+)%;line-gap-override:0%\}", css)
+check('the fallback faces: local fonts only (Arial or its metric twins, Roboto), six weight bands each, sized to Anek, '
+      'baselines matched', len(fallback_faces) == 12 == css.count("font-family:'Anek Fallback")
+      and sorted({f for f, *_ in fallback_faces}) == ['Anek Fallback', 'Anek Fallback Roboto']
+      and all(re.fullmatch(r"local\('[A-Za-z -]+'\)(,local\('[A-Za-z -]+'\))*", src) for _, src, *_ in fallback_faces)
+      and all(abs(float(a) * float(sa) / 100 - 90) < 0.1 and abs(float(d) * float(sa) / 100 - 20) < 0.1
+              for *_, sa, a, d in fallback_faces), f'{fallback_faces}')
 fonts = sorted(p.name for p in DOCS.rglob('*') if p.suffix in ('.woff', '.woff2', '.ttf', '.otf'))
 check('only Anek font files are published (latin, latin extended, and the rupee sign alone), with the licence beside them',
       fonts == ['AnekLatin-latin.woff2', 'AnekLatin-latinext.woff2', 'AnekLatin-rupee.woff2']
@@ -743,33 +759,41 @@ check('the bottom bar: phones only, and no slide for reduced motion',
 #    Round 7, Sundeep, 4 Nov 2026), on Home, Privacy and the 404 page. No forms, no other trackers or scripts.
 #    Structured data without offers or prices.
 # ---------------------------------------------------------------------------------------------
-BEACON = ('<script defer src=\'https://static.cloudflareinsights.com/beacon.min.js\' '
-          'data-cf-beacon=\'{"token": "347f1c5c75ff411ead3e9a43282df8cf"}\'></script>')
+# The beacon is Cloudflare's own snippet (its address and token), added to the page after it has loaded by a small
+# inline script, so it never competes with the page's first paint (Round 7b). The security policy allows that one
+# inline script by its hash, and nothing else inline.
 BEACON_SRC = 'https://static.cloudflareinsights.com/beacon.min.js'
+BEACON_TOKEN = '{"token": "347f1c5c75ff411ead3e9a43282df8cf"}'
+BEACON_JS = ("addEventListener('load',function(){var s=document.createElement('script');"
+             f"s.src='{BEACON_SRC}';s.setAttribute('data-cf-beacon','{BEACON_TOKEN}');document.body.appendChild(s)}})")
+BEACON = '<script>' + BEACON_JS + '</script>'
+BEACON_HASH = "'sha256-" + base64.b64encode(hashlib.sha256(BEACON_JS.encode()).digest()).decode() + "'"
 blocked = {}
 for f in html_files:
     pg = read(DOCS / f)
     bad = [t for t, _ in pg.tags if t in ('form', 'input', 'iframe', 'textarea', 'select', 'audio')]
     own = [s.get('src', 'inline script') for s in pg.scripts if s.get('type') != 'application/ld+json']
-    allowed = (['/assets/site.js', BEACON_SRC] if f == 'index.html' else [BEACON_SRC] if f in pages else [])
+    allowed = (['/assets/site.js', 'inline script'] if f == 'index.html' else ['inline script'] if f in pages else [])
     if own != allowed:
         bad += own
     if bad:
         blocked[f] = bad
 check('no forms, frames or chat widgets; scripts: /assets/site.js on Home, the Cloudflare Web Analytics beacon on '
       'Home, Privacy and 404, nothing on the redirects', not blocked, f'{blocked}')
-check('the Cloudflare Web Analytics beacon: exactly the approved snippet and token, once, just before </body>, on Home, '
-      'Privacy and 404', all((DOCS / f).read_text().count(BEACON) == 1
+check('the Cloudflare Web Analytics beacon: its address and token, added after the page has loaded by one inline '
+      'script, once, just before </body>, on Home, Privacy and 404', all((DOCS / f).read_text().count(BEACON) == 1
+                             and (DOCS / f).read_text().count('<script>') == 1
                              and (DOCS / f).read_text().rstrip().endswith(BEACON + '\n</body>\n</html>') for f in pages)
       and all('cloudflareinsights' not in (DOCS / f).read_text() for f in html_files if f not in pages))
 check('site.js calls nothing outside the page (no addresses, no storage, no tracking)',
       not re.search(r'https?:|fetch\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage|cookie|import\(', js_text))
 csp = {label: pg.meta.get('Content-Security-Policy', '') for label, pg in (('Home', home), ('Privacy', privacy), ('404', nf))}
-check("Home: security policy allows the site's own script and the Cloudflare beacon, and the beacon's report address only",
-      "script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com;" in csp['Home'])
-check("Privacy and 404: security policy allows the Cloudflare beacon only, and its report address",
-      all("script-src https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com;" in csp[k]
-          for k in ('Privacy', '404')))
+check("Home: security policy allows the site's own script, the Cloudflare beacon and the loader by its hash, and the "
+      "beacon's report address only", f"script-src 'self' https://static.cloudflareinsights.com {BEACON_HASH}; "
+      "connect-src 'self' https://cloudflareinsights.com;" in csp['Home'] and 'unsafe-inline' not in csp['Home'].split('script-src')[1])
+check("Privacy and 404: security policy allows the Cloudflare beacon and the loader by its hash only, and its report address",
+      all(f"script-src https://static.cloudflareinsights.com {BEACON_HASH}; connect-src 'self' https://cloudflareinsights.com;"
+          in csp[k] and 'unsafe-inline' not in csp[k].split('script-src')[1] for k in ('Privacy', '404')))
 graph = json.loads(home.ld[0])['@graph'] if home.ld else []
 org = next((g for g in graph if g.get('@type') == 'Organization'), {})
 person = next((g for g in graph if g.get('@type') == 'Person'), {})
