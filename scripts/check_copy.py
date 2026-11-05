@@ -12,7 +12,9 @@ mockup/index-round5.html, also reference-mockup.html in round5-assets.zip) with 
 may carry, in this order. To change a line, change it here and on the page in the same commit, with Sundeep's
 approval.
 """
+import base64
 import datetime as dt
+import hashlib
 import json
 import re
 import sys
@@ -208,7 +210,7 @@ BANNED = {
                                              'trusted by', 'results', 'our clients', 'clients include'],
     'fear, urgency, scarcity': ['hurry', 'act now', 'limited time', 'last chance', 'only a few',
                                 'falling behind', 'left behind', "don't miss", 'before it is too late'],
-    'forms, sign-ups and analytics': ['newsletter', 'subscribe', 'sign up', 'sign-up', 'analytics'],
+    'forms and sign-ups': ['newsletter', 'subscribe', 'sign up', 'sign-up'],
     'American spelling': ['color', 'colors', 'center', 'centers', 'organization', 'organizations', 'organize',
                           'analyze', 'optimize', 'optimization', 'behavior', 'favorite', 'labor', 'honor',
                           'realize', 'recognize', 'prioritize', 'catalog', 'defense', 'fulfill', 'modeling',
@@ -423,7 +425,9 @@ def between(src, start, end):
 # 1. One page: Home and Privacy are the pages, 404.html is the not-found page; every other HTML file
 #    is a redirect to Home.
 # ---------------------------------------------------------------------------------------------
-html_files = sorted(p.relative_to(DOCS).as_posix() for p in DOCS.rglob('*.html'))
+# Google Search Console's verification file (Round 7, Sundeep, 4 Nov 2026): kept permanently, not a page.
+VERIFY_FILE = 'googlebe2efba1afc3cbe9.html'
+html_files = sorted(p.relative_to(DOCS).as_posix() for p in DOCS.rglob('*.html') if p.name != VERIFY_FILE)
 pages = {'index.html', 'privacy/index.html', '404.html'}
 check('docs/ has Home, Privacy and the not-found page', pages <= set(html_files), f'missing: {pages - set(html_files)}')
 bad_stubs = []
@@ -441,6 +445,12 @@ check(f'every other HTML file is a redirect to {SITE} ({len(html_files) - len(pa
 
 locs = re.findall(r'<loc>([^<]+)</loc>', (DOCS / 'sitemap.xml').read_text())
 check('sitemap lists Home and Privacy only', locs == [SITE, SITE + 'privacy/'], f'sitemap has {locs}')
+verify = DOCS / VERIFY_FILE
+check(f'the Search Console verification file /{VERIFY_FILE}: exactly its one line, kept permanently, not in the sitemap',
+      verify.exists() and verify.read_bytes() in (f'google-site-verification: {VERIFY_FILE}'.encode(),
+                                                   f'google-site-verification: {VERIFY_FILE}\n'.encode())
+      and VERIFY_FILE not in (DOCS / 'sitemap.xml').read_text()
+      and [p.name for p in DOCS.rglob('google*.html')] == [VERIFY_FILE])
 
 robots = (DOCS / 'robots.txt').read_text()
 check('robots.txt allows every crawler and names the AI crawlers',
@@ -636,6 +646,10 @@ for group, words in BANNED.items():
     hits = {f: h for f, h in hits.items() if h}
     check(f'no {group}', not hits, f'{hits}')
 
+analytics_words = {f: re.findall(r'(?:\w+ ){0,2}analytics', t, re.I) for f, t in surfaces.items()}
+check('analytics: named only on Privacy, as "Cloudflare Web Analytics" (Round 7)',
+      all(not w for f, w in analytics_words.items() if f != 'docs/privacy/index.html')
+      and analytics_words.get('docs/privacy/index.html') == ['Cloudflare Web Analytics'], f'{analytics_words}')
 published_text = [p for p in DOCS.rglob('*') if p.is_file() and p.suffix in ('.html', '.txt', '.xml', '.css', '.js', '.json')]
 old_link = [p.relative_to(ROOT).as_posix() for p in published_text + [ROOT / 'index.html', ROOT / 'privacy.html']]
 old_link = [f for f in old_link if 'cal.com/meetsk' in (ROOT / f).read_text()]
@@ -711,8 +725,22 @@ check('no red on Privacy or the 404 page', all('fire' not in (DOCS / f).read_tex
 check('the hero is set in the Statement style', '<h1 class="st">' in home_src)
 families = set(re.findall(r'font-family:([^;}]+)', css))
 svg_families = set(re.findall(r'font-family="([^"]+)"', home_src)) | set(re.findall(r"font:\s*\d+ [\d.]+px '([^']+)'", home_src))
-check('Anek Latin is the only typeface', families <= {"'Anek Latin'", "'Anek Latin',system-ui,sans-serif"}
+STACK = "'Anek Latin','Anek Fallback','Anek Fallback Roboto',system-ui,sans-serif"
+check('Anek Latin is the only typeface (the two fallback faces stand in only until it loads)',
+      families <= {"'Anek Latin'", "'Anek Fallback'", "'Anek Fallback Roboto'", STACK}
+      and f'body{{margin:0;background:var(--ground);color:var(--ink);font-family:{STACK};' in css
       and svg_families <= {'Anek Latin,sans-serif', 'Anek Latin'}, f'{families} {svg_families}')
+# The fallback faces (Round 7b): fonts already on the device, never a download, sized to Anek's widths so the swap
+# does not move the page. Each has a size-adjust and the matching overrides (Anek's ascent 0.9 and descent 0.2).
+fallback_faces = re.findall(r"@font-face\{font-family:'(Anek Fallback(?: Roboto)?)';src:([^;]+);font-weight:([\d ]+);"
+                            r"font-stretch:([\d% ]+);size-adjust:([\d.]+)%;ascent-override:([\d.]+)%;"
+                            r"descent-override:([\d.]+)%;line-gap-override:0%\}", css)
+check('the fallback faces: local fonts only (Arial or its metric twins, Roboto), six weight bands each, sized to Anek, '
+      'baselines matched', len(fallback_faces) == 12 == css.count("font-family:'Anek Fallback")
+      and sorted({f for f, *_ in fallback_faces}) == ['Anek Fallback', 'Anek Fallback Roboto']
+      and all(re.fullmatch(r"local\('[A-Za-z -]+'\)(,local\('[A-Za-z -]+'\))*", src) for _, src, *_ in fallback_faces)
+      and all(abs(float(a) * float(sa) / 100 - 90) < 0.1 and abs(float(d) * float(sa) / 100 - 20) < 0.1
+              for *_, sa, a, d in fallback_faces), f'{fallback_faces}')
 fonts = sorted(p.name for p in DOCS.rglob('*') if p.suffix in ('.woff', '.woff2', '.ttf', '.otf'))
 check('only Anek font files are published (latin, latin extended, and the rupee sign alone), with the licence beside them',
       fonts == ['AnekLatin-latin.woff2', 'AnekLatin-latinext.woff2', 'AnekLatin-rupee.woff2']
@@ -727,26 +755,56 @@ check('the bottom bar: phones only, and no slide for reduced motion',
       and '@media(prefers-reduced-motion:reduce){.bar{transition:none}' in css)
 
 # ---------------------------------------------------------------------------------------------
-# 7. Scripts: only /assets/site.js, on Home. No forms, trackers or third-party scripts.
+# 7. Scripts: /assets/site.js on Home, and the one third-party script, Cloudflare Web Analytics (cookie-free;
+#    Round 7, Sundeep, 4 Nov 2026), on Home, Privacy and the 404 page. No forms, no other trackers or scripts.
 #    Structured data without offers or prices.
 # ---------------------------------------------------------------------------------------------
+# The beacon is Cloudflare's own snippet (its address and token), added by a small inline script once the page has
+# loaded and the browser has reported its first contentful paint (at once where paint timing is not supported),
+# so it never competes with the page's first paint (Round 7b). The security policy allows that one
+# inline script by its hash, and nothing else inline.
+BEACON_SRC = 'https://static.cloudflareinsights.com/beacon.min.js'
+BEACON_TOKEN = '{"token": "347f1c5c75ff411ead3e9a43282df8cf"}'
+BEACON_JS = ("addEventListener('load',function(){function a(){var s=document.createElement('script');"
+             f"s.src='{BEACON_SRC}';s.setAttribute('data-cf-beacon','{BEACON_TOKEN}');document.body.appendChild(s)}}"
+             "var P=window.PerformanceObserver;if(!P||!P.supportedEntryTypes||P.supportedEntryTypes.indexOf('paint')<0)return a();"
+             "new P(function(l,o){if(l.getEntriesByName('first-contentful-paint').length){o.disconnect();a()}})"
+             ".observe({type:'paint',buffered:true})})")
+BEACON = '<script>' + BEACON_JS + '</script>'
+BEACON_HASH = "'sha256-" + base64.b64encode(hashlib.sha256(BEACON_JS.encode()).digest()).decode() + "'"
 blocked = {}
 for f in html_files:
     pg = read(DOCS / f)
     bad = [t for t, _ in pg.tags if t in ('form', 'input', 'iframe', 'textarea', 'select', 'audio')]
-    own = [s for s in pg.scripts if s.get('type') != 'application/ld+json']
-    if f == 'index.html':
-        own = [s for s in own if s.get('src') != '/assets/site.js']
-    bad += [s.get('src', 'inline script') for s in own]
+    own = [s.get('src', 'inline script') for s in pg.scripts if s.get('type') != 'application/ld+json']
+    allowed = (['inline script', '/assets/site.js'] if f == 'index.html' else ['inline script'] if f in pages else [])
+    if own != allowed:
+        bad += own
     if bad:
         blocked[f] = bad
-check('no forms, frames, chat widgets or scripts; Home loads /assets/site.js only', not blocked, f'{blocked}')
+check('no forms, frames or chat widgets; scripts: /assets/site.js on Home, the Cloudflare Web Analytics beacon on '
+      'Home, Privacy and 404, nothing on the redirects', not blocked, f'{blocked}')
+def loader_in_head(t):
+    """Once, in the head: after the security policy (so the policy governs it) and just before the stylesheet (so it
+    never waits for it and never holds up parsing: at the end of the body it cost about 40 ms of LCP on a throttled
+    phone, Round 7b)."""
+    return (t.count(BEACON) == 1 and t.count('<script>') == 1 and t.index('http-equiv="Content-Security-Policy"')
+            < t.index(BEACON) < t.index('</head>') and BEACON + '\n<link rel="stylesheet" href="/assets/site.css">' in t)
+
+
+check('the Cloudflare Web Analytics beacon: its address and token, added after the page has loaded and painted by one '
+      'inline script in the head, after the security policy and before the stylesheet, on Home, Privacy and 404',
+      all(loader_in_head((DOCS / f).read_text()) for f in pages)
+      and all('cloudflareinsights' not in (DOCS / f).read_text() for f in html_files if f not in pages))
 check('site.js calls nothing outside the page (no addresses, no storage, no tracking)',
       not re.search(r'https?:|fetch\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage|cookie|import\(', js_text))
 csp = {label: pg.meta.get('Content-Security-Policy', '') for label, pg in (('Home', home), ('Privacy', privacy), ('404', nf))}
-check("Home: security policy allows only the site's own script (script-src 'self')", "script-src 'self';" in csp['Home'])
-check("Privacy and 404: security policy blocks all scripts (script-src 'none')",
-      "script-src 'none'" in csp['Privacy'] and "script-src 'none'" in csp['404'])
+check("Home: security policy allows the site's own script, the Cloudflare beacon and the loader by its hash, and the "
+      "beacon's report address only", f"script-src 'self' https://static.cloudflareinsights.com {BEACON_HASH}; "
+      "connect-src 'self' https://cloudflareinsights.com;" in csp['Home'] and 'unsafe-inline' not in csp['Home'].split('script-src')[1])
+check("Privacy and 404: security policy allows the Cloudflare beacon and the loader by its hash only, and its report address",
+      all(f"script-src https://static.cloudflareinsights.com {BEACON_HASH}; connect-src 'self' https://cloudflareinsights.com;"
+          in csp[k] and 'unsafe-inline' not in csp[k].split('script-src')[1] for k in ('Privacy', '404')))
 graph = json.loads(home.ld[0])['@graph'] if home.ld else []
 org = next((g for g in graph if g.get('@type') == 'Organization'), {})
 person = next((g for g in graph if g.get('@type') == 'Person'), {})
@@ -768,7 +826,8 @@ VERIFICATION = '<meta name="google-site-verification" content="JVD48nYlvicZNZ-kg
 check('Home: the Google Search Console verification tag, exactly as issued, in the head (keep it permanently)',
       home_src.count(VERIFICATION) == 1 and home_src.index(VERIFICATION) < home_src.index('</head>')
       and home.meta.get('google-site-verification') == 'JVD48nYlvicZNZ-kgTofBwZAX-47k2G1xlk4nWepCzQ')
-PRIVACY_DESC = 'How Intellumia handles personal data: this website collects nothing about you; what you send us is used only to reply.'
+PRIVACY_DESC = ('How Intellumia handles personal data: this website sets no cookies and counts visits only in total; what you '
+                'send us is used only to reply.')
 for label, pg, title, desc in (('Home', home, TITLE, DESCRIPTION), ('Privacy', privacy, 'Privacy notice | Intellumia', PRIVACY_DESC)):
     check(f'{label}: og:locale en_GB, and the Twitter title, description, image and its alt text set explicitly',
           pg.meta.get('og:locale') == 'en_GB' and pg.meta.get('twitter:card') == 'summary_large_image'
