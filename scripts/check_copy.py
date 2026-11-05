@@ -30,6 +30,7 @@ DOCS = ROOT / 'docs'
 SITE = 'https://intellumia.com/'
 BOOKING = 'https://cal.com/intellumia/meetsk'
 LINKEDIN = 'https://www.linkedin.com/in/kumarsundeep'
+COMPANY_LINKEDIN = 'https://www.linkedin.com/company/intellumia'  # the Organization's sameAs (Sundeep, 5 Nov 2026)
 
 # ---------------------------------------------------------------------------------------------
 # Approved lines (Brand System v5.0.8; the Round 5 mockup index-round5.html). Nothing else goes on the page.
@@ -855,13 +856,14 @@ check('Service: AI advisory and delivery for owner-run businesses, area served I
       nodes.get('Service', {}).get('serviceType') == 'AI advisory and delivery for owner-run businesses'
       and nodes.get('Service', {}).get('areaServed') == {'@type': 'Country', 'name': 'India'}
       and steps_ld == [(HOW[4], HOW[5]), (HOW[9], HOW[10]), (HOW[14], HOW[15])], f'{steps_ld}')
-check('Organization: ProfessionalService, area served India, what it knows about, and a sales contact in English '
-      '(Hindi only once Sundeep confirms it); no company LinkedIn page until its exact address is on record',
+check('Organization: ProfessionalService, area served India, what it knows about; one sales contact with the site\'s '
+      'email and booking link, in English like the rest of the site (no separate Hindi contact); sameAs the company '
+      'LinkedIn page (Round 7c)',
       org.get('additionalType') == 'https://schema.org/ProfessionalService'
       and org.get('areaServed') == {'@type': 'Country', 'name': 'India'} and len(org.get('knowsAbout', [])) == 5
-      and org.get('contactPoint', {}).get('contactType') == 'sales' and org.get('contactPoint', {}).get('email') == EMAIL
-      and set(org.get('contactPoint', {}).get('availableLanguage', [])) <= {'English', 'Hindi'}
-      and 'sameAs' not in org, f'{org.get("contactPoint")}')
+      and org.get('contactPoint') == {'@type': 'ContactPoint', 'contactType': 'sales', 'email': EMAIL, 'url': BOOKING,
+                                      'availableLanguage': ['English'], 'areaServed': {'@type': 'Country', 'name': 'India'}}
+      and org.get('sameAs') == [COMPANY_LINKEDIN], f'{org.get("contactPoint")} {org.get("sameAs")}')
 check('WebSite and WebPage: name, address, language en-GB; the page is part of the site and about the Organization',
       nodes.get('WebSite', {}).get('url') == SITE and nodes.get('WebSite', {}).get('inLanguage') == 'en-GB'
       and webpage.get('url') == SITE and webpage.get('name') == TITLE and webpage.get('description') == DESCRIPTION
