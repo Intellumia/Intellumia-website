@@ -40,15 +40,11 @@ On Sundeep's word, the plant loop (`plant-loop.mp4`, `plant-loop.webm`, first in
 - `main` moved from `ba4f33b` to `4566ed3`.
 - The full old-to-new map is in the Drive change note "2026-11-05 Change note: website, plant loop removed from the git history".
 
-**The backup:** the old history is on the branch `backup/pre-history-rewrite-2026-11-05` (at `ba4f33b`), until Sundeep has it deleted. To undo the rewrite:
-
-```bash
-git push --force origin backup/pre-history-rewrite-2026-11-05:main
-```
+**The backup:** the branch `backup/pre-history-rewrite-2026-11-05` (at `ba4f33b`) kept the old history until Sundeep deleted it on 6 Nov 2026. So the rewrite can no longer be undone from GitHub. The only complete copies left are a mirror clone and a bundle in the Claude Code session that did the rewrite, and they go when that session ends.
 
 **Old clones:** a clone made before 5 Nov 2026 must not push. Re-clone, or run `git fetch origin && git reset --hard origin/main` on each branch.
 
-**Still on GitHub:** the pull request pages #42 to #50 still show the old commits. GitHub keeps their refs until GitHub Support removes them.
+**Still on GitHub:** the pull request pages #42 to #50 still show the old commits, through refs GitHub keeps. Only GitHub Support can remove them, and Sundeep has not asked for that.
 
 ## Release log
 
