@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Copy and one-page checks for intellumia.com (strategy v5.0, Brand System v5.0.8, Rounds 5 and 6).
+"""Copy and one-page checks for intellumia.com (strategy v5.0, Brand System v5.0.8, Rounds 5 to 8).
 
 Run before every pull request, from the repository root:
 
@@ -47,18 +47,56 @@ NOTE = '30 minutes, by video. Nothing to prepare.'  # beside the hero and closin
 BAR_NOTE = '30 minutes, by video'
 NAV = [('#h-how', 'How it works'), ('#h-map', 'The Map'), ('#h-rules', 'Our rules'), ('#h-sk', 'About'), ('#h-faq', 'FAQ')]
 FOUNDER_LINE = 'Led by Sundeep, Founder & CEO'  # under the hero button, to #h-sk, with the round portrait (alt "")
-# The scenes panel (Round 6): its heading, the six problem scenes in order with their alt text and their question,
-# and its caption.
-SCENES = [('scene-1-margin', 'A bench vice squeezing a stack of coins', 'Costs up, prices stuck?'),
-          ('scene-2-cash', 'A padlocked jar of coins beside a tied stack of invoices', 'Customers paying late?'),
-          ('scene-3-people', 'A workbench with one empty place and coins rolling off it', 'Good people leaving?'),
-          ('scene-4-numbers', 'A pile of ledgers under a lamp late at night, coins slipping out', 'Numbers always late?'),
-          ('scene-5-rework', 'Rejected boxes on a pallet spilling coins', 'Too much made twice?'),
-          ('scene-6-owner', 'An empty chair at a desk buried in files, coins trapped under them', 'All on your desk?')]
+# The pictures (Round 8, 10 Nov 2026): the one picture set, "Intellumia idea imagery library (10 Nov 2026)" in Drive
+# (svg/ and share/). Solid ink-and-white shapes on white, one vermilion thing that is the point, ultramarine only for
+# a path or an action. Served as the files supplied, never recoloured or edited: each is pinned by its sha256.
+# Its alt text is the SVG's own aria-label; the hero picture has none, so it is decorative (alt "").
+PICTURES = {  # name: (width, height, alt, sha256)
+    'hero-one-precise-intervention': (1920, 1080, '', '4c7214abb82565c45394823754d439ae61a872d59eb642dc94dc774a8fa902e3'),
+    'problem-margin-squeezed': (800, 600, 'A press squeezing a coin stack; coins pushed out in red',
+                                'ffba330223c34512e8207934018b3073d7eb3070c01da7d9e75d2dfad36db3a3'),
+    'problem-cash-stuck': (800, 600, 'Coins under a locked glass case beside a stack of invoices; the padlock is red',
+                           '0708db403fcfd7cdbac0f479b6fdd71289b60ce5b6c2d3b7d54b1a12efc92e2c'),
+    'problem-people-leaving': (800, 600, 'A workbench with four places; one stool has moved away, in red',
+                               '607549f65228da832e7d29cef85fe9c49750ae029cbda94ae0cf08b6e7ef32f1'),
+    'problem-numbers-late': (800, 600, 'A tall pile of sheets beside a clock; the time lost is a red wedge',
+                             '208500a527a59590889715fede3b3a992dbc7a841ddf119d746a49ae2efeb0f9'),
+    'problem-rework': (800, 600, 'A conveyor with cartons; one rejected carton sits red on the rework pile',
+                       'ffb28f801243ab4ddaeb7a5e0382e0b62e39b82eedbc2c1a24db414288a033a3'),
+    'problem-everything-on-you': (800, 600, 'A desk with a towering, leaning pile and an empty chair; the latest item on '
+                                  'top is red', '1f0d29693de8c0f9a001ca5f2e93bb9fc28a6449fc8414ad97e4e034b9019698'),
+    'offer-map': (800, 600, 'A plan of the business; a blue route leads to the one place that pays first, in red',
+                  '6d4d47e69cefdb686e60beb2e6ae1f264b559718dba377af4687ccc17aad4b48'),
+    'offer-run': (800, 600, 'A conveyor running cleanly on a blue belt; the finished carton carries a red seal',
+                  '80bfd92e0d799d82a8f3f1eca7ece65de203b22793e243f87ab78226a2e68cad'),
+    'offer-guide': (800, 600, 'A table with a plan on it and two chairs on the same side; the second chair is red',
+                    '2176d5707979c7a5b42249a0d5ab48beb55001192a7b468308ca5f89f581dc39'),
+    'trust-yours-to-keep': (800, 600, 'A strongbox with its key lying in front, in red',
+                            '955259d0617fb392182e63fff33e8a4aed5c2307db094a2a4724d6c28020b154'),
+}
+PICTURE_COLOURS = {'#FFFFFF', '#101010', '#DDD8CC', '#1A1AFF', '#FF3D00'}  # the picture set's five colours (its README)
+SHARE = ('assets/share/share-hero.png', '8a29f77892f24229afe4013bc90e5c4bcee203420bb31bc908fc6b70e5cd06ec')  # 1200 x 630
+HERO_PIC = 'hero-one-precise-intervention'
+OFFERS = ['offer-map', 'offer-run', 'offer-guide']  # beside Map, Run and Guide
+TRUST = 'trust-yours-to-keep'  # rule 06, "Yours to keep"
+
+
+def pic_alt(name):
+    return PICTURES[name][2]
+
+
+# The scenes panel (Round 6): its heading, the six problem pictures in order (Round 8) with their alt text and their
+# question, and its caption.
+SCENES = [('problem-margin-squeezed', pic_alt('problem-margin-squeezed'), 'Costs up, prices stuck?'),
+          ('problem-cash-stuck', pic_alt('problem-cash-stuck'), 'Customers paying late?'),
+          ('problem-people-leaving', pic_alt('problem-people-leaving'), 'Good people leaving?'),
+          ('problem-numbers-late', pic_alt('problem-numbers-late'), 'Numbers always late?'),
+          ('problem-rework', pic_alt('problem-rework'), 'Too much made twice?'),
+          ('problem-everything-on-you', pic_alt('problem-everything-on-you'), 'All on your desk?')]
 SCENES_HEADING = 'Most owner-run businesses have money hiding in plain sight.'  # Round 6; replaces "Sound familiar?"
 SCENES_CAPTION = 'Fix what holds it back, and it is yours to claim.'  # Round 6
-HERO_BLOCK = ([CATEGORY, HERO, HERO_LINE, BUTTON, NOTE, '[img] ', FOUNDER_LINE, SCENES_HEADING]
-              + [x for _, alt, q in SCENES for x in ('[img] ' + alt, q)] + [SCENES_CAPTION])
+HERO_BLOCK = ([CATEGORY, HERO, HERO_LINE, BUTTON, NOTE, '[img] ', FOUNDER_LINE, '[img] ' + pic_alt(HERO_PIC),
+               SCENES_HEADING] + [x for _, alt, q in SCENES for x in ('[img] ' + alt, q)] + [SCENES_CAPTION])
 WHO_LINE = ('Owners, promoters and the leaders they trust, in businesses everywhere, who want AI to show up in '
             'their numbers.')
 PROVEN = ['Customer service', 'Finance and accounting', 'Sales and marketing', 'Supply chain and inventory',
@@ -76,15 +114,15 @@ WHY_AI = ('These leaks are not new. Fixing them took hours of checking, chasing 
 WHAT_WE_DO = (['What we do about it', 'AI does the work. Your people make the calls.', WHY_AI]
               + [x for i, (p, g) in enumerate(CARDS) for x in ([p, g, OFTEN_FIRST] if i == 1 else [p, g])])
 HOW = ['How it works', 'A Map first. Then we run the parts that pay.',
-       '1', 'Start here', 'Map',
+       '1', 'Start here', '[img] ' + pic_alt('offer-map'), 'Map',
        'We find where AI would make you the most money, across the whole business, in two to three weeks.',
        'Always paid, for a fee agreed up front. It never depends on what you buy next.',
-       '2', 'If you choose', 'Run',
+       '2', 'If you choose', '[img] ' + pic_alt('offer-run'), 'Run',
        'We run the moves you choose. AI does the routine work, a named professional checks it and signs off, and '
        'you see the result every week.',
        'Live within 90 days, and only with your sign-off. No AI and no one from Intellumia ever signs your '
        'statutory filings.',
-       '3', 'Alongside', 'Guide', 'Independent advice on AI, vendors and your board. We take no fees from vendors.',
+       '3', 'Alongside', '[img] ' + pic_alt('offer-guide'), 'Guide', 'Independent advice on AI, vendors and your board. We take no fees from vendors.',
        "Covers AI policy and oversight, vendor choice and renewals, readiness for India's data protection duties, "
        'and a quarterly review of your Map.',
        'One example, step by step', 'From an overdue invoice to money collected.',
@@ -129,7 +167,7 @@ RULES = ['Our rules', 'On your side of the table, in writing.',
          'You choose each move, in writing, with at least one way to do it that is not us.',
          '04', RULE_04, 'No referral fees and no resale margins, ever. Our advice is paid for by you alone.',
          '05', 'Your data stays put', 'In your own environment, with models that neither keep nor train on it.',
-         '06', 'Yours to keep', 'What we build with you is yours, with the right to run it without us.']
+         '[img] ' + pic_alt(TRUST), '06', 'Yours to keep', 'What we build with you is yours, with the right to run it without us.']
 PORTRAIT_ALT = 'Sundeep Kumar, Founder and CEO of Intellumia'
 NAME = 'Sundeep Kumar, Founder & CEO'
 QUOTE = ('“AI will do for business what electricity did for factories. The owners who wire up first set the pace '
@@ -226,15 +264,20 @@ COLOURS = TOKENS | {'#2A2926', '#E6E6FF'}
 CYAN = {'#E0F8FF', '#99E6FF', '#00C2FF'}
 MAP_COLOURS = {'#FFFFFF', '#101010', '#5E5B55', '#DDD8CC', '#FF3D00'} | CYAN
 DRAWING_COLOURS = (COLOURS - {'#FF3D00'}) | {'#FFC800'}
-# Retired from the page: the scene bands (v5.0.5, in _archive/), the plant loop (deleted 4 Nov 2026, in the git history)
-# and the leaks diagram (Round 5, in the git history).
-RETIRED = ['plant2-band', 'plant-loop', 'corridor', 'leak-lg', 'class="drop"', 'figure class="leaks"']
-SCENE_FILES = {f'assets/scenes/{n}{s}.jpg' for n, _, _ in SCENES for s in ('', '-360')}
-ASSETS = {'assets/site.css', 'assets/site.js', 'assets/social-preview.jpg', 'assets/intellumia-wordmark-ultramarine.svg',
+# Retired from the page: the scene bands (v5.0.5, in _archive/), the plant loop (deleted 4 Nov 2026, removed from the
+# git history), the leaks diagram (Round 5, in the git history), and the painted scenes and the typographic social
+# preview (Round 8, in _archive/).
+RETIRED = ['plant2-band', 'plant-loop', 'corridor', 'leak-lg', 'class="drop"', 'figure class="leaks"',
+           '/assets/scenes/', 'scene-1-margin', 'scene-6-owner', 'social-preview']
+PAINTED_SCENES = [f'scene-{i}{s}.jpg' for i in ('1-margin', '2-cash', '3-people', '4-numbers', '5-rework', '6-owner')
+                  for s in ('', '-360')]
+ARCHIVED = ([f'_archive/scenes-painted-2026-11-10/{f}' for f in PAINTED_SCENES]
+            + ['_archive/social-preview-2026-11-10/social-preview.jpg'])  # Round 8: moved, not deleted
+ASSETS = {'assets/site.css', 'assets/site.js', 'assets/intellumia-wordmark-ultramarine.svg',
           'assets/fonts/AnekLatin-latin.woff2', 'assets/fonts/AnekLatin-latinext.woff2', 'assets/fonts/AnekLatin-rupee.woff2',
           'assets/fonts/OFL-Anek.txt',
           'assets/imagery/sundeep-portrait-2026_120.jpg', 'assets/imagery/sundeep-portrait-2026_720.jpg',
-          'assets/imagery/sundeep-portrait-2026_890.jpg'} | SCENE_FILES
+          'assets/imagery/sundeep-portrait-2026_890.jpg', SHARE[0]} | {f'assets/pictures/{n}.svg' for n in PICTURES}
 EMOJI = re.compile('[\U0001F000-\U0001FAFF☀-➿️‍]')
 
 # ---------------------------------------------------------------------------------------------
@@ -407,15 +450,15 @@ def sequence_report(got, want):
         f'\n     (expected {len(want)} lines, found {len(got)})' if len(got) != len(want) else '')
 
 
-def jpeg_size(path):
-    data = path.read_bytes()
-    i = 2
-    while i < len(data):
-        marker, length = data[i + 1], int.from_bytes(data[i + 2:i + 4], 'big')
-        if marker in (0xC0, 0xC1, 0xC2):
-            return int.from_bytes(data[i + 7:i + 9], 'big'), int.from_bytes(data[i + 5:i + 7], 'big')
-        i += 2 + length
-    return None
+def png_size(path):
+    data = path.read_bytes() if path.exists() else b''
+    if data[:8] != b'\x89PNG\r\n\x1a\n' or data[12:16] != b'IHDR':
+        return None
+    return int.from_bytes(data[16:20], 'big'), int.from_bytes(data[20:24], 'big')
+
+
+def sha256(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest() if path.exists() else ''
 
 
 def between(src, start, end):
@@ -474,20 +517,40 @@ check(f'Home: every line is approved, in the approved order ({len(HOME)} lines)'
 check('Home: title and og:title', norm(home.title) == TITLE and home.meta.get('og:title') == TITLE)
 check('Home: meta description and og:description',
       home.meta.get('description') == DESCRIPTION and home.meta.get('og:description') == DESCRIPTION)
-check('Home: social preview declared at 1200 x 630', home.meta.get('og:image') == SITE + 'assets/social-preview.jpg'
-      and home.meta.get('og:image:width') == '1200' and home.meta.get('og:image:height') == '630')
-check('the social preview image is 1200 x 630, and its alt text is the headline on Home and Privacy (v5.0.6)',
-      jpeg_size(DOCS / 'assets/social-preview.jpg') == (1200, 630)
-      and home.meta.get('og:image:alt') == HERO and read(DOCS / 'privacy/index.html').meta.get('og:image:alt') == HERO,
-      f"{jpeg_size(DOCS / 'assets/social-preview.jpg')} {home.meta.get('og:image:alt')}")
+for label, pg in (('Home', home), ('Privacy', read(DOCS / 'privacy/index.html'))):
+    check(f'{label}: the share image is share/share-hero.png (Round 8), declared at 1200 x 630 with its alt text',
+          pg.meta.get('og:image') == SITE + SHARE[0] and pg.meta.get('og:image:width') == '1200'
+          and pg.meta.get('og:image:height') == '630' and pg.meta.get('og:image:alt') == HERO,
+          f"{pg.meta.get('og:image')} {pg.meta.get('og:image:alt')}")
+check('the share image is 1200 x 630, the file as supplied (pinned by its sha256)',
+      png_size(DOCS / SHARE[0]) == (1200, 630) and sha256(DOCS / SHARE[0]) == SHARE[1], f'{png_size(DOCS / SHARE[0])}')
 hero_src = between(home_src, '<!-- HERO -->', '<!-- WHAT WE DO -->')
 start = len(HOME_HEADER)
-check('Home: the centred hero holds the label, the headline, the line, the button and its note, the founder line, '
-      'then the scenes panel: its heading, the six scenes and its caption (Round 6)',
+HERO_IMG = (f'<div class="hero-pic"><img src="/assets/pictures/{HERO_PIC}.svg" alt="" width="1920" height="1080" '
+            'decoding="async"></div>')
+check('Home: the hero holds the label, the headline, the line, the button and its note, the founder line and the hero '
+      'picture, then the scenes panel: its heading, the six problem pictures and its caption (Rounds 6 and 8)',
       '<section class="wrap heroC" id="hero">' in hero_src and home.blocks[start:start + len(HERO_BLOCK)] == HERO_BLOCK
       and '.heroC{display:block;text-align:center;' in css
       and 'text-wrap:balance' in (re.search(r'\.heroC \.proofA\{[^}]*\}', css) or re.match('', '')).group(0),
       f'{home.blocks[start:start + len(HERO_BLOCK)]}')
+# The hero picture (Round 8): on phones under the founder line, full width, cropped to the right 60% of the art
+# (1152 of 1920 px: the drawing itself spans x 838 to 1733, so nothing of it is lost); from 1000 px the words on the
+# left and the picture filling the right, out to the window's right edge, never under the words. Not lazy (it is on
+# the first screen); its width and height reserve its space, so it moves nothing when it arrives.
+check('the hero picture: after the founder line, beside the words from 1000 px and bleeding to the right edge, under '
+      'them on phones cropped to the right 60%; width and height set, decoding async, not lazy',
+      between(hero_src, '<div class="hero-top">', '<figure class="probs').count('<img') == 2 and HERO_IMG in hero_src
+      and hero_src.index('<div class="hero-top">') < hero_src.index('<div class="hero-text">')
+      < hero_src.index('<a class="founder"') < hero_src.index(HERO_IMG) < hero_src.index('<figure class="probs')
+      and 'main{overflow-x:clip}' in css
+      and '.hero-pic{margin:36px calc(-1*var(--gut)) 0}' in css
+      and '.hero-pic img{display:block;width:100%;height:auto;aspect-ratio:1152/1080;object-fit:cover;'
+          'object-position:right center}' in css
+      and '@media(min-width:1000px){.heroC{text-align:left}\n .hero-top{display:grid;grid-template-columns:minmax(0,5fr) '
+          'minmax(0,7fr);gap:40px;align-items:center}' in css
+      and ' .hero-pic{margin:0 calc(-1*max(var(--gut),(100vw - var(--max))/2)) 0 0}\n'
+          ' .hero-pic img{aspect-ratio:1920/1080;object-fit:fill}}' in css)
 check('the founder line: under the button, to "About" (#h-sk), with the round black-and-white portrait, centred on phones',
       '<a class="founder" href="#h-sk"><img src="/assets/imagery/sundeep-portrait-2026_120.jpg" alt="" width="40" '
       'height="40"><span>Led by <b>Sundeep</b>, Founder &amp; CEO</span></a>' in hero_src
@@ -552,25 +615,61 @@ check('404: every path is absolute, so it works at any address',
       not re.search(r'(?:href|src)="(?!/|https://|mailto:|#)', (DOCS / '404.html').read_text()))
 
 # ---------------------------------------------------------------------------------------------
-# 4. Pictures and drawings (Round 5): the six problem scenes in the hero and Sundeep's portrait; no video.
-#    The Map is a heat map; the example steps, the cards and the rules carry small decorative drawings.
+# 4. Pictures and drawings (Rounds 5 and 8): the picture set (the hero picture, the six problem pictures in the scenes
+#    panel, the three offer pictures beside Map, Run and Guide, and rule 06's) and Sundeep's portrait; no video.
+#    The Map is a heat map; the example steps, the cards and the other five rules carry small decorative line drawings.
 # ---------------------------------------------------------------------------------------------
 js_text = (DOCS / 'assets/site.js').read_text()
 imgs = [a.get('src') for t, a in home.tags if t == 'img']
-check('pictures: the six scenes and Sundeep\'s portrait (round in the hero, square in "Who you will work with"); no video',
+PIC_ORDER = [HERO_PIC, *[n for n, _, _ in SCENES], *OFFERS, TRUST]
+check('pictures, in order: the hero picture, the six problem pictures, the three offer pictures, rule 06\'s and '
+      'Sundeep\'s portrait (round in the hero, square in "Who you will work with"); no video',
       imgs == ['/assets/intellumia-wordmark-ultramarine.svg', '/assets/imagery/sundeep-portrait-2026_120.jpg',
-               *[f'/assets/scenes/{n}.jpg' for n, _, _ in SCENES], '/assets/imagery/sundeep-portrait-2026_720.jpg',
+               *[f'/assets/pictures/{n}.svg' for n in PIC_ORDER], '/assets/imagery/sundeep-portrait-2026_720.jpg',
                '/assets/intellumia-wordmark-ultramarine.svg']
+      and sorted(PIC_ORDER) == sorted(PICTURES)
       and not any(t in ('video', 'picture', 'source', 'iframe') for t, _ in home.tags), f'{imgs}')
-scene_tags = [a for t, a in home.tags if t == 'img' and '/assets/scenes/' in (a.get('src') or '')]
-check('the scenes: 720 px files as supplied, with a 360 px copy for small slots; width and height set, lazy, alt text from the mockup',
-      [(a.get('alt'), a.get('width'), a.get('height'), a.get('loading')) for a in scene_tags]
-      == [(alt, '720', '720', 'lazy') for _, alt, _ in SCENES]
-      and all(a.get('srcset') == f'/assets/scenes/{n}-360.jpg 360w, /assets/scenes/{n}.jpg 720w' and a.get('sizes')
-              for a, (n, _, _) in zip(scene_tags, SCENES))
-      and all(jpeg_size(DOCS / f'assets/scenes/{n}.jpg') == (720, 720)
-              and jpeg_size(DOCS / f'assets/scenes/{n}-360.jpg') == (360, 360) for n, _, _ in SCENES))
-check('the scenes panel: white with a thin rule border; two across on phones, three from 700 px, six from 1000 px',
+pic_tags = {a.get('src', '').rsplit('/', 1)[-1][:-4]: a for t, a in home.tags
+            if t == 'img' and (a.get('src') or '').startswith('/assets/pictures/')}
+pic_problems = []
+for n, (w, h, alt, digest) in PICTURES.items():
+    a, f = pic_tags.get(n, {}), DOCS / f'assets/pictures/{n}.svg'
+    svg_text = f.read_text() if f.exists() else ''
+    root = re.search(r'<svg\b[^>]*>', svg_text)
+    root = root.group(0) if root else ''
+    label = re.search(r'\saria-label="([^"]*)"', root)
+    want = {'alt': alt, 'width': str(w), 'height': str(h), 'decoding': 'async',
+            'loading': None if n == HERO_PIC else 'lazy', 'srcset': None, 'class': a.get('class')}
+    if {k: a.get(k) for k in want} != want or set(a) - {'src', 'alt', 'width', 'height', 'loading', 'decoding', 'class'}:
+        pic_problems.append(f'{n}: the img tag {a}')
+    if (label.group(1) if label else '') != alt or f'viewBox="0 0 {w} {h}"' not in root:
+        pic_problems.append(f'{n}: alt is not the aria-label of the SVG, or its size differs')
+    if sha256(f) != digest:
+        pic_problems.append(f'{n}: not the file as supplied (sha256 {sha256(f)[:12]})')
+    colours = {c.upper() for c in re.findall(r'#[0-9A-Fa-f]{6}\b', svg_text)}
+    if not colours <= PICTURE_COLOURS or '#FF3D00' not in colours or re.search(
+            r'<script|<image|<foreignObject|href="(?!#)|url\((?!#)|@import|on\w+=|<animate|<set\b', svg_text, re.I):
+        pic_problems.append(f'{n}: colours {sorted(colours - PICTURE_COLOURS)}, or a script, link or motion inside')
+check('the pictures: the files as supplied (sha256), served as img with width and height, decoding async, lazy below '
+      'the fold (all but the hero picture); alt text is each SVG\'s aria-label; the set\'s five colours with its one '
+      'vermilion; nothing inside that loads, links, runs or moves', not pic_problems, '\n     '.join(pic_problems))
+# No frame, shadow, filter, rounding, recolouring, motion or hover on a picture (Round 8): the rules that style them.
+pic_rules = re.findall(r'([^{}]*(?:\.hero-pic|\.ps img|\.step-pic|\.r2-ic img|pictures)[^{}]*)\{([^{}]*)\}', css)
+pic_bad = [s.strip() + '{' + d + '}' for s, d in pic_rules
+           if ':hover' in s or re.search(r'radius|shadow|filter|opacity|transform|transition|blend|clip-path|mask|'
+                                         r'border|outline|background|animation', d)]
+check('the pictures are shown as they are: no frame, rounding, shadow, filter, recolouring, hover or motion',
+      len(pic_rules) >= 6 and not pic_bad and not re.search(r'img:hover|:hover\s*img', css), f'{pic_bad}')
+check('the retired pictures are kept in _archive/ (Round 8: the twelve painted scene files and the old social preview)',
+      all((ROOT / f).is_file() for f in ARCHIVED) and not (DOCS / 'assets/scenes').exists()
+      and not (DOCS / 'assets/social-preview.jpg').exists(), f'{[f for f in ARCHIVED if not (ROOT / f).is_file()]}')
+scene_tags = [a for t, a in home.tags if t == 'img' and '/assets/pictures/problem-' in (a.get('src') or '')]
+check('the scenes panel: the six problem pictures in the order of the questions (Round 8), each above its question',
+      [a.get('src') for a in scene_tags] == [f'/assets/pictures/{n}.svg' for n, _, _ in SCENES]
+      and re.findall(r'<li class="ps"><img src="/assets/pictures/([\w-]+)\.svg"[^>]*><span>([^<]+)</span></li>', hero_src)
+      == [(n, q) for n, _, q in SCENES]
+      and '.ps img{width:100%;height:auto;aspect-ratio:4/3;display:block}' in css)
+check('the panel: white with a thin rule border; two across on phones, three from 700 px, one row of six from 1000 px',
       '<figure class="probs probs--scenes" aria-labelledby="probs-h">' in hero_src
       and '.probs--scenes{background:#fff;border:1px solid var(--rule)}' in css
       and '.ps-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}' in css
@@ -591,6 +690,19 @@ check('"What we do about it" (Round 6): its paragraph under the heading, then th
       and '.why-ai{margin-top:16px;font-size:clamp(18px,.4vw + 16px,21px);line-height:1.45;color:#2a2926;max-width:52ch}' in css
       and home_src.index('<!-- HERO -->') < home_src.index('<!-- WHAT WE DO -->') < home_src.index('<!-- WHO -->')
       < home_src.index('<!-- HOW IT WORKS -->'))
+how_src = between(home_src, '<!-- HOW IT WORKS -->', '<!-- THE MAP -->')
+check('How it works (Round 8): offer-map, offer-run and offer-guide beside Map, Run and Guide, above the words; the four '
+      'example steps keep their line drawings',
+      re.findall(r'<li class="step[^"]*"><div class="k">.*?</div><img class="step-pic" src="/assets/pictures/'
+                 r'(offer-\w+)\.svg"[^>]*><h3 class="h3">(\w+)</h3>', how_src) == list(zip(OFFERS, ['Map', 'Run', 'Guide']))
+      and '.step-pic{display:block;width:100%;height:auto;aspect-ratio:4/3}' in css
+      and how_src.count('<img') == 3 and how_src.count('<svg') >= 4)
+rules_html = between(home_src, '<!-- RULES -->', '<!-- SUNDEEP -->')
+check('Our rules (Round 8): rule 06, "Yours to keep", carries trust-yours-to-keep; the other five keep their line drawings',
+      re.findall(r'<li class="r2[^"]*"><span class="r2-ic"><(svg|img)\b', rules_html) == ['svg'] * 5 + ['img']
+      and re.search(rf'<span class="r2-ic"><img src="/assets/pictures/{TRUST}\.svg"[^>]*></span><span class="n2">06</span>'
+                    r'<h3 class="r2-t">Yours to keep</h3>', rules_html) is not None
+      and '.r2-ic img{display:block;width:auto;height:56px;margin-bottom:6px}' in css)
 check('the portrait in "Who you will work with": alt text, width and height, lazy',
       re.search(rf'<img src="/assets/imagery/sundeep-portrait-2026_720\.jpg"[^>]+width="720" height="720" '
                 rf'alt="{PORTRAIT_ALT}" loading="lazy"', home_src) is not None)
@@ -598,7 +710,8 @@ published_files = [f for f in DOCS.rglob('*') if f.is_file()]
 retired_hits = sorted({w for f in published_files for w in RETIRED
                        if w in f.name or (f.suffix in ('.html', '.css', '.js', '.txt', '.xml')
                                           and w in f.read_text(errors='ignore'))})
-check('the scene bands, the plant loop and the leaks diagram stay retired (in _archive/ or the history): nothing published refers to them',
+check('the scene bands, the plant loop, the leaks diagram, the painted scenes and the old social preview stay retired '
+      '(in _archive/ or the history): nothing published refers to them',
       not retired_hits, f'{retired_hits}')
 map_src = between(home_src, '<!-- THE MAP -->', '<!-- RULES -->')
 map_svgs = re.findall(r'<svg class="map-(lg|sm)" viewBox="([^"]+)" role="img" aria-label="([^"]+)">', map_src)
@@ -642,8 +755,18 @@ for f in html_files:
     texts += [w for _, ws in pg.drawings for w in ws] + pg.decor
     surfaces['docs/' + f] = '\n'.join(texts)
 surfaces['docs/llms.txt'] = (DOCS / 'llms.txt').read_text()
+# The picture set's own labels say "plan" for a drawing of the business (offer-map, offer-guide), never a price plan.
+# The alt text repeats each label word for word (Round 8), so these two lines alone may carry that one word.
+LABEL_WORDS = {'[img] ' + pic_alt('offer-map'): {'plan'}, '[img] ' + pic_alt('offer-guide'): {'plan'}}
+
+
+def words_in_surface(t, words):
+    return sorted({w for line in t.split('\n') for w in words_found(line, [x for x in words
+                                                                         if x not in LABEL_WORDS.get(line, ())])})
+
+
 for group, words in BANNED.items():
-    hits = {f: words_found(t, words) for f, t in surfaces.items()}
+    hits = {f: words_in_surface(t, words) for f, t in surfaces.items()}
     hits = {f: h for f, h in hits.items() if h}
     check(f'no {group}', not hits, f'{hits}')
 
@@ -713,7 +836,7 @@ check('four red things on the page, no more (v5.0.7): "money" in the hero, the "
       "the Map's first move (Collections) and the title of rule 04",
       len(home.fire) == 1 and 'h1' in home.fire[0] and home_src.count('class="fire"') == 1
       and red_tags == [OFTEN_FIRST] and len(cash_card) == 6 and 'Customers paying late' in cash_card[1]
-      and OFTEN_FIRST in cash_card[1] and home_src.count(' red"') == 1
+      and OFTEN_FIRST in cash_card[1] and len(re.findall(r'class="[^"]*\bred"', home_src)) == 1
       and home_src.count('r2-key') == 1 and re.search(r'<li class="r2 r2-key">.*?<span class="n2">04</span>'
                                                       rf'<h3 class="r2-t">{RULE_04}</h3>', rules_src, re.S) is not None
       and red_map == [2, 1] and re.search(r'fill="#FF3D00"/><text class="tkw"[^>]*>FIRST MOVE</text><text class="tw"'
@@ -747,8 +870,8 @@ check('only Anek font files are published (latin, latin extended, and the rupee 
       fonts == ['AnekLatin-latin.woff2', 'AnekLatin-latinext.woff2', 'AnekLatin-rupee.woff2']
       and (DOCS / 'assets/fonts/OFL-Anek.txt').exists() and 'unicode-range:U+20B9}' in css,
       f'{fonts}')
-check('corners: 6 for buttons, chips, tags and the scenes, 10 for panels and cards, round for the small portrait and '
-      'the numbers, 0 for the portrait', set(re.findall(r'border-radius:([\d.]+(?:px|%))', css)) <= {'6px', '10px', '50%'}
+check('corners: 6 for buttons, chips and tags, 10 for panels and cards, round for the small portrait and the numbers, '
+      '0 for the portrait and the pictures', set(re.findall(r'border-radius:([\d.]+(?:px|%))', css)) <= {'6px', '10px', '50%'}
       and '.person img{width:100%;max-width:420px;aspect-ratio:1;object-fit:cover}' in css)
 check('no sticky section heads (Round 5)', 'sticky' not in css)
 check('the bottom bar: phones only, and no slide for reduced motion',
@@ -834,7 +957,7 @@ for label, pg, title, desc in (('Home', home, TITLE, DESCRIPTION), ('Privacy', p
           pg.meta.get('og:locale') == 'en_GB' and pg.meta.get('twitter:card') == 'summary_large_image'
           and pg.meta.get('twitter:title') == title == pg.meta.get('og:title')
           and pg.meta.get('twitter:description') == desc == pg.meta.get('og:description')
-          and pg.meta.get('twitter:image') == SITE + 'assets/social-preview.jpg' == pg.meta.get('og:image')
+          and pg.meta.get('twitter:image') == SITE + SHARE[0] == pg.meta.get('og:image')
           and pg.meta.get('twitter:image:alt') == HERO, f"{[pg.meta.get(k) for k in ('og:locale', 'twitter:title')]}")
 home_ld = json.loads(home.ld[0]) if home.ld else {}
 privacy_ld = json.loads(privacy.ld[0]) if privacy.ld else {}
@@ -855,7 +978,7 @@ check('Service: AI advisory and delivery for owner-run businesses, area served I
       "with the page's one-line descriptions",
       nodes.get('Service', {}).get('serviceType') == 'AI advisory and delivery for owner-run businesses'
       and nodes.get('Service', {}).get('areaServed') == {'@type': 'Country', 'name': 'India'}
-      and steps_ld == [(HOW[4], HOW[5]), (HOW[9], HOW[10]), (HOW[14], HOW[15])], f'{steps_ld}')
+      and steps_ld == [(n, HOW[HOW.index(n) + 1]) for n in ('Map', 'Run', 'Guide')], f'{steps_ld}')
 check('Organization: ProfessionalService, area served India, what it knows about; one sales contact with the site\'s '
       'email and booking link, in English like the rest of the site (no separate Hindi contact); sameAs the company '
       'LinkedIn page (Round 7c)',
