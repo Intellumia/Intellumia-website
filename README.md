@@ -4,7 +4,7 @@ The public website of Intellumia, served at <https://intellumia.com> by GitHub P
 
 Intellumia, the AI partner for owner-run businesses. Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.
 
-Since 3 November 2026 (strategy v5.0) the site is **one page with one action, "Book a call"**, plus the Privacy notice, until Intellumia has 5 to 10 paying clients. The page follows the Round 5 mockup Sundeep approved on 4 November 2026 (Brand System v5.0.8: the centred hero with the founder line and six problem scenes, what we do about it, a worked example, the Map as a heat map, the rules as cards and the questions owners ask). The rules for every change are in [`CLAUDE.md`](CLAUDE.md).
+Since 3 November 2026 (strategy v5.0) the site is **one page with one action, "Book a call"**, plus the Privacy notice, until Intellumia has 5 to 10 paying clients. The page follows the Round 5 mockup Sundeep approved on 4 November 2026 (Brand System v5.0.8: the hero with the founder line and six problem pictures, what we do about it, a worked example, the Map as a heat map, the rules as cards and the questions owners ask). Since Round 8 (10 November 2026) its pictures are the one picture set: solid ink-and-white shapes on white, one vermilion thing that is the point. The rules for every change are in [`CLAUDE.md`](CLAUDE.md).
 
 ## What is here
 
@@ -12,7 +12,7 @@ Since 3 November 2026 (strategy v5.0) the site is **one page with one action, "B
 | --- | --- |
 | `docs/index.html` | The page. Hand-written static HTML; GitHub Pages publishes `docs/` as it stands, with no build step. |
 | `docs/privacy/index.html` | The Privacy notice. |
-| `docs/assets/` | `site.css` (the one stylesheet), `site.js` (the one script: the phone bottom bar), the ultramarine wordmark, the Anek fonts and their licence, the six problem scenes, Sundeep's portrait, the social preview. The heat map and the small drawings are inline SVG in the page. |
+| `docs/assets/` | `site.css` (the one stylesheet), `site.js` (the one script: the phone bottom bar), the ultramarine wordmark, the Anek fonts and their licence, the picture set (`pictures/`, SVG as supplied), Sundeep's portrait, the share image (`share/share-hero.png`). The heat map and the small drawings are inline SVG in the page. |
 | `docs/404.html` | The not-found page, served at any unknown address. |
 | Every other HTML file in `docs/` | A redirect to the page, so old links still land on intellumia.com. |
 | `docs/CNAME` | The custom domain, `intellumia.com`. Do not change it. |
@@ -24,7 +24,7 @@ Since 3 November 2026 (strategy v5.0) the site is **one page with one action, "B
 | `scripts/make_structured_data.py` | Writes the structured data (JSON-LD) of Home and Privacy from the pages and stamps the release date into the page and the sitemap. Run it at every release, before the fallback. |
 | `scripts/make_fallback.py` | Rebuilds the fallback at the root from `docs/`. |
 | `index.html`, `privacy.html`, `favicon.*`, `apple-touch-icon.png`, `robots.txt`, `sitemap.xml` at the root | The last-resort fallback (see `DEPLOYMENT_AND_ROLLBACK.md`), a copy of the page. Not the live site. |
-| `_archive/` | Retired pages and assets of the October 2026 site, the old fallback, the fonts that are not Anek, the corridor scene band (removed 3 Nov 2026), and the plant scene band (removed 4 Nov 2026; its loop was deleted on Sundeep's word the same day). Kept for the record; not published. |
+| `_archive/` | Retired pages and assets of the October 2026 site, the old fallback, the fonts that are not Anek, the corridor scene band (removed 3 Nov 2026), the plant scene band (removed 4 Nov 2026; its loop was deleted on Sundeep's word the same day), and the painted problem scenes, the old social preview and the unused strongbox picture (retired 10 Nov 2026, Round 8). Kept for the record; not published. |
 | `archive/next-app/`, `package.json`, `public/` and the other root config files | The retired Phase 1 Next.js app (August 2026). Not published; do not run `npm run build`. |
 
 ## Checking a change locally
