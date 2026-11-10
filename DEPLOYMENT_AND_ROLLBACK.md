@@ -12,7 +12,7 @@
 ## How a release goes out
 
 1. Work on a branch and open a draft pull request into `main`. The pull request states its rollback point: the commit `main` is at before the merge.
-2. Run the checks in `CLAUDE.md` (`scripts/make_fallback.py`, `scripts/check_copy.py`, then the browser checks at 360, 390, 768, 1100 and 1440 px and Lighthouse), and put the results and screenshots at 360 px and 1440 px in the pull request.
+2. Run the checks in `CLAUDE.md` (`scripts/make_structured_data.py`, `scripts/make_asset_versions.py` so every asset link carries its version, `scripts/make_fallback.py`, `scripts/check_copy.py`, then the browser checks at 360, 390, 768, 1100 and 1440 px and Lighthouse), and put the results and screenshots at 360 px and 1440 px in the pull request.
 3. The brand studio does its brand check on the pull request; fixes go on the same branch, and the checks run again.
 4. Sundeep merges, with a merge commit. Nobody else merges.
 5. GitHub Pages runs "pages build and deployment" (about 30 seconds). Confirm the run succeeded for the merge commit.

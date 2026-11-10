@@ -427,8 +427,19 @@ class Page(HTMLParser):
         self.buf.append(data)
 
 
+# Asset versions (10 Nov 2026, after Round 8): every link to a stylesheet, script, picture, font or icon carries
+# ?v= and the first 10 hex characters of the file's sha256 (scripts/make_asset_versions.py), so a changed file gets a
+# new address. The checks below on the pages' structure read them without their versions (plain); section 1 checks
+# that every version matches its file.
+VERSIONED = re.compile(r'\?v=[0-9a-f]{10}(?=[\s"\',)])')
+
+
+def plain(text):
+    return VERSIONED.sub('', text)
+
+
 def read(path):
-    return Page(path.read_text())
+    return Page(plain(path.read_text()))
 
 
 def ld_values(node):
@@ -506,6 +517,30 @@ check('robots.txt allows every crawler and names the AI crawlers',
       and all(b in robots for b in ('GPTBot', 'ClaudeBot', 'PerplexityBot', 'Google-Extended'))
       and 'Sitemap: https://intellumia.com/sitemap.xml' in robots)
 
+# Every link to a file under /assets/ or to an icon, on every page and in the stylesheet, carries the file's version.
+ASSET_REF = re.compile(r'(?:https://intellumia\.com)?(/(?:assets/[^\s"\'()?#,]+|favicon\.ico|favicon\.svg|apple-touch-icon\.png))'
+                       r'(\?v=[0-9a-f]*)?')
+
+
+def file_version(path):
+    f = DOCS / path.lstrip('/')
+    return hashlib.sha256(f.read_bytes()).hexdigest()[:10] if f.is_file() else 'missing'
+
+
+bad_versions, version_links = [], 0
+for f in [*html_files, 'assets/site.css']:
+    raw = (DOCS / f).read_text()
+    values = (re.findall(r"url\('([^']*)'\)", raw) if f.endswith('.css')
+              else [v for _, v in re.findall(r'\b(src|href|srcset|content)="([^"]*)"', raw)])
+    for value in values:
+        for path, ver in ASSET_REF.findall(value):
+            version_links += 1
+            if ver != '?v=' + file_version(path):
+                bad_versions.append(f'{f}: {path}{ver or " (no version)"}, the file is {file_version(path)}')
+check(f'asset versions: every link to the stylesheet, the script, a picture, a font or an icon ({version_links} links on '
+      'the pages and in site.css) carries ?v= and the first 10 characters of the file\'s sha256, so a changed file gets a '
+      'new address (run scripts/make_asset_versions.py if not)',
+      not bad_versions and version_links >= 40, '\n     '.join(bad_versions))
 published = sorted(p.relative_to(DOCS).as_posix() for p in (DOCS / 'assets').rglob('*') if p.is_file())
 check('docs/assets holds only what the pages use', set(published) == ASSETS,
       f'extra: {sorted(set(published) - ASSETS)}; missing: {sorted(ASSETS - set(published))}')
@@ -513,9 +548,9 @@ check('docs/assets holds only what the pages use', set(published) == ASSETS,
 # ---------------------------------------------------------------------------------------------
 # 2. Home carries the approved lines, in the mockup's order, and nothing else.
 # ---------------------------------------------------------------------------------------------
-home_src = (DOCS / 'index.html').read_text()
+home_src = plain((DOCS / 'index.html').read_text())
 home = read(DOCS / 'index.html')
-css = (DOCS / 'assets/site.css').read_text()
+css = plain((DOCS / 'assets/site.css').read_text())
 check(f'Home: every line is approved, in the approved order ({len(HOME)} lines)', home.blocks == HOME,
       sequence_report(home.blocks, HOME))
 check('Home: title and og:title', norm(home.title) == TITLE and home.meta.get('og:title') == TITLE)
@@ -594,8 +629,8 @@ check(f'Home: "{BUTTON}" in the header, the hero, the closing plate and the bott
       and home_btns[3].get('tabindex') == '-1', f'{home_btns}')
 check('Home: the bottom bar starts hidden (aria-hidden, out of the tab order) and the script shows it',
       '<div class="bar" id="bar" aria-hidden="true">' in home_src and 'id="hero"' in home_src and 'id="close"' in home_src)
-for label, pg, src in (('Privacy', privacy, (DOCS / 'privacy/index.html').read_text()),
-                       ('404', nf, (DOCS / '404.html').read_text())):
+for label, pg, src in (('Privacy', privacy, plain((DOCS / 'privacy/index.html').read_text())),
+                       ('404', nf, plain((DOCS / '404.html').read_text()))):
     check(f'{label}: one "{BUTTON}" button, in the header, shown at every width',
           len(pg.buttons) == 1 and booking_ok(pg.buttons) and '<header class="wrap hdr hdr--always">' in src)
 check('no floating button left anywhere', all('class="btn fab"' not in (DOCS / f).read_text() for f in html_files))
@@ -920,7 +955,7 @@ def loader_in_head(t):
 
 check('the Cloudflare Web Analytics beacon: its address and token, added after the page has loaded and painted by one '
       'inline script in the head, after the security policy and before the stylesheet, on Home, Privacy and 404',
-      all(loader_in_head((DOCS / f).read_text()) for f in pages)
+      all(loader_in_head(plain((DOCS / f).read_text())) for f in pages)
       and all('cloudflareinsights' not in (DOCS / f).read_text() for f in html_files if f not in pages))
 check('site.js calls nothing outside the page (no addresses, no storage, no tracking)',
       not re.search(r'https?:|fetch\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage|cookie|import\(', js_text))
