@@ -50,12 +50,14 @@ FOUNDER_LINE = 'Led by Sundeep, Founder & CEO'  # under the hero button, to #h-s
 # The pictures (Round 8, 10 Nov 2026): the one picture set, "Intellumia idea imagery library (10 Nov 2026)" in Drive
 # (svg/ and share/). Solid ink-and-white shapes on white, one vermilion thing that is the point, ultramarine only for
 # a path or an action. Served as the files supplied, never recoloured or edited: each is pinned by its sha256.
-# Its alt text is the SVG's own aria-label, word for word, except the hero picture, whose file has no label: its alt is
-# in Sundeep's words (10 Nov 2026). offer-map and offer-guide were re-exported the same day with labels matching the
-# alt texts he set, so "plan" appears nowhere, the files' own labels included.
+# Its alt text is the SVG's own aria-label, word for word. offer-map and offer-guide were re-exported on 10 Nov 2026
+# with labels matching the alt texts Sundeep set, so "plan" appears nowhere, the files' own labels included. The hero
+# is the tight file of the same day (935 x 645, the same art without its blank space; it carries Sundeep's alt as
+# its label); the 1920 x 1080 file it replaces is in _archive/.
 PICTURES = {  # name: (width, height, alt, sha256)
-    'hero-one-precise-intervention': (1920, 1080, 'Two parts of a business joined by one red bridge, with a blue route '
-                                      'running through', '4c7214abb82565c45394823754d439ae61a872d59eb642dc94dc774a8fa902e3'),
+    'hero-one-precise-intervention-tight': (935, 645, 'Two parts of a business joined by one red bridge, with a blue '
+                                            'route running through',
+                                            '720f13fa1b09c9b279171624eba8dfdfe7e0e9bf0f4ce075078eb585e4fe4826'),
     'problem-margin-squeezed': (800, 600, 'A press squeezing a coin stack; coins pushed out in red',
                                 'ffba330223c34512e8207934018b3073d7eb3070c01da7d9e75d2dfad36db3a3'),
     'problem-cash-stuck': (800, 600, 'Coins under a locked glass case beside a stack of invoices; the padlock is red',
@@ -77,9 +79,8 @@ PICTURES = {  # name: (width, height, alt, sha256)
 }
 PICTURE_COLOURS = {'#FFFFFF', '#101010', '#DDD8CC', '#1A1AFF', '#FF3D00'}  # the picture set's five colours (its README)
 SHARE = ('assets/share/share-hero.png', '8a29f77892f24229afe4013bc90e5c4bcee203420bb31bc908fc6b70e5cd06ec')  # 1200 x 630
-HERO_PIC = 'hero-one-precise-intervention'
+HERO_PIC = 'hero-one-precise-intervention-tight'
 OFFERS = ['offer-map', 'offer-run', 'offer-guide']  # beside Map, Run and Guide
-ALT_WORDED = {'hero-one-precise-intervention'}  # no label in the file: alt text in Sundeep's words, 10 Nov 2026
 SHARE_ALT = 'Intellumia: one red bridge connects two parts of a business'  # og:image:alt, twitter:image:alt (10 Nov 2026)
 # trust-yours-to-keep is not on the page: rule 06 keeps its line drawing (Sundeep, 10 Nov 2026); the file is in _archive/.
 
@@ -271,12 +272,14 @@ DRAWING_COLOURS = (COLOURS - {'#FF3D00'}) | {'#FFC800'}
 # git history), the leaks diagram (Round 5, in the git history), and the painted scenes and the typographic social
 # preview (Round 8, in _archive/).
 RETIRED = ['plant2-band', 'plant-loop', 'corridor', 'leak-lg', 'class="drop"', 'figure class="leaks"',
-           '/assets/scenes/', 'scene-1-margin', 'scene-6-owner', 'social-preview', 'trust-yours-to-keep']
+           '/assets/scenes/', 'scene-1-margin', 'scene-6-owner', 'social-preview', 'trust-yours-to-keep',
+           'hero-one-precise-intervention.svg']
 PAINTED_SCENES = [f'scene-{i}{s}.jpg' for i in ('1-margin', '2-cash', '3-people', '4-numbers', '5-rework', '6-owner')
                   for s in ('', '-360')]
 ARCHIVED = ([f'_archive/scenes-painted-2026-11-10/{f}' for f in PAINTED_SCENES]
             + ['_archive/social-preview-2026-11-10/social-preview.jpg',
-               '_archive/pictures-unused-2026-11-10/trust-yours-to-keep.svg'])  # Round 8: moved, not deleted
+               '_archive/pictures-unused-2026-11-10/trust-yours-to-keep.svg',
+               '_archive/pictures-unused-2026-11-10/hero-one-precise-intervention.svg'])  # Round 8: moved, not deleted
 ASSETS = {'assets/site.css', 'assets/site.js', 'assets/intellumia-wordmark-ultramarine.svg',
           'assets/fonts/AnekLatin-latin.woff2', 'assets/fonts/AnekLatin-latinext.woff2', 'assets/fonts/AnekLatin-rupee.woff2',
           'assets/fonts/OFL-Anek.txt',
@@ -565,7 +568,7 @@ check('the share image is 1200 x 630, the file as supplied (pinned by its sha256
       png_size(DOCS / SHARE[0]) == (1200, 630) and sha256(DOCS / SHARE[0]) == SHARE[1], f'{png_size(DOCS / SHARE[0])}')
 hero_src = between(home_src, '<!-- HERO -->', '<!-- WHAT WE DO -->')
 start = len(HOME_HEADER)
-HERO_IMG = (f'<div class="hero-pic"><img src="/assets/pictures/{HERO_PIC}.svg" alt="{pic_alt(HERO_PIC)}" width="1920" height="1080" '
+HERO_IMG = (f'<div class="hero-pic"><img src="/assets/pictures/{HERO_PIC}.svg" alt="{pic_alt(HERO_PIC)}" width="935" height="645" '
             'decoding="async"></div>')
 check('Home: the hero holds the label, the headline, the line, the button and its note, the founder line and the hero '
       'picture, then the scenes panel: its heading, the six problem pictures and its caption (Rounds 6 and 8)',
@@ -573,23 +576,26 @@ check('Home: the hero holds the label, the headline, the line, the button and it
       and '.heroC{display:block;text-align:center;' in css
       and 'text-wrap:balance' in (re.search(r'\.heroC \.proofA\{[^}]*\}', css) or re.match('', '')).group(0),
       f'{home.blocks[start:start + len(HERO_BLOCK)]}')
-# The hero picture (Round 8): on phones under the founder line, full width, cropped to the right 60% of the art
-# (1152 of 1920 px: the drawing itself spans x 838 to 1733, so nothing of it is lost); from 1000 px the words on the
-# left and the picture filling the right, out to the window's right edge, never under the words. Not lazy (it is on
-# the first screen); its width and height reserve its space, so it moves nothing when it arrives.
-check('the hero picture: after the founder line, beside the words from 1000 px and bleeding to the right edge, under '
-      'them on phones cropped to the right 60%; width and height set, decoding async, not lazy',
+# The hero picture (Round 8, corrected 10 Nov 2026): the tight art, always whole and always inside the content
+# container. Below 1000 px under the founder line, centred, at most 560 px wide; from 1000 px beside the words (7fr
+# words, 5fr picture, 48 px apart), at most 600 px wide, against the container's right edge and centred on the words.
+# Not lazy (it is on the first screen); its width and height reserve its space, so it moves nothing when it arrives.
+check('the hero picture: the whole tight picture after the founder line; below 1000 px centred and at most 560 px wide; '
+      'from 1000 px beside the words (7fr and 5fr, 48 px apart), right-aligned in the container, at most 600 px, '
+      'centred on the words; never cropped, never outside the container; width and height set, decoding async, not lazy',
       between(hero_src, '<div class="hero-top">', '<figure class="probs').count('<img') == 2 and HERO_IMG in hero_src
       and hero_src.index('<div class="hero-top">') < hero_src.index('<div class="hero-text">')
       < hero_src.index('<a class="founder"') < hero_src.index(HERO_IMG) < hero_src.index('<figure class="probs')
-      and 'main{overflow-x:clip}' in css
-      and '.hero-pic{margin:36px calc(-1*var(--gut)) 0}' in css
-      and '.hero-pic img{display:block;width:100%;height:auto;aspect-ratio:1152/1080;object-fit:cover;'
-          'object-position:right center}' in css
-      and '@media(min-width:1000px){.heroC{text-align:left}\n .hero-top{display:grid;grid-template-columns:minmax(0,5fr) '
-          'minmax(0,7fr);gap:40px;align-items:center}' in css
-      and ' .hero-pic{margin:0 calc(-1*max(var(--gut),(100vw - var(--max))/2)) 0 0}\n'
-          ' .hero-pic img{aspect-ratio:1920/1080;object-fit:fill}}' in css)
+      and '.hero-pic{margin:48px auto 0;max-width:560px}\n.hero-pic img{display:block;width:100%;height:auto}\n' in css
+      and '@media(min-width:1000px){.heroC{text-align:left}\n .hero-top{display:grid;grid-template-columns:minmax(0,7fr) '
+          'minmax(0,5fr);gap:48px;align-items:center}' in css
+      and ' .hero-pic{margin:0;justify-self:end;width:100%;max-width:600px}}' in css
+      and not re.search(r'(?:hero-pic|main)[^{}]*\{[^}]*(?:object-|aspect-ratio|calc\(-|overflow)', css))
+check('the headline: one line break, after "make", shown from 1200 px only ("Where can AI make" / "you money?"; three '
+      'lines are fine from 1000 to 1199 px; Sundeep, 10 Nov 2026)',
+      '<h1 class="st">Where can AI make<br class="hero-br"> you <span class="fire">money</span>?</h1>' in home_src
+      and home_src.count('<br') == 1 and '.hero-br{display:none}' in css
+      and '@media(min-width:1200px){.hero-br{display:inline}}' in css)
 check('the founder line: under the button, to "About" (#h-sk), with the round black-and-white portrait, centred on phones',
       '<a class="founder" href="#h-sk"><img src="/assets/imagery/sundeep-portrait-2026_120.jpg" alt="" width="40" '
       'height="40"><span>Led by <b>Sundeep</b>, Founder &amp; CEO</span></a>' in hero_src
@@ -681,7 +687,8 @@ for n, (w, h, alt, digest) in PICTURES.items():
             'loading': None if n == HERO_PIC else 'lazy', 'srcset': None, 'class': a.get('class')}
     if {k: a.get(k) for k in want} != want or set(a) - {'src', 'alt', 'width', 'height', 'loading', 'decoding', 'class'}:
         pic_problems.append(f'{n}: the img tag {a}')
-    if not alt or (n not in ALT_WORDED and (label.group(1) if label else '') != alt) or f'viewBox="0 0 {w} {h}"' not in root:
+    if (not alt or (label.group(1) if label else '') != alt or f'width="{w}" height="{h}"' not in root
+            or not re.search(rf'viewBox="-?[\d.]+ -?[\d.]+ {w} {h}"', root)):
         pic_problems.append(f'{n}: alt is empty or not the aria-label of the SVG, or its size differs')
     if sha256(f) != digest:
         pic_problems.append(f'{n}: not the file as supplied (sha256 {sha256(f)[:12]})')
@@ -690,8 +697,8 @@ for n, (w, h, alt, digest) in PICTURES.items():
             r'<script|<image|<foreignObject|href="(?!#)|url\((?!#)|@import|on\w+=|<animate|<set\b', svg_text, re.I):
         pic_problems.append(f'{n}: colours {sorted(colours - PICTURE_COLOURS)}, or a script, link or motion inside')
 check('the pictures: the files as supplied (sha256), served as img with width and height, decoding async, lazy below '
-      'the fold (all but the hero picture); alt text is each SVG\'s aria-label (the hero picture, which has none, in '
-      'Sundeep\'s words); the set\'s five colours with its one '
+      'the fold (all but the hero picture); alt text is each SVG\'s aria-label, word for word; the set\'s five colours '
+      'with its one '
       'vermilion; nothing inside that loads, links, runs or moves', not pic_problems, '\n     '.join(pic_problems))
 # No frame, shadow, filter, rounding, recolouring, motion or hover on a picture (Round 8): the rules that style them.
 pic_rules = re.findall(r'([^{}]*(?:\.hero-pic|\.ps img|\.step-pic|pictures)[^{}]*)\{([^{}]*)\}', css)
@@ -738,9 +745,9 @@ check('How it works (Round 8): offer-map, offer-run and offer-guide beside Map, 
                  r'(offer-\w+)\.svg"[^>]*><h3 class="h3">(\w+)</h3>', how_src) == list(zip(OFFERS, ['Map', 'Run', 'Guide']))
       and '.step-pic{display:block;width:100%;height:auto;aspect-ratio:4/3}' in css
       and how_src.count('<img') == 3 and how_src.count('<svg') >= 4)
-check('tablets, 600 to 999 px (Sundeep, 10 Nov 2026): the hero picture at most 560 px wide and centred, the offer pictures '
-      'at most 420 px',
-      '@media(min-width:600px) and (max-width:999px){.hero-pic{margin:36px auto 0;max-width:560px}}' in css
+check('phones and tablets (Sundeep, 10 Nov 2026): the hero picture at most 560 px wide and centred; on tablets (600 to '
+      '999 px) the offer pictures at most 420 px',
+      '.hero-pic{margin:48px auto 0;max-width:560px}' in css
       and '@media(min-width:600px) and (max-width:999px){.step-pic{max-width:420px}}' in css)
 rules_html = between(home_src, '<!-- RULES -->', '<!-- SUNDEEP -->')
 check('Our rules: the six line drawings, rule 06\'s included (Sundeep, 10 Nov 2026); no picture in the rules',

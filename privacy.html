@@ -118,21 +118,22 @@ a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
 .heroC .label{margin-bottom:20px}
 .heroC .proofA{text-wrap:balance;margin:28px auto 0;max-width:34em;font-weight:500;font-size:clamp(19px,.4vw + 17px,22px);line-height:1.45;color:#2a2926}
 .heroC .cta{justify-content:center}
-/* The hero picture (Round 8): on phones, under the founder line, edge to edge, showing the right 60% of the art;
-   from 1000 px, the right column beside the text, bleeding to the right edge, never under the text. Its space is
-   reserved by its width, height and aspect ratio, so nothing moves when it arrives. */
-main{overflow-x:clip}
-.hero-pic{margin:36px calc(-1*var(--gut)) 0}
-.hero-pic img{display:block;width:100%;height:auto;aspect-ratio:1152/1080;object-fit:cover;object-position:right center}
+/* The hero picture (Round 8, corrected 10 Nov 2026): the tight art (935 x 645, no blank space), always whole and
+   always inside the content container. Below 1000 px it sits under the founder line, centred, at most 560 px wide.
+   From 1000 px it sits beside the words: 7fr words, 5fr picture, 48 px apart; at most 600 px wide, against the
+   container's right edge (the line of the header's button), centred on the words. Its width and height keep its
+   space, so nothing moves when it arrives. */
+.hero-pic{margin:48px auto 0;max-width:560px}
+.hero-pic img{display:block;width:100%;height:auto}
+.hero-br{display:none}
 @media(min-width:1000px){.heroC{text-align:left}
- .hero-top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;align-items:center}
+ .hero-top{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px;align-items:center}
  .heroC .st{margin:0}
  .heroC .proofA{margin:28px 0 0}
  .heroC .cta{justify-content:flex-start}
- .hero-pic{margin:0 calc(-1*max(var(--gut),(100vw - var(--max))/2)) 0 0}
- .hero-pic img{aspect-ratio:1920/1080;object-fit:fill}}
-/* Tablets (600 to 999 px; Sundeep, 10 Nov 2026): the hero picture at most 560 px wide, centred, and the offer pictures at most 420 px. */
-@media(min-width:600px) and (max-width:999px){.hero-pic{margin:36px auto 0;max-width:560px}}
+ .hero-pic{margin:0;justify-self:end;width:100%;max-width:600px}}
+/* From 1200 px the headline breaks after "make": "Where can AI make" / "you money?" (Sundeep, 10 Nov 2026). */
+@media(min-width:1200px){.hero-br{display:inline}}
 
 /* header links, wide screens only (1000 px up) */
 .nav{display:none;gap:28px;margin-left:auto;margin-right:28px}
