@@ -111,6 +111,8 @@ main{overflow-x:clip}
  .heroC .cta{justify-content:flex-start}
  .hero-pic{margin:0 calc(-1*max(var(--gut),(100vw - var(--max))/2)) 0 0}
  .hero-pic img{aspect-ratio:1920/1080;object-fit:fill}}
+/* Tablets (600 to 999 px; Sundeep, 10 Nov 2026): the hero picture at most 560 px wide, centred, and the offer pictures at most 420 px. */
+@media(min-width:600px) and (max-width:999px){.hero-pic{margin:36px auto 0;max-width:560px}}
 
 /* header links, wide screens only (1000 px up) */
 .nav{display:none;gap:28px;margin-left:auto;margin-right:28px}
@@ -144,6 +146,7 @@ main{overflow-x:clip}
 .step--first .label{color:#fff}
 .step .h3{font-size:30px;font-weight:650;font-stretch:80%}
 .step-pic{display:block;width:100%;height:auto;aspect-ratio:4/3}
+@media(min-width:600px) and (max-width:999px){.step-pic{max-width:420px}}
 .step .tag{font-size:14px;color:var(--muted)}
 .step--first .tag{color:#E6E6FF}
 @media(min-width:900px){
@@ -243,9 +246,7 @@ main{overflow-x:clip}
 .fx .dtag{white-space:nowrap}
 @media(min-width:1000px){.fxs{grid-template-columns:repeat(6,1fr);gap:16px}.fx{padding:20px}.fx-g{font-size:18px}.sec--tight{padding-top:80px;padding-bottom:80px}}
 .r2-ic svg{width:84px;height:56px;display:block;margin-bottom:6px}
-.r2-ic img{display:block;width:auto;height:56px;margin-bottom:6px}
-@media(min-width:1000px){.r2-ic svg{width:96px;height:64px}
- .r2-ic img{height:64px}}
+@media(min-width:1000px){.r2-ic svg{width:96px;height:64px}}
 .r2-t{font-weight:650;font-size:24px;line-height:1.15;margin:0}
 .r2-key .r2-t{color:var(--fire)}
 

@@ -131,6 +131,8 @@ main{overflow-x:clip}
  .heroC .cta{justify-content:flex-start}
  .hero-pic{margin:0 calc(-1*max(var(--gut),(100vw - var(--max))/2)) 0 0}
  .hero-pic img{aspect-ratio:1920/1080;object-fit:fill}}
+/* Tablets (600 to 999 px; Sundeep, 10 Nov 2026): the hero picture at most 560 px wide, centred, and the offer pictures at most 420 px. */
+@media(min-width:600px) and (max-width:999px){.hero-pic{margin:36px auto 0;max-width:560px}}
 
 /* header links, wide screens only (1000 px up) */
 .nav{display:none;gap:28px;margin-left:auto;margin-right:28px}
@@ -164,6 +166,7 @@ main{overflow-x:clip}
 .step--first .label{color:#fff}
 .step .h3{font-size:30px;font-weight:650;font-stretch:80%}
 .step-pic{display:block;width:100%;height:auto;aspect-ratio:4/3}
+@media(min-width:600px) and (max-width:999px){.step-pic{max-width:420px}}
 .step .tag{font-size:14px;color:var(--muted)}
 .step--first .tag{color:#E6E6FF}
 @media(min-width:900px){
@@ -263,9 +266,7 @@ main{overflow-x:clip}
 .fx .dtag{white-space:nowrap}
 @media(min-width:1000px){.fxs{grid-template-columns:repeat(6,1fr);gap:16px}.fx{padding:20px}.fx-g{font-size:18px}.sec--tight{padding-top:80px;padding-bottom:80px}}
 .r2-ic svg{width:84px;height:56px;display:block;margin-bottom:6px}
-.r2-ic img{display:block;width:auto;height:56px;margin-bottom:6px}
-@media(min-width:1000px){.r2-ic svg{width:96px;height:64px}
- .r2-ic img{height:64px}}
+@media(min-width:1000px){.r2-ic svg{width:96px;height:64px}}
 .r2-t{font-weight:650;font-size:24px;line-height:1.15;margin:0}
 .r2-key .r2-t{color:var(--fire)}
 
@@ -306,12 +307,12 @@ main{overflow-x:clip}
 <meta property="og:image" content="https://intellumia.com/docs/assets/share/share-hero.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Where can AI make you money?">
+<meta property="og:image:alt" content="Intellumia: one red bridge connects two parts of a business">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Privacy notice | Intellumia">
 <meta name="twitter:description" content="How Intellumia handles personal data: this website sets no cookies and counts visits only in total; what you send us is used only to reply.">
 <meta name="twitter:image" content="https://intellumia.com/docs/assets/share/share-hero.png">
-<meta name="twitter:image:alt" content="Where can AI make you money?">
+<meta name="twitter:image:alt" content="Intellumia: one red bridge connects two parts of a business">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://intellumia.com/#organization","additionalType":"https://schema.org/ProfessionalService","name":"Intellumia","legalName":"Intellumia Pte. Ltd.","url":"https://intellumia.com/","logo":"https://intellumia.com/docs/assets/intellumia-wordmark-ultramarine.svg","description":"Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.","email":"sundeep@intellumia.com","address":{"@type":"PostalAddress","streetAddress":"60 Paya Lebar Road, #06-28, Paya Lebar Square","addressLocality":"Singapore","postalCode":"409051","addressCountry":"SG"},"areaServed":{"@type":"Country","name":"India"},"knowsAbout":["Artificial intelligence","Business process automation","Accounts receivable","Cost and margin","Operations"],"contactPoint":{"@type":"ContactPoint","contactType":"sales","email":"sundeep@intellumia.com","url":"https://cal.com/intellumia/meetsk","availableLanguage":["English"],"areaServed":{"@type":"Country","name":"India"}},"sameAs":["https://www.linkedin.com/company/intellumia"],"disambiguatingDescription":"An AI-native product company, starting with service."}]}</script>
 </head>
 <body>
