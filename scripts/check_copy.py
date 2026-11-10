@@ -50,8 +50,9 @@ FOUNDER_LINE = 'Led by Sundeep, Founder & CEO'  # under the hero button, to #h-s
 # The pictures (Round 8, 10 Nov 2026): the one picture set, "Intellumia idea imagery library (10 Nov 2026)" in Drive
 # (svg/ and share/). Solid ink-and-white shapes on white, one vermilion thing that is the point, ultramarine only for
 # a path or an action. Served as the files supplied, never recoloured or edited: each is pinned by its sha256.
-# Its alt text is the SVG's own aria-label, except where Sundeep worded it (10 Nov 2026): the hero picture, which has
-# no label, and offer-map and offer-guide, whose labels say "plan" (banned everywhere on the site).
+# Its alt text is the SVG's own aria-label, word for word, except the hero picture, whose file has no label: its alt is
+# in Sundeep's words (10 Nov 2026). offer-map and offer-guide were re-exported the same day with labels matching the
+# alt texts he set, so "plan" appears nowhere, the files' own labels included.
 PICTURES = {  # name: (width, height, alt, sha256)
     'hero-one-precise-intervention': (1920, 1080, 'Two parts of a business joined by one red bridge, with a blue route '
                                       'running through', '4c7214abb82565c45394823754d439ae61a872d59eb642dc94dc774a8fa902e3'),
@@ -68,17 +69,17 @@ PICTURES = {  # name: (width, height, alt, sha256)
     'problem-everything-on-you': (800, 600, 'A desk with a towering, leaning pile and an empty chair; the latest item on '
                                   'top is red', '1f0d29693de8c0f9a001ca5f2e93bb9fc28a6449fc8414ad97e4e034b9019698'),
     'offer-map': (800, 600, 'A layout of the business; a blue route leads to the one place that pays first, in red',
-                  '6d4d47e69cefdb686e60beb2e6ae1f264b559718dba377af4687ccc17aad4b48'),
+                  'c28c1d0f52f0a396a292b6bdf7bf9180663a698574ceac19003454903019e585'),  # re-exported 10 Nov 2026
     'offer-run': (800, 600, 'A conveyor running cleanly on a blue belt; the finished carton carries a red seal',
                   '80bfd92e0d799d82a8f3f1eca7ece65de203b22793e243f87ab78226a2e68cad'),
     'offer-guide': (800, 600, 'A table with a drawing on it and two seats on the same side; the second seat is red',
-                    '2176d5707979c7a5b42249a0d5ab48beb55001192a7b468308ca5f89f581dc39'),
+                    'f52687fb7e6a65e4885ab126a3392145c91cfdec81790f1ae07cf041b582c00a'),  # re-exported 10 Nov 2026
 }
 PICTURE_COLOURS = {'#FFFFFF', '#101010', '#DDD8CC', '#1A1AFF', '#FF3D00'}  # the picture set's five colours (its README)
 SHARE = ('assets/share/share-hero.png', '8a29f77892f24229afe4013bc90e5c4bcee203420bb31bc908fc6b70e5cd06ec')  # 1200 x 630
 HERO_PIC = 'hero-one-precise-intervention'
 OFFERS = ['offer-map', 'offer-run', 'offer-guide']  # beside Map, Run and Guide
-ALT_WORDED = {'hero-one-precise-intervention', 'offer-map', 'offer-guide'}  # alt text in Sundeep's words, 10 Nov 2026
+ALT_WORDED = {'hero-one-precise-intervention'}  # no label in the file: alt text in Sundeep's words, 10 Nov 2026
 SHARE_ALT = 'Intellumia: one red bridge connects two parts of a business'  # og:image:alt, twitter:image:alt (10 Nov 2026)
 # trust-yours-to-keep is not on the page: rule 06 keeps its line drawing (Sundeep, 10 Nov 2026); the file is in _archive/.
 
@@ -654,8 +655,8 @@ for n, (w, h, alt, digest) in PICTURES.items():
             r'<script|<image|<foreignObject|href="(?!#)|url\((?!#)|@import|on\w+=|<animate|<set\b', svg_text, re.I):
         pic_problems.append(f'{n}: colours {sorted(colours - PICTURE_COLOURS)}, or a script, link or motion inside')
 check('the pictures: the files as supplied (sha256), served as img with width and height, decoding async, lazy below '
-      'the fold (all but the hero picture); alt text is each SVG\'s aria-label or Sundeep\'s wording (the hero, offer-map, '
-      'offer-guide); the set\'s five colours with its one '
+      'the fold (all but the hero picture); alt text is each SVG\'s aria-label (the hero picture, which has none, in '
+      'Sundeep\'s words); the set\'s five colours with its one '
       'vermilion; nothing inside that loads, links, runs or moves', not pic_problems, '\n     '.join(pic_problems))
 # No frame, shadow, filter, rounding, recolouring, motion or hover on a picture (Round 8): the rules that style them.
 pic_rules = re.findall(r'([^{}]*(?:\.hero-pic|\.ps img|\.step-pic|pictures)[^{}]*)\{([^{}]*)\}', css)
@@ -762,6 +763,10 @@ for f in html_files:
     texts += [w for _, ws in pg.drawings for w in ws] + pg.decor
     surfaces['docs/' + f] = '\n'.join(texts)
 surfaces['docs/llms.txt'] = (DOCS / 'llms.txt').read_text()
+# The pictures' own labels and titles are published too, inside the files (Round 8): the same words apply to them.
+surfaces['docs/assets/pictures (their labels)'] = '\n'.join(
+    norm(t) for f in sorted((DOCS / 'assets/pictures').glob('*.svg'))
+    for t in re.findall(r'aria-label="([^"]*)"|<title>([^<]*)</title>|<desc>([^<]*)</desc>', f.read_text()) for t in t if t)
 for group, words in BANNED.items():
     hits = {f: words_found(t, words) for f, t in surfaces.items()}
     hits = {f: h for f, h in hits.items() if h}
