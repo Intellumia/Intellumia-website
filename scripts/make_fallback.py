@@ -10,6 +10,7 @@ after every change to docs/index.html, docs/privacy/index.html or docs/assets/si
 From the root, assets live under docs/assets/, so paths are rewritten and the stylesheet is
 inlined with its font paths made relative.
 """
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -21,14 +22,16 @@ NOTE = ('<!-- Fallback copy of docs/{src}, made by scripts/make_fallback.py. Ser
 def build(src: str, out: str, extra_head: str = '') -> None:
     html = (DOCS / src).read_text()
     css = (DOCS / 'assets/site.css').read_text().replace("url('/assets/", "url('docs/assets/")
-    html = html.replace('<link rel="stylesheet" href="/assets/site.css">', '<style>\n' + css + '</style>')
+    # The stylesheet link carries its version (?v=..., scripts/make_asset_versions.py); the fallback inlines the file.
+    html, n = re.subn(r'<link rel="stylesheet" href="/assets/site\.css(?:\?v=[0-9a-f]+)?">', lambda m: '<style>\n' + css + '</style>', html)
+    assert n == 1, f'{src}: the stylesheet link was not found'
     for a, b in [
         ('"/assets/', '"docs/assets/'),            # href, src and the first srcset entry
         (', /assets/', ', docs/assets/'),          # later srcset entries
         ('https://intellumia.com/assets/', 'https://intellumia.com/docs/assets/'),
-        ('href="/favicon.ico"', 'href="favicon.ico"'),
-        ('href="/favicon.svg"', 'href="favicon.svg"'),
-        ('href="/apple-touch-icon.png"', 'href="apple-touch-icon.png"'),
+        ('href="/favicon.ico', 'href="favicon.ico'),     # the icons keep their ?v= versions
+        ('href="/favicon.svg', 'href="favicon.svg'),
+        ('href="/apple-touch-icon.png', 'href="apple-touch-icon.png'),
         ('href="/privacy/"', 'href="privacy.html"'),
     ]:
         html = html.replace(a, b)

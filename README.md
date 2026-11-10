@@ -22,6 +22,7 @@ Since 3 November 2026 (strategy v5.0) the site is **one page with one action, "B
 | `.github/workflows/indexnow.yml` | After each push to `main` that touches `docs/`, waits for the deploy and sends the sitemap URLs to IndexNow (Bing). |
 | `scripts/check_copy.py` | The copy and one-page checks. Run before every pull request. |
 | `scripts/make_structured_data.py` | Writes the structured data (JSON-LD) of Home and Privacy from the pages and stamps the release date into the page and the sitemap. Run it at every release, before the fallback. |
+| `scripts/make_asset_versions.py` | Writes `?v=<version>` (the start of the file's sha256) on every link to a stylesheet, script, picture, font or icon, so a changed file gets a new address and no cache serves the old one. Run it at every release, before the fallback. |
 | `scripts/make_fallback.py` | Rebuilds the fallback at the root from `docs/`. |
 | `index.html`, `privacy.html`, `favicon.*`, `apple-touch-icon.png`, `robots.txt`, `sitemap.xml` at the root | The last-resort fallback (see `DEPLOYMENT_AND_ROLLBACK.md`), a copy of the page. Not the live site. |
 | `_archive/` | Retired pages and assets of the October 2026 site, the old fallback, the fonts that are not Anek, the corridor scene band (removed 3 Nov 2026), the plant scene band (removed 4 Nov 2026; its loop was deleted on Sundeep's word the same day), and the painted problem scenes, the old social preview and the unused strongbox picture (retired 10 Nov 2026, Round 8). Kept for the record; not published. |

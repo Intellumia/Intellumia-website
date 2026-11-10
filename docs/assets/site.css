@@ -1,10 +1,10 @@
 /* intellumia.com, one page. Brand System v5.0.8 (strategy v5.0): Round 5, the approved mockup of 4 Nov 2026,
    Drive Intellumia/website/mockup/index-round5.html (round5-assets.zip, reference-mockup.html). The mockup's rules
    that the page uses, in the mockup's order. Anek Latin only, self-hosted; no animation; see CLAUDE.md. */
-@font-face{font-family:'Anek Latin';src:url('/assets/fonts/AnekLatin-latin.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap}
-@font-face{font-family:'Anek Latin';src:url('/assets/fonts/AnekLatin-latinext.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20B8,U+20BA-20CF,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Anek Latin';src:url('/assets/fonts/AnekLatin-latin.woff2?v=37b52178d8') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap}
+@font-face{font-family:'Anek Latin';src:url('/assets/fonts/AnekLatin-latinext.woff2?v=bf8874bee4') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20B8,U+20BA-20CF,U+2C60-2C7F,U+A720-A7FF}
 /* The rupee sign alone (1.7 KB, cut from the file above with fontTools), so the coins in the drawings do not pull the 82 KB file */
-@font-face{font-family:'Anek Latin';src:url('/assets/fonts/AnekLatin-rupee.woff2') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+20B9}
+@font-face{font-family:'Anek Latin';src:url('/assets/fonts/AnekLatin-rupee.woff2?v=6bbaa21a3c') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+20B9}
 /* Shown only for the moment before Anek arrives: a font already on the device (Arial or its metric twins; Roboto on
    Android), scaled so each line is as wide as in Anek and sits on the same baseline, one face per band of the
    weights the page uses (400; 450 and 500; 560; 600 and 620; 650; 650 condensed). When Anek swaps in, lines
