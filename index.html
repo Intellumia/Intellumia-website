@@ -99,7 +99,7 @@ main{overflow-x:clip}
 .band{background:var(--bone)}
 .sec-head{display:grid;gap:12px;margin-bottom:20px}
 @media(min-width:1000px){.sec-head{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:last baseline;margin-bottom:56px}
- .sec-head .hd{grid-column:1/9}.sec-head--lead .hd{grid-column:1/7}.sec-head--lead .bd{grid-column:8/13}}
+ .sec-head .hd{grid-column:1/9}.sec-head--lead .hd{grid-column:1/7}.sec-head--lead p{grid-column:8/13}}
 
 /* cards, two styles only: on white, a 1 px rule border; on Bone, no border. Corners 12. */
 .cards{display:grid;gap:var(--gap)}
@@ -112,26 +112,27 @@ main{overflow-x:clip}
 .hero .label{margin-bottom:16px}
 .hero .st{max-width:11em;margin:0 auto}
 .hero-line{margin-top:20px;font-weight:500}
+.hero-for{margin-top:12px}
 .hero .cta{margin-top:28px;justify-content:center}
 .note{margin-top:14px;color:var(--muted)}
-.founder{display:inline-flex;align-items:center;gap:14px;margin-top:16px;color:var(--ink);font-weight:600;text-decoration:none;text-align:left}
+.founder{display:inline-flex;align-items:center;gap:14px;min-height:44px;margin-top:16px;color:var(--ink);font-weight:600;text-decoration:none;text-align:left}
 .founder img{width:56px;height:56px;border-radius:50%;object-fit:cover;filter:grayscale(1)}
 .founder:hover span{text-decoration:underline}
 .hero-pic{margin:20px auto 0;max-width:520px}
 .hero-pic img{width:100%;height:auto}
 @media(min-width:1000px){.hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:center;text-align:left;padding-top:96px;padding-bottom:96px}
  .hero-text{grid-column:1/8}.hero-pic{grid-column:8/13;margin:0;max-width:none}
- .hero .st{margin:0}.hero .cta{justify-content:flex-start}}
+ .hero .st{margin:0}.hero .cta{justify-content:flex-start}
+ /* the line of industries sits under the label here, and after the sub-line on phones and tablets */
+ .hero-text{display:flex;flex-direction:column;align-items:flex-start}.hero .label{order:-2;margin-bottom:8px}.hero-for{order:-1;margin:0 0 20px}}
 
 /* the problems: six cards, each with its picture (whole, 4:3, never under 260 px wide), its question and its answer */
 .pc img{width:100%;height:auto;aspect-ratio:4/3}
 .pc .ld{margin-top:4px}
-.tag{justify-self:end;margin-top:60px;background:var(--fire);color:var(--ink);font-weight:600;border-radius:6px;padding:1px 10px}
-@media(min-width:600px){.tag{margin-top:28px}}
-.after{margin-top:32px;max-width:16em}
+.tag{justify-self:end;margin-top:66px;background:var(--fire);color:var(--ink);font-weight:600;border-radius:6px;padding:1px 10px}
+@media(min-width:768px){.tag{margin-top:34px}}
 @media(max-width:599px){.cards{gap:12px}.card{padding:16px}.pc,.step{padding-top:8px}.pc img,.step-pic{width:260px;margin:0 auto -12px}}
-@media(min-width:1000px){.after{margin-top:72px}}
-@media(min-width:600px) and (max-width:767px){.pc{grid-template-columns:minmax(260px,2fr) 3fr;column-gap:var(--gap);align-items:center;align-content:center}.pc img{grid-row:1/5}}
+@media(min-width:600px) and (max-width:767px){.pc img{width:260px;margin:0 auto}}
 @media(min-width:768px){.probs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:1100px){.probs{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
@@ -147,6 +148,11 @@ main{overflow-x:clip}
 .wk li{display:grid;grid-template-columns:5em 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--rule);line-height:1.35}
 .wk b{font-weight:600;color:var(--klein)}
 .wk-note{margin-top:16px;color:var(--muted)}
+/* the lighter second ask: a text link with an arrow, under the weeks and under the closing buttons (white there) */
+.more{margin-top:20px}
+.more a{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:600}
+.more svg{width:18px;height:18px}
+.more--inv{margin-top:-12px}.more--inv a{color:#fff}
 @media(min-width:1000px){.wk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gap);border-top:0;margin-top:56px}.wk li{grid-template-columns:1fr;gap:4px;border-bottom:0;border-top:3px solid var(--klein);padding:14px 0 0}}
 
 /* one example: four drawn steps, 2 x 2 on phones with each drawing the full width of its card (150 px or more), four
@@ -236,14 +242,14 @@ main{overflow-x:clip}
 <meta property="og:title" content="Intellumia, the AI partner for owner-run businesses">
 <meta property="og:description" content="Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.">
 <meta property="og:url" content="https://intellumia.com/">
-<meta property="og:image" content="https://intellumia.com/docs/assets/share/share-hero.png?v=8a29f77892">
+<meta property="og:image" content="https://intellumia.com/docs/assets/share/share-hero.png?v=9c9a7e2a3a">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Intellumia: one red bridge connects two parts of a business">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Intellumia, the AI partner for owner-run businesses">
 <meta name="twitter:description" content="Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.">
-<meta name="twitter:image" content="https://intellumia.com/docs/assets/share/share-hero.png?v=8a29f77892">
+<meta name="twitter:image" content="https://intellumia.com/docs/assets/share/share-hero.png?v=9c9a7e2a3a">
 <meta name="twitter:image:alt" content="Intellumia: one red bridge connects two parts of a business">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://intellumia.com/#organization","additionalType":"https://schema.org/ProfessionalService","name":"Intellumia","legalName":"Intellumia Pte. Ltd.","url":"https://intellumia.com/","logo":"https://intellumia.com/docs/assets/intellumia-wordmark-ultramarine.svg","description":"Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.","email":"sundeep@intellumia.com","address":{"@type":"PostalAddress","streetAddress":"60 Paya Lebar Road, #06-28, Paya Lebar Square","addressLocality":"Singapore","postalCode":"409051","addressCountry":"SG"},"areaServed":{"@type":"Country","name":"India"},"knowsAbout":["Artificial intelligence","Business process automation","Accounts receivable","Cost and margin","Operations"],"contactPoint":{"@type":"ContactPoint","contactType":"sales","telephone":"+91-88558-84042","email":"sundeep@intellumia.com","url":"https://cal.com/intellumia/meetsk","availableLanguage":["en","hi"],"areaServed":{"@type":"Country","name":"India"}},"sameAs":["https://www.linkedin.com/company/intellumia"],"founder":{"@id":"https://intellumia.com/#sundeep-kumar"}},{"@type":"Person","@id":"https://intellumia.com/#sundeep-kumar","name":"Sundeep Kumar","jobTitle":"Founder & CEO","worksFor":{"@id":"https://intellumia.com/#organization"},"telephone":"+91-88558-84042","image":"https://intellumia.com/docs/assets/imagery/sundeep-portrait-2026_720.jpg","sameAs":["https://www.linkedin.com/in/kumarsundeep"]},{"@type":"WebSite","@id":"https://intellumia.com/#website","name":"Intellumia","url":"https://intellumia.com/","publisher":{"@id":"https://intellumia.com/#organization"},"inLanguage":"en-GB"},{"@type":"WebPage","@id":"https://intellumia.com/#webpage","url":"https://intellumia.com/","name":"Intellumia, the AI partner for owner-run businesses","description":"Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.","inLanguage":"en-GB","isPartOf":{"@id":"https://intellumia.com/#website"},"about":{"@id":"https://intellumia.com/#organization"},"dateModified":"2026-11-11"},{"@type":"FAQPage","@id":"https://intellumia.com/#faq","url":"https://intellumia.com/#h-faq","name":"Questions owners ask","inLanguage":"en-GB","isPartOf":{"@id":"https://intellumia.com/#webpage"},"mainEntity":[{"@type":"Question","name":"What does a Map cost?","acceptedAnswer":{"@type":"Answer","text":"A fixed fee, agreed before we start and always paid. We share it on the first call, once we know the size of your business."}},{"@type":"Question","name":"Is our data safe?","acceptedAnswer":{"@type":"Answer","text":"We start with summaries, never all your books on day one. Your data stays in your own environment, with models that neither keep nor train on it."}},{"@type":"Question","name":"Will this replace our people?","acceptedAnswer":{"@type":"Answer","text":"It is not built to cut jobs. AI takes the routine work, and your people review and decide. The Map shows where time is freed; what you do with it is your call."}},{"@type":"Question","name":"Are we tied in after the Map?","acceptedAnswer":{"@type":"Answer","text":"No. You keep everything the Map produces. Each move names at least one way to do it without us, and the fee never depends on what you choose next."}}]},{"@type":"Service","@id":"https://intellumia.com/#service","name":"AI advisory and delivery for owner-run businesses","serviceType":"AI advisory and delivery for owner-run businesses","provider":{"@id":"https://intellumia.com/#organization"},"areaServed":{"@type":"Country","name":"India"},"url":"https://intellumia.com/#h-how","hasOfferCatalog":{"@type":"OfferCatalog","name":"Map, Run and Guide","itemListElement":[{"@type":"Service","name":"Map","description":"We find where AI would make you the most money, across the whole business, in two to three weeks. Always paid, for a fee agreed up front."},{"@type":"Service","name":"Run","description":"We run the moves you choose. AI does the routine work, a named professional checks it and signs off, and you see the result every week."},{"@type":"Service","name":"Guide","description":"Independent advice on AI, vendors and your board. We take no fees from vendors."}]}}]}</script>
 </head>
@@ -261,16 +267,17 @@ main{overflow-x:clip}
  <div class="hero-text">
  <p class="label">The AI partner for owner-run businesses</p>
  <h1 class="st">Where can AI make you <span class="fire">money</span>?</h1>
- <p class="ld hero-line">We find it in your numbers. Then we run it for you.</p>
+ <p class="ld hero-line">In two to three weeks we find it in your numbers. Then we run it for you.</p>
+ <p class="bd muted hero-for">For owners in manufacturing, construction, real estate, trading, healthcare and education.</p>
  <div class="cta">
-  <a class="btn" href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20I%20saw%20intellumia.com%20and%20would%20like%20to%20talk." target="_blank" rel="noopener">WhatsApp Sundeep
+  <a class="btn" href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20I%20saw%20intellumia.com%20and%20would%20like%20to%20talk%20about%20my%20business." target="_blank" rel="noopener">WhatsApp Sundeep
    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
-  <a class="btn btn--out" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Book a 30-minute call</a>
+  <a class="btn btn--out" href="https://cal.com/intellumia/meetsk?utm_source=intellumia.com&amp;utm_campaign=hero" target="_blank" rel="noopener">Book a 30-minute call</a>
  </div>
- <p class="bd note">Reply with a day. 30 minutes, at your office or by video.</p>
+ <p class="bd note">Reply with a day. 30 minutes, at your office or by video. Sundeep reads every message himself and replies within one working day.</p>
  <a class="founder" href="#h-sk"><img src="docs/assets/imagery/sundeep-portrait-2026_120.jpg?v=2b6da00b11" alt="" width="56" height="56"><span>Sundeep Kumar, Founder &amp; CEO</span></a>
  </div>
- <div class="hero-pic"><img src="docs/assets/pictures/hero-one-precise-intervention-tight.svg?v=720f13fa1b" alt="Two parts of a business joined by one red bridge, with a blue route running through" width="935" height="645" decoding="async"></div>
+ <div class="hero-pic"><img src="docs/assets/pictures/hero-one-precise-intervention-tight.svg?v=720f13fa1b" alt="Two parts of a business joined by one red bridge, with a blue route running through" width="935" height="645" decoding="async" fetchpriority="high"></div>
 </section>
 
 <!-- PROBLEMS -->
@@ -279,15 +286,15 @@ main{overflow-x:clip}
   <h2 class="hd" id="h-probs">Most owner-run businesses have money hiding in plain sight.</h2>
   <p class="bd">These leaks are not new. Fixing them took hours of checking, chasing and counting that nobody had time for. AI now does that work every day, so the money stops slipping away.</p>
  </div>
- <ul class="cards probs"><li class="card pc"><img src="docs/assets/pictures/problem-margin-squeezed.svg?v=ffba330223" alt="A press squeezing a coin stack; coins pushed out in red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Costs up, prices stuck?</h3><p class="bd">Your costliest process, done a better way</p></li><li class="card pc"><img src="docs/assets/pictures/problem-cash-stuck.svg?v=0708db403f" alt="Coins under a locked glass case beside a stack of invoices; the padlock is red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Customers paying late?</h3><p class="bd">Every overdue invoice, followed up on time</p><span class="tag">Often first</span></li><li class="card pc"><img src="docs/assets/pictures/problem-people-leaving.svg?v=607549f652" alt="A workbench with four places; one stool has moved away, in red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Good people leaving?</h3><p class="bd">Routine work off your best people</p></li><li class="card pc"><img src="docs/assets/pictures/problem-numbers-late.svg?v=208500a527" alt="A tall pile of sheets beside a clock; the time lost is a red wedge" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Numbers always late?</h3><p class="bd">One page across your companies, every week</p></li><li class="card pc"><img src="docs/assets/pictures/problem-rework.svg?v=ffb28f8012" alt="A conveyor with cartons; one rejected carton sits red on the rework pile" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Too much made twice?</h3><p class="bd">Defects caught earlier</p></li><li class="card pc"><img src="docs/assets/pictures/problem-everything-on-you.svg?v=1f0d29693d" alt="A desk with a towering, leaning pile and an empty chair; the latest item on top is red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">All on your desk?</h3><p class="bd">Decisions arrive with the facts ready</p></li></ul>
- <h3 class="hd after">AI does the work. Your people make the calls.</h3>
+ <ul class="cards probs"><li class="card pc"><img src="docs/assets/pictures/problem-margin-squeezed.svg?v=ffba330223" alt="A press squeezing a coin stack; coins pushed out in red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Costs up, prices stuck?</h3><p class="bd">Your costliest process, done a better way</p></li><li class="card pc"><img src="docs/assets/pictures/problem-cash-stuck.svg?v=0708db403f" alt="Coins under a locked glass case beside a stack of invoices; the padlock is red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Customers paying late?</h3><p class="bd">Every overdue invoice, followed up on time</p><span class="tag">Most owners start here</span></li><li class="card pc"><img src="docs/assets/pictures/problem-people-leaving.svg?v=607549f652" alt="A workbench with four places; one stool has moved away, in red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Good people leaving?</h3><p class="bd">Routine work off your best people</p></li><li class="card pc"><img src="docs/assets/pictures/problem-numbers-late.svg?v=208500a527" alt="A tall pile of sheets beside a clock; the time lost is a red wedge" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Numbers always late?</h3><p class="bd">One page across your companies, every week</p></li><li class="card pc"><img src="docs/assets/pictures/problem-rework.svg?v=ffb28f8012" alt="A conveyor with cartons; one rejected carton sits red on the rework pile" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Too much made twice?</h3><p class="bd">Defects caught earlier</p></li><li class="card pc"><img src="docs/assets/pictures/problem-everything-on-you.svg?v=1f0d29693d" alt="A desk with a towering, leaning pile and an empty chair; the latest item on top is red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">All on your desk?</h3><p class="bd">Decisions arrive with the facts ready</p></li></ul>
 </section>
 
 <div class="band">
 <!-- HOW IT WORKS -->
 <section class="wrap sec" aria-labelledby="h-how">
- <div class="sec-head">
+ <div class="sec-head sec-head--lead">
   <h2 class="hd" id="h-how">A Map first. Then we run the parts that pay.</h2>
+  <p class="ld">AI does the work. Your people make the calls.</p>
  </div>
  <ol class="cards steps">
   <li class="card step step--first"><p class="label">Start here</p><img class="step-pic" src="docs/assets/pictures/offer-map.svg?v=c28c1d0f52" alt="A layout of the business; a blue route leads to the one place that pays first, in red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Map</h3><p class="bd">We find where AI would make you the most money, across the whole business, in two to three weeks. Always paid, for a fee agreed up front.</p></li>
@@ -296,6 +303,7 @@ main{overflow-x:clip}
  </ol>
  <ol class="wk"><li><b>Start</b><span>Summaries only</span></li><li><b>Week 1</b><span>Interviews with you and your team</span></li><li><b>Week 2</b><span>Each move valued and tested on your records</span></li><li><b>Week 3</b><span>The readout, to you alone</span></li></ol>
  <p class="bd wk-note">About 20 to 40 hours of your staff’s time, agreed before we start.</p>
+ <p class="bd more"><a href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20please%20send%20me%20a%20sample%20Map." target="_blank" rel="noopener">Or get a sample Map on WhatsApp <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a></p>
 </section>
 
 <!-- EXAMPLE -->
@@ -340,7 +348,7 @@ main{overflow-x:clip}
 <!-- FAQ -->
 <section class="wrap sec" aria-labelledby="h-faq">
  <div class="faqgrid">
-  <h2 class="hd" id="h-faq">Before you book.</h2>
+  <h2 class="hd" id="h-faq">Before you talk to us.</h2>
   <div class="fqs"><details class="fq"><summary class="ld"><span>What does a Map cost?</span><span class="pl" aria-hidden="true"></span></summary><p class="bd">A fixed fee, agreed before we start and always paid. We share it on the first call, once we know the size of your business.</p></details><details class="fq"><summary class="ld"><span>Is our data safe?</span><span class="pl" aria-hidden="true"></span></summary><p class="bd">We start with summaries, never all your books on day one. Your data stays in your own environment, with models that neither keep nor train on it.</p></details><details class="fq"><summary class="ld"><span>Will this replace our people?</span><span class="pl" aria-hidden="true"></span></summary><p class="bd">It is not built to cut jobs. AI takes the routine work, and your people review and decide. The Map shows where time is freed; what you do with it is your call.</p></details><details class="fq"><summary class="ld"><span>Are we tied in after the Map?</span><span class="pl" aria-hidden="true"></span></summary><p class="bd">No. You keep everything the Map produces. Each move names at least one way to do it without us, and the fee never depends on what you choose next.</p></details></div>
  </div>
 </section>
@@ -350,10 +358,11 @@ main{overflow-x:clip}
  <div class="wrap inner">
   <h2 class="st" id="h-close">Where does your business lose the most cash, days or margin today?</h2>
   <div class="cta">
-   <a class="btn btn--inv" href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20I%20saw%20intellumia.com%20and%20would%20like%20to%20talk." target="_blank" rel="noopener">WhatsApp Sundeep
+   <a class="btn btn--inv" href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20I%20read%20intellumia.com%20to%20the%20end%20and%20would%20like%20to%20talk." target="_blank" rel="noopener">WhatsApp Sundeep
     <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
-   <a class="btn btn--out-inv" href="https://cal.com/intellumia/meetsk" target="_blank" rel="noopener">Book a 30-minute call</a>
+   <a class="btn btn--out-inv" href="https://cal.com/intellumia/meetsk?utm_source=intellumia.com&amp;utm_campaign=close" target="_blank" rel="noopener">Book a 30-minute call</a>
   </div>
+  <p class="bd more more--inv"><a href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20please%20send%20me%20a%20sample%20Map." target="_blank" rel="noopener">Or get a sample Map on WhatsApp <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a></p>
  </div>
  <svg class="ll" viewBox="92 -1319 1133 1319" fill="#fff" aria-hidden="true"><path transform="matrix(1 0 .21256 -1 0 0)" d="M92 0V1319H446V0Z"/><path transform="matrix(1 0 .21256 -1 498 0)" d="M92 0V1319H446V0Z"/></svg>
 </section>

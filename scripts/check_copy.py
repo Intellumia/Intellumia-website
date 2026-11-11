@@ -29,6 +29,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / 'docs'
 SITE = 'https://intellumia.com/'
 BOOKING = 'https://cal.com/intellumia/meetsk'  # the second button (Round 10)
+# Round 11, E: cal.com records utm_source and utm_campaign with a booking (cal.com/help/bookings/utm-tracking).
+BOOKING_FROM = {k: f'{BOOKING}?utm_source=intellumia.com&utm_campaign={k}' for k in ('hero', 'close')}
 LINKEDIN = 'https://www.linkedin.com/in/kumarsundeep'
 COMPANY_LINKEDIN = 'https://www.linkedin.com/company/intellumia'  # the Organization's sameAs (Sundeep, 5 Nov 2026)
 
@@ -41,15 +43,23 @@ DESCRIPTION = ('Intellumia shows owner-run businesses where AI makes them money,
 # The action (Round 10): WhatsApp first, booking second. Never 'Book a Map', 'Talk to Sundeep' or 'Book a call'.
 WHATSAPP = 'WhatsApp Sundeep'
 BOOK = 'Book a 30-minute call'
-WA_MESSAGE = 'Hello Sundeep, I saw intellumia.com and would like to talk.'
+WA_MESSAGE = 'Hello Sundeep, I saw intellumia.com and would like to talk.'  # the header, the phone bar and the footer
 WA_LINK = 'https://wa.me/918855884042?text=' + quote(WA_MESSAGE, safe='')
+# Round 11, E: one prefilled message per WhatsApp link, so each lead shows where it came from.
+WA_MESSAGES = {'hero': 'Hello Sundeep, I saw intellumia.com and would like to talk about my business.',
+               'close': 'Hello Sundeep, I read intellumia.com to the end and would like to talk.',
+               'sample': 'Hello Sundeep, please send me a sample Map.'}
+WA = {k: 'https://wa.me/918855884042?text=' + quote(m, safe='') for k, m in WA_MESSAGES.items()}
+SAMPLE = 'Or get a sample Map on WhatsApp'  # the lighter second ask (Round 11, D): under the weeks and under the closing buttons
 PHONE_LINE = '+91 88558 84042 (WhatsApp)'  # the footer, under the email
 TELEPHONE = '+91-88558-84042'  # structured data
 CATEGORY = 'The AI partner for owner-run businesses'
 HERO = 'Where can AI make you money?'  # v5.0.6; 'money' is the hero's red thing
-HERO_LINE = 'We find it in your numbers. Then we run it for you.'
+HERO_LINE = 'In two to three weeks we find it in your numbers. Then we run it for you.'  # Round 11
+HERO_FOR = 'For owners in manufacturing, construction, real estate, trading, healthcare and education.'  # Round 11
 OLD_HERO = 'Where will AI make your business money? We will show you, then run it.'  # retired 4 Nov 2026
-NOTE = 'Reply with a day. 30 minutes, at your office or by video.'  # under the hero buttons (Round 10)
+NOTE = ('Reply with a day. 30 minutes, at your office or by video. Sundeep reads every message himself and replies '
+        'within one working day.')  # under the hero buttons (Rounds 10 and 11)
 FOUNDER_LINE = 'Sundeep Kumar, Founder & CEO'  # under the hero buttons, to #h-sk, with the round portrait (alt "")
 # The pictures (Round 8, 10 Nov 2026): the one picture set. Served as the files supplied, never recoloured or edited:
 # each is pinned by its sha256. Its alt text is the SVG's own aria-label, word for word. The hero picture is the tight
@@ -78,7 +88,9 @@ PICTURES = {  # name: (width, height, alt, sha256)
                     'f52687fb7e6a65e4885ab126a3392145c91cfdec81790f1ae07cf041b582c00a'),
 }
 PICTURE_COLOURS = {'#FFFFFF', '#101010', '#DDD8CC', '#1A1AFF', '#FF3D00'}  # the picture set's five colours (its README)
-SHARE = ('assets/share/share-hero.png', '8a29f77892f24229afe4013bc90e5c4bcee203420bb31bc908fc6b70e5cd06ec')  # 1200 x 630
+# Round 11: the wordmark, the headline with "money" in vermilion, "Sundeep Kumar, Founder & CEO" and the hero drawing.
+# The Round 8 image is in _archive/share-image-2026-11-11/.
+SHARE = ('assets/share/share-hero.png', '9c9a7e2a3ac03f1d3c30bc07a0ef29474a50d486b3b7d78b7172b08a3ff7db12')  # 1200 x 630
 HERO_PIC = 'hero-one-precise-intervention-tight'
 OFFERS = ['offer-map', 'offer-run', 'offer-guide']  # on the Map, Run and Guide cards
 SHARE_ALT = 'Intellumia: one red bridge connects two parts of a business'  # og:image:alt, twitter:image:alt (10 Nov 2026)
@@ -88,12 +100,12 @@ def pic_alt(name):
     return PICTURES[name][2]
 
 
-HERO_BLOCK = [CATEGORY, HERO, HERO_LINE, WHATSAPP, BOOK, NOTE, '[img] ', FOUNDER_LINE, '[img] ' + pic_alt(HERO_PIC)]
+HERO_BLOCK = [CATEGORY, HERO, HERO_LINE, HERO_FOR, WHATSAPP, BOOK, NOTE, '[img] ', FOUNDER_LINE, '[img] ' + pic_alt(HERO_PIC)]
 # The problems (Rounds 9 and 10): one section, each problem once: its picture, its question and its answer.
 SCENES_HEADING = 'Most owner-run businesses have money hiding in plain sight.'
 WHY_AI = ('These leaks are not new. Fixing them took hours of checking, chasing and counting that nobody had time for. '
           'AI now does that work every day, so the money stops slipping away.')
-OFTEN_FIRST = 'Often first'  # the tag on the cash card: the section's red thing
+OFTEN_FIRST = 'Most owners start here'  # the tag on the cash card: the section's red thing (Round 11; was "Often first")
 CARDS = [('problem-margin-squeezed', 'Costs up, prices stuck?', 'Your costliest process, done a better way'),
          ('problem-cash-stuck', 'Customers paying late?', 'Every overdue invoice, followed up on time'),
          ('problem-people-leaving', 'Good people leaving?', 'Routine work off your best people'),
@@ -103,7 +115,7 @@ CARDS = [('problem-margin-squeezed', 'Costs up, prices stuck?', 'Your costliest 
 AI_LINE = 'AI does the work. Your people make the calls.'
 PROBLEMS = ([SCENES_HEADING, WHY_AI]
             + [x for i, (n, q, a) in enumerate(CARDS)
-               for x in (['[img] ' + pic_alt(n), q, a] + ([OFTEN_FIRST] if i == 1 else []))] + [AI_LINE])
+               for x in (['[img] ' + pic_alt(n), q, a] + ([OFTEN_FIRST] if i == 1 else []))])
 STEPS = [('Start here', 'offer-map', 'Map', 'We find where AI would make you the most money, across the whole business, '
           'in two to three weeks. Always paid, for a fee agreed up front.'),
          ('If you choose', 'offer-run', 'Run', 'We run the moves you choose. AI does the routine work, a named professional '
@@ -112,8 +124,8 @@ STEPS = [('Start here', 'offer-map', 'Map', 'We find where AI would make you the
 WEEKS = ['Start', 'Summaries only', 'Week 1', 'Interviews with you and your team',
          'Week 2', 'Each move valued and tested on your records', 'Week 3', 'The readout, to you alone']
 STAFF_TIME = "About 20 to 40 hours of your staff's time, agreed before we start."
-HOW = (['A Map first. Then we run the parts that pay.']
-       + [x for label, p, n, d in STEPS for x in (label, '[img] ' + pic_alt(p), n, d)] + WEEKS + [STAFF_TIME])
+HOW = (['A Map first. Then we run the parts that pay.', AI_LINE]  # its lead since Round 11
+       + [x for label, p, n, d in STEPS for x in (label, '[img] ' + pic_alt(p), n, d)] + WEEKS + [STAFF_TIME, SAMPLE])
 EXAMPLE = ['From an overdue invoice to money collected.',
            '1', 'AI', 'Reads the record',
            'Invoice, payments and emails in one view. It spots that the customer asked for a delivery note.',
@@ -155,9 +167,10 @@ FAQS = [('What does a Map cost?',
         ('Are we tied in after the Map?',
          'No. You keep everything the Map produces. Each move names at least one way to do it without us, and the '
          'fee never depends on what you choose next.')]
-FAQ = ['Before you book.', *[x for qa in FAQS for x in qa]]
+FAQ_HEADING = 'Before you talk to us.'  # Round 11; was "Before you book."
+FAQ = [FAQ_HEADING, *[x for qa in FAQS for x in qa]]
 QUESTION = 'Where does your business lose the most cash, days or margin today?'
-PLATE = [QUESTION, WHATSAPP, BOOK]
+PLATE = [QUESTION, WHATSAPP, BOOK, SAMPLE]
 ADDRESS = 'Intellumia Pte. Ltd., 60 Paya Lebar Road, #06-28, Paya Lebar Square, Singapore 409051'
 EMAIL = 'sundeep@intellumia.com'
 SIGN_OFF = 'Intelligence, Illuminated.'
@@ -170,7 +183,7 @@ BAR = [WHATSAPP]
 MAIN = HERO_BLOCK + PROBLEMS + HOW + EXAMPLE + PERSON + RULES + FAQ + PLATE
 HOME = HEADER + MAIN + FOOTER + BAR
 PAGE_404 = HEADER + NOT_FOUND + FOOTER
-WORD_LIMIT = 600  # Round 10, A1: reading words in the body of Home (between header and footer), alt text not counted;
+WORD_LIMIT = 620  # Round 11: the approved words come to 618 (Sundeep expected about 610; 600 in Round 10). Round 10, A1: reading words in the body of Home (between header and footer), alt text not counted;
 # the answers inside the closed FAQ accordions are counted apart (the copy the brief sets comes to 687 with them)
 LABELS = 8  # Round 10, A4: the hero eyebrow, the three step labels and the four example step numbers
 
@@ -202,6 +215,7 @@ BANNED = {
     'retired lines (Round 10)': [
         'Fix what holds it back', 'Bring the answer', 'Led by Sundeep', 'Fortune 1000', 'Who we work with',
         'Where AI is already proven', 'Cash over hours', 'Your choice, in writing', 'Nothing to prepare',
+        'Often first', 'Before you book',
         'Two to three weeks. Your numbers. Your choice.', 'You see the working'],
     'products described as existing': ['now live', 'live now', 'is live', 'demo', 'demo opening soon', 'in build',
                                        'opening soon', 'sandbox', 'platform', 'module', 'modules'],
@@ -235,7 +249,8 @@ ARCHIVED = ([f'_archive/scenes-painted-2026-11-10/{f}' for f in PAINTED_SCENES]
                 'README.md', 'index-before-round-10.html', 'site-before-round-10.css', 'llms-before-round-10.txt',
                 'who-we-work-with.html', 'the-map.html', 'our-rules-six.html', 'faq-eight.html',
                 'what-we-do-cards-and-icons.html', 'how-it-works-and-example.html', 'founder-block.html',
-                'close-plate.html', 'hero-one-precise-intervention.svg')])  # Rounds 9 and 10: moved, not deleted
+                'close-plate.html', 'hero-one-precise-intervention.svg')]  # Rounds 9 and 10: moved, not deleted
+            + ['_archive/share-image-2026-11-11/share-hero-round-8.png'])  # Round 11: the share image it replaced
 ASSETS = {'assets/site.css', 'assets/site.js', 'assets/intellumia-wordmark-ultramarine.svg',
           'assets/fonts/AnekLatin-latin.woff2', 'assets/fonts/AnekLatin-latinext.woff2', 'assets/fonts/AnekLatin-rupee.woff2',
           'assets/fonts/OFL-Anek.txt',
@@ -517,11 +532,11 @@ check('Home: title and og:title', norm(home.title) == TITLE and home.meta.get('o
 check('Home: meta description and og:description',
       home.meta.get('description') == DESCRIPTION and home.meta.get('og:description') == DESCRIPTION)
 for label, pg in (('Home', home), ('Privacy', read(DOCS / 'privacy/index.html'))):
-    check(f'{label}: the share image is share/share-hero.png (Round 8), declared at 1200 x 630 with its alt text',
+    check(f'{label}: the share image is share/share-hero.png (Round 11), declared at 1200 x 630 with its alt text',
           pg.meta.get('og:image') == SITE + SHARE[0] and pg.meta.get('og:image:width') == '1200'
           and pg.meta.get('og:image:height') == '630' and pg.meta.get('og:image:alt') == SHARE_ALT,
           f"{pg.meta.get('og:image')} {pg.meta.get('og:image:alt')}")
-check('the share image is 1200 x 630, the file as supplied (pinned by its sha256)',
+check('the share image is 1200 x 630, the file as made in Round 11 (pinned by its sha256)',
       png_size(DOCS / SHARE[0]) == (1200, 630) and sha256(DOCS / SHARE[0]) == SHARE[1], f'{png_size(DOCS / SHARE[0])}')
 hero_src = between(home_src, '<!-- HERO -->', '<!-- PROBLEMS -->')
 order = ['<!-- HERO -->', '<!-- PROBLEMS -->', '<!-- HOW IT WORKS -->', '<!-- EXAMPLE -->', '<!-- SUNDEEP -->', '<!-- RULES -->',
@@ -533,17 +548,21 @@ check('Home: the sections in the Round 10 order: hero, problems, how it works, t
 reading = [b for b in home.blocks[len(HEADER):len(HEADER) + len(MAIN)] if not b.startswith('[img]')]
 words = sum(len(b.split()) for b in reading)
 closed = sum(len(a.split()) for _, a in FAQS)  # the four answers, inside closed accordions
-check(f'Home: {words - closed} reading words on show between the header and the footer, alt text not counted (Round 10: '
+check(f'Home: {words - closed} reading words on show between the header and the footer, alt text not counted (limit: '
       f'{WORD_LIMIT} or fewer); {words} with the four FAQ answers, which are closed until opened',
       home.blocks[len(HEADER):len(HEADER) + len(MAIN)] == MAIN and words - closed <= WORD_LIMIT, f'{words} words')
 HERO_IMG = (f'<div class="hero-pic"><img src="/assets/pictures/{HERO_PIC}.svg" alt="{pic_alt(HERO_PIC)}" width="935" height="645" '
-            'decoding="async"></div>')
-check('the hero: the label, the headline, the line, the two buttons and the note, the founder line (the 56 px round '
-      'portrait, to #h-sk), then the tight hero picture: not lazy, width and height set; words in columns 1 to 7 and the '
+            'decoding="async" fetchpriority="high"></div>')  # fetched first: it is the largest thing on the first screen (Round 11)
+check('the hero: the label, the headline, the line, the line of industries (under the label from 1000 px, after the line '
+      'below), the two buttons and the note, the founder line (the 56 px round portrait, a tap target of 44 px or more, to '
+      '#h-sk), then the tight hero picture: not lazy, width and height set; words in columns 1 to 7 and the '
       'picture in 8 to 12 from 1000 px, under the words and at most 520 px below',
       '<section class="wrap hero" id="hero">' in hero_src and hero_src.count('<img') == 2 and HERO_IMG in hero_src
       and '<a class="founder" href="#h-sk"><img src="/assets/imagery/sundeep-portrait-2026_120.jpg" alt="" width="56" '
           'height="56"><span>Sundeep Kumar, Founder &amp; CEO</span></a>' in hero_src
+      and hero_src.index('class="ld hero-line"') < hero_src.index('class="bd muted hero-for"') < hero_src.index('class="cta"')
+      and '.hero .label{order:-2;margin-bottom:8px}.hero-for{order:-1;margin:0 0 20px}' in css
+      and '.founder{display:inline-flex;align-items:center;gap:14px;min-height:44px;' in css
       and hero_src.index('class="bd note"') < hero_src.index('<a class="founder"') < hero_src.index(HERO_IMG)
       and '.founder img{width:56px;height:56px;border-radius:50%;object-fit:cover;filter:grayscale(1)}' in css
       and '.hero-pic{margin:20px auto 0;max-width:520px}' in css
@@ -597,13 +616,26 @@ def opens(b, href):
 home_btns = [(b.get('href'), (b.get('class') or '').split()[-1]) for b in home.buttons]
 check(f'Home: "{WHATSAPP}" (ultramarine) in the header, the hero, the close (white) and the bottom bar; "{BOOK}" (outline) '
       'in the hero and the close only; each in a new tab',
-      home_btns == [(WA_LINK, 'btn--sm'), (WA_LINK, 'btn'), (BOOKING, 'btn--out'), (WA_LINK, 'btn--inv'),
-                    (BOOKING, 'btn--out-inv'), (WA_LINK, 'btn')]
+      home_btns == [(WA_LINK, 'btn--sm'), (WA['hero'], 'btn'), (BOOKING_FROM['hero'], 'btn--out'), (WA['close'], 'btn--inv'),
+                    (BOOKING_FROM['close'], 'btn--out-inv'), (WA_LINK, 'btn')]
       and all(opens(b, b.get('href')) for b in home.buttons) and home.buttons[5].get('tabindex') == '-1', f'{home_btns}')
 wa_links = sorted({h for f in html_files for h in re.findall(r'href="(https://wa\.me/[^"]*)"', (DOCS / f).read_text())})
-check('the WhatsApp link: wa.me/918855884042 with the message "' + WA_MESSAGE + '", URL-encoded; a plain link, no widget',
-      wa_links == [WA_LINK] and WA_LINK in (DOCS / 'llms.txt').read_text()
-      and home_src.count(WA_LINK) == 5 and 'whatsapp' not in js_all.lower(), f'{wa_links}')
+check('the WhatsApp links: wa.me/918855884042, each with its own URL-encoded message (Round 11): "' + WA_MESSAGE
+      + '" in the header, the phone bar and the footer; "' + '"; "'.join(WA_MESSAGES.values())
+      + '" in the hero, the close and the two sample Map links; plain links, no widget',
+      wa_links == sorted([WA_LINK, *WA.values()]) and WA_LINK in (DOCS / 'llms.txt').read_text()
+      and [home_src.count(f'"{u}"') for u in (WA_LINK, WA['hero'], WA['close'], WA['sample'])] == [3, 1, 1, 2]
+      and 'whatsapp' not in js_all.lower(), f'{wa_links}')
+more = re.findall(r'<p class="bd more( more--inv)?"><a href="([^"]+)" target="_blank" rel="noopener">([^<]+) <svg', home_src)
+check('the lighter second ask (Round 11): "' + SAMPLE + '", a text link with an arrow, under the weeks in How it works '
+      'and, in white, under the closing buttons; both to the sample Map message',
+      more == [('', WA['sample'], SAMPLE), (' more--inv', WA['sample'], SAMPLE)]
+      and home_src.index('class="bd wk-note"') < home_src.index('<p class="bd more">') < home_src.index('<!-- EXAMPLE -->')
+      and '.more--inv a{color:#fff}' in css, f'{more}')
+check('the booking link carries its source for cal.com (utm_source and utm_campaign, which cal.com records with the '
+      'booking): hero and close; plain everywhere else',
+      sorted(set(re.findall(r'https://cal\.com/[^"\s)]*', home_src.replace('&amp;', '&')))) == sorted([BOOKING, *BOOKING_FROM.values()])
+      and BOOKING_FROM['hero'].replace('&', '&amp;') in home_src)
 check('Home: the bottom bar holds one button, starts hidden (aria-hidden, out of the tab order) and the script shows it',
       re.search(r'<div class="bar" id="bar" aria-hidden="true">\s*<a class="btn" [^>]*tabindex="-1">' + WHATSAPP + r'</a>\s*</div>',
                 home_src) is not None and 'id="hero"' in home_src and 'id="close"' in home_src)
@@ -661,8 +693,9 @@ for n, (w, h, alt, digest) in PICTURES.items():
     root = root.group(0) if root else ''
     label = re.search(r'\saria-label="([^"]*)"', root)
     want = {'alt': alt, 'width': str(w), 'height': str(h), 'decoding': 'async',
-            'loading': None if n == HERO_PIC else 'lazy', 'srcset': None, 'class': a.get('class')}
-    if {k: a.get(k) for k in want} != want or set(a) - {'src', 'alt', 'width', 'height', 'loading', 'decoding', 'class'}:
+            'loading': None if n == HERO_PIC else 'lazy', 'srcset': None, 'class': a.get('class'),
+            'fetchpriority': 'high' if n == HERO_PIC else None}
+    if {k: a.get(k) for k in want} != want or set(a) - {'src', 'alt', 'width', 'height', 'loading', 'decoding', 'class', 'fetchpriority'}:
         pic_problems.append(f'{n}: the img tag {a}')
     if not alt or (label.group(1) if label else '') != alt or f'width="{w}" height="{h}"' not in root:
         pic_problems.append(f'{n}: alt is empty or not the aria-label of the SVG, or its size differs')
@@ -688,20 +721,20 @@ check('the retired pictures and the parts that left the page are kept in _archiv
       and not (DOCS / 'assets/social-preview.jpg').exists(), f'{[f for f in ARCHIVED if not (ROOT / f).is_file()]}')
 probs_src = between(home_src, '<!-- PROBLEMS -->', '<!-- HOW IT WORKS -->')
 check('the problems (Rounds 9 and 10): one section, each problem once: six cards, each with its picture, its question as '
-      'the title and its answer; "Often first" on the cash card only; then "AI does the work. Your people make the calls." '
-      'as a heading; one across on phones, two from 768 px, three from 1100 px, so no picture is under 260 px wide',
+      'the title and its answer; "Most owners start here" on the cash card only (Round 11); one across on phones, two from 768 px, three from 1100 px, so no picture is under 260 px wide',
       re.findall(r'<li class="card pc"><img src="/assets/pictures/([\w-]+)\.svg"[^>]*><h3 class="ld">([^<]+)</h3>'
-                 r'<p class="bd">([^<]+)</p>(?:<span class="tag">Often first</span>)?</li>', probs_src) == CARDS
+                 r'<p class="bd">([^<]+)</p>(?:<span class="tag">' + OFTEN_FIRST + r'</span>)?</li>', probs_src) == CARDS
       and f'<h2 class="hd" id="h-probs">{SCENES_HEADING}</h2>\n  <p class="bd">{WHY_AI}</p>' in probs_src
-      and f'<h3 class="hd after">{AI_LINE}</h3>' in probs_src and '<svg' not in probs_src
+      and AI_LINE not in probs_src and 'class="hd after"' not in home_src and '<svg' not in probs_src
       and '@media(min-width:768px){.probs{grid-template-columns:repeat(2,minmax(0,1fr))}}' in css
       and '@media(min-width:1100px){.probs{grid-template-columns:repeat(3,minmax(0,1fr))}}' in css)
 how_src = between(home_src, '<!-- HOW IT WORKS -->', '<!-- EXAMPLE -->')
-check('How it works (Round 10): three cards, each its label, its picture, its name and its words; the Map card with a 2 px '
+check('How it works (Rounds 10 and 11): the heading with "AI does the work. Your people make the calls." as its lead; three cards, each its label, its picture, its name and its words; the Map card with a 2 px '
       'ultramarine edge; then the four weeks and the staff-time line',
       re.findall(r'<li class="card step[^"]*"><p class="label">([^<]+)</p><img class="step-pic" src="/assets/pictures/'
                  r'(offer-\w+)\.svg"[^>]*><h3 class="ld">(\w+)</h3><p class="bd">([^<]+)</p></li>', how_src) == STEPS
-      and how_src.count('<img') == 3 and '<svg' not in how_src and how_src.count('step--first') == 1
+      and how_src.count('<img') == 3 and how_src.count('<svg') == 1 and how_src.count('step--first') == 1
+      and f'<div class="sec-head sec-head--lead">\n  <h2 class="hd" id="h-how">{HOW[0]}</h2>\n  <p class="ld">{AI_LINE}</p>' in how_src
       and '.step--first{border:2px solid var(--klein)!important}' in css
       and how_src.index('</ol>') < how_src.index('<ol class="wk">') < how_src.index('class="bd wk-note"'))
 ex_src = between(home_src, '<!-- EXAMPLE -->', '<!-- SUNDEEP -->')
@@ -731,9 +764,9 @@ check('the founder (Round 10): the portrait (alt text, width and height, lazy, c
       < person_src.index(LINKEDIN_TEXT)
       and '.person>img{width:100%;aspect-ratio:1;object-fit:cover}' in css and '.person>img{grid-column:1/5}' in css)
 close_src = between(home_src, '<!-- CLOSE -->', '</main>')
-check('the close (Rounds 9 and 10): the question in the Statement face, the two buttons, and the white ll mark '
+check('the close (Rounds 9 to 11): the question in the Statement face, the two buttons, the sample Map link, and the white ll mark '
       '(decorative), shown from 760 px on the right, never under the words',
-      f'<h2 class="st" id="h-close">{QUESTION}</h2>' in close_src and close_src.count('<a class="btn') == 2
+      f'<h2 class="st" id="h-close">{QUESTION}</h2>' in close_src and close_src.count('<a class="btn') == 2 and close_src.count('class="bd more more--inv"') == 1
       and '<svg class="ll" viewBox="92 -1319 1133 1319" fill="#fff" aria-hidden="true">' in close_src
       and '.ll{display:none}' in css and '@media(min-width:760px){.plate .st,.plate .cta{max-width:64%}' in css)
 published_files = [f for f in DOCS.rglob('*') if f.is_file()]
@@ -797,7 +830,7 @@ all_text = '\n'.join(surfaces.values())
 check('no em dashes', '—' not in all_text and ' -- ' not in all_text
       and all('—' not in p.read_text() for p in published_text))
 check('no emoji', not EMOJI.search(all_text))
-check('no market statistics (no per cent signs)', not re.search(r'%|per ?cent', all_text.replace(WA_LINK, ''), re.I))
+check('no market statistics (no per cent signs)', not re.search(r'%|per ?cent', re.sub(r'https://wa\.me/\S+', '', all_text), re.I))
 check('no price figures: no currency sign beside a figure, except the one fact about Sundeep\'s career in the founder '
       'section ("one to $72 million in 24 months", Round 10, D2), which is not a price',
       not re.search(r'[₹$€£]\s*\d|\d\s*[₹$€£]|S\$|\b\d[\d,.]*\s*(?:lakh|crore|k)\b',
@@ -816,7 +849,8 @@ for f in ('index.html', 'privacy/index.html', '404.html'):
         straight[f] = hits
 check("apostrophes on the pages are curly (owner’s, India’s, staff’s), never straight", not straight, f'{straight}')
 llms = norm((DOCS / 'llms.txt').read_text())
-llms_want = (HERO, HERO_LINE, DESCRIPTION, f'[{WHATSAPP}]({WA_LINK})', f'[{BOOK}]({BOOKING})', PHONE_LINE, NOTE,
+llms_want = (HERO, HERO_LINE, HERO_FOR, DESCRIPTION, f'[{WHATSAPP}]({WA_LINK})', f'[{BOOK}]({BOOKING})',
+             f'[{SAMPLE}]({WA["sample"]})', OFTEN_FIRST, FAQ_HEADING, PHONE_LINE, NOTE,
              'How it works', 'Our rules', 'Questions owners ask', NAME, QUOTE.strip('“”'), FOUNDER, LINKEDIN, QUESTION,
              SCENES_HEADING, WHY_AI, AI_LINE, STAFF_TIME, *[q for _, q, _ in CARDS], *[d for *_, d in STEPS],
              *[t for _, t, _ in RULES_LIST], *[q for q, _ in FAQS], *[a for _, a in FAQS])
@@ -835,11 +869,11 @@ check('page colours outside the pictures: ink, rule and ultramarine in the examp
       drawing <= DRAWING_COLOURS, f'other colours: {drawing - DRAWING_COLOURS}')
 check('no gradients, shadows or dark mode', not re.search(r'gradient|shadow|prefers-color-scheme', css, re.I))
 fire_rules = re.findall(r'[^{}]+\{[^{}]*var\(--fire\)[^{}]*\}', css)
-check('vermilion in the stylesheet: the token once, used by the hero word, the "Often first" tag and the number of rule 02 only',
+check('vermilion in the stylesheet: the token once, used by the hero word, the "Most owners start here" tag and the number of rule 02 only',
       css.count('#FF3D00') == 1 and [r.strip().split('{')[0] for r in fire_rules] == ['.fire', '.tag', '.rule--key .num'],
       f'{fire_rules}')
 cash_card = re.findall(r'<li class="card pc">.*?</li>', probs_src, re.S)
-check('three red things on the page outside the pictures, no more (Round 10): "money" in the hero, the "Often first" tag on '
+check('three red things on the page outside the pictures, no more (Round 10): "money" in the hero, the "Most owners start here" tag on '
       'the cash card and the number of rule 02, "No vendor fees" (vermilion at Heading size passes WCAG AA as large text; the '
       'title at Lead size would be 3.5:1 and fail, so no title is vermilion)',
       len(home.fire) == 1 and 'h1' in home.fire[0] and home_src.count('class="fire"') == 1
@@ -847,7 +881,7 @@ check('three red things on the page outside the pictures, no more (Round 10): "m
       and home_src.count('rule--key') == 1
       and f'<li class="card rule rule--key"><span class="hd num">02</span><h3 class="ld">{RULE_KEY}</h3>' in rules_src
       and '#FF3D00' not in home_src, f'{home.fire}')
-check('the "Often first" tag: ink words on vermilion (5.4:1, WCAG AA), never white (3.5:1)',
+check('the "Most owners start here" tag: ink words on vermilion (5.4:1, WCAG AA), never white (3.5:1)',
       re.search(r'\.tag\{[^}]*background:var\(--fire\);color:var\(--ink\)', css) is not None)
 check('no red on Privacy or the 404 page', all('fire' not in (DOCS / f).read_text() and '#FF3D00' not in (DOCS / f).read_text()
                                               for f in ('privacy/index.html', '404.html')))

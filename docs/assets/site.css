@@ -79,7 +79,7 @@ main{overflow-x:clip}
 .band{background:var(--bone)}
 .sec-head{display:grid;gap:12px;margin-bottom:20px}
 @media(min-width:1000px){.sec-head{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:last baseline;margin-bottom:56px}
- .sec-head .hd{grid-column:1/9}.sec-head--lead .hd{grid-column:1/7}.sec-head--lead .bd{grid-column:8/13}}
+ .sec-head .hd{grid-column:1/9}.sec-head--lead .hd{grid-column:1/7}.sec-head--lead p{grid-column:8/13}}
 
 /* cards, two styles only: on white, a 1 px rule border; on Bone, no border. Corners 12. */
 .cards{display:grid;gap:var(--gap)}
@@ -92,26 +92,27 @@ main{overflow-x:clip}
 .hero .label{margin-bottom:16px}
 .hero .st{max-width:11em;margin:0 auto}
 .hero-line{margin-top:20px;font-weight:500}
+.hero-for{margin-top:12px}
 .hero .cta{margin-top:28px;justify-content:center}
 .note{margin-top:14px;color:var(--muted)}
-.founder{display:inline-flex;align-items:center;gap:14px;margin-top:16px;color:var(--ink);font-weight:600;text-decoration:none;text-align:left}
+.founder{display:inline-flex;align-items:center;gap:14px;min-height:44px;margin-top:16px;color:var(--ink);font-weight:600;text-decoration:none;text-align:left}
 .founder img{width:56px;height:56px;border-radius:50%;object-fit:cover;filter:grayscale(1)}
 .founder:hover span{text-decoration:underline}
 .hero-pic{margin:20px auto 0;max-width:520px}
 .hero-pic img{width:100%;height:auto}
 @media(min-width:1000px){.hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:center;text-align:left;padding-top:96px;padding-bottom:96px}
  .hero-text{grid-column:1/8}.hero-pic{grid-column:8/13;margin:0;max-width:none}
- .hero .st{margin:0}.hero .cta{justify-content:flex-start}}
+ .hero .st{margin:0}.hero .cta{justify-content:flex-start}
+ /* the line of industries sits under the label here, and after the sub-line on phones and tablets */
+ .hero-text{display:flex;flex-direction:column;align-items:flex-start}.hero .label{order:-2;margin-bottom:8px}.hero-for{order:-1;margin:0 0 20px}}
 
 /* the problems: six cards, each with its picture (whole, 4:3, never under 260 px wide), its question and its answer */
 .pc img{width:100%;height:auto;aspect-ratio:4/3}
 .pc .ld{margin-top:4px}
-.tag{justify-self:end;margin-top:60px;background:var(--fire);color:var(--ink);font-weight:600;border-radius:6px;padding:1px 10px}
-@media(min-width:600px){.tag{margin-top:28px}}
-.after{margin-top:32px;max-width:16em}
+.tag{justify-self:end;margin-top:66px;background:var(--fire);color:var(--ink);font-weight:600;border-radius:6px;padding:1px 10px}
+@media(min-width:768px){.tag{margin-top:34px}}
 @media(max-width:599px){.cards{gap:12px}.card{padding:16px}.pc,.step{padding-top:8px}.pc img,.step-pic{width:260px;margin:0 auto -12px}}
-@media(min-width:1000px){.after{margin-top:72px}}
-@media(min-width:600px) and (max-width:767px){.pc{grid-template-columns:minmax(260px,2fr) 3fr;column-gap:var(--gap);align-items:center;align-content:center}.pc img{grid-row:1/5}}
+@media(min-width:600px) and (max-width:767px){.pc img{width:260px;margin:0 auto}}
 @media(min-width:768px){.probs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:1100px){.probs{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
@@ -127,6 +128,11 @@ main{overflow-x:clip}
 .wk li{display:grid;grid-template-columns:5em 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--rule);line-height:1.35}
 .wk b{font-weight:600;color:var(--klein)}
 .wk-note{margin-top:16px;color:var(--muted)}
+/* the lighter second ask: a text link with an arrow, under the weeks and under the closing buttons (white there) */
+.more{margin-top:20px}
+.more a{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:600}
+.more svg{width:18px;height:18px}
+.more--inv{margin-top:-12px}.more--inv a{color:#fff}
 @media(min-width:1000px){.wk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gap);border-top:0;margin-top:56px}.wk li{grid-template-columns:1fr;gap:4px;border-bottom:0;border-top:3px solid var(--klein);padding:14px 0 0}}
 
 /* one example: four drawn steps, 2 x 2 on phones with each drawing the full width of its card (150 px or more), four
