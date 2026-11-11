@@ -6,12 +6,13 @@ Run at every release, before scripts/make_fallback.py and scripts/check_copy.py:
     python3 scripts/make_structured_data.py               # release date: today (UTC)
     python3 scripts/make_structured_data.py --date 2026-11-04
 
-Standard library only. The FAQPage carries the eight questions and answers word for word from the page's
+Standard library only. The FAQPage carries the four questions and answers word for word from the page's
 FAQ, and the service catalogue carries the one-line descriptions of Map, Run and Guide from "How it works",
 so the structured data can never drift from what a reader sees (Round 7, Sundeep, 4 Nov 2026). The home
 page's dateModified and its sitemap lastmod are the release date; Privacy's lastmod is the date its file
 last changed. No offers and no prices, anywhere. The Organization's sameAs is the company LinkedIn page and its one
-contact point carries the site's email and booking link, in English (Round 7c, Sundeep, 5 Nov 2026).
+sales contact point carries the WhatsApp number, the site's email and the booking link, in English and Hindi; the
+Person carries the same number (Round 10, Sundeep, 10 Nov 2026; before it, English only, Round 7c).
 """
 import argparse
 import datetime as dt
@@ -37,7 +38,8 @@ INDIA = {'@type': 'Country', 'name': 'India'}
 SERVICE_TYPE = 'AI advisory and delivery for owner-run businesses'
 KNOWS_ABOUT = ['Artificial intelligence', 'Business process automation', 'Accounts receivable', 'Cost and margin',
                'Operations']
-LANGUAGES = ['English']  # the site's language; no separate Hindi contact (Sundeep, 5 Nov 2026: "same as everything else")
+LANGUAGES = ['en', 'hi']  # Round 10 (Sundeep, 10 Nov 2026); before it, English only (5 Nov 2026)
+TELEPHONE = '+91-88558-84042'  # Sundeep's WhatsApp number (Round 10)
 LD_RE = re.compile(r'<script type="application/ld\+json">.*?</script>', re.S)
 
 
@@ -48,16 +50,16 @@ def text(s):
 def faq_from_page(page):
     """The FAQ exactly as the page shows it: (question, answer) pairs, in order."""
     faq = page[page.index('<!-- FAQ -->'):page.index('<!-- CLOSE -->')]
-    pairs = re.findall(r'<details class="fq"(?: open)?><summary><span>(.*?)</span>.*?</summary><p>(.*?)</p></details>',
+    pairs = re.findall(r'<details class="fq"><summary class="ld"><span>(.*?)</span>.*?</summary><p class="bd">(.*?)</p></details>',
                        faq, re.S)
     return [(text(q), text(a)) for q, a in pairs]
 
 
 def steps_from_page(page):
     """Map, Run and Guide with their one-line descriptions from "How it works"."""
-    how = page[page.index('<!-- HOW IT WORKS -->'):page.index('<div class="ex">')]
+    how = page[page.index('<!-- HOW IT WORKS -->'):page.index('<!-- EXAMPLE -->')]
     return [(text(n), text(d)) for n, d in
-            re.findall(r'<h3 class="h3">(.*?)</h3><p class="bd">(.*?)</p>', how, re.S)]
+            re.findall(r'<h3 class="ld">(.*?)</h3><p class="bd">(.*?)</p>', how, re.S)]
 
 
 def organization(with_founder=True):
@@ -71,7 +73,7 @@ def organization(with_founder=True):
                     'addressLocality': 'Singapore', 'postalCode': '409051', 'addressCountry': 'SG'},
         'areaServed': INDIA,
         'knowsAbout': KNOWS_ABOUT,
-        'contactPoint': {'@type': 'ContactPoint', 'contactType': 'sales', 'email': EMAIL, 'url': BOOKING,
+        'contactPoint': {'@type': 'ContactPoint', 'contactType': 'sales', 'telephone': TELEPHONE, 'email': EMAIL, 'url': BOOKING,
                          'availableLanguage': LANGUAGES, 'areaServed': INDIA},
         'sameAs': [COMPANY_LINKEDIN],
     }
@@ -83,11 +85,11 @@ def organization(with_founder=True):
 def home_graph(page, date):
     faq = faq_from_page(page)
     steps = steps_from_page(page)
-    assert len(faq) == 8 and [n for n, _ in steps] == ['Map', 'Run', 'Guide'], (len(faq), steps)
+    assert len(faq) == 4 and [n for n, _ in steps] == ['Map', 'Run', 'Guide'], (len(faq), steps)
     return {'@context': 'https://schema.org', '@graph': [
         organization(),
         {'@type': 'Person', '@id': PERSON_ID, 'name': 'Sundeep Kumar', 'jobTitle': 'Founder & CEO',
-         'worksFor': {'@id': ORG_ID}, 'image': SITE + 'assets/imagery/sundeep-portrait-2026_720.jpg',
+         'worksFor': {'@id': ORG_ID}, 'telephone': TELEPHONE, 'image': SITE + 'assets/imagery/sundeep-portrait-2026_720.jpg',
          'sameAs': ['https://www.linkedin.com/in/kumarsundeep']},
         {'@type': 'WebSite', '@id': WEBSITE_ID, 'name': 'Intellumia', 'url': SITE, 'publisher': {'@id': ORG_ID},
          'inLanguage': 'en-GB'},
