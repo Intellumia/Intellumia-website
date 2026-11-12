@@ -1047,7 +1047,11 @@ check('the hero: ultramarine; the headline plain (no word in a band, no colour o
       and hero12.index('class="founder"') < hero12.index('class="sweep"')
       and hero12.index('<h1') < hero12.index('class="ld hero-line"') < hero12.index('class="bd hero-for"') < hero12.index('class="cta"')
       and not re.search(r'(?<![a-z-])order:', css)  # the industries line follows the sub-line at every width (Sundeep, 12 Nov 2026)
-      and '.field--lit{background:var(--lumen);color:var(--klein);clip-path:polygon(' in css and '57.735cqw' in css)
+      and '.field--lit{background:var(--lumen);color:var(--klein);clip-path:polygon(' in css and '57.735cqw' in css
+      # Round 12.1: side by side from 900 px; the lit label on the container's right edge, inside a 768 px first screen
+      and '@media(min-width:900px){.hero{display:grid;' in css and '.lit,.sweep-note{left:auto;right:var(--r)}}' in css
+      and '--y:min(92cqh,calc(600px + var(--x)*.57735))' in css
+      and '@media(min-width:1280px){.hero-text{grid-column:1/8}.sweep{grid-column:8/13}}' in css)
 check('motion: only the light moves: one animation, the beam entering from the left in 900 ms with an ease-out, then holding; '
       'still for reduced motion; the phone bar keeps its slide',
       re.findall(r'@keyframes\s+([\w-]+)', all_live) == ['beam'] and re.findall(r'animation:[^;}]+', css) == ['animation:beam .9s ease-out both', 'animation:none']
