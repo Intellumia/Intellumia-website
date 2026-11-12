@@ -59,7 +59,7 @@ def steps_from_page(page):
     """Map, Run and Guide with their one-line descriptions from "How it works"."""
     how = page[page.index('<!-- HOW IT WORKS -->'):page.index('<!-- EXAMPLE -->')]
     return [(text(n), text(d)) for n, d in
-            re.findall(r'<h3 class="hd">(.*?)</h3><p class="bd">(.*?)</p>', how, re.S)]
+            re.findall(r'<h3 class="sub sub--lg">(.*?)</h3><p class="bd">(.*?)</p>', how, re.S)]
 
 
 def organization(with_founder=True):

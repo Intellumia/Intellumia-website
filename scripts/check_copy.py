@@ -196,14 +196,15 @@ ILLUSTRATION = 'Illustration, not a client'
 SWEEP = ['Money owed to you', LIT_FIGURE, ILLUSTRATION]
 MONEY_MAP = ['Quoting', 'Billing', 'First move', 'Collections', 'Purchase', 'Inventory', 'Dispatch', 'Scheduling',
              'Maintenance', 'Complaints', 'Payroll', 'GST', 'Reconciliation', 'Less money at stake', 'More', ILLUSTRATION]
-GRAPHIC_WORDS = SWEEP + MONEY_MAP + [ILLUSTRATION]  # the chart carries only the label
+CHART_LABEL = 'Overdue, week by week'  # Round 13: the chart's Label; its own "Illustration, not a client" went, so the section says it once
+GRAPHIC_WORDS = SWEEP + MONEY_MAP + [CHART_LABEL]
 HERO_BLOCK = [CATEGORY, HERO, HERO_LINE, HERO_FOR, WHATSAPP, BOOK, NOTE, '[img] ', FOUNDER_LINE, *SWEEP]
 PROBLEMS = ([SCENES_HEADING, WHY_AI]
             + [x for i, (n, q, a) in enumerate(CARDS) for x in ([q, a] + ([OFTEN_FIRST] if i == 1 else []))])
 HOW = (['A Map first. Then we run the parts that pay.', AI_LINE]
-       + [x for i, (label, p, n, d) in enumerate(STEPS) for x in ([label, n, d] + (MONEY_MAP if i == 0 else []))]
+       + [x for label, p, n, d in STEPS for x in (label, n, d)] + MONEY_MAP  # Round 13: the map sits under the three cards
        + WEEKS + [STAFF_TIME, SAMPLE])
-EXAMPLE = EXAMPLE[:-1] + [ILLUSTRATION, EXAMPLE[-1]]
+EXAMPLE = EXAMPLE[:-1] + [CHART_LABEL, EXAMPLE[-1]]
 MAIN = HERO_BLOCK + PROBLEMS + HOW + EXAMPLE + PERSON + RULES + FAQ + PLATE
 HOME = HEADER + MAIN + FOOTER + BAR
 SHARE = ('assets/share/share-hero.png', '3bc58162d186a1a92d830ebedc29fffe36e30bfb874eabcc5f77c4d9f8d9132e')  # Round 12: ultramarine, the lockup, the headline with "money" in the band, the cut
@@ -1007,14 +1008,16 @@ check('corners: pills for buttons, round for the small portrait, 0 for panels, c
       set(re.findall(r'border-radius:([\w.%]+)', css)) == {'999px', '50%'})
 sizes = re.findall(r'font-size:([^;}]+)', css)
 root_rule = re.search(r':root\{[^}]*\}', css).group(0)
-roles = dict(re.findall(r'--fs-(\w+):([^;}]+)', root_rule))
+roles = dict(re.findall(r'--fs-([\w-]+):([^;}]+)', root_rule))
 inline = [f for f, s in live.items() if re.search(r'font-size|style="', re.sub(r'<script\b.*?</script>', '', s, flags=re.S))]
-check('text sizes: six roles only (Statement 40 to 100 px, Heading 28 to 54, Figure 44 to 104, Lead 17 to 20, Body 16 to 18, '
-      'Label 11 to 12), set as custom properties; every font-size is one of them; nothing set inline',
-      set(sizes) == {f'var(--fs-{r})' for r in roles} and sorted(roles) == ['body', 'figure', 'heading', 'label', 'lead', 'statement']
-      and all(re.match(rf'clamp\({a}px,.*,{b}px\)$', roles[r]) for r, a, b in (('statement', 40, 100), ('heading', 28, 54),
-              ('figure', 44, 104), ('lead', 17, 20), ('body', 16, 18)))
-      and roles['label'] == '11px' and re.findall(r'--fs-\w+:[^;}]+', css.replace(root_rule, '', 1)) == ['--fs-label:12px']
+check('text sizes (Round 13): Statement 40 to 100 px, the closing question 32 to 64, Heading 28 to 48, Subhead 20 to 24 (24 to 28 for '
+      'Map, Run, Guide and the founder values), Figure 44 to 104 for the lit figure and 40 to 48 in cards, Lead 17 to 20, Body 16 to 18, '
+      'Label 11 to 12; set as custom properties; every font-size is one of them; nothing set inline',
+      set(sizes) == {f'var(--fs-{r})' for r in roles} and sorted(roles) == ['body', 'close', 'figure', 'figure-sm', 'figure-xs', 'heading', 'label', 'lead', 'statement', 'sub', 'sub-lg']
+      and all(re.match(rf'clamp\({a}px,.*,{b}px\)$', roles[r]) for r, a, b in (('statement', 40, 100), ('close', 32, 64),
+              ('heading', 28, 48), ('sub', 20, 24), ('sub-lg', 24, 28), ('figure', 44, 104), ('lead', 17, 20), ('body', 16, 18)))
+      and roles['label'] == '11px' and re.findall(r'--fs-[\w-]+:[^;}]+', css.replace(root_rule, '', 1)) == ['--fs-label:12px', '--fs-figure-sm:48px']
+      and roles['figure-sm'] == roles['figure-xs'] == '40px'
       and not re.search(r'\bfont:', css) and not inline, f'{sorted(set(sizes))} {roles} {inline}')
 fonts = sorted(p.name for p in DOCS.rglob('*') if p.suffix in ('.woff', '.woff2', '.ttf', '.otf'))
 check('fonts: Intellumia Display 600 and 700 and Anek Latin, self-hosted, with both OFL files beside them; Anek at width 110; '
@@ -1075,19 +1078,20 @@ check('lumen is the beam and the main button on ultramarine, nothing else: the l
 probs12 = between(home_l, '<!-- PROBLEMS -->', '<!-- HOW IT WORKS -->')
 check('the problems: six text cards, the question as Heading and the fix as Body, a 2 px ink rule on top, no pictures; '
       '"Most owners start here" as a Label in ultramarine, no fill',
-      re.findall(r'<li class="card pc"><h3 class="hd">([^<]+)</h3><p class="bd">([^<]+)</p>(?:<span class="label tag">' + OFTEN_FIRST + r'</span>)?</li>', probs12)
+      re.findall(r'<li class="card pc"><h3 class="sub">([^<]+)</h3><p class="bd muted">([^<]+)</p>(?:<span class="label tag">' + OFTEN_FIRST + r'</span>)?</li>', probs12)
       == [(q, a) for _, q, a in CARDS] and '<img' not in probs12 and '.tag{color:var(--klein);margin-top:6px}' in css
       and '.card{display:grid;gap:8px;align-content:start;border-top:2px solid var(--ink);padding-top:16px}' in css)
 how12 = between(home_l, '<!-- HOW IT WORKS -->', '<!-- EXAMPLE -->')
 check('How it works: three white panels on ultramarine with steps; the Map panel carries the money map (twelve cells in the four '
       'klein tints, Collections the one lumen cell, "First move"), its legend and its label; no pictures',
-      re.findall(r'<li class="card card--panel step"><p class="label">([^<]+)</p><h3 class="hd">(\w+)</h3><p class="bd">([^<]+)</p>', how12)
+      re.findall(r'<li class="card card--panel step"><p class="label">([^<]+)</p><h3 class="sub sub--lg">(\w+)</h3><p class="bd">([^<]+)</p></li>', how12)
       == [(l, n, d) for l, _, n, d in STEPS] and how12.count('<div class="mm">') == 1 and len(re.findall(r'<li[^>]*>', how12.split('<div class="mm">')[1].split('</ul>')[0])) == 12
       and '<li class="first"><span class="label">First move</span><span>Collections</span></li>' in how12 and '<img' not in how12)
 ex12 = between(home_l, '<!-- EXAMPLE -->', '<!-- SUNDEEP -->')
 check('the example: four numbered cards (number as Figure, title as Heading); the fourth carries the one chart, seven weeks '
       'falling, the latest the one lumen value, drawn in code and aria-hidden, with its label',
-      len(re.findall(r'<li class="card"><p class="ex-k"><span class="fig">\d</span><span class="label">[^<]+</span></p><h3 class="hd">', ex12)) == 4
+      len(re.findall(r'<li class="card"><p class="ex-k"><span class="fig fig--sm">\d</span><span class="label">[^<]+</span></p><h3 class="sub">', ex12)) == 4
+      and f'<div class="chartband"><p class="label">{CHART_LABEL}</p><div class="chart" aria-hidden="true">' in ex12 and ILLUSTRATION not in ex12
       and ex12.count('<div class="chart" aria-hidden="true">') == 1 and len(re.findall(r'<span class="b\d+"></span>', ex12)) == 7
       and '<svg' not in ex12 and '<img' not in ex12)
 person12 = between(home_l, '<!-- SUNDEEP -->', '<!-- RULES -->')
@@ -1095,18 +1099,27 @@ check('the founder: the black and white portrait at 4:5 (512 x 640, lazy, edge t
       'Figure in ultramarine, the quote and the LinkedIn link with its icon',
       re.search(r'<img src="/assets/imagery/sundeep-kumar-portrait-bw_512x640\.jpg" width="512" height="640" '
                 rf'alt="{PORTRAIT_ALT}" loading="lazy"', person12) is not None
-      and re.findall(r'<li><b class="fig">([^<]+)</b><span class="bd">([^<]+)</span></li>', person12) == list(zip(FACTS[0::2], FACTS[1::2]))
+      and re.findall(r'<li><b class="sub sub--lg">([^<]+)</b><span class="bd muted">([^<]+)</span></li>', person12) == list(zip(FACTS[0::2], FACTS[1::2]))
       and re.search(rf'<a href="{re.escape(LINKEDIN)}" target="_blank" rel="noopener"><svg class="ic"[^>]*>.*?</svg>{LINKEDIN_TEXT}</a>', person12) is not None
       and '.person>img{width:100%;aspect-ratio:4/5;object-fit:cover}' in css)
 rules12 = between(home_l, '<!-- RULES -->', '<!-- FAQ -->')
 check('Our rules: four on ultramarine with steps, numbers 01 to 04 as white Figures, none lit, none red',
-      re.findall(r'<li class="card card--line rule"><span class="fig">(\d\d)</span><h3 class="ld">([^<]+)</h3><p class="bd">([^<]+)</p></li>', rules12) == RULES_LIST)
+      re.findall(r'<li class="card card--line rule"><span class="fig fig--xs">(\d\d)</span><h3 class="sub">([^<]+)</h3><p class="bd">([^<]+)</p></li>', rules12) == RULES_LIST)
 close12 = between(home_l, '<!-- CLOSE -->', '</main>')
 check('the close: ultramarine, the question plain white in the Statement face, the two buttons, the sample Map link, and the '
       'cut (the mark cropped off the right edge in #4A4AFF with its cut lumen), hidden under 760 px; no steps',
-      f'<h2 class="st" id="h-close">{QUESTION}</h2>' in close12 and '<section class="klein plate" id="close"' in close12
+      f'<h2 class="st st--close" id="h-close">{QUESTION}</h2>' in close12 and '<section class="klein plate" id="close"' in close12
       and '<svg class="cut" viewBox="0 0 106.63 206.21" aria-hidden="true"><polygon points="11.6484,137.487 85.1797,95.0342 91.9043,106.681 18.373,149.134" fill="#D9FF3F"/>' in close12
-      and 'fill="#4A4AFF"/></svg>' in close12 and '.cut{display:none}' in css and '@media(min-width:760px){.plate .st,.plate .cta{max-width:62%}' in css)
+      and 'fill="#4A4AFF"/></svg>' in close12 and '.cut{display:none}' in css and '@media(min-width:760px){.plate .st{max-width:75%}' in css)
+h2s = re.findall(r'<h2 class="([^"]+)"', home_l)
+h3s = re.findall(r'<h3 class="([^"]+)"', home_l)
+check('hierarchy (Round 13): the Statement face on the headline and the closing question only; one Heading per section and nowhere '
+      'else; every card, step and rule title a Subhead (never the display face, never ultramarine); words never set as Figure',
+      re.findall(r'<h1 class="([^"]+)"', home_l) == ['st'] and h2s == ['hd'] * 6 + ['st st--close']
+      and sorted(set(h3s)) == ['sub', 'sub sub--lg'] and len(h3s) == 17 and home_l.count('class="hd"') == 6
+      and re.findall(r'class="fig[^"]*">([^<]+)<', home_l) == [LIT_FIGURE, '1', '2', '3', '4', '01', '02', '03', '04']
+      and '.sub{font-weight:600;font-size:var(--fs-sub);line-height:1.2;text-wrap:balance}' in css
+      and not re.search(r'\.sub[^{]*\{[^}]*(?:var\(--klein\)|var\(--display\))', css), f'{h2s} {sorted(set(h3s))}')
 check('icons: Phosphor Bold, inline, in the text colour, decorative; the licence is published beside the site\'s assets',
       len(re.findall(r'<svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">', home_l)) == 16
       and 'Phosphor Icons' in (DOCS / 'assets/icons/LICENSE-Phosphor.txt').read_text())
