@@ -59,7 +59,7 @@ def steps_from_page(page):
     """Map, Run and Guide with their one-line descriptions from "How it works"."""
     how = page[page.index('<!-- HOW IT WORKS -->'):page.index('<!-- EXAMPLE -->')]
     return [(text(n), text(d)) for n, d in
-            re.findall(r'<h3 class="ld">(.*?)</h3><p class="bd">(.*?)</p>', how, re.S)]
+            re.findall(r'<h3 class="hd">(.*?)</h3><p class="bd">(.*?)</p>', how, re.S)]
 
 
 def organization(with_founder=True):
@@ -67,7 +67,7 @@ def organization(with_founder=True):
         '@type': 'Organization', '@id': ORG_ID,
         'additionalType': 'https://schema.org/ProfessionalService',
         'name': 'Intellumia', 'legalName': 'Intellumia Pte. Ltd.', 'url': SITE,
-        'logo': SITE + 'assets/intellumia-wordmark-ultramarine.svg',
+        'logo': SITE + 'assets/intellumia-lockup-ultramarine.svg',
         'description': DESCRIPTION, 'email': EMAIL,
         'address': {'@type': 'PostalAddress', 'streetAddress': '60 Paya Lebar Road, #06-28, Paya Lebar Square',
                     'addressLocality': 'Singapore', 'postalCode': '409051', 'addressCountry': 'SG'},
@@ -89,7 +89,7 @@ def home_graph(page, date):
     return {'@context': 'https://schema.org', '@graph': [
         organization(),
         {'@type': 'Person', '@id': PERSON_ID, 'name': 'Sundeep Kumar', 'jobTitle': 'Founder & CEO',
-         'worksFor': {'@id': ORG_ID}, 'telephone': TELEPHONE, 'image': SITE + 'assets/imagery/sundeep-portrait-2026_720.jpg',
+         'worksFor': {'@id': ORG_ID}, 'telephone': TELEPHONE, 'image': SITE + 'assets/imagery/sundeep-kumar-portrait-bw_512x640.jpg',
          'sameAs': ['https://www.linkedin.com/in/kumarsundeep']},
         {'@type': 'WebSite', '@id': WEBSITE_ID, 'name': 'Intellumia', 'url': SITE, 'publisher': {'@id': ORG_ID},
          'inLanguage': 'en-GB'},

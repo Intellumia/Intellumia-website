@@ -11,228 +11,234 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' https://static.cloudflareinsights.com 'sha256-C5gQQ9Lj4iXDoxOyCRFmNQeWzYj3css48audjxx35fA='; connect-src 'self' https://cloudflareinsights.com; base-uri 'self'; form-action 'none'">
 <meta name="color-scheme" content="light">
-<meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="favicon.ico?v=01dd83969c" sizes="32x32">
-<link rel="icon" href="favicon.svg?v=04008bead2" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=450d8bdfe9">
+<meta name="theme-color" content="#1A1AFF">
+<link rel="icon" href="favicon.ico?v=d5c396c69e" sizes="32x32">
+<link rel="icon" href="favicon.svg?v=1047058809" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=5a08eaac57">
+<link rel="preload" href="docs/assets/fonts/IntellumiaDisplay-SemiBold.woff2?v=3b358181d0" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="docs/assets/fonts/AnekLatin-latin.woff2?v=37b52178d8" as="font" type="font/woff2" crossorigin>
 <script>addEventListener('load',function(){function a(){var s=document.createElement('script');s.src='https://static.cloudflareinsights.com/beacon.min.js';s.setAttribute('data-cf-beacon','{"token": "347f1c5c75ff411ead3e9a43282df8cf"}');document.body.appendChild(s)}var P=window.PerformanceObserver;if(!P||!P.supportedEntryTypes||P.supportedEntryTypes.indexOf('paint')<0)return a();new P(function(l,o){if(l.getEntriesByName('first-contentful-paint').length){o.disconnect();a()}}).observe({type:'paint',buffered:true})})</script>
 <style>
-/* intellumia.com, one page. Rounds 9 and 10 (Sundeep, 10 November 2026): one layout system and a shorter page.
-   Container 1200 px with gutters 24 / 40 / 64 px; 12 columns, 24 px gap; sections 64 / 88 / 120 px apart; two card
-   styles; five text sizes, set once as custom properties, and no other font-size anywhere. Anek Latin only,
-   self-hosted; no animation; see CLAUDE.md. */
+/* intellumia.com, one page, on the Beam (Brand System v5.1.5, Round 12, 12 Nov 2026): an ultramarine ground, white
+   words, one lime beam at 30 degrees; paper for reading. Round 9's layout system stays (1200 px container, 12 columns,
+   sections 64 / 88 / 120 px apart). Six text sizes, set once as custom properties, and no other font-size. Intellumia
+   Display for the statement, headings and figures; Anek Latin at width 110 for text; both self-hosted. See CLAUDE.md. */
+@font-face{font-family:'Intellumia Display';src:url('docs/assets/fonts/IntellumiaDisplay-SemiBold.woff2?v=3b358181d0') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Intellumia Display';src:url('docs/assets/fonts/IntellumiaDisplay-Bold.woff2?v=367424210a') format('woff2');font-weight:700;font-display:swap}
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latin.woff2?v=37b52178d8') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap}
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-latinext.woff2?v=bf8874bee4') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+0100-024F,U+1E00-1EFF,U+20A0-20B8,U+20BA-20CF,U+2C60-2C7F,U+A720-A7FF}
-/* The rupee sign alone (1.7 KB, cut from the file above with fontTools), so the coins in the drawings do not pull the 82 KB file */
 @font-face{font-family:'Anek Latin';src:url('docs/assets/fonts/AnekLatin-rupee.woff2?v=6bbaa21a3c') format('woff2');font-weight:100 800;font-stretch:75% 125%;font-display:swap;unicode-range:U+20B9}
-/* Shown only for the moment before Anek arrives: a font already on the device (Arial or its metric twins; Roboto on
-   Android), scaled so each line is as wide as in Anek and sits on the same baseline, one face per band of the
-   weights the page uses (400; 450 and 500; 560; 600 and 620; 650; 650 condensed). When Anek swaps in, lines
-   break as they did, so the page does not move (no layout shift). Sizes measured over every line of Home, Privacy
-   and the 404 page; overrides are Anek's ascent 0.9 and descent 0.2 over the size-adjust. Not a second typeface:
-   nobody sees it once Anek has loaded. */
-@font-face{font-family:'Anek Fallback';src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans'),local('Arimo'),local('Arimo-Regular');font-weight:100 424;font-stretch:91% 125%;size-adjust:93.4%;ascent-override:96.4%;descent-override:21.4%;line-gap-override:0%}
-@font-face{font-family:'Anek Fallback';src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans'),local('Arimo'),local('Arimo-Regular');font-weight:425 549;font-stretch:91% 125%;size-adjust:95.3%;ascent-override:94.4%;descent-override:21%;line-gap-override:0%}
-@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:550 579;font-stretch:91% 125%;size-adjust:88.2%;ascent-override:102%;descent-override:22.7%;line-gap-override:0%}
-@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:580 639;font-stretch:91% 125%;size-adjust:90.4%;ascent-override:99.6%;descent-override:22.1%;line-gap-override:0%}
-@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:640 800;font-stretch:91% 125%;size-adjust:91.1%;ascent-override:98.8%;descent-override:22%;line-gap-override:0%}
-@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:550 800;font-stretch:75% 90%;size-adjust:70.3%;ascent-override:128%;descent-override:28.4%;line-gap-override:0%}
-@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto'),local('Roboto-Regular');font-weight:100 424;font-stretch:91% 125%;size-adjust:94%;ascent-override:95.7%;descent-override:21.3%;line-gap-override:0%}
-@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto'),local('Roboto-Regular');font-weight:425 549;font-stretch:91% 125%;size-adjust:95.9%;ascent-override:93.8%;descent-override:20.9%;line-gap-override:0%}
-@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:550 579;font-stretch:91% 125%;size-adjust:94.3%;ascent-override:95.4%;descent-override:21.2%;line-gap-override:0%}
-@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:580 639;font-stretch:91% 125%;size-adjust:96.2%;ascent-override:93.6%;descent-override:20.8%;line-gap-override:0%}
-@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:640 800;font-stretch:91% 125%;size-adjust:96.9%;ascent-override:92.9%;descent-override:20.6%;line-gap-override:0%}
-@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:550 800;font-stretch:75% 90%;size-adjust:75%;ascent-override:120%;descent-override:26.7%;line-gap-override:0%}
+/* Shown only until the brand fonts arrive: fonts already on the device, sized to Anek at width 110 so lines break the same. */
+@font-face{font-family:'Anek Fallback';src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans'),local('Arimo'),local('Arimo-Regular');font-weight:100 424;size-adjust:100.9%;ascent-override:89.2%;descent-override:19.8%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('LiberationSans'),local('Arimo'),local('Arimo-Regular');font-weight:425 549;size-adjust:102.9%;ascent-override:87.5%;descent-override:19.4%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:550 579;size-adjust:95.3%;ascent-override:94.4%;descent-override:21.0%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:580 639;size-adjust:97.6%;ascent-override:92.2%;descent-override:20.5%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback';src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('LiberationSans-Bold'),local('Arimo Bold'),local('Arimo-Bold');font-weight:640 800;size-adjust:98.4%;ascent-override:91.5%;descent-override:20.3%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto'),local('Roboto-Regular');font-weight:100 424;size-adjust:101.5%;ascent-override:88.7%;descent-override:19.7%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto'),local('Roboto-Regular');font-weight:425 549;size-adjust:103.6%;ascent-override:86.9%;descent-override:19.3%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:550 579;size-adjust:101.8%;ascent-override:88.4%;descent-override:19.6%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:580 639;size-adjust:103.9%;ascent-override:86.6%;descent-override:19.2%;line-gap-override:0%}
+@font-face{font-family:'Anek Fallback Roboto';src:local('Roboto Bold'),local('Roboto-Bold'),local('Roboto');font-weight:640 800;size-adjust:104.7%;ascent-override:86.0%;descent-override:19.1%;line-gap-override:0%}
 
-/* Colour tokens. Vermilion marks three things on the page, never two on one screen: the hero word "money", the
-   "Often first" tag and the number of rule 02. Text sizes: the five roles, and nothing else. */
-:root{--ground:#FFFFFF;--ink:#101010;--klein:#1A1AFF;--fire:#FF3D00;--bone:#F3EFE6;--rule:#DDD8CC;--muted:#5E5B55;--gut:24px;--max:1200px;--gap:24px;--sec:64px;--pad:20px;
- --fs-statement:clamp(44px,4.4vw + 27px,96px);--fs-heading:clamp(28px,1.9vw + 20.6px,48px);--fs-lead:clamp(20px,.2vw + 19.2px,22px);--fs-body:clamp(17px,.1vw + 16.6px,18px);--fs-label:12px}
+/* Tokens: these colours and no others. Lumen is the beam and the main button on ultramarine, nothing else. */
+:root{--klein:#1A1AFF;--lumen:#D9FF3F;--paper:#F4F4F0;--ink:#0B0B2B;--white:#FFFFFF;--rule:#D9D9D2;--muted:#5A5A72;--k1:#4A4AFF;--k2:#8C8CFF;--k3:#C9C9FF;--k4:#E3E3FF;--s1:#2727FF;--s2:#3535FF;--lumen-h:#C6EC2E;--klein-h:#0D0DA6;
+ --gut:24px;--max:1200px;--gap:24px;--sec:64px;
+ --fs-statement:clamp(40px,4.6vw + 22px,100px);--fs-heading:clamp(28px,2vw + 20px,54px);--fs-figure:clamp(44px,2.2vw + 36px,104px);--fs-lead:clamp(17px,.3vw + 16px,20px);--fs-body:clamp(16px,.2vw + 15.2px,18px);--fs-label:11px;
+ --display:'Intellumia Display','Anek Latin','Anek Fallback','Anek Fallback Roboto',system-ui,sans-serif}
 @media(min-width:600px){:root{--gut:40px;--sec:88px}}
-@media(min-width:768px){:root{--fs-label:13px}}
+@media(min-width:768px){:root{--fs-label:12px}}
 @media(min-width:1000px){:root{--gut:64px;--sec:120px}}
-@media(min-width:1200px){:root{--pad:28px}}
 *,*::before,*::after{box-sizing:border-box}
-html{background:var(--ground);color-scheme:light;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{margin:0;background:var(--ground);color:var(--ink);font-family:'Anek Latin','Anek Fallback','Anek Fallback Roboto',system-ui,sans-serif;font-size:var(--fs-body);line-height:1.5;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%;height:auto}
+html{background:var(--paper);color-scheme:light;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Anek Latin','Anek Fallback','Anek Fallback Roboto',system-ui,sans-serif;font-stretch:110%;font-size:var(--fs-body);line-height:1.5;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+img{height:auto}
 h1,h2,h3,h4,p,ul,ol,figure{margin:0}
 ul,ol{padding:0;list-style:none}
 a{color:var(--klein);text-underline-offset:.18em;text-decoration-thickness:1px}
-:focus-visible{outline:2px solid var(--klein);outline-offset:3px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.klein :focus-visible{outline-color:var(--white)}
 main{overflow-x:clip}
 .wrap{max-width:calc(var(--max) + 2*var(--gut));margin:0 auto;padding:0 var(--gut)}
+.klein{background:var(--klein);color:var(--white)}
+.klein a{color:var(--white)}
+/* stepped beams: three flat blue steps at 30 degrees on the lower right two fifths; never a lit step on this site */
+.steps{background:linear-gradient(150deg,var(--klein) 0 60%,var(--s1) 60% 68%,var(--s2) 68% 76%,var(--k1) 76% 100%)}
 
-/* type: the five roles. Only the Statement is condensed. */
-.st{font-weight:650;font-stretch:80%;font-size:var(--fs-statement);line-height:1;letter-spacing:-.012em;text-wrap:balance}
-.hd{font-weight:620;font-size:var(--fs-heading);line-height:1.1;letter-spacing:-.005em;text-wrap:balance}
-.ld{font-weight:600;font-size:var(--fs-lead);line-height:1.3;text-wrap:pretty}
+/* type: the six roles */
+.st{font-family:var(--display);font-stretch:100%;font-weight:600;font-size:var(--fs-statement);line-height:.96;letter-spacing:-.045em;text-wrap:balance}
+.hd{font-family:var(--display);font-stretch:100%;font-weight:600;font-size:var(--fs-heading);line-height:1.05;letter-spacing:-.038em;text-wrap:balance}
+.fig{font-family:var(--display);font-stretch:100%;font-weight:700;font-size:var(--fs-figure);line-height:1;letter-spacing:-.05em;text-wrap:balance}
+.ld{font-size:var(--fs-lead);line-height:1.4;text-wrap:pretty}
 .bd{font-size:var(--fs-body);line-height:1.5;text-wrap:pretty}
-.label{font-weight:600;font-size:var(--fs-label);letter-spacing:.12em;text-transform:uppercase;line-height:1.4}
+.label{font-weight:600;font-size:var(--fs-label);letter-spacing:.18em;text-transform:uppercase;line-height:1.4}
 .muted{color:var(--muted)}
-.fire{color:var(--fire)}
 .nw{white-space:nowrap}
+.ic{width:1.15em;height:1.15em;flex:none}
 
-/* buttons, corners 6: "WhatsApp Sundeep" (ultramarine) and "Book a 30-minute call" (outline) */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 24px;border-radius:6px;border:2px solid var(--klein);background:var(--klein);color:#fff;font-weight:600;font-size:var(--fs-body);line-height:1.1;text-decoration:none;white-space:nowrap}
-.btn:hover{text-decoration:underline;text-underline-offset:.2em}
-.btn--sm{min-height:44px;padding:8px 16px}
-.btn--out{background:#fff;color:var(--klein)}
-.btn--inv{background:#fff;border-color:#fff;color:var(--klein)}
-.btn--out-inv{background:none;border-color:#fff;color:#fff}
-.btn svg{width:18px;height:18px}
+/* buttons: pills. On paper the main button is ultramarine with white type; on ultramarine it is lumen with ultramarine
+   type. The second button is a 1.5 px outline in the type colour. */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 26px;border-radius:999px;border:1.5px solid var(--klein);background:var(--klein);color:var(--white);font-weight:600;font-size:var(--fs-body);line-height:1.1;text-decoration:none;white-space:nowrap}
+.btn:hover{background:var(--klein-h);border-color:var(--klein-h)}
+.klein .btn{background:var(--lumen);border-color:var(--lumen);color:var(--klein)}
+.klein .btn:hover{background:var(--lumen-h);border-color:var(--lumen-h)}
+.klein .btn--ghost,.klein .btn--ghost:hover{background:none;border-color:var(--white);color:var(--white)}
+.btn--ghost:hover{text-decoration:underline}
+.btn--sm{min-height:44px;padding:8px 18px}
 .cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px}
 @media(max-width:599px){.cta .btn{flex:1 1 100%}}
 
-/* header: the wordmark and the button (from 900 px on the page, where phones have the bottom bar; on Privacy and
-   the 404 page, .hdr--always, at every width) */
-.hdr{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px}
-.hdr img{width:118px}
+/* header: the lockup and the button (from 900 px on the page, where phones have the bottom bar; at every width on
+   Privacy and the 404 page, .hdr--always). Clear space of one wordmark height around the lockup. */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding-top:22px;padding-bottom:22px}
+.hdr img{width:152px}
 .hdr .btn{display:none}@media(min-width:900px){.hdr .btn{display:inline-flex}}
 .hdr--always .btn{display:inline-flex}
-@media(min-width:768px){.hdr{padding-top:24px;padding-bottom:24px}.hdr img{width:148px}}
+@media(min-width:768px){.hdr{padding-top:28px;padding-bottom:28px}.hdr img{width:176px}}
 
-/* sections, the 12-column grid and the section header: heading in columns 1 to 6 with the lead in 8 to 12, or the
-   heading alone in columns 1 to 8 */
+/* sections and the section header */
 .sec{padding-top:var(--sec);padding-bottom:var(--sec)}
-.band{background:var(--bone)}
-.sec-head{display:grid;gap:12px;margin-bottom:20px}
+.sec-head{display:grid;gap:12px;margin-bottom:28px}
+.sec-head .hd{color:var(--klein)}.klein .sec-head .hd{color:var(--white)}
 @media(min-width:1000px){.sec-head{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:last baseline;margin-bottom:56px}
  .sec-head .hd{grid-column:1/9}.sec-head--lead .hd{grid-column:1/7}.sec-head--lead p{grid-column:8/13}}
 
-/* cards, two styles only: on white, a 1 px rule border; on Bone, no border. Corners 12. */
+/* cards. On paper: no box, a 2 px ink rule on top. On ultramarine: a white panel with ink text (.card--panel), or
+   white text on the ground with a hairline (.card--line). Corners 0. */
 .cards{display:grid;gap:var(--gap)}
-.card{background:#fff;border:1px solid var(--rule);border-radius:12px;padding:var(--pad);display:grid;gap:8px;align-content:start}
-.band .card{border-color:#fff}
+.card{display:grid;gap:8px;align-content:start;border-top:2px solid var(--ink);padding-top:16px}
+.card--panel{background:var(--white);color:var(--ink);border:0;padding:20px}
+.card--line{border-top:1px solid var(--k1)}
+@media(min-width:1200px){.card--panel{padding:28px}}
 
-/* hero: words centred with the picture under them; from 1000 px the words in columns 1 to 7 and the picture in
-   columns 8 to 12, 96 px above and below */
-.hero{padding-top:16px;padding-bottom:var(--sec);text-align:center}
+/* hero: ultramarine. The words on flat ground; the sweep on the right from 1000 px, under the words below. */
+.hero{padding-top:20px;padding-bottom:var(--sec);text-align:center}
 .hero .label{margin-bottom:16px}
-.hero .st{max-width:11em;margin:0 auto}
-.hero-line{margin-top:20px;font-weight:500}
-.hero-for{margin-top:12px}
+.hero .st{max-width:9em;margin:0 auto}
+.hero-line{margin-top:20px}
+.hero-for{margin-top:12px;color:var(--k4)}
 .hero .cta{margin-top:28px;justify-content:center}
-.note{margin-top:14px;color:var(--muted)}
-.founder{display:inline-flex;align-items:center;gap:14px;min-height:44px;margin-top:16px;color:var(--ink);font-weight:600;text-decoration:none;text-align:left}
-.founder img{width:56px;height:56px;border-radius:50%;object-fit:cover;filter:grayscale(1)}
+.note{margin-top:14px;color:var(--k4)}
+.founder{display:inline-flex;align-items:center;gap:14px;min-height:44px;margin-top:16px;font-weight:600;text-decoration:none;text-align:left}
+.founder img{width:56px;height:56px;border-radius:50%;object-fit:cover}
 .founder:hover span{text-decoration:underline}
-.hero-pic{margin:20px auto 0;max-width:520px}
-.hero-pic img{width:100%;height:auto}
-@media(min-width:1000px){.hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:center;text-align:left;padding-top:96px;padding-bottom:96px}
- .hero-text{grid-column:1/8}.hero-pic{grid-column:8/13;margin:0;max-width:none}
+/* the sweep: a field of small unlit numbers, crossed by one lumen band at 30 degrees in which they read in
+   ultramarine; the lit figure sits on the band in a lumen label. The numbers mean nothing (aria-hidden). */
+.sweep{position:relative;height:300px;margin:32px calc(-1*var(--gut)) calc(-1*var(--sec));overflow:hidden;container-type:size;text-align:left;--y:86cqh;--t:76px;--x:24cqw}
+.field{position:absolute;inset:0;padding:0 8px;font-weight:500;font-size:var(--fs-label);line-height:2.3;word-spacing:8px;color:var(--k1);overflow:hidden}
+.beam{position:absolute;inset:0;animation:beam .9s ease-out both}
+.field--lit{background:var(--lumen);color:var(--klein);clip-path:polygon(0 calc(var(--y) - var(--t)),100cqw calc(var(--y) - var(--t) - 57.735cqw),100cqw calc(var(--y) - 57.735cqw),0 var(--y))}
+.lit{position:absolute;left:var(--x);top:calc(var(--y) - var(--t) - var(--x)*.57735 - 44px);background:var(--lumen);color:var(--klein);padding:10px 14px 8px;white-space:nowrap}
+.sweep-note{position:absolute;left:var(--x);top:calc(var(--y) - var(--t) - var(--x)*.57735 + 62px);background:var(--klein);color:var(--k4);padding:4px 8px 3px}
+@keyframes beam{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@media(prefers-reduced-motion:reduce){.beam{animation:none}}
+@media(min-width:600px){.sweep{height:340px}.sweep-note{top:calc(var(--y) - var(--t) - var(--x)*.57735 + 78px)}}
+@media(min-width:1000px){.hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:center;text-align:left;padding-top:56px;padding-bottom:0}
+ .hero-text{grid-column:1/8;display:flex;flex-direction:column;align-items:flex-start;padding-bottom:96px}
  .hero .st{margin:0}.hero .cta{justify-content:flex-start}
- /* the line of industries sits under the label here, and after the sub-line on phones and tablets */
- .hero-text{display:flex;flex-direction:column;align-items:flex-start}.hero .label{order:-2;margin-bottom:8px}.hero-for{order:-1;margin:0 0 20px}}
+ .sweep{grid-column:8/13;align-self:stretch;height:auto;min-height:560px;margin:-56px calc(-1*max(var(--gut),(100vw - var(--max))/2)) 0 0;--y:92cqh;--t:96px;--x:30cqw}}
 
-/* the problems: six cards, each with its picture (whole, 4:3, never under 260 px wide), its question and its answer */
-.pc img{width:100%;height:auto;aspect-ratio:4/3}
-.pc .ld{margin-top:4px}
-.tag{justify-self:end;margin-top:66px;background:var(--fire);color:var(--ink);font-weight:600;border-radius:6px;padding:1px 10px}
-@media(min-width:768px){.tag{margin-top:34px}}
-@media(max-width:599px){.cards{gap:12px}.card{padding:16px}.pc,.step{padding-top:8px}.pc img,.step-pic{width:260px;margin:0 auto -12px}}
-@media(min-width:600px) and (max-width:767px){.pc img{width:260px;margin:0 auto}}
-@media(min-width:768px){.probs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* the problems: six text cards */
+.tag{color:var(--klein);margin-top:6px}
+.pc .hd{color:var(--klein)}
+@media(min-width:768px){.probs{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}}
 @media(min-width:1100px){.probs{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
-/* how it works: three equal white cards on Bone; the Map card has a 2 px ultramarine edge */
+/* how it works: three white panels on ultramarine; the Map panel carries the money map */
 .step .label{color:var(--muted)}
-.step--first{border:2px solid var(--klein)!important}
-.step--first .label{color:var(--klein)}
-.step-pic{width:100%;height:auto;aspect-ratio:4/3}
-@media(min-width:600px) and (max-width:1099px){.step{grid-template-columns:minmax(260px,2fr) 3fr;column-gap:var(--gap);align-content:center}.step-pic{grid-column:1;grid-row:1/5}.step>:not(img){grid-column:2}}
-@media(min-width:1100px){.steps{grid-template-columns:repeat(3,minmax(0,1fr))}}
-/* the Map's weeks: Start, Week 1, Week 2, Week 3 */
-.wk{margin-top:28px;border-top:1px solid var(--ink)}
-.wk li{display:grid;grid-template-columns:5em 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--rule);line-height:1.35}
-.wk b{font-weight:600;color:var(--klein)}
-.wk-note{margin-top:16px;color:var(--muted)}
-/* the lighter second ask: a text link with an arrow, under the weeks and under the closing buttons (white there) */
-.more{margin-top:20px}
+.step .hd{color:var(--klein)}
+@media(min-width:1100px){.steps-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}}
+.mm{margin-top:12px;display:grid;gap:10px}
+.mm ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:var(--white)}
+.mm li{min-height:56px;padding:6px;display:grid;align-content:end;font-size:var(--fs-label);font-weight:500;line-height:1.25;overflow-wrap:anywhere;background:var(--k4)}
+.mm li .label{letter-spacing:.08em}
+.mm .v2{background:var(--k3)}.mm .v3{background:var(--k2)}.mm .v4{background:var(--k1);color:var(--white)}
+.mm .first{background:var(--lumen);color:var(--klein);font-weight:600}
+.mm-key{display:flex;align-items:center;gap:6px;color:var(--muted)}
+.sw{width:14px;height:14px;background:var(--k4)}.sw+.sw{background:var(--k3)}.sw+.sw+.sw{background:var(--k2)}.sw+.sw+.sw+.sw{background:var(--k1)}
+/* the Map's weeks, by the table rule: hairlines, no boxes */
+.wk{margin-top:32px;border-top:2px solid var(--white)}
+.wk li{display:grid;grid-template-columns:5em 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--k1);line-height:1.35}
+.wk b{font-weight:600}
+.wk-note{margin-top:16px}
+.more{margin-top:16px}
 .more a{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:600}
-.more svg{width:18px;height:18px}
-.more--inv{margin-top:-12px}.more--inv a{color:#fff}
-@media(min-width:1000px){.wk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gap);border-top:0;margin-top:56px}.wk li{grid-template-columns:1fr;gap:4px;border-bottom:0;border-top:3px solid var(--klein);padding:14px 0 0}}
+@media(min-width:1000px){.wk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gap);border-top:0;margin-top:56px}.wk li{grid-template-columns:1fr;gap:4px;border-bottom:0;border-top:2px solid var(--white);padding:14px 0 0}}
 
-/* one example: four drawn steps, 2 x 2 on phones with each drawing the full width of its card (150 px or more), four
-   across from 1000 px; the people's step has a 2 px ultramarine edge */
-.ex-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.ex-grid .card{padding:0 0 14px;overflow:hidden;border:0}
-.ex-grid .card>*{margin:0 12px}
-.ex-art{display:block;margin:0!important;border-bottom:1px solid var(--rule)}
-.ex-art svg{display:block;width:100%;height:auto}
-.ex-art svg *{vector-effect:non-scaling-stroke;stroke-width:1.5px}
-.ex-k{display:flex;gap:8px;color:var(--klein);margin-top:6px!important}
-.ex-people{outline:2px solid var(--klein);outline-offset:-2px}
-.ex-cap{margin-top:16px;color:var(--muted)}
-@media(min-width:600px){.ex-grid{gap:var(--gap)}.ex-grid .card{padding-bottom:var(--pad)}.ex-grid .card>*{margin:0 var(--pad)}}
-@media(min-width:1000px){.ex-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+/* one example: three numbered text cards and the one chart */
+.ex-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+.ex-k{display:flex;align-items:baseline;gap:10px;color:var(--klein)}
+.ex-grid .hd{color:var(--klein)}
+.chart{background:var(--klein);height:120px;padding:14px 14px 0;display:flex;align-items:flex-end;gap:6px;margin-top:6px}
+.chart span{flex:1;background:var(--k2)}
+.chart span:last-child{background:var(--lumen)}
+.b100{height:100%}.b88{height:88%}.b79{height:79%}.b64{height:64%}.b52{height:52%}.b41{height:41%}.b30{height:30%}
+.ex-cap{margin-top:20px;color:var(--muted)}
+@media(min-width:1000px){.ex-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap)}}
 
-/* the founder: the portrait (corners 0) in columns 1 to 4 and the words in 6 to 12; then the three facts, the quote
-   and the link */
-.person{display:grid;gap:20px}
-.person>img{width:100%;aspect-ratio:1;object-fit:cover}
+/* the founder: the black and white portrait at 4:5, edge to edge of its box on paper */
+.person{display:grid;gap:24px}
+.person>img{width:100%;aspect-ratio:4/5;object-fit:cover}
 .person-text{display:grid;gap:16px;align-content:center}
-.facts{display:grid;gap:14px;border-top:1px solid var(--ink);padding-top:18px}
-.facts li{display:grid;gap:4px;align-content:start}
-.facts b{color:var(--klein)}
-.q{max-width:34em}
+.person-text .hd{color:var(--klein)}
+.facts{display:grid;gap:20px;border-top:2px solid var(--ink);padding-top:20px}
+.facts li{display:grid;gap:6px;align-content:start}
+.facts .fig{color:var(--klein)}
+.q{max-width:34em;font-weight:600}
+.person>.bd a{display:inline-flex;align-items:center;gap:8px;min-height:44px}
 @media(min-width:600px) and (max-width:999px){.person>img{max-width:420px}}
-@media(min-width:600px){.facts{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--gap)}}
+@media(min-width:768px){.facts{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--gap)}}
 @media(min-width:1000px){.person{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:48px}
  .person>img{grid-column:1/5}.person-text{grid-column:6/13}.facts{grid-column:1/13;grid-template-columns:4fr 4fr 5fr}.q{grid-column:1/9}.person>.bd{grid-column:1/9;margin-top:-28px}}
 
-/* our rules: four cards, each led by its number, large, in ultramarine; the number of rule 02, "No vendor fees", is the section's red thing (large enough for WCAG AA; its title at Lead size would not be) */
-.num{color:var(--klein);line-height:1}
-@media(max-width:599px){.rule{grid-template-columns:auto 1fr;column-gap:14px;align-items:baseline}.rule .bd{grid-column:1/3}}
-.rule--key .num{color:var(--fire)}
-@media(min-width:600px){.rules{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* our rules: four, on ultramarine with steps; numbers as white figures; no lit number */
+.rule .ld{font-weight:600}
+@media(min-width:600px){.rules{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}}
 @media(min-width:1100px){.rules{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
-/* the questions: native details, all closed; heading in columns 1 to 4, questions in 5 to 12 */
-.fqs{border-top:1px solid var(--ink)}
+/* the questions: native details, all closed; plus and minus icons */
+.fqs{border-top:2px solid var(--ink)}
 .fq{border-bottom:1px solid var(--rule)}
-.fq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0}
+.fq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-weight:600}
 .fq summary::-webkit-details-marker{display:none}
-.pl{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--klein);position:relative}
-.pl::before,.pl::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--klein);transform:translate(-50%,-50%)}
-.pl::after{transform:translate(-50%,-50%) rotate(90deg)}
-.fq[open] .pl::after{display:none}
+.pl{flex:none;color:var(--klein)}
+.pl .ic+.ic,.fq[open] .pl .ic{display:none}
+.fq[open] .pl .ic+.ic{display:block}
 .fq p{margin:0 0 22px;max-width:60ch}
 .faqgrid{display:grid;gap:28px}
+.faqgrid .hd{color:var(--klein)}
 @media(min-width:1000px){.faqgrid{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:start}.faqgrid .hd{grid-column:1/5}.fqs{grid-column:5/13}}
 
-/* the close: ultramarine, white words, the two buttons, and the white ll mark on the right third from 760 px
-   (taller than the band, running off its top, bottom and right edge, never under the words). No red. */
-.plate{background:var(--klein);color:#fff;position:relative;overflow:hidden}
-.plate .inner{position:relative;z-index:1;padding-top:var(--sec);padding-bottom:var(--sec);display:grid;gap:32px}
-.ll{display:none}
-@media(min-width:760px){.plate .st,.plate .cta{max-width:64%}
- .ll{display:block;position:absolute;top:-15%;height:130%;width:auto;left:max(68%,calc(50% + 216px))}}
+/* the close: ultramarine with the cut, the mark cropped large off the right edge with its cut lit; from 760 px */
+.plate{position:relative;overflow:hidden}
+.plate .inner{position:relative;z-index:1;padding-top:var(--sec);padding-bottom:var(--sec);display:grid;gap:28px}
+.plate .more{margin-top:-12px}
+.cut{display:none}
+@media(min-width:760px){.plate .st,.plate .cta{max-width:62%}
+ .cut{display:block;position:absolute;top:-12%;height:124%;width:auto;max-width:none;left:max(70%,calc(50% + 240px))}}
 
-/* footer */
-.ftr{padding-top:24px;padding-bottom:96px;display:grid;gap:16px}
-.ftr img{width:120px;margin-bottom:14px}
+/* footer: paper, the lockup in ultramarine, muted text, links underlined */
+.ftr{padding-top:32px;padding-bottom:104px;display:grid;gap:16px;color:var(--muted)}
+.ftr img{width:152px;margin-bottom:16px}
 .ftr .links{display:grid;gap:4px 24px;justify-items:start;grid-template-columns:auto 1fr}.ftr .links a:not(:nth-child(3)){grid-column:1/3}
 @media(min-width:768px){.ftr{grid-template-columns:1fr auto;align-items:end}}
 @media(min-width:900px){.ftr{padding-bottom:56px}}
 
-/* phone bottom bar (inside the footer landmark), one button: shown by /assets/site.js once the hero has scrolled
-   away, hidden while the close is on screen */
-.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--rule);padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom));display:flex;transform:translateY(110%);transition:transform .2s ease;z-index:10}
+/* phone bottom bar: ultramarine, with the lumen button; shown by /assets/site.js after the hero, hidden on the close */
+.bar{position:fixed;left:0;right:0;bottom:0;padding:10px var(--gut) calc(10px + env(safe-area-inset-bottom));display:flex;transform:translateY(110%);transition:transform .2s ease;z-index:10}
 .bar.on{transform:none}
 .bar .btn{flex:1;min-height:48px}
 @media(min-width:900px){.bar{display:none}}
 @media(max-width:899px){html:has(.bar){scroll-padding-bottom:88px}}
 @media(prefers-reduced-motion:reduce){.bar{transition:none}html{scroll-behavior:auto}}
 
-/* Privacy and the 404 page */
+/* Privacy and the 404 page: working pages on paper, no sweep and no steps */
 .page{padding-top:48px;padding-bottom:72px;max-width:44em}
 .page .label{margin-bottom:16px;color:var(--muted)}
+.page .hd{color:var(--klein)}
 .page>.ld{margin-top:24px}
 .notice{display:grid;gap:32px;margin-top:48px}
-.notice .ld{margin:0 0 8px}
+.notice .ld{margin:0 0 8px;font-weight:600}
 .nf .bd{margin-top:24px}
 @media(min-width:1000px){.page{padding-top:64px;padding-bottom:112px}}
 </style>
@@ -242,43 +248,51 @@ main{overflow-x:clip}
 <meta property="og:title" content="Intellumia, the AI partner for owner-run businesses">
 <meta property="og:description" content="Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.">
 <meta property="og:url" content="https://intellumia.com/">
-<meta property="og:image" content="https://intellumia.com/docs/assets/share/share-hero.png?v=9c9a7e2a3a">
+<meta property="og:image" content="https://intellumia.com/docs/assets/share/share-hero.png?v=3bc58162d1">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Intellumia: one red bridge connects two parts of a business">
+<meta property="og:image:alt" content="Intellumia: Where can AI make you money?">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Intellumia, the AI partner for owner-run businesses">
 <meta name="twitter:description" content="Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.">
-<meta name="twitter:image" content="https://intellumia.com/docs/assets/share/share-hero.png?v=9c9a7e2a3a">
-<meta name="twitter:image:alt" content="Intellumia: one red bridge connects two parts of a business">
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://intellumia.com/#organization","additionalType":"https://schema.org/ProfessionalService","name":"Intellumia","legalName":"Intellumia Pte. Ltd.","url":"https://intellumia.com/","logo":"https://intellumia.com/docs/assets/intellumia-wordmark-ultramarine.svg","description":"Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.","email":"sundeep@intellumia.com","address":{"@type":"PostalAddress","streetAddress":"60 Paya Lebar Road, #06-28, Paya Lebar Square","addressLocality":"Singapore","postalCode":"409051","addressCountry":"SG"},"areaServed":{"@type":"Country","name":"India"},"knowsAbout":["Artificial intelligence","Business process automation","Accounts receivable","Cost and margin","Operations"],"contactPoint":{"@type":"ContactPoint","contactType":"sales","telephone":"+91-88558-84042","email":"sundeep@intellumia.com","url":"https://cal.com/intellumia/meetsk","availableLanguage":["en","hi"],"areaServed":{"@type":"Country","name":"India"}},"sameAs":["https://www.linkedin.com/company/intellumia"],"founder":{"@id":"https://intellumia.com/#sundeep-kumar"}},{"@type":"Person","@id":"https://intellumia.com/#sundeep-kumar","name":"Sundeep Kumar","jobTitle":"Founder & CEO","worksFor":{"@id":"https://intellumia.com/#organization"},"telephone":"+91-88558-84042","image":"https://intellumia.com/docs/assets/imagery/sundeep-portrait-2026_720.jpg","sameAs":["https://www.linkedin.com/in/kumarsundeep"]},{"@type":"WebSite","@id":"https://intellumia.com/#website","name":"Intellumia","url":"https://intellumia.com/","publisher":{"@id":"https://intellumia.com/#organization"},"inLanguage":"en-GB"},{"@type":"WebPage","@id":"https://intellumia.com/#webpage","url":"https://intellumia.com/","name":"Intellumia, the AI partner for owner-run businesses","description":"Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.","inLanguage":"en-GB","isPartOf":{"@id":"https://intellumia.com/#website"},"about":{"@id":"https://intellumia.com/#organization"},"dateModified":"2026-11-11"},{"@type":"FAQPage","@id":"https://intellumia.com/#faq","url":"https://intellumia.com/#h-faq","name":"Questions owners ask","inLanguage":"en-GB","isPartOf":{"@id":"https://intellumia.com/#webpage"},"mainEntity":[{"@type":"Question","name":"What does a Map cost?","acceptedAnswer":{"@type":"Answer","text":"A fixed fee, agreed before we start and always paid. We share it on the first call, once we know the size of your business."}},{"@type":"Question","name":"Is our data safe?","acceptedAnswer":{"@type":"Answer","text":"We start with summaries, never all your books on day one. Your data stays in your own environment, with models that neither keep nor train on it."}},{"@type":"Question","name":"Will this replace our people?","acceptedAnswer":{"@type":"Answer","text":"It is not built to cut jobs. AI takes the routine work, and your people review and decide. The Map shows where time is freed; what you do with it is your call."}},{"@type":"Question","name":"Are we tied in after the Map?","acceptedAnswer":{"@type":"Answer","text":"No. You keep everything the Map produces. Each move names at least one way to do it without us, and the fee never depends on what you choose next."}}]},{"@type":"Service","@id":"https://intellumia.com/#service","name":"AI advisory and delivery for owner-run businesses","serviceType":"AI advisory and delivery for owner-run businesses","provider":{"@id":"https://intellumia.com/#organization"},"areaServed":{"@type":"Country","name":"India"},"url":"https://intellumia.com/#h-how","hasOfferCatalog":{"@type":"OfferCatalog","name":"Map, Run and Guide","itemListElement":[{"@type":"Service","name":"Map","description":"We find where AI would make you the most money, across the whole business, in two to three weeks. Always paid, for a fee agreed up front."},{"@type":"Service","name":"Run","description":"We run the moves you choose. AI does the routine work, a named professional checks it and signs off, and you see the result every week."},{"@type":"Service","name":"Guide","description":"Independent advice on AI, vendors and your board. We take no fees from vendors."}]}}]}</script>
+<meta name="twitter:image" content="https://intellumia.com/docs/assets/share/share-hero.png?v=3bc58162d1">
+<meta name="twitter:image:alt" content="Intellumia: Where can AI make you money?">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://intellumia.com/#organization","additionalType":"https://schema.org/ProfessionalService","name":"Intellumia","legalName":"Intellumia Pte. Ltd.","url":"https://intellumia.com/","logo":"https://intellumia.com/docs/assets/intellumia-lockup-ultramarine.svg","description":"Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.","email":"sundeep@intellumia.com","address":{"@type":"PostalAddress","streetAddress":"60 Paya Lebar Road, #06-28, Paya Lebar Square","addressLocality":"Singapore","postalCode":"409051","addressCountry":"SG"},"areaServed":{"@type":"Country","name":"India"},"knowsAbout":["Artificial intelligence","Business process automation","Accounts receivable","Cost and margin","Operations"],"contactPoint":{"@type":"ContactPoint","contactType":"sales","telephone":"+91-88558-84042","email":"sundeep@intellumia.com","url":"https://cal.com/intellumia/meetsk","availableLanguage":["en","hi"],"areaServed":{"@type":"Country","name":"India"}},"sameAs":["https://www.linkedin.com/company/intellumia"],"founder":{"@id":"https://intellumia.com/#sundeep-kumar"}},{"@type":"Person","@id":"https://intellumia.com/#sundeep-kumar","name":"Sundeep Kumar","jobTitle":"Founder & CEO","worksFor":{"@id":"https://intellumia.com/#organization"},"telephone":"+91-88558-84042","image":"https://intellumia.com/docs/assets/imagery/sundeep-kumar-portrait-bw_512x640.jpg","sameAs":["https://www.linkedin.com/in/kumarsundeep"]},{"@type":"WebSite","@id":"https://intellumia.com/#website","name":"Intellumia","url":"https://intellumia.com/","publisher":{"@id":"https://intellumia.com/#organization"},"inLanguage":"en-GB"},{"@type":"WebPage","@id":"https://intellumia.com/#webpage","url":"https://intellumia.com/","name":"Intellumia, the AI partner for owner-run businesses","description":"Intellumia shows owner-run businesses where AI makes them money, runs the parts that do with named professionals signing off, and takes no vendor fees.","inLanguage":"en-GB","isPartOf":{"@id":"https://intellumia.com/#website"},"about":{"@id":"https://intellumia.com/#organization"},"dateModified":"2026-11-12"},{"@type":"FAQPage","@id":"https://intellumia.com/#faq","url":"https://intellumia.com/#h-faq","name":"Questions owners ask","inLanguage":"en-GB","isPartOf":{"@id":"https://intellumia.com/#webpage"},"mainEntity":[{"@type":"Question","name":"What does a Map cost?","acceptedAnswer":{"@type":"Answer","text":"A fixed fee, agreed before we start and always paid. We share it on the first call, once we know the size of your business."}},{"@type":"Question","name":"Is our data safe?","acceptedAnswer":{"@type":"Answer","text":"We start with summaries, never all your books on day one. Your data stays in your own environment, with models that neither keep nor train on it."}},{"@type":"Question","name":"Will this replace our people?","acceptedAnswer":{"@type":"Answer","text":"It is not built to cut jobs. AI takes the routine work, and your people review and decide. The Map shows where time is freed; what you do with it is your call."}},{"@type":"Question","name":"Are we tied in after the Map?","acceptedAnswer":{"@type":"Answer","text":"No. You keep everything the Map produces. Each move names at least one way to do it without us, and the fee never depends on what you choose next."}}]},{"@type":"Service","@id":"https://intellumia.com/#service","name":"AI advisory and delivery for owner-run businesses","serviceType":"AI advisory and delivery for owner-run businesses","provider":{"@id":"https://intellumia.com/#organization"},"areaServed":{"@type":"Country","name":"India"},"url":"https://intellumia.com/#h-how","hasOfferCatalog":{"@type":"OfferCatalog","name":"Map, Run and Guide","itemListElement":[{"@type":"Service","name":"Map","description":"We find where AI would make you the most money, across the whole business, in two to three weeks. Always paid, for a fee agreed up front."},{"@type":"Service","name":"Run","description":"We run the moves you choose. AI does the routine work, a named professional checks it and signs off, and you see the result every week."},{"@type":"Service","name":"Guide","description":"Independent advice on AI, vendors and your board. We take no fees from vendors."}]}}]}</script>
 </head>
 <body>
 
+<div class="klein">
 <header class="wrap hdr">
- <a href="#top" aria-label="Intellumia, home"><img src="docs/assets/intellumia-wordmark-ultramarine.svg?v=66a94f18bb" alt="Intellumia" width="148" height="24"></a>
- <a class="btn btn--sm" href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20I%20saw%20intellumia.com%20and%20would%20like%20to%20talk." target="_blank" rel="noopener">WhatsApp Sundeep</a>
+ <a href="#top" aria-label="Intellumia, home"><img src="docs/assets/intellumia-lockup-white.svg?v=8ccd9fc88a" alt="Intellumia" width="176" height="31"></a>
+ <a class="btn btn--sm" href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20I%20saw%20intellumia.com%20and%20would%20like%20to%20talk." target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M187.3,159.06A36.09,36.09,0,0,1,152,188a84.09,84.09,0,0,1-84-84A36.09,36.09,0,0,1,96.94,68.7,12,12,0,0,1,110,75.1l11.48,23a12,12,0,0,1-.75,12l-8.52,12.78a44.56,44.56,0,0,0,20.91,20.91l12.78-8.52a12,12,0,0,1,12-.75l23,11.48A12,12,0,0,1,187.3,159.06ZM236,128A108,108,0,0,1,78.77,224.15L46.34,235A20,20,0,0,1,21,209.66l10.81-32.43A108,108,0,1,1,236,128Zm-24,0A84,84,0,1,0,55.27,170.06a12,12,0,0,1,1,9.81l-9.93,29.79,29.79-9.93a12.1,12.1,0,0,1,3.8-.62,12,12,0,0,1,6,1.62A84,84,0,0,0,212,128Z"/></svg>WhatsApp Sundeep</a>
 </header>
+</div>
 
 <main id="top">
 
 <!-- HERO -->
+<div class="klein">
 <section class="wrap hero" id="hero">
  <div class="hero-text">
  <p class="label">The AI partner for owner-run businesses</p>
- <h1 class="st">Where can AI make you <span class="fire">money</span>?</h1>
+ <h1 class="st">Where can AI make you money?</h1>
  <p class="ld hero-line">In two to three weeks we find it in your numbers. Then we run it for you.</p>
- <p class="bd muted hero-for">For owners in manufacturing, construction, real estate, trading, healthcare and education.</p>
+ <p class="bd hero-for">For owners in manufacturing, construction, real estate, trading, healthcare and education.</p>
  <div class="cta">
-  <a class="btn" href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20I%20saw%20intellumia.com%20and%20would%20like%20to%20talk%20about%20my%20business." target="_blank" rel="noopener">WhatsApp Sundeep
-   <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
-  <a class="btn btn--out" href="https://cal.com/intellumia/meetsk?utm_source=intellumia.com&amp;utm_campaign=hero" target="_blank" rel="noopener">Book a 30-minute call</a>
+  <a class="btn" href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20I%20saw%20intellumia.com%20and%20would%20like%20to%20talk%20about%20my%20business." target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M187.3,159.06A36.09,36.09,0,0,1,152,188a84.09,84.09,0,0,1-84-84A36.09,36.09,0,0,1,96.94,68.7,12,12,0,0,1,110,75.1l11.48,23a12,12,0,0,1-.75,12l-8.52,12.78a44.56,44.56,0,0,0,20.91,20.91l12.78-8.52a12,12,0,0,1,12-.75l23,11.48A12,12,0,0,1,187.3,159.06ZM236,128A108,108,0,0,1,78.77,224.15L46.34,235A20,20,0,0,1,21,209.66l10.81-32.43A108,108,0,1,1,236,128Zm-24,0A84,84,0,1,0,55.27,170.06a12,12,0,0,1,1,9.81l-9.93,29.79,29.79-9.93a12.1,12.1,0,0,1,3.8-.62,12,12,0,0,1,6,1.62A84,84,0,0,0,212,128Z"/></svg>WhatsApp Sundeep</a>
+  <a class="btn btn--ghost" href="https://cal.com/intellumia/meetsk?utm_source=intellumia.com&amp;utm_campaign=hero" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208,28H188V24a12,12,0,0,0-24,0v4H92V24a12,12,0,0,0-24,0v4H48A20,20,0,0,0,28,48V208a20,20,0,0,0,20,20H208a20,20,0,0,0,20-20V48A20,20,0,0,0,208,28ZM68,52a12,12,0,0,0,24,0h72a12,12,0,0,0,24,0h16V76H52V52ZM52,204V100H204V204Z"/></svg>Book a 30-minute call</a>
  </div>
  <p class="bd note">Reply with a day. 30 minutes, at your office or by video. Sundeep reads every message himself and replies within one working day.</p>
- <a class="founder" href="#h-sk"><img src="docs/assets/imagery/sundeep-portrait-2026_120.jpg?v=2b6da00b11" alt="" width="56" height="56"><span>Sundeep Kumar, Founder &amp; CEO</span></a>
+ <a class="founder" href="#h-sk"><img src="docs/assets/imagery/sundeep-kumar-portrait-bw_120.jpg?v=d214d6402f" alt="" width="56" height="56"><span>Sundeep Kumar, Founder &amp; CEO</span></a>
  </div>
- <div class="hero-pic"><img src="docs/assets/pictures/hero-one-precise-intervention-tight.svg?v=720f13fa1b" alt="Two parts of a business joined by one red bridge, with a blue route running through" width="935" height="645" decoding="async" fetchpriority="high"></div>
+ <div class="sweep">
+  <div class="field" aria-hidden="true">69,03,108  84,52,528  80,03,896  56,31,150  82,82,808  10,69,152  55,55,448  82,98,228  81,16,357  71,98,552  59,58,747  72,03,216  93,466  80,31,407  48,28,260  86,22,865  57,10,851  96,48,964  16,59,792  28,24,062  35,06,202  85,51,223  17,11,878  45,28,671  59,28,418  38,14,640  18,28,995  89,14,016  21,92,023  27,23,383  28,80,160  95,65,556  53,25,615  59,47,456  51,07,919  74,83,367  37,19,073  73,64,253  19,87,665  48,86,038  96,84,923  1,00,081  30,55,655  71,22,194  90,69,595  13,88,182  15,49,979  16,32,020  74,94,311  10,87,114  1,97,656  44,80,480  40,74,664  44,79,413  25,71,872  73,28,811  42,36,867  92,03,346  99,27,299  36,11,217  35,29,072  15,74,402  6,98,919  16,97,398  47,79,981  61,14,692  47,34,621  30,21,831  26,87,095  45,70,476  50,62,862  12,07,889  93,81,594  88,13,470  80,30,376  88,46,624  30,01,729  88,702  85,12,487  56,41,240  59,710  13,214  4,02,557  24,03,212  2,80,292  82,03,418  65,89,557  62,27,020  25,89,309  85,50,660  62,25,373  94,97,692  46,42,375  77,75,330  80,84,144  16,62,332  23,21,689  29,32,215  11,43,605  40,44,515  54,90,070  61,42,429  76,47,008  22,80,290  1,42,888  42,70,815  97,87,054  74,19,772  1,05,638  19,18,573  74,59,606  94,47,016  25,43,225  78,43,815  11,13,054  20,76,489  38,37,955  85,59,504  39,94,384  34,43,171  81,40,680  40,12,409  92,788  67,546  83,32,872  54,71,821  37,22,019  19,65,945  40,619  85,67,362  53,58,918  12,59,312  36,64,839  23,70,780  39,18,054  68,95,923  29,58,425  33,76,852  27,20,859  98,714  70,62,192  64,12,393  95,92,141  64,54,116  15,06,888  33,45,001  32,00,179  88,14,057  33,36,617  64,72,909  63,97,979  89,72,745  60,71,954  61,80,562  39,63,982  94,26,388  49,35,177  8,33,399  40,27,176  23,58,198  20,30,570  73,45,526  52,17,274  36,174  36,27,265  19,76,287  81,30,952  5,84,690  65,54,295  6,24,884  79,54,391  87,71,629  17,23,506  51,05,490  42,36,915  95,50,622  69,86,903  82,28,504  6,28,151  98,01,521  29,88,690  67,60,768  67,36,159  67,436  27,308  2,12,767  94,23,693  15,43,790  4,81,939  43,34,459  55,66,884  43,48,132  17,91,173  83,66,140  70,15,665  42,69,365  70,11,273  98,125  73,84,148  79,52,370  97,80,551  3,23,022  50,21,828  85,72,223  68,99,070  74,41,069  2,09,783  77,14,488  65,20,898  17,26,917  76,48,674  37,90,919  31,811  13,34,268  62,818  13,37,187  19,79,943  97,12,088  95,14,156  31,33,154  63,294  53,52,412  33,94,358  71,11,931  53,12,939  49,41,617  28,75,993  55,86,791  94,02,250  52,94,103</div>
+  <div class="beam"><div class="field field--lit" aria-hidden="true">69,03,108  84,52,528  80,03,896  56,31,150  82,82,808  10,69,152  55,55,448  82,98,228  81,16,357  71,98,552  59,58,747  72,03,216  93,466  80,31,407  48,28,260  86,22,865  57,10,851  96,48,964  16,59,792  28,24,062  35,06,202  85,51,223  17,11,878  45,28,671  59,28,418  38,14,640  18,28,995  89,14,016  21,92,023  27,23,383  28,80,160  95,65,556  53,25,615  59,47,456  51,07,919  74,83,367  37,19,073  73,64,253  19,87,665  48,86,038  96,84,923  1,00,081  30,55,655  71,22,194  90,69,595  13,88,182  15,49,979  16,32,020  74,94,311  10,87,114  1,97,656  44,80,480  40,74,664  44,79,413  25,71,872  73,28,811  42,36,867  92,03,346  99,27,299  36,11,217  35,29,072  15,74,402  6,98,919  16,97,398  47,79,981  61,14,692  47,34,621  30,21,831  26,87,095  45,70,476  50,62,862  12,07,889  93,81,594  88,13,470  80,30,376  88,46,624  30,01,729  88,702  85,12,487  56,41,240  59,710  13,214  4,02,557  24,03,212  2,80,292  82,03,418  65,89,557  62,27,020  25,89,309  85,50,660  62,25,373  94,97,692  46,42,375  77,75,330  80,84,144  16,62,332  23,21,689  29,32,215  11,43,605  40,44,515  54,90,070  61,42,429  76,47,008  22,80,290  1,42,888  42,70,815  97,87,054  74,19,772  1,05,638  19,18,573  74,59,606  94,47,016  25,43,225  78,43,815  11,13,054  20,76,489  38,37,955  85,59,504  39,94,384  34,43,171  81,40,680  40,12,409  92,788  67,546  83,32,872  54,71,821  37,22,019  19,65,945  40,619  85,67,362  53,58,918  12,59,312  36,64,839  23,70,780  39,18,054  68,95,923  29,58,425  33,76,852  27,20,859  98,714  70,62,192  64,12,393  95,92,141  64,54,116  15,06,888  33,45,001  32,00,179  88,14,057  33,36,617  64,72,909  63,97,979  89,72,745  60,71,954  61,80,562  39,63,982  94,26,388  49,35,177  8,33,399  40,27,176  23,58,198  20,30,570  73,45,526  52,17,274  36,174  36,27,265  19,76,287  81,30,952  5,84,690  65,54,295  6,24,884  79,54,391  87,71,629  17,23,506  51,05,490  42,36,915  95,50,622  69,86,903  82,28,504  6,28,151  98,01,521  29,88,690  67,60,768  67,36,159  67,436  27,308  2,12,767  94,23,693  15,43,790  4,81,939  43,34,459  55,66,884  43,48,132  17,91,173  83,66,140  70,15,665  42,69,365  70,11,273  98,125  73,84,148  79,52,370  97,80,551  3,23,022  50,21,828  85,72,223  68,99,070  74,41,069  2,09,783  77,14,488  65,20,898  17,26,917  76,48,674  37,90,919  31,811  13,34,268  62,818  13,37,187  19,79,943  97,12,088  95,14,156  31,33,154  63,294  53,52,412  33,94,358  71,11,931  53,12,939  49,41,617  28,75,993  55,86,791  94,02,250  52,94,103</div>
+  <div class="lit"><p class="label">Money owed to you</p><p class="fig">₹18.4 crore</p></div></div>
+  <p class="label sweep-note">Illustration, not a client</p>
+ </div>
 </section>
+</div>
 
 <!-- PROBLEMS -->
 <section class="wrap sec" aria-labelledby="h-probs">
@@ -286,25 +300,26 @@ main{overflow-x:clip}
   <h2 class="hd" id="h-probs">Most owner-run businesses have money hiding in plain sight.</h2>
   <p class="bd">These leaks are not new. Fixing them took hours of checking, chasing and counting that nobody had time for. AI now does that work every day, so the money stops slipping away.</p>
  </div>
- <ul class="cards probs"><li class="card pc"><img src="docs/assets/pictures/problem-margin-squeezed.svg?v=ffba330223" alt="A press squeezing a coin stack; coins pushed out in red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Costs up, prices stuck?</h3><p class="bd">Your costliest process, done a better way</p></li><li class="card pc"><img src="docs/assets/pictures/problem-cash-stuck.svg?v=0708db403f" alt="Coins under a locked glass case beside a stack of invoices; the padlock is red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Customers paying late?</h3><p class="bd">Every overdue invoice, followed up on time</p><span class="tag">Most owners start here</span></li><li class="card pc"><img src="docs/assets/pictures/problem-people-leaving.svg?v=607549f652" alt="A workbench with four places; one stool has moved away, in red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Good people leaving?</h3><p class="bd">Routine work off your best people</p></li><li class="card pc"><img src="docs/assets/pictures/problem-numbers-late.svg?v=208500a527" alt="A tall pile of sheets beside a clock; the time lost is a red wedge" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Numbers always late?</h3><p class="bd">One page across your companies, every week</p></li><li class="card pc"><img src="docs/assets/pictures/problem-rework.svg?v=ffb28f8012" alt="A conveyor with cartons; one rejected carton sits red on the rework pile" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Too much made twice?</h3><p class="bd">Defects caught earlier</p></li><li class="card pc"><img src="docs/assets/pictures/problem-everything-on-you.svg?v=1f0d29693d" alt="A desk with a towering, leaning pile and an empty chair; the latest item on top is red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">All on your desk?</h3><p class="bd">Decisions arrive with the facts ready</p></li></ul>
+ <ul class="cards probs"><li class="card pc"><h3 class="hd">Costs up, prices stuck?</h3><p class="bd">Your costliest process, done a better way</p></li><li class="card pc"><h3 class="hd">Customers paying late?</h3><p class="bd">Every overdue invoice, followed up on time</p><span class="label tag">Most owners start here</span></li><li class="card pc"><h3 class="hd">Good people leaving?</h3><p class="bd">Routine work off your best people</p></li><li class="card pc"><h3 class="hd">Numbers always late?</h3><p class="bd">One page across your companies, every week</p></li><li class="card pc"><h3 class="hd">Too much made twice?</h3><p class="bd">Defects caught earlier</p></li><li class="card pc"><h3 class="hd">All on your desk?</h3><p class="bd">Decisions arrive with the facts ready</p></li></ul>
 </section>
 
-<div class="band">
 <!-- HOW IT WORKS -->
+<div class="klein steps">
 <section class="wrap sec" aria-labelledby="h-how">
  <div class="sec-head sec-head--lead">
   <h2 class="hd" id="h-how">A Map first. Then we run the parts that pay.</h2>
   <p class="ld">AI does the work. Your people make the calls.</p>
  </div>
- <ol class="cards steps">
-  <li class="card step step--first"><p class="label">Start here</p><img class="step-pic" src="docs/assets/pictures/offer-map.svg?v=c28c1d0f52" alt="A layout of the business; a blue route leads to the one place that pays first, in red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Map</h3><p class="bd">We find where AI would make you the most money, across the whole business, in two to three weeks. Always paid, for a fee agreed up front.</p></li>
-  <li class="card step"><p class="label">If you choose</p><img class="step-pic" src="docs/assets/pictures/offer-run.svg?v=80bfd92e0d" alt="A conveyor running cleanly on a blue belt; the finished carton carries a red seal" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Run</h3><p class="bd">We run the moves you choose. AI does the routine work, a named professional checks it and signs off, and you see the result every week.</p></li>
-  <li class="card step"><p class="label">Alongside</p><img class="step-pic" src="docs/assets/pictures/offer-guide.svg?v=f52687fb7e" alt="A table with a drawing on it and two seats on the same side; the second seat is red" width="800" height="600" loading="lazy" decoding="async"><h3 class="ld">Guide</h3><p class="bd">Independent advice on AI, vendors and your board. We take no fees from vendors.</p></li>
+ <ol class="cards steps-grid">
+  <li class="card card--panel step"><p class="label">Start here</p><h3 class="hd">Map</h3><p class="bd">We find where AI would make you the most money, across the whole business, in two to three weeks. Always paid, for a fee agreed up front.</p><div class="mm"><ul><li class="v2">Quoting</li><li class="v3">Billing</li><li class="first"><span class="label">First move</span><span>Collections</span></li><li class="v3">Purchase</li><li class="v4">Inventory</li><li>Dispatch</li><li class="v2">Scheduling</li><li>Maintenance</li><li>Complaints</li><li>Payroll</li><li class="v2">GST</li><li class="v3">Reconciliation</li></ul><p class="bd mm-key"><span>Less money at stake</span><span class="sw"></span><span class="sw"></span><span class="sw"></span><span class="sw"></span><span>More</span></p><p class="label muted">Illustration, not a client</p></div></li>
+  <li class="card card--panel step"><p class="label">If you choose</p><h3 class="hd">Run</h3><p class="bd">We run the moves you choose. AI does the routine work, a named professional checks it and signs off, and you see the result every week.</p></li>
+  <li class="card card--panel step"><p class="label">Alongside</p><h3 class="hd">Guide</h3><p class="bd">Independent advice on AI, vendors and your board. We take no fees from vendors.</p></li>
  </ol>
  <ol class="wk"><li><b>Start</b><span>Summaries only</span></li><li><b>Week 1</b><span>Interviews with you and your team</span></li><li><b>Week 2</b><span>Each move valued and tested on your records</span></li><li><b>Week 3</b><span>The readout, to you alone</span></li></ol>
  <p class="bd wk-note">About 20 to 40 hours of your staff’s time, agreed before we start.</p>
- <p class="bd more"><a href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20please%20send%20me%20a%20sample%20Map." target="_blank" rel="noopener">Or get a sample Map on WhatsApp <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a></p>
+ <p class="bd more"><a href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20please%20send%20me%20a%20sample%20Map." target="_blank" rel="noopener">Or get a sample Map on WhatsApp <svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></a></p>
 </section>
+</div>
 
 <!-- EXAMPLE -->
 <section class="wrap sec" aria-labelledby="h-ex">
@@ -312,36 +327,35 @@ main{overflow-x:clip}
   <h2 class="hd" id="h-ex">From an overdue invoice to money collected.</h2>
  </div>
  <ol class="cards ex-grid">
-  <li class="card"><span class="ex-art"><svg viewBox="0 0 240 140" aria-hidden="true"><rect x="18" y="22" width="54" height="70" rx="3" fill="#fff" stroke="#101010" stroke-width="2"/><path d="M28 40h34" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M28 48h24" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M28 56h34" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M28 64h24" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><circle cx="58" cy="78" r="9" fill="#fff" stroke="#101010" stroke-width="1.8"/><text x="58" y="82" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="700" font-size="10" fill="#101010">₹</text><rect x="26" y="100" width="46" height="24" rx="3" fill="#fff" stroke="#101010" stroke-width="2"/><path d="M34 112h16" stroke="#1A1AFF" stroke-width="3" stroke-linecap="round"/><rect x="84" y="34" width="56" height="38" rx="3" fill="#fff" stroke="#101010" stroke-width="2"/><path d="M84 36l28 20 28-20" fill="none" stroke="#101010" stroke-width="2"/><path d="M150 64h20m-6-6l6 6-6 6" fill="none" stroke="#1A1AFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="178" y="30" width="48" height="64" rx="3" fill="#fff" stroke="#1A1AFF" stroke-width="2" stroke-dasharray="5 4"/><text x="202" y="72" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="700" font-size="30" fill="#1A1AFF">?</text><text x="202" y="114" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="600" font-size="11" letter-spacing="1" fill="#1A1AFF">MISSING</text></svg></span><p class="label ex-k"><span>1</span><span>AI</span></p><h3 class="ld">Reads the record</h3><p class="bd">Invoice, payments and emails in one view. It spots that the customer asked for a delivery note.</p></li>
-  <li class="card"><span class="ex-art"><svg viewBox="0 0 240 140" aria-hidden="true"><rect x="22" y="26" width="56" height="74" rx="3" fill="#fff" stroke="#101010" stroke-width="2"/><path d="M32 44h36" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M32 52h26" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M32 60h36" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M32 68h26" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M32 76h36" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><rect x="40" y="18" width="18" height="16" rx="3" fill="#1A1AFF"/><path d="M45 26l3 3 6-6" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M88 64h16m-6-6l6 6-6 6" fill="none" stroke="#1A1AFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><rect x="114" y="22" width="106" height="88" rx="4" fill="#fff" stroke="#101010" stroke-width="2"/><path d="M114 40h106" stroke="#DDD8CC" stroke-width="2"/><path d="M126 54h80" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M126 62h70" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M126 70h80" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M126 78h70" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M190 90l12 0" stroke="#DDD8CC" stroke-width="3"/><rect x="126" y="88" width="34" height="12" rx="3" fill="none" stroke="#101010" stroke-width="1.6"/><path d="M131 94h24" stroke="#101010" stroke-width="1.6"/><text x="208" y="35" text-anchor="end" font-family="Anek Latin,sans-serif" font-weight="600" font-size="10" letter-spacing="1" fill="#101010">DRAFT</text></svg></span><p class="label ex-k"><span>2</span><span>AI</span></p><h3 class="ld">Prepares the next step</h3><p class="bd">It finds the delivery note and drafts the follow-up.</p></li>
-  <li class="card ex-people"><span class="ex-art"><svg viewBox="0 0 240 140" aria-hidden="true"><rect x="30" y="16" width="180" height="108" rx="4" fill="#fff" stroke="#101010" stroke-width="2"/><path d="M44 34h120" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M44 42h110" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><path d="M44 50h120" stroke="#DDD8CC" stroke-width="3" stroke-linecap="round"/><rect x="44" y="76" width="96" height="30" rx="6" fill="#1A1AFF"/><path d="M58 91l6 6 11-12" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><text x="84" y="96" font-family="Anek Latin,sans-serif" font-weight="600" font-size="14" fill="#fff">Approve</text><rect x="150" y="76" width="46" height="30" rx="6" fill="#fff" stroke="#101010" stroke-width="1.8"/><text x="173" y="96" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="600" font-size="14" fill="#101010">Edit</text></svg></span><p class="label ex-k"><span>3</span><span>Your people</span></p><h3 class="ld">Decide</h3><p class="bd">Your finance team approves what goes to the customer. A named professional reviews the exceptions.</p></li>
-  <li class="card"><span class="ex-art"><svg viewBox="0 0 240 140" aria-hidden="true"><path d="M24 112h192" stroke="#101010" stroke-width="2"/><rect x="34" y="48" width="16" height="64" rx="2" fill="#1A1AFF" opacity="0.35"/><rect x="60" y="56" width="16" height="56" rx="2" fill="#1A1AFF" opacity="0.48"/><rect x="86" y="66" width="16" height="46" rx="2" fill="#1A1AFF" opacity="0.61"/><rect x="112" y="74" width="16" height="38" rx="2" fill="#1A1AFF" opacity="0.74"/><rect x="138" y="82" width="16" height="30" rx="2" fill="#1A1AFF" opacity="0.87"/><rect x="164" y="90" width="16" height="22" rx="2" fill="#1A1AFF" opacity="1.00"/><circle cx="204" cy="34" r="13" fill="#fff" stroke="#101010" stroke-width="1.8"/><text x="204" y="38" text-anchor="middle" font-family="Anek Latin,sans-serif" font-weight="700" font-size="15" fill="#101010">₹</text><text x="24" y="130" font-family="Anek Latin,sans-serif" font-weight="600" font-size="10" letter-spacing="1" fill="#101010">OVERDUE, WEEK BY WEEK</text></svg></span><p class="label ex-k"><span>4</span><span>You</span></p><h3 class="ld">See the result</h3><p class="bd">Every week: days to collect, overdue balance and the time your team spent.</p></li>
+  <li class="card"><p class="ex-k"><span class="fig">1</span><span class="label">AI</span></p><h3 class="hd">Reads the record</h3><p class="bd">Invoice, payments and emails in one view. It spots that the customer asked for a delivery note.</p></li>
+  <li class="card"><p class="ex-k"><span class="fig">2</span><span class="label">AI</span></p><h3 class="hd">Prepares the next step</h3><p class="bd">It finds the delivery note and drafts the follow-up.</p></li>
+  <li class="card"><p class="ex-k"><span class="fig">3</span><span class="label">Your people</span></p><h3 class="hd">Decide</h3><p class="bd">Your finance team approves what goes to the customer. A named professional reviews the exceptions.</p></li>
+  <li class="card"><p class="ex-k"><span class="fig">4</span><span class="label">You</span></p><h3 class="hd">See the result</h3><p class="bd">Every week: days to collect, overdue balance and the time your team spent.</p><div class="chart" aria-hidden="true"><span class="b100"></span><span class="b88"></span><span class="b79"></span><span class="b64"></span><span class="b52"></span><span class="b41"></span><span class="b30"></span></div><p class="label muted">Illustration, not a client</p></li>
  </ol>
  <p class="bd ex-cap">Illustrative, not a client.</p>
 </section>
-</div>
 
 <!-- SUNDEEP -->
 <section class="wrap sec" aria-labelledby="h-sk">
  <div class="person">
-  <img src="docs/assets/imagery/sundeep-portrait-2026_720.jpg?v=6dbde615d7" srcset="docs/assets/imagery/sundeep-portrait-2026_720.jpg?v=6dbde615d7 720w, docs/assets/imagery/sundeep-portrait-2026_890.jpg?v=f16fcb5b21 890w" sizes="(min-width: 1000px) 384px, (min-width: 600px) 420px, calc(100vw - 48px)" width="720" height="720" alt="Sundeep Kumar, Founder and CEO of Intellumia" loading="lazy" decoding="async">
+  <img src="docs/assets/imagery/sundeep-kumar-portrait-bw_512x640.jpg?v=fb2a0d758a" width="512" height="640" alt="Sundeep Kumar, Founder and CEO of Intellumia" loading="lazy" decoding="async">
   <div class="person-text">
    <h2 class="hd" id="h-sk">Sundeep Kumar, Founder &amp; CEO</h2>
    <p class="ld">More than two decades at IBM and Microsoft helping large companies across Asia-Pacific change how they work, now on the owner’s side. Based in India.</p>
   </div>
-  <ul class="facts"><li><b class="hd">20+ years</b><span class="bd">IBM and Microsoft, across Asia-Pacific</span></li><li><b class="hd">4 built</b><span class="bd">Businesses built from zero inside them; one to $72 million in 24 months</span></li><li><b class="hd">Wharton, Oxford, Yale</b><span class="bd">Executive education</span></li></ul>
+  <ul class="facts"><li><b class="fig">20+ years</b><span class="bd">IBM and Microsoft, across Asia-Pacific</span></li><li><b class="fig">4 built</b><span class="bd">Businesses built from zero inside them; one to $72 million in 24 months</span></li><li><b class="fig">Wharton, Oxford, Yale</b><span class="bd">Executive education</span></li></ul>
   <p class="ld q">“AI will do for business what electricity did for factories. The owners who wire up first set the pace for everyone else.”</p>
-  <p class="bd"><a href="https://www.linkedin.com/in/kumarsundeep" target="_blank" rel="noopener">Sundeep on LinkedIn</a></p>
+  <p class="bd"><a href="https://www.linkedin.com/in/kumarsundeep" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M216,20H40A20,20,0,0,0,20,40V216a20,20,0,0,0,20,20H216a20,20,0,0,0,20-20V40A20,20,0,0,0,216,20Zm-4,192H44V44H212ZM112,176V120a12,12,0,0,1,21.43-7.41A40,40,0,0,1,192,148v28a12,12,0,0,1-24,0V148a16,16,0,0,0-32,0v28a12,12,0,0,1-24,0ZM96,120v56a12,12,0,0,1-24,0V120a12,12,0,0,1,24,0ZM68,80A16,16,0,1,1,84,96,16,16,0,0,1,68,80Z"/></svg>Sundeep on LinkedIn</a></p>
  </div>
 </section>
 
 <!-- RULES -->
-<section class="band" aria-labelledby="h-rules">
+<section class="klein steps" aria-labelledby="h-rules">
  <div class="wrap sec">
   <div class="sec-head">
    <h2 class="hd" id="h-rules">On your side of the table, in writing.</h2>
   </div>
-  <ol class="cards rules"><li class="card rule"><span class="hd num">01</span><h3 class="ld">Valued first</h3><p class="bd">Every move is valued in your numbers before you commit to any build.</p></li><li class="card rule rule--key"><span class="hd num">02</span><h3 class="ld">No vendor fees</h3><p class="bd">No referral fees and no resale margins, ever. Our advice is paid for by you alone.</p></li><li class="card rule"><span class="hd num">03</span><h3 class="ld">Your data stays put</h3><p class="bd">In your own environment, with models that neither keep nor train on it.</p></li><li class="card rule"><span class="hd num">04</span><h3 class="ld">Yours to keep</h3><p class="bd">What we build with you is yours, with the right to run it without us.</p></li></ol>
+  <ol class="cards rules"><li class="card card--line rule"><span class="fig">01</span><h3 class="ld">Valued first</h3><p class="bd">Every move is valued in your numbers before you commit to any build.</p></li><li class="card card--line rule"><span class="fig">02</span><h3 class="ld">No vendor fees</h3><p class="bd">No referral fees and no resale margins, ever. Our advice is paid for by you alone.</p></li><li class="card card--line rule"><span class="fig">03</span><h3 class="ld">Your data stays put</h3><p class="bd">In your own environment, with models that neither keep nor train on it.</p></li><li class="card card--line rule"><span class="fig">04</span><h3 class="ld">Yours to keep</h3><p class="bd">What we build with you is yours, with the right to run it without us.</p></li></ol>
  </div>
 </section>
 
@@ -349,34 +363,33 @@ main{overflow-x:clip}
 <section class="wrap sec" aria-labelledby="h-faq">
  <div class="faqgrid">
   <h2 class="hd" id="h-faq">Before you talk to us.</h2>
-  <div class="fqs"><details class="fq"><summary class="ld"><span>What does a Map cost?</span><span class="pl" aria-hidden="true"></span></summary><p class="bd">A fixed fee, agreed before we start and always paid. We share it on the first call, once we know the size of your business.</p></details><details class="fq"><summary class="ld"><span>Is our data safe?</span><span class="pl" aria-hidden="true"></span></summary><p class="bd">We start with summaries, never all your books on day one. Your data stays in your own environment, with models that neither keep nor train on it.</p></details><details class="fq"><summary class="ld"><span>Will this replace our people?</span><span class="pl" aria-hidden="true"></span></summary><p class="bd">It is not built to cut jobs. AI takes the routine work, and your people review and decide. The Map shows where time is freed; what you do with it is your call.</p></details><details class="fq"><summary class="ld"><span>Are we tied in after the Map?</span><span class="pl" aria-hidden="true"></span></summary><p class="bd">No. You keep everything the Map produces. Each move names at least one way to do it without us, and the fee never depends on what you choose next.</p></details></div>
+  <div class="fqs"><details class="fq"><summary class="ld"><span>What does a Map cost?</span><span class="pl" aria-hidden="true"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/></svg><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z"/></svg></span></summary><p class="bd">A fixed fee, agreed before we start and always paid. We share it on the first call, once we know the size of your business.</p></details><details class="fq"><summary class="ld"><span>Is our data safe?</span><span class="pl" aria-hidden="true"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/></svg><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z"/></svg></span></summary><p class="bd">We start with summaries, never all your books on day one. Your data stays in your own environment, with models that neither keep nor train on it.</p></details><details class="fq"><summary class="ld"><span>Will this replace our people?</span><span class="pl" aria-hidden="true"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/></svg><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z"/></svg></span></summary><p class="bd">It is not built to cut jobs. AI takes the routine work, and your people review and decide. The Map shows where time is freed; what you do with it is your call.</p></details><details class="fq"><summary class="ld"><span>Are we tied in after the Map?</span><span class="pl" aria-hidden="true"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z"/></svg><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z"/></svg></span></summary><p class="bd">No. You keep everything the Map produces. Each move names at least one way to do it without us, and the fee never depends on what you choose next.</p></details></div>
  </div>
 </section>
 
 <!-- CLOSE -->
-<section class="plate" id="close" aria-labelledby="h-close">
+<section class="klein plate" id="close" aria-labelledby="h-close">
  <div class="wrap inner">
   <h2 class="st" id="h-close">Where does your business lose the most cash, days or margin today?</h2>
   <div class="cta">
-   <a class="btn btn--inv" href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20I%20read%20intellumia.com%20to%20the%20end%20and%20would%20like%20to%20talk." target="_blank" rel="noopener">WhatsApp Sundeep
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a>
-   <a class="btn btn--out-inv" href="https://cal.com/intellumia/meetsk?utm_source=intellumia.com&amp;utm_campaign=close" target="_blank" rel="noopener">Book a 30-minute call</a>
+   <a class="btn" href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20I%20read%20intellumia.com%20to%20the%20end%20and%20would%20like%20to%20talk." target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M187.3,159.06A36.09,36.09,0,0,1,152,188a84.09,84.09,0,0,1-84-84A36.09,36.09,0,0,1,96.94,68.7,12,12,0,0,1,110,75.1l11.48,23a12,12,0,0,1-.75,12l-8.52,12.78a44.56,44.56,0,0,0,20.91,20.91l12.78-8.52a12,12,0,0,1,12-.75l23,11.48A12,12,0,0,1,187.3,159.06ZM236,128A108,108,0,0,1,78.77,224.15L46.34,235A20,20,0,0,1,21,209.66l10.81-32.43A108,108,0,1,1,236,128Zm-24,0A84,84,0,1,0,55.27,170.06a12,12,0,0,1,1,9.81l-9.93,29.79,29.79-9.93a12.1,12.1,0,0,1,3.8-.62,12,12,0,0,1,6,1.62A84,84,0,0,0,212,128Z"/></svg>WhatsApp Sundeep</a>
+   <a class="btn btn--ghost" href="https://cal.com/intellumia/meetsk?utm_source=intellumia.com&amp;utm_campaign=close" target="_blank" rel="noopener"><svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M208,28H188V24a12,12,0,0,0-24,0v4H92V24a12,12,0,0,0-24,0v4H48A20,20,0,0,0,28,48V208a20,20,0,0,0,20,20H208a20,20,0,0,0,20-20V48A20,20,0,0,0,208,28ZM68,52a12,12,0,0,0,24,0h72a12,12,0,0,0,24,0h16V76H52V52ZM52,204V100H204V204Z"/></svg>Book a 30-minute call</a>
   </div>
-  <p class="bd more more--inv"><a href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20please%20send%20me%20a%20sample%20Map." target="_blank" rel="noopener">Or get a sample Map on WhatsApp <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5"/></svg></a></p>
+  <p class="bd more"><a href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20please%20send%20me%20a%20sample%20Map." target="_blank" rel="noopener">Or get a sample Map on WhatsApp <svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224.49,136.49l-72,72a12,12,0,0,1-17-17L187,140H40a12,12,0,0,1,0-24H187L135.51,64.48a12,12,0,0,1,17-17l72,72A12,12,0,0,1,224.49,136.49Z"/></svg></a></p>
  </div>
- <svg class="ll" viewBox="92 -1319 1133 1319" fill="#fff" aria-hidden="true"><path transform="matrix(1 0 .21256 -1 0 0)" d="M92 0V1319H446V0Z"/><path transform="matrix(1 0 .21256 -1 498 0)" d="M92 0V1319H446V0Z"/></svg>
+ <svg class="cut" viewBox="0 0 106.63 206.21" aria-hidden="true"><polygon points="11.6484,137.487 85.1797,95.0342 91.9043,106.681 18.373,149.134" fill="#D9FF3F"/><path d="M46.5859 112.376C46.5033 115.487 44.8122 118.34 42.1074 119.901L17.4717 134.125L11.6484 137.487L18.373 149.134L33.1758 140.587C39.0723 137.215 46.403 141.376 46.5859 148.113V179.316L0 206.213V26.8975L46.5859 0.000976562V112.376ZM106.627 179.315L60.0391 206.213V130.193C60.0603 127.027 61.7504 124.106 64.4863 122.51L91.9043 106.681L85.1797 95.0342L73.4707 101.793C67.5115 105.218 60.0773 100.938 60.0391 94.0732V26.8975L106.627 0V179.315Z" fill="#4A4AFF"/></svg>
 </section>
 
 </main>
 
 <footer class="wrap ftr">
  <div>
- <img src="docs/assets/intellumia-wordmark-ultramarine.svg?v=66a94f18bb" alt="Intellumia" width="120" height="20">
+ <img src="docs/assets/intellumia-lockup-ultramarine.svg?v=8c98283e9d" alt="Intellumia" width="152" height="27">
  <p class="bd">Working with owners across India.</p>
- <p class="bd muted">Intellumia Pte. Ltd., 60 Paya Lebar Road, <span class="nw">#06-28</span>, Paya Lebar Square, Singapore 409051</p>
+ <p class="bd">Intellumia Pte. Ltd., 60 Paya Lebar Road, <span class="nw">#06-28</span>, Paya Lebar Square, Singapore 409051</p>
  </div>
- <div class="links"><a href="mailto:sundeep@intellumia.com">sundeep@intellumia.com</a><a href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20I%20saw%20intellumia.com%20and%20would%20like%20to%20talk." target="_blank" rel="noopener">+91 88558 84042 (WhatsApp)</a><a href="privacy.html">Privacy</a><span class="muted">Intelligence, Illuminated.</span></div>
-<div class="bar" id="bar" aria-hidden="true">
+ <div class="links"><a href="mailto:sundeep@intellumia.com">sundeep@intellumia.com</a><a href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20I%20saw%20intellumia.com%20and%20would%20like%20to%20talk." target="_blank" rel="noopener">+91 88558 84042 (WhatsApp)</a><a href="privacy.html">Privacy</a><span>Intelligence, Illuminated.</span></div>
+<div class="bar klein" id="bar" aria-hidden="true">
  <a class="btn" href="https://wa.me/918855884042?text=Hello%20Sundeep%2C%20I%20saw%20intellumia.com%20and%20would%20like%20to%20talk." target="_blank" rel="noopener" tabindex="-1">WhatsApp Sundeep</a>
 </div>
 </footer>
