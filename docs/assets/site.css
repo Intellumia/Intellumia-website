@@ -22,11 +22,11 @@
 /* Tokens: these colours and no others. Lumen is the beam and the main button on ultramarine, nothing else. */
 :root{--klein:#1A1AFF;--lumen:#D9FF3F;--paper:#F4F4F0;--ink:#0B0B2B;--white:#FFFFFF;--rule:#D9D9D2;--muted:#5A5A72;--k1:#4A4AFF;--k2:#8C8CFF;--k3:#C9C9FF;--k4:#E3E3FF;--s1:#2727FF;--s2:#3535FF;--lumen-h:#C6EC2E;--klein-h:#0D0DA6;
  --gut:24px;--max:1200px;--gap:24px;--sec:64px;
- --fs-statement:clamp(40px,4.6vw + 22px,100px);--fs-heading:clamp(28px,2vw + 20px,54px);--fs-figure:clamp(44px,2.2vw + 36px,104px);--fs-lead:clamp(17px,.3vw + 16px,20px);--fs-body:clamp(16px,.2vw + 15.2px,18px);--fs-label:11px;
+ --fs-statement:clamp(40px,4.6vw + 22px,100px);--fs-close:clamp(32px,2.6vw + 22px,64px);--fs-heading:clamp(28px,1.9vw + 20.6px,48px);--fs-sub:clamp(20px,.4vw + 18.4px,24px);--fs-sub-lg:clamp(24px,.4vw + 22.4px,28px);--fs-figure:clamp(44px,2.2vw + 36px,104px);--fs-figure-sm:40px;--fs-figure-xs:40px;--fs-lead:clamp(17px,.3vw + 16px,20px);--fs-body:clamp(16px,.2vw + 15.2px,18px);--fs-label:11px;
  --display:'Intellumia Display','Anek Latin','Anek Fallback','Anek Fallback Roboto',system-ui,sans-serif}
-@media(min-width:600px){:root{--gut:40px;--sec:88px}}
+@media(min-width:600px){:root{--gut:40px;--sec:80px}}
 @media(min-width:768px){:root{--fs-label:12px}}
-@media(min-width:1000px){:root{--gut:64px;--sec:120px}}
+@media(min-width:1000px){:root{--gut:64px;--sec:96px;--fs-figure-sm:48px}}
 *,*::before,*::after{box-sizing:border-box}
 html{background:var(--paper);color-scheme:light;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:'Anek Latin','Anek Fallback','Anek Fallback Roboto',system-ui,sans-serif;font-stretch:110%;font-size:var(--fs-body);line-height:1.5;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
@@ -48,6 +48,12 @@ main{overflow-x:clip}
 .st{font-family:var(--display);font-stretch:100%;font-weight:600;font-size:var(--fs-statement);line-height:.96;letter-spacing:-.045em;text-wrap:balance}
 .hd{font-family:var(--display);font-stretch:100%;font-weight:600;font-size:var(--fs-heading);line-height:1.05;letter-spacing:-.038em;text-wrap:balance}
 .fig{font-family:var(--display);font-stretch:100%;font-weight:700;font-size:var(--fs-figure);line-height:1;letter-spacing:-.05em;text-wrap:balance}
+/* Subhead (Round 13): every card, step and rule title. Anek 600 at width 110, never ultramarine, never the display face. */
+.sub{font-weight:600;font-size:var(--fs-sub);line-height:1.2;text-wrap:balance}
+.sub--lg{font-size:var(--fs-sub-lg)}
+.fig--sm{font-size:var(--fs-figure-sm)}
+.fig--xs{font-size:var(--fs-figure-xs)}
+.st--close{font-size:var(--fs-close);line-height:1.02}
 .ld{font-size:var(--fs-lead);line-height:1.4;text-wrap:pretty}
 .bd{font-size:var(--fs-body);line-height:1.5;text-wrap:pretty}
 .label{font-weight:600;font-size:var(--fs-label);letter-spacing:.18em;text-transform:uppercase;line-height:1.4}
@@ -73,14 +79,18 @@ main{overflow-x:clip}
 .hdr img{width:152px}
 .hdr .btn{display:none}@media(min-width:900px){.hdr .btn{display:inline-flex}}
 .hdr--always .btn{display:inline-flex}
+/* The lockup never shrinks, and keeps its clear space (one wordmark height or more): below 480 px, where the lockup
+   and the full button do not both fit, the button on Privacy and 404 shows its WhatsApp icon only (Round 12.2). */
+.hdr a:first-child{flex:none}
+@media(max-width:479px){.hdr--always .btn{padding:8px;min-width:44px}.btn-t{display:none}}
 @media(min-width:768px){.hdr{padding-top:28px;padding-bottom:28px}.hdr img{width:176px}}
 
 /* sections and the section header */
 .sec{padding-top:var(--sec);padding-bottom:var(--sec)}
 .sec-head{display:grid;gap:12px;margin-bottom:28px}
 .sec-head .hd{color:var(--klein)}.klein .sec-head .hd{color:var(--white)}
-@media(min-width:1000px){.sec-head{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:last baseline;margin-bottom:56px}
- .sec-head .hd{grid-column:1/9}.sec-head--lead .hd{grid-column:1/7}.sec-head--lead p{grid-column:8/13}}
+@media(min-width:1000px){.sec-head{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);margin-bottom:48px}
+ .sec-head .hd{grid-column:1/10}.sec-head--lead p{grid-column:1/8}}
 
 /* cards. On paper: no box, a 2 px ink rule on top. On ultramarine: a white panel with ink text (.card--panel), or
    white text on the ground with a hairline (.card--line). Corners 0. */
@@ -124,60 +134,68 @@ main{overflow-x:clip}
 
 /* the problems: six text cards */
 .tag{color:var(--klein);margin-top:6px}
-.pc .hd{color:var(--klein)}
-@media(min-width:768px){.probs{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}}
+@media(min-width:768px){.probs{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}}
 @media(min-width:1100px){.probs{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 /* how it works: three white panels on ultramarine; the Map panel carries the money map */
 .step .label{color:var(--muted)}
-.step .hd{color:var(--klein)}
-@media(min-width:1100px){.steps-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}}
-.mm{margin-top:12px;display:grid;gap:10px}
+@media(min-width:1000px){.steps-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+/* row 2: the money map on a white panel (about five columns) and, beside it, the four weeks as a list */
+.how2{display:grid;gap:32px var(--gap);margin-top:var(--gap)}
+.how2 .card--panel{align-self:start}
+@media(min-width:1000px){.how2{grid-template-columns:repeat(12,minmax(0,1fr));margin-top:48px}.how2 .card--panel{grid-column:1/6}.how2-r{grid-column:7/13}}
+.mm{display:grid;gap:12px}
 .mm ul{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:var(--white)}
-.mm li{min-height:56px;padding:6px;display:grid;align-content:end;font-size:var(--fs-label);font-weight:500;line-height:1.25;overflow-wrap:anywhere;background:var(--k4)}
+.mm li{min-height:64px;padding:6px;display:grid;align-content:end;font-size:var(--fs-label);font-weight:500;line-height:1.25;overflow-wrap:anywhere;background:var(--k4)}
 .mm li .label{letter-spacing:.08em}
+@media(min-width:768px){.mm li{min-height:76px;padding:10px;font-size:var(--fs-body)}}
 .mm .v2{background:var(--k3)}.mm .v3{background:var(--k2)}.mm .v4{background:var(--k1);color:var(--white)}
 .mm .first{background:var(--lumen);color:var(--klein);font-weight:600}
 .mm-key{display:flex;align-items:center;gap:6px;color:var(--muted)}
 .sw{width:14px;height:14px;background:var(--k4)}.sw+.sw{background:var(--k3)}.sw+.sw+.sw{background:var(--k2)}.sw+.sw+.sw+.sw{background:var(--k1)}
 /* the Map's weeks, by the table rule: hairlines, no boxes */
-.wk{margin-top:32px;border-top:2px solid var(--white)}
-.wk li{display:grid;grid-template-columns:5em 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--k1);line-height:1.35}
+.wk{border-top:2px solid var(--white)}
+.wk li{display:grid;grid-template-columns:6em 1fr;gap:12px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--k1);line-height:1.35}
 .wk b{font-weight:600}
 .wk-note{margin-top:16px}
 .more{margin-top:16px}
 .more a{display:inline-flex;align-items:center;gap:8px;min-height:44px;font-weight:600}
-@media(min-width:1000px){.wk{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--gap);border-top:0;margin-top:56px}.wk li{grid-template-columns:1fr;gap:4px;border-bottom:0;border-top:2px solid var(--white);padding:14px 0 0}}
 
 /* one example: three numbered text cards and the one chart */
-.ex-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
-.ex-k{display:flex;align-items:baseline;gap:10px;color:var(--klein)}
-.ex-grid .hd{color:var(--klein)}
-.chart{background:var(--klein);height:120px;padding:14px 14px 0;display:flex;align-items:flex-end;gap:6px;margin-top:6px}
+.ex-grid{gap:28px}
+@media(min-width:600px){.ex-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px var(--gap)}}
+@media(min-width:1000px) and (max-width:1279px){.ex-grid .sub{min-height:2.4em}}
+.ex-k{display:flex;align-items:baseline;gap:10px}
+.ex-k .fig{color:var(--klein)}.ex-k .label{color:var(--muted)}
+/* the one chart: one block under the four steps, left-aligned to the container: its Label, the chart across the
+   full width, then the section's evidence line */
+.chartband{margin-top:40px;display:grid;gap:12px}
+.chartband .label{color:var(--muted)}
+.chart{background:var(--klein);height:120px;padding:16px 16px 0;display:flex;align-items:flex-end;gap:8px}
+@media(min-width:1000px){.chartband{margin-top:48px}.chart{padding:20px 24px 0;gap:16px}}
 .chart span{flex:1;background:var(--k2)}
 .chart span:last-child{background:var(--lumen)}
 .b100{height:100%}.b88{height:88%}.b79{height:79%}.b64{height:64%}.b52{height:52%}.b41{height:41%}.b30{height:30%}
-.ex-cap{margin-top:20px;color:var(--muted)}
+.ex-cap{margin-top:12px;color:var(--muted)}
 @media(min-width:1000px){.ex-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap)}}
 
 /* the founder: the black and white portrait at 4:5, edge to edge of its box on paper */
 .person{display:grid;gap:24px}
 .person>img{width:100%;aspect-ratio:4/5;object-fit:cover}
-.person-text{display:grid;gap:16px;align-content:center}
+.person-text{display:grid;gap:16px;align-content:start}
 .person-text .hd{color:var(--klein)}
 .facts{display:grid;gap:20px;border-top:2px solid var(--ink);padding-top:20px}
 .facts li{display:grid;gap:6px;align-content:start}
-.facts .fig{color:var(--klein)}
 .q{max-width:34em;font-weight:600}
 .person>.bd a{display:inline-flex;align-items:center;gap:8px;min-height:44px}
 @media(min-width:600px) and (max-width:999px){.person>img{max-width:420px}}
 @media(min-width:768px){.facts{grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--gap)}}
 @media(min-width:1000px){.person{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:48px}
- .person>img{grid-column:1/5}.person-text{grid-column:6/13}.facts{grid-column:1/13;grid-template-columns:4fr 4fr 5fr}.q{grid-column:1/9}.person>.bd{grid-column:1/9;margin-top:-28px}}
+ .person>img{grid-column:1/5}.person-text{grid-column:6/13}.facts{grid-column:1/13}.person>img{grid-row:1/4}.person-text{grid-row:1}.q{grid-column:6/13;grid-row:2}.person>.bd{grid-column:6/13;grid-row:3;align-self:start;margin-top:-28px}.facts{grid-row:4}}
 
 /* our rules: four, on ultramarine with steps; numbers as white figures; no lit number */
-.rule .ld{font-weight:600}
 @media(min-width:600px){.rules{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}}
+.rule{gap:12px}
 @media(min-width:1100px){.rules{grid-template-columns:repeat(4,minmax(0,1fr))}}
 
 /* the questions: native details, all closed; plus and minus icons */
@@ -198,8 +216,9 @@ main{overflow-x:clip}
 .plate .inner{position:relative;z-index:1;padding-top:var(--sec);padding-bottom:var(--sec);display:grid;gap:28px}
 .plate .more{margin-top:-12px}
 .cut{display:none}
-@media(min-width:760px){.plate .st,.plate .cta{max-width:62%}
- .cut{display:block;position:absolute;top:-12%;height:124%;width:auto;max-width:none;left:max(70%,calc(50% + 240px))}}
+@media(min-width:760px){.plate .st{max-width:75%}
+ /* the cut sits in the last three columns, right of the question's measure (columns 1 to 9) */
+ .cut{display:block;position:absolute;top:-25%;height:150%;width:auto;max-width:none;left:calc(50% + min(var(--max),100vw - 2*var(--gut))/4 + 24px)}}
 
 /* footer: paper, the lockup in ultramarine, muted text, links underlined */
 .ftr{padding-top:32px;padding-bottom:104px;display:grid;gap:16px;color:var(--muted)}
