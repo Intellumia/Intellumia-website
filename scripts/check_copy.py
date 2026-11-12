@@ -93,7 +93,7 @@ PICTURE_COLOURS = {'#FFFFFF', '#101010', '#DDD8CC', '#1A1AFF', '#FF3D00'}  # the
 SHARE = ('assets/share/share-hero.png', '9c9a7e2a3ac03f1d3c30bc07a0ef29474a50d486b3b7d78b7172b08a3ff7db12')  # 1200 x 630
 HERO_PIC = 'hero-one-precise-intervention-tight'
 OFFERS = ['offer-map', 'offer-run', 'offer-guide']  # on the Map, Run and Guide cards
-SHARE_ALT = 'Intellumia: one red bridge connects two parts of a business'  # og:image:alt, twitter:image:alt (10 Nov 2026)
+SHARE_ALT = 'Intellumia: Where can AI make you money?'  # og:image:alt, twitter:image:alt (10 Nov 2026)
 
 
 def pic_alt(name):
@@ -187,6 +187,31 @@ WORD_LIMIT = 620  # Round 11: the approved words come to 618 (Sundeep expected a
 # the answers inside the closed FAQ accordions are counted apart (the copy the brief sets comes to 687 with them)
 LABELS = 8  # Round 10, A4: the hero eyebrow, the three step labels and the four example step numbers
 
+# Round 12 (the Beam, Brand System v5.1.5, 12 Nov 2026): the look changed, the words did not. The isometric pictures
+# left the page; the graphics are drawn in code and carry a few labels of their own (the sweep's lit figure, the money
+# map, the chart), all marked as illustrations.
+PICTURES = {}
+LIT_FIGURE = '₹18.4 crore'  # the sweep's lit figure: an illustration, labelled so; the only rupee figure on the site
+ILLUSTRATION = 'Illustration, not a client'
+SWEEP = ['Money owed to you', LIT_FIGURE, ILLUSTRATION]
+MONEY_MAP = ['Quoting', 'Billing', 'First move', 'Collections', 'Purchase', 'Inventory', 'Dispatch', 'Scheduling',
+             'Maintenance', 'Complaints', 'Payroll', 'GST', 'Reconciliation', 'Less money at stake', 'More', ILLUSTRATION]
+GRAPHIC_WORDS = SWEEP + MONEY_MAP + [ILLUSTRATION]  # the chart carries only the label
+HERO_BLOCK = [CATEGORY, HERO, HERO_LINE, HERO_FOR, WHATSAPP, BOOK, NOTE, '[img] ', FOUNDER_LINE, *SWEEP]
+PROBLEMS = ([SCENES_HEADING, WHY_AI]
+            + [x for i, (n, q, a) in enumerate(CARDS) for x in ([q, a] + ([OFTEN_FIRST] if i == 1 else []))])
+HOW = (['A Map first. Then we run the parts that pay.', AI_LINE]
+       + [x for i, (label, p, n, d) in enumerate(STEPS) for x in ([label, n, d] + (MONEY_MAP if i == 0 else []))]
+       + WEEKS + [STAFF_TIME, SAMPLE])
+EXAMPLE = EXAMPLE[:-1] + [ILLUSTRATION, EXAMPLE[-1]]
+MAIN = HERO_BLOCK + PROBLEMS + HOW + EXAMPLE + PERSON + RULES + FAQ + PLATE
+HOME = HEADER + MAIN + FOOTER + BAR
+SHARE = ('assets/share/share-hero.png', '3bc58162d186a1a92d830ebedc29fffe36e30bfb874eabcc5f77c4d9f8d9132e')  # Round 12: ultramarine, the lockup, the headline with "money" in the band, the cut
+WORD_LIMIT = 660  # 618 words of copy, unchanged since Round 11, and the labels of the three graphics
+RETIRED_COLOURS = ['#FF3D00', '#F3EFE6', '#101010', '#5E5B55', '#DDD8CC', '#FFC800', '#00C2FF', '#99E6FF', '#E0F8FF']
+BEAM_COLOURS = {'#1A1AFF', '#D9FF3F', '#F4F4F0', '#0B0B2B', '#FFFFFF', '#D9D9D2', '#5A5A72', '#4A4AFF', '#8C8CFF',
+                '#C9C9FF', '#E3E3FF', '#2727FF', '#3535FF', '#C6EC2E', '#0D0DA6'}  # tokens, tints, the two steps, the two hovers
+
 # ---------------------------------------------------------------------------------------------
 # Words that never appear on a published surface (case-insensitive, whole words).
 # Round 5 (v5.0.8): "fixed" and "live" leave the list (the approved FAQ says "A fixed fee" and the Run card
@@ -239,7 +264,9 @@ DRAWING_COLOURS = {'#101010', '#DDD8CC', '#1A1AFF', '#FFFFFF'}  # the example dr
 # preview (Round 8, in _archive/).
 RETIRED = ['plant2-band', 'plant-loop', 'corridor', 'leak-lg', 'class="drop"', 'figure class="leaks"',
            '/assets/scenes/', 'scene-1-margin', 'scene-6-owner', 'social-preview', 'trust-yours-to-keep',
-           'map-lg', 'map-sm', 'class="chips"', '#FFC800', 'hero-one-precise-intervention.svg']
+           'map-lg', 'map-sm', 'class="chips"', '#FFC800', 'hero-one-precise-intervention.svg',
+           '/assets/pictures/', 'hero-one-precise', 'problem-margin', 'problem-cash', 'offer-map', 'offer-run', 'offer-guide',
+           'intellumia-wordmark', 'sundeep-portrait-2026', 'vermilion', 'class="fire"']
 PAINTED_SCENES = [f'scene-{i}{s}.jpg' for i in ('1-margin', '2-cash', '3-people', '4-numbers', '5-rework', '6-owner')
                   for s in ('', '-360')]
 ARCHIVED = ([f'_archive/scenes-painted-2026-11-10/{f}' for f in PAINTED_SCENES]
@@ -250,12 +277,16 @@ ARCHIVED = ([f'_archive/scenes-painted-2026-11-10/{f}' for f in PAINTED_SCENES]
                 'who-we-work-with.html', 'the-map.html', 'our-rules-six.html', 'faq-eight.html',
                 'what-we-do-cards-and-icons.html', 'how-it-works-and-example.html', 'founder-block.html',
                 'close-plate.html', 'hero-one-precise-intervention.svg')]  # Rounds 9 and 10: moved, not deleted
-            + ['_archive/share-image-2026-11-11/share-hero-round-8.png'])  # Round 11: the share image it replaced
-ASSETS = {'assets/site.css', 'assets/site.js', 'assets/intellumia-wordmark-ultramarine.svg',
+            + ['_archive/share-image-2026-11-11/share-hero-round-8.png']
+            + [f'_archive/round-12-2026-11-12/{f}' for f in (
+                'README.md', 'index-before-round-12.html', 'site-before-round-12.css', 'pictures/hero-one-precise-intervention-tight.svg',
+                'pictures/problem-cash-stuck.svg', 'pictures/offer-map.svg', 'intellumia-wordmark-ultramarine.svg',
+                'share/share-hero-round-11.png', 'imagery/sundeep-portrait-2026_720.jpg', 'icons/favicon.svg')])  # Round 12  # Round 11: the share image it replaced
+ASSETS = {'assets/site.css', 'assets/site.js', 'assets/intellumia-lockup-white.svg', 'assets/intellumia-lockup-ultramarine.svg',
           'assets/fonts/AnekLatin-latin.woff2', 'assets/fonts/AnekLatin-latinext.woff2', 'assets/fonts/AnekLatin-rupee.woff2',
-          'assets/fonts/OFL-Anek.txt',
-          'assets/imagery/sundeep-portrait-2026_120.jpg', 'assets/imagery/sundeep-portrait-2026_720.jpg',
-          'assets/imagery/sundeep-portrait-2026_890.jpg', SHARE[0]} | {f'assets/pictures/{n}.svg' for n in PICTURES}
+          'assets/fonts/OFL-Anek.txt', 'assets/fonts/IntellumiaDisplay-SemiBold.woff2', 'assets/fonts/IntellumiaDisplay-Bold.woff2',
+          'assets/fonts/OFL-IntellumiaDisplay.txt', 'assets/icons/LICENSE-Phosphor.txt',
+          'assets/imagery/sundeep-kumar-portrait-bw_120.jpg', 'assets/imagery/sundeep-kumar-portrait-bw_512x640.jpg', SHARE[0]}
 EMOJI = re.compile('[\U0001F000-\U0001FAFF☀-➿️‍]')
 
 # ---------------------------------------------------------------------------------------------
@@ -290,6 +321,7 @@ class Page(HTMLParser):
         self.svg_part, self.svg_parts, self.svg_words, self.svg_block = None, {}, [], None
         self.drawings, self.decor = [], []
         self.spans = []  # for each open span: does it break the line?
+        self.skip = False  # inside the sweep's number field
         self.feed(text)
         self.flush()
 
@@ -322,6 +354,9 @@ class Page(HTMLParser):
                 self.svg_part = (tag, a.get('id', ''))
                 self.svg_parts.setdefault(self.svg_part, '')
             return
+        if tag == 'div' and 'field' in cls:
+            self.flush()
+            self.skip = True
         if tag == 'span':
             self.spans.append(self.breaks(tag, cls))
         if self.breaks(tag, cls):
@@ -370,6 +405,9 @@ class Page(HTMLParser):
                         self.decor += self.svg_words
                     self.svg_block = None
             return
+        if tag == 'div' and self.skip:
+            self.skip = False
+            return
         if tag == 'span':
             if self.spans.pop() if self.spans else True:
                 self.flush()
@@ -387,7 +425,7 @@ class Page(HTMLParser):
         if self.svg and self.svg_part and not self.in_style:
             self.svg_parts[self.svg_part] += data
             return
-        if self.svg or self.in_style:
+        if self.svg or self.in_style or self.skip:
             return
         if self.in_script:
             if self.scripts and self.scripts[-1].get('type') == 'application/ld+json':
@@ -514,7 +552,7 @@ for f in [*html_files, 'assets/site.css']:
 check(f'asset versions: every link to the stylesheet, the script, a picture, a font or an icon ({version_links} links on '
       'the pages and in site.css) carries ?v= and the first 10 characters of the file\'s sha256, so a changed file gets a '
       'new address (run scripts/make_asset_versions.py if not)',
-      not bad_versions and version_links >= 40, '\n     '.join(bad_versions))
+      not bad_versions and version_links >= 30, '\n     '.join(bad_versions))
 published = sorted(p.relative_to(DOCS).as_posix() for p in (DOCS / 'assets').rglob('*') if p.is_file())
 check('docs/assets holds only what the pages use', set(published) == ASSETS,
       f'extra: {sorted(set(published) - ASSETS)}; missing: {sorted(ASSETS - set(published))}')
@@ -536,7 +574,7 @@ for label, pg in (('Home', home), ('Privacy', read(DOCS / 'privacy/index.html'))
           pg.meta.get('og:image') == SITE + SHARE[0] and pg.meta.get('og:image:width') == '1200'
           and pg.meta.get('og:image:height') == '630' and pg.meta.get('og:image:alt') == SHARE_ALT,
           f"{pg.meta.get('og:image')} {pg.meta.get('og:image:alt')}")
-check('the share image is 1200 x 630, the file as made in Round 11 (pinned by its sha256)',
+check('the share image is 1200 x 630, the file as made in Round 12 (pinned by its sha256)',
       png_size(DOCS / SHARE[0]) == (1200, 630) and sha256(DOCS / SHARE[0]) == SHARE[1], f'{png_size(DOCS / SHARE[0])}')
 hero_src = between(home_src, '<!-- HERO -->', '<!-- PROBLEMS -->')
 order = ['<!-- HERO -->', '<!-- PROBLEMS -->', '<!-- HOW IT WORKS -->', '<!-- EXAMPLE -->', '<!-- SUNDEEP -->', '<!-- RULES -->',
@@ -551,28 +589,12 @@ closed = sum(len(a.split()) for _, a in FAQS)  # the four answers, inside closed
 check(f'Home: {words - closed} reading words on show between the header and the footer, alt text not counted (limit: '
       f'{WORD_LIMIT} or fewer); {words} with the four FAQ answers, which are closed until opened',
       home.blocks[len(HEADER):len(HEADER) + len(MAIN)] == MAIN and words - closed <= WORD_LIMIT, f'{words} words')
-HERO_IMG = (f'<div class="hero-pic"><img src="/assets/pictures/{HERO_PIC}.svg" alt="{pic_alt(HERO_PIC)}" width="935" height="645" '
-            'decoding="async" fetchpriority="high"></div>')  # fetched first: it is the largest thing on the first screen (Round 11)
-check('the hero: the label, the headline, the line, the line of industries (under the label from 1000 px, after the line '
-      'below), the two buttons and the note, the founder line (the 56 px round portrait, a tap target of 44 px or more, to '
-      '#h-sk), then the tight hero picture: not lazy, width and height set; words in columns 1 to 7 and the '
-      'picture in 8 to 12 from 1000 px, under the words and at most 520 px below',
-      '<section class="wrap hero" id="hero">' in hero_src and hero_src.count('<img') == 2 and HERO_IMG in hero_src
-      and '<a class="founder" href="#h-sk"><img src="/assets/imagery/sundeep-portrait-2026_120.jpg" alt="" width="56" '
-          'height="56"><span>Sundeep Kumar, Founder &amp; CEO</span></a>' in hero_src
-      and hero_src.index('class="ld hero-line"') < hero_src.index('class="bd muted hero-for"') < hero_src.index('class="cta"')
-      and '.hero .label{order:-2;margin-bottom:8px}.hero-for{order:-1;margin:0 0 20px}' in css
-      and '.founder{display:inline-flex;align-items:center;gap:14px;min-height:44px;' in css
-      and hero_src.index('class="bd note"') < hero_src.index('<a class="founder"') < hero_src.index(HERO_IMG)
-      and '.founder img{width:56px;height:56px;border-radius:50%;object-fit:cover;filter:grayscale(1)}' in css
-      and '.hero-pic{margin:20px auto 0;max-width:520px}' in css
-      and '.hero-text{grid-column:1/8}.hero-pic{grid-column:8/13;margin:0;max-width:none}' in css)
 talk = sorted(p.relative_to(ROOT).as_posix() for p in list(DOCS.rglob('*')) + [ROOT / 'index.html', ROOT / 'privacy.html']
               if p.is_file() and p.suffix in ('.html', '.txt', '.xml', '.css', '.js', '.json')
               and re.search(r'talk to sundeep|where will ai make your business|book a call', p.read_text(errors='ignore'), re.I))
 check('"Talk to Sundeep", "Book a call" and the old hero line appear nowhere on the site', not talk, f'{talk}')
 faq_src = between(home_src, '<!-- FAQ -->', '<!-- CLOSE -->')
-details = re.findall(r'<details class="fq"( open)?><summary class="ld"><span>([^<]+)</span><span class="pl" aria-hidden="true"></span>'
+details = re.findall(r'<details class="fq"( open)?><summary class="ld"><span>([^<]+)</span><span class="pl" aria-hidden="true">.*?</span>'
                      r'</summary><p class="bd">([^<]+)</p></details>', faq_src)
 check('the FAQ: four native questions (details and summary), all closed, before the close (Round 10)',
       [(o, norm(q), norm(a)) for o, q, a in details] == [('', q, a) for q, a in FAQS]
@@ -585,20 +607,6 @@ root_rule = re.search(r':root\{[^}]*\}', css).group(0)
 roles = dict(re.findall(r'--fs-(\w+):([^;}]+)', root_rule))
 inline_sizes = [f for f in html_files if re.search(r'font-size|style="', re.sub(r'<svg\b.*?</svg>|<script\b.*?</script>', '',
                                                                               (DOCS / f).read_text(), flags=re.S))]
-check('text sizes: five roles only (Statement 44 to 96 px, Heading 28 to 48, Lead 20 to 22, Body 17 to 18, Label 12 to 13), '
-      'set as custom properties; every font-size in the stylesheet is one of them',
-      set(sizes) == {f'var(--fs-{r})' for r in ('statement', 'heading', 'lead', 'body', 'label')}
-      and sorted(roles) == ['body', 'heading', 'label', 'lead', 'statement']
-      and re.match(r'clamp\(44px,.*,96px\)$', roles['statement']) and re.match(r'clamp\(28px,.*,48px\)$', roles['heading'])
-      and re.match(r'clamp\(20px,.*,22px\)$', roles['lead']) and re.match(r'clamp\(17px,.*,18px\)$', roles['body'])
-      and roles['label'] == '12px' and re.findall(r'--fs-\w+:[^;}]+', css.replace(root_rule, '', 1)) == ['--fs-label:13px']
-      and not re.search(r'\bfont:', css) and not inline_sizes, f'{sorted(set(sizes))} {roles} {inline_sizes}')
-check(f'labels (Round 10, A4): {LABELS} on Home: the hero eyebrow, "Start here / If you choose / Alongside" and the four '
-      'example step numbers; the Statement face on the headline and the closing question only',
-      len(re.findall(r'class="label\b', home_src)) == LABELS and hero_src.count('class="label"') == 1
-      and re.findall(r'<p class="label">([^<]+)</p><img class="step-pic"', home_src) == [s[0] for s in STEPS]
-      and home_src.count('<p class="label ex-k">') == 4
-      and re.findall(r'<(h\d) class="st"', home_src) == ['h1', 'h2'] and 'class="st" id="h-close"' in home_src)
 
 # ---------------------------------------------------------------------------------------------
 # 3. The action: "Book a call", always to the booking page, in a new tab.
@@ -614,11 +622,6 @@ def opens(b, href):
 
 
 home_btns = [(b.get('href'), (b.get('class') or '').split()[-1]) for b in home.buttons]
-check(f'Home: "{WHATSAPP}" (ultramarine) in the header, the hero, the close (white) and the bottom bar; "{BOOK}" (outline) '
-      'in the hero and the close only; each in a new tab',
-      home_btns == [(WA_LINK, 'btn--sm'), (WA['hero'], 'btn'), (BOOKING_FROM['hero'], 'btn--out'), (WA['close'], 'btn--inv'),
-                    (BOOKING_FROM['close'], 'btn--out-inv'), (WA_LINK, 'btn')]
-      and all(opens(b, b.get('href')) for b in home.buttons) and home.buttons[5].get('tabindex') == '-1', f'{home_btns}')
 wa_links = sorted({h for f in html_files for h in re.findall(r'href="(https://wa\.me/[^"]*)"', (DOCS / f).read_text())})
 check('the WhatsApp links: wa.me/918855884042, each with its own URL-encoded message (Round 11): "' + WA_MESSAGE
       + '" in the header, the phone bar and the footer; "' + '"; "'.join(WA_MESSAGES.values())
@@ -627,18 +630,10 @@ check('the WhatsApp links: wa.me/918855884042, each with its own URL-encoded mes
       and [home_src.count(f'"{u}"') for u in (WA_LINK, WA['hero'], WA['close'], WA['sample'])] == [3, 1, 1, 2]
       and 'whatsapp' not in js_all.lower(), f'{wa_links}')
 more = re.findall(r'<p class="bd more( more--inv)?"><a href="([^"]+)" target="_blank" rel="noopener">([^<]+) <svg', home_src)
-check('the lighter second ask (Round 11): "' + SAMPLE + '", a text link with an arrow, under the weeks in How it works '
-      'and, in white, under the closing buttons; both to the sample Map message',
-      more == [('', WA['sample'], SAMPLE), (' more--inv', WA['sample'], SAMPLE)]
-      and home_src.index('class="bd wk-note"') < home_src.index('<p class="bd more">') < home_src.index('<!-- EXAMPLE -->')
-      and '.more--inv a{color:#fff}' in css, f'{more}')
 check('the booking link carries its source for cal.com (utm_source and utm_campaign, which cal.com records with the '
       'booking): hero and close; plain everywhere else',
       sorted(set(re.findall(r'https://cal\.com/[^"\s)]*', home_src.replace('&amp;', '&')))) == sorted([BOOKING, *BOOKING_FROM.values()])
       and BOOKING_FROM['hero'].replace('&', '&amp;') in home_src)
-check('Home: the bottom bar holds one button, starts hidden (aria-hidden, out of the tab order) and the script shows it',
-      re.search(r'<div class="bar" id="bar" aria-hidden="true">\s*<a class="btn" [^>]*tabindex="-1">' + WHATSAPP + r'</a>\s*</div>',
-                home_src) is not None and 'id="hero"' in home_src and 'id="close"' in home_src)
 for label, pg, src in (('Privacy', privacy, plain((DOCS / 'privacy/index.html').read_text())),
                        ('404', nf, plain((DOCS / '404.html').read_text()))):
     check(f'{label}: one "{WHATSAPP}" button, in the header, shown at every width',
@@ -676,13 +671,6 @@ check('404: every path is absolute, so it works at any address',
 js_text = (DOCS / 'assets/site.js').read_text()
 imgs = [a.get('src') for t, a in home.tags if t == 'img']
 PIC_ORDER = [HERO_PIC, *[n for n, _, _ in CARDS], *OFFERS]
-check('pictures, in order: the hero picture, the six problem pictures, the three offer pictures and '
-      "Sundeep's portrait (round in the hero, square in the founder section); no video",
-      imgs == ['/assets/intellumia-wordmark-ultramarine.svg', '/assets/imagery/sundeep-portrait-2026_120.jpg',
-               *[f'/assets/pictures/{n}.svg' for n in PIC_ORDER], '/assets/imagery/sundeep-portrait-2026_720.jpg',
-               '/assets/intellumia-wordmark-ultramarine.svg']
-      and sorted(PIC_ORDER) == sorted(PICTURES)
-      and not any(t in ('video', 'picture', 'source', 'iframe') for t, _ in home.tags), f'{imgs}')
 pic_tags = {a.get('src', '').rsplit('/', 1)[-1][:-4]: a for t, a in home.tags
             if t == 'img' and (a.get('src') or '').startswith('/assets/pictures/')}
 pic_problems = []
@@ -705,70 +693,22 @@ for n, (w, h, alt, digest) in PICTURES.items():
     if not colours <= PICTURE_COLOURS or '#FF3D00' not in colours or re.search(
             r'<script|<image|<foreignObject|href="(?!#)|url\((?!#)|@import|on\w+=|<animate|<set\b', svg_text, re.I):
         pic_problems.append(f'{n}: colours {sorted(colours - PICTURE_COLOURS)}, or a script, link or motion inside')
-check('the pictures: the files as supplied (sha256), served as img with width and height, decoding async, lazy below '
-      "the fold (all but the hero picture); alt text is each SVG's aria-label; the set's five colours with its one "
-      'vermilion; nothing inside that loads, links, runs or moves', not pic_problems, '\n     '.join(pic_problems))
 # No frame, shadow, filter, rounding, recolouring, motion or hover on a picture (Round 8): the rules that style them.
 pic_rules = re.findall(r'([^{}]*(?:\.hero-pic|\.pc img|\.step-pic)[^{}]*)\{([^{}]*)\}', css)
 pic_bad = [s.strip() + '{' + d + '}' for s, d in pic_rules
            if ':hover' in s or re.search(r'radius|shadow|filter|opacity|transform|transition|blend|clip-path|mask|'
                                          r'border|outline|background|animation|object-fit', d)]
-check('the pictures are shown whole and as they are: no frame, rounding, shadow, filter, cropping, recolouring, hover or motion',
-      len(pic_rules) >= 6 and not pic_bad and not re.search(r'img:hover|:hover\s*img', css), f'{pic_bad}')
 check('the retired pictures and the parts that left the page are kept in _archive/ (Round 8; Rounds 9 and 10: '
       '_archive/round-10-2026-11-11/)',
       all((ROOT / f).is_file() for f in ARCHIVED) and not (DOCS / 'assets/scenes').exists()
       and not (DOCS / 'assets/social-preview.jpg').exists(), f'{[f for f in ARCHIVED if not (ROOT / f).is_file()]}')
 probs_src = between(home_src, '<!-- PROBLEMS -->', '<!-- HOW IT WORKS -->')
-check('the problems (Rounds 9 and 10): one section, each problem once: six cards, each with its picture, its question as '
-      'the title and its answer; "Most owners start here" on the cash card only (Round 11); one across on phones, two from 768 px, three from 1100 px, so no picture is under 260 px wide',
-      re.findall(r'<li class="card pc"><img src="/assets/pictures/([\w-]+)\.svg"[^>]*><h3 class="ld">([^<]+)</h3>'
-                 r'<p class="bd">([^<]+)</p>(?:<span class="tag">' + OFTEN_FIRST + r'</span>)?</li>', probs_src) == CARDS
-      and f'<h2 class="hd" id="h-probs">{SCENES_HEADING}</h2>\n  <p class="bd">{WHY_AI}</p>' in probs_src
-      and AI_LINE not in probs_src and 'class="hd after"' not in home_src and '<svg' not in probs_src
-      and '@media(min-width:768px){.probs{grid-template-columns:repeat(2,minmax(0,1fr))}}' in css
-      and '@media(min-width:1100px){.probs{grid-template-columns:repeat(3,minmax(0,1fr))}}' in css)
 how_src = between(home_src, '<!-- HOW IT WORKS -->', '<!-- EXAMPLE -->')
-check('How it works (Rounds 10 and 11): the heading with "AI does the work. Your people make the calls." as its lead; three cards, each its label, its picture, its name and its words; the Map card with a 2 px '
-      'ultramarine edge; then the four weeks and the staff-time line',
-      re.findall(r'<li class="card step[^"]*"><p class="label">([^<]+)</p><img class="step-pic" src="/assets/pictures/'
-                 r'(offer-\w+)\.svg"[^>]*><h3 class="ld">(\w+)</h3><p class="bd">([^<]+)</p></li>', how_src) == STEPS
-      and how_src.count('<img') == 3 and how_src.count('<svg') == 1 and how_src.count('step--first') == 1
-      and f'<div class="sec-head sec-head--lead">\n  <h2 class="hd" id="h-how">{HOW[0]}</h2>\n  <p class="ld">{AI_LINE}</p>' in how_src
-      and '.step--first{border:2px solid var(--klein)!important}' in css
-      and how_src.index('</ol>') < how_src.index('<ol class="wk">') < how_src.index('class="bd wk-note"'))
 ex_src = between(home_src, '<!-- EXAMPLE -->', '<!-- SUNDEEP -->')
 ex_hexes = {h.upper() for h in re.findall(r'#[0-9A-Fa-f]{6}\b', ex_src)}
-check('the example (Rounds 9 and 10): four drawn steps, two by two on phones with each drawing the full width of its '
-      'card, four across from 1000 px; the drawings in ink, rule and ultramarine only, 1.5 px strokes, no yellow',
-      ex_src.count('<span class="ex-art"><svg viewBox="0 0 240 140" aria-hidden="true">') == 4 == ex_src.count('<svg')
-      and ex_hexes <= DRAWING_COLOURS and 'stroke-width="0"' not in ex_src
-      and '.ex-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}' in css
-      and '.ex-art svg *{vector-effect:non-scaling-stroke;stroke-width:1.5px}' in css
-      and '@media(min-width:1000px){.ex-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}' in css, f'{ex_hexes}')
 rules_src = between(home_src, '<!-- RULES -->', '<!-- FAQ -->')
-check('Our rules (Rounds 9 and 10): four cards, each led by its number, large, in ultramarine; no drawings',
-      re.findall(r'<li class="card rule[^"]*"><span class="hd num">(\d\d)</span><h3 class="ld">([^<]+)</h3>'
-                 r'<p class="bd">([^<]+)</p></li>', rules_src) == RULES_LIST
-      and '<svg' not in rules_src and '<img' not in rules_src and '.num{color:var(--klein);line-height:1}' in css)
 person_src = between(home_src, '<!-- SUNDEEP -->', '<!-- RULES -->')
-check('the founder (Round 10): the portrait (alt text, width and height, lazy, corners 0; columns 1 to 4 from 1000 px, '
-      'the full container on phones), the heading, the lead, three facts with their figures at Heading size, the quote '
-      'and the LinkedIn link',
-      re.search(rf'<img src="/assets/imagery/sundeep-portrait-2026_720\.jpg"[^>]+width="720" height="720" '
-                rf'alt="{PORTRAIT_ALT}" loading="lazy"', person_src) is not None
-      and '<h2 class="hd" id="h-sk">Sundeep Kumar, Founder &amp; CEO</h2>' in person_src
-      and re.findall(r'<li><b class="hd">([^<]+)</b><span class="bd">([^<]+)</span></li>', person_src)
-      == list(zip(FACTS[0::2], FACTS[1::2]))
-      and person_src.index('id="h-sk"') < person_src.index('<ul class="facts">') < person_src.index('class="ld q"')
-      < person_src.index(LINKEDIN_TEXT)
-      and '.person>img{width:100%;aspect-ratio:1;object-fit:cover}' in css and '.person>img{grid-column:1/5}' in css)
 close_src = between(home_src, '<!-- CLOSE -->', '</main>')
-check('the close (Rounds 9 to 11): the question in the Statement face, the two buttons, the sample Map link, and the white ll mark '
-      '(decorative), shown from 760 px on the right, never under the words',
-      f'<h2 class="st" id="h-close">{QUESTION}</h2>' in close_src and close_src.count('<a class="btn') == 2 and close_src.count('class="bd more more--inv"') == 1
-      and '<svg class="ll" viewBox="92 -1319 1133 1319" fill="#fff" aria-hidden="true">' in close_src
-      and '.ll{display:none}' in css and '@media(min-width:760px){.plate .st,.plate .cta{max-width:64%}' in css)
 published_files = [f for f in DOCS.rglob('*') if f.is_file()]
 retired_hits = sorted({w for f in published_files for w in RETIRED
                        if w in f.name or (f.suffix in ('.html', '.css', '.js', '.txt', '.xml')
@@ -784,8 +724,6 @@ check('no figure beside the rupee sign: it marks a coin in the drawings, never a
 html_and_css = [(f, (DOCS / f).read_text()) for f in html_files] + [('assets/site.css', css)]
 keyframes = [(f, k) for f, t in html_and_css for k in re.findall(r'@keyframes\s+([\w-]+)', t)]
 animations = [f for f, t in html_and_css if re.search(r'animation(?:-name|-delay)?\s*:', t)]
-check('motion: no decorative motion; no animation anywhere on the site (Round 5)', not keyframes and not animations,
-      f'{keyframes} {animations}')
 check("no video and no other motion: the only transition is the phone bar's slide (off for reduced motion), no GIFs, no script-driven motion",
       not any('<video' in (DOCS / f).read_text() for f in html_files)
       and re.findall(r'transition:[^;}]+', css) == ['transition:transform .2s ease', 'transition:none']
@@ -806,6 +744,7 @@ for f in html_files:
     texts += [norm(a.get('aria-label', '')) for _, a in pg.tags if a.get('aria-label')]
     texts += [w for _, ws in pg.drawings for w in ws] + pg.decor
     surfaces['docs/' + f] = '\n'.join(texts)
+surfaces = {f: s.replace(LIT_FIGURE, '') for f, s in surfaces.items()}  # the sweep's labelled illustration is not a price
 surfaces['docs/llms.txt'] = (DOCS / 'llms.txt').read_text()
 # The pictures' own labels and titles are published too, inside the files (Round 8): the same words apply to them.
 surfaces['docs/assets/pictures (their labels)'] = '\n'.join(
@@ -835,7 +774,7 @@ check('no price figures: no currency sign beside a figure, except the one fact a
       'section ("one to $72 million in 24 months", Round 10, D2), which is not a price',
       not re.search(r'[₹$€£]\s*\d|\d\s*[₹$€£]|S\$|\b\d[\d,.]*\s*(?:lakh|crore|k)\b',
                     all_text.replace(BUILT_LINE, '').replace(BUILT_LINE[0].lower() + BUILT_LINE[1:], ''), re.I)
-      and home_src.count('$') == 1)
+      and home_src.count('$') == 1 and home_src.count('₹') == 1 and f'<p class="fig">{LIT_FIGURE}</p>' in home_src)
 lower_name = [f for f, t in surfaces.items() if re.search(r'(?<![\w@./-])intellumia(?![\w.@/-])', t)]
 check('"Intellumia" is capitalised in text', not lower_name, f'{lower_name}')
 check('"owner-run", never "owner-led"', 'owner-led' not in all_text.lower())
@@ -861,60 +800,19 @@ check('llms.txt repeats the page: the headline, the 25 words, the sections, the 
 # 6. Colour, type and shape.
 # ---------------------------------------------------------------------------------------------
 hexes = {h.upper() for h in re.findall(r'#[0-9A-Fa-f]{6}\b', css)}
-check('stylesheet colours: the seven brand tokens only (Round 9: no tints, no yellow, no cyan)', hexes <= TOKENS,
-      f'other colours: {hexes - TOKENS}')
 page_src = re.sub(r'<script.*?</script>', '', home_src, flags=re.S)
 drawing = {h.upper() for h in re.findall(r'#[0-9A-Fa-f]{6}\b', page_src)}
-check('page colours outside the pictures: ink, rule and ultramarine in the example drawings; no red, yellow or cyan',
-      drawing <= DRAWING_COLOURS, f'other colours: {drawing - DRAWING_COLOURS}')
-check('no gradients, shadows or dark mode', not re.search(r'gradient|shadow|prefers-color-scheme', css, re.I))
 fire_rules = re.findall(r'[^{}]+\{[^{}]*var\(--fire\)[^{}]*\}', css)
-check('vermilion in the stylesheet: the token once, used by the hero word, the "Most owners start here" tag and the number of rule 02 only',
-      css.count('#FF3D00') == 1 and [r.strip().split('{')[0] for r in fire_rules] == ['.fire', '.tag', '.rule--key .num'],
-      f'{fire_rules}')
 cash_card = re.findall(r'<li class="card pc">.*?</li>', probs_src, re.S)
-check('three red things on the page outside the pictures, no more (Round 10): "money" in the hero, the "Most owners start here" tag on '
-      'the cash card and the number of rule 02, "No vendor fees" (vermilion at Heading size passes WCAG AA as large text; the '
-      'title at Lead size would be 3.5:1 and fail, so no title is vermilion)',
-      len(home.fire) == 1 and 'h1' in home.fire[0] and home_src.count('class="fire"') == 1
-      and home_src.count('class="tag"') == 1 and len(cash_card) == 6 and OFTEN_FIRST in cash_card[1]
-      and home_src.count('rule--key') == 1
-      and f'<li class="card rule rule--key"><span class="hd num">02</span><h3 class="ld">{RULE_KEY}</h3>' in rules_src
-      and '#FF3D00' not in home_src, f'{home.fire}')
-check('the "Most owners start here" tag: ink words on vermilion (5.4:1, WCAG AA), never white (3.5:1)',
-      re.search(r'\.tag\{[^}]*background:var\(--fire\);color:var\(--ink\)', css) is not None)
-check('no red on Privacy or the 404 page', all('fire' not in (DOCS / f).read_text() and '#FF3D00' not in (DOCS / f).read_text()
-                                              for f in ('privacy/index.html', '404.html')))
-check('the hero is set in the Statement style', '<h1 class="st">' in home_src)
 families = set(re.findall(r'font-family:([^;}]+)', css))
 svg_families = set(re.findall(r'font-family="([^"]+)"', home_src)) | set(re.findall(r"font:\s*\d+ [\d.]+px '([^']+)'", home_src))
 STACK = "'Anek Latin','Anek Fallback','Anek Fallback Roboto',system-ui,sans-serif"
-check('Anek Latin is the only typeface (the two fallback faces stand in only until it loads)',
-      families <= {"'Anek Latin'", "'Anek Fallback'", "'Anek Fallback Roboto'", STACK}
-      and f'body{{margin:0;background:var(--ground);color:var(--ink);font-family:{STACK};' in css
-      and svg_families <= {'Anek Latin,sans-serif', 'Anek Latin'}, f'{families} {svg_families}')
 # The fallback faces (Round 7b): fonts already on the device, never a download, sized to Anek's widths so the swap
 # does not move the page. Each has a size-adjust and the matching overrides (Anek's ascent 0.9 and descent 0.2).
 fallback_faces = re.findall(r"@font-face\{font-family:'(Anek Fallback(?: Roboto)?)';src:([^;]+);font-weight:([\d ]+);"
                             r"font-stretch:([\d% ]+);size-adjust:([\d.]+)%;ascent-override:([\d.]+)%;"
                             r"descent-override:([\d.]+)%;line-gap-override:0%\}", css)
-check('the fallback faces: local fonts only (Arial or its metric twins, Roboto), six weight bands each, sized to Anek, '
-      'baselines matched', len(fallback_faces) == 12 == css.count("font-family:'Anek Fallback")
-      and sorted({f for f, *_ in fallback_faces}) == ['Anek Fallback', 'Anek Fallback Roboto']
-      and all(re.fullmatch(r"local\('[A-Za-z -]+'\)(,local\('[A-Za-z -]+'\))*", src) for _, src, *_ in fallback_faces)
-      and all(abs(float(a) * float(sa) / 100 - 90) < 0.1 and abs(float(d) * float(sa) / 100 - 20) < 0.1
-              for *_, sa, a, d in fallback_faces), f'{fallback_faces}')
 fonts = sorted(p.name for p in DOCS.rglob('*') if p.suffix in ('.woff', '.woff2', '.ttf', '.otf'))
-check('only Anek font files are published (latin, latin extended, and the rupee sign alone), with the licence beside them',
-      fonts == ['AnekLatin-latin.woff2', 'AnekLatin-latinext.woff2', 'AnekLatin-rupee.woff2']
-      and (DOCS / 'assets/fonts/OFL-Anek.txt').exists() and 'unicode-range:U+20B9}' in css,
-      f'{fonts}')
-check('corners: 6 for buttons and the tag, 12 for cards (Round 9), round for the small portrait and the FAQ marks, '
-      '0 for the portrait and the pictures', set(re.findall(r'border-radius:([\d.]+(?:px|%))', css)) == {'6px', '12px', '50%'})
-check('layout (Round 9): container 1200 px, gutters 24 / 40 / 64 px, sections 64 / 88 / 120 px apart, a 24 px gap',
-      '--gut:24px;--max:1200px;--gap:24px;--sec:64px' in css and '@media(min-width:600px){:root{--gut:40px;--sec:88px}}' in css
-      and '@media(min-width:1000px){:root{--gut:64px;--sec:120px}}' in css
-      and '.sec{padding-top:var(--sec);padding-bottom:var(--sec)}' in css)
 check('no sticky section heads (Round 5)', 'sticky' not in css)
 check('the bottom bar: phones only, and no slide for reduced motion',
       '@media(min-width:900px){.bar{display:none}}' in css
@@ -980,8 +878,6 @@ check('Home structured data: Organization with the 25 words, address and logo',
 check('Home structured data: Person, Sundeep Kumar, Founder & CEO, sameAs his LinkedIn profile',
       person.get('name') == 'Sundeep Kumar' and person.get('jobTitle') == 'Founder & CEO'
       and person.get('sameAs') == [LINKEDIN])
-check('the LinkedIn link goes to the profile in the structured data',
-      f'<a href="{LINKEDIN}" target="_blank" rel="noopener">{LINKEDIN_TEXT}</a>' in home_src)
 
 
 # ---------------------------------------------------------------------------------------------
@@ -1089,6 +985,127 @@ check('/.well-known/security.txt: contact, Expires within a year (renew it at le
       'published (docs/.nojekyll)',
       sec_ok and sec.get('Contact') == 'mailto:' + EMAIL and sec.get('Preferred-Languages') == 'en'
       and sec.get('Canonical') == SITE + '.well-known/security.txt' and (DOCS / '.nojekyll').exists(), f'{sec}')
+
+# ---------------------------------------------------------------------------------------------
+# 7c. The Beam (Round 12, Brand System v5.1.5): colour, type, the beam, the graphics.
+# ---------------------------------------------------------------------------------------------
+live = {f: plain((DOCS / f).read_text()) for f in ('index.html', 'privacy/index.html', '404.html')}
+all_live = css + ''.join(live.values())
+old_hits = [c for c in RETIRED_COLOURS if c.lower() in all_live.lower()]
+check('no retired colour anywhere in the stylesheet or on the pages (vermilion, bone, the old ink, muted and rule, yellow, cyan)',
+      not old_hits, f'{old_hits}')
+hexes = {h.upper() for h in re.findall(r'#[0-9A-Fa-f]{6}\b', re.sub(r'<script.*?</script>', '', all_live, flags=re.S))}
+check('colours: the Beam tokens, the klein tints, the two blue steps and the two hover values, and no others',
+      hexes <= BEAM_COLOURS and {'#1A1AFF', '#D9FF3F', '#F4F4F0', '#0B0B2B'} <= hexes, f'other colours: {hexes - BEAM_COLOURS}')
+check('no red word and no red thing: no "fire" class, no vermilion, nothing named red',
+      not re.search(r'fire|vermilion|\bred\b', all_live, re.I))
+check('no shadows, no dark mode; the only gradient is the stepped beam, hard stops at 150 degrees, blue steps only (no lit step)',
+      not re.search(r'shadow|prefers-color-scheme', css, re.I)
+      and re.findall(r'[\w-]*gradient\([^;}]*', css) == ['linear-gradient(150deg,var(--klein) 0 60%,var(--s1) 60% 68%,var(--s2) 68% 76%,var(--k1) 76% 100%)']
+      and live['index.html'].count('klein steps') == 2 and 'steps' not in live['privacy/index.html'])
+check('corners: pills for buttons, round for the small portrait, 0 for panels, cards and pictures',
+      set(re.findall(r'border-radius:([\w.%]+)', css)) == {'999px', '50%'})
+sizes = re.findall(r'font-size:([^;}]+)', css)
+root_rule = re.search(r':root\{[^}]*\}', css).group(0)
+roles = dict(re.findall(r'--fs-(\w+):([^;}]+)', root_rule))
+inline = [f for f, s in live.items() if re.search(r'font-size|style="', re.sub(r'<script\b.*?</script>', '', s, flags=re.S))]
+check('text sizes: six roles only (Statement 40 to 100 px, Heading 28 to 54, Figure 44 to 104, Lead 17 to 20, Body 16 to 18, '
+      'Label 11 to 12), set as custom properties; every font-size is one of them; nothing set inline',
+      set(sizes) == {f'var(--fs-{r})' for r in roles} and sorted(roles) == ['body', 'figure', 'heading', 'label', 'lead', 'statement']
+      and all(re.match(rf'clamp\({a}px,.*,{b}px\)$', roles[r]) for r, a, b in (('statement', 40, 100), ('heading', 28, 54),
+              ('figure', 44, 104), ('lead', 17, 20), ('body', 16, 18)))
+      and roles['label'] == '11px' and re.findall(r'--fs-\w+:[^;}]+', css.replace(root_rule, '', 1)) == ['--fs-label:12px']
+      and not re.search(r'\bfont:', css) and not inline, f'{sorted(set(sizes))} {roles} {inline}')
+fonts = sorted(p.name for p in DOCS.rglob('*') if p.suffix in ('.woff', '.woff2', '.ttf', '.otf'))
+check('fonts: Intellumia Display 600 and 700 and Anek Latin, self-hosted, with both OFL files beside them; Anek at width 110; '
+      'the headings stack as the Brand System sets it; no italics',
+      fonts == ['AnekLatin-latin.woff2', 'AnekLatin-latinext.woff2', 'AnekLatin-rupee.woff2', 'IntellumiaDisplay-Bold.woff2',
+                'IntellumiaDisplay-SemiBold.woff2']
+      and (DOCS / 'assets/fonts/OFL-Anek.txt').exists() and 'Intellumia Display' in (DOCS / 'assets/fonts/OFL-IntellumiaDisplay.txt').read_text()
+      and "--display:'Intellumia Display','Anek Latin'," in css and 'font-stretch:110%' in css
+      and "font-family:'Anek Latin','Anek Fallback','Anek Fallback Roboto',system-ui,sans-serif" in css
+      and 'italic' not in css and not re.search(r'https?://', css), f'{fonts}')
+fallback = re.findall(r"@font-face\{font-family:'Anek Fallback(?: Roboto)?';src:([^;]+);font-weight:[\d ]+;size-adjust:([\d.]+)%;"
+                      r"ascent-override:([\d.]+)%;descent-override:([\d.]+)%;line-gap-override:0%\}", css)
+check('the fallback faces: fonts already on the device only, sized to Anek, baselines matched',
+      len(fallback) == 10 == css.count("font-family:'Anek Fallback") and all(re.fullmatch(r"local\('[A-Za-z -]+'\)(,local\('[A-Za-z -]+'\))*", s) for s, *_ in fallback)
+      and all(abs(float(a) * float(sa) / 100 - 90) < 0.2 and abs(float(d) * float(sa) / 100 - 20) < 0.2 for _, sa, a, d in fallback))
+home_l = live['index.html']
+check('the logo is the lockup: white on the ultramarine header, ultramarine in the footers and on Privacy and 404; 96 px or wider',
+      home_l.count('src="/assets/intellumia-lockup-white.svg') == 1 and home_l.count('src="/assets/intellumia-lockup-ultramarine.svg') == 1
+      and all(s.count('src="/assets/intellumia-lockup-ultramarine.svg') == 2 and 'lockup-white' not in s
+              for f, s in live.items() if f != 'index.html')
+      and all('theme-color" content="#1A1AFF"' in s for s in live.values())
+      and all(int(w) >= 96 for w in re.findall(r'\.(?:hdr|ftr) img\{width:(\d+)px', css)))
+hero12 = between(home_l, '<!-- HERO -->', '<!-- PROBLEMS -->')
+check('the hero: ultramarine; the headline plain (no word in a band, no colour on "money"); the sweep built in code: the '
+      'number field twice, both aria-hidden, the lit figure in its lumen label and "Illustration, not a client"; no picture',
+      '<h1 class="st">Where can AI make you money?</h1>' in hero12 and hero12.count('<img') == 1
+      and hero12.count('<div class="field" aria-hidden="true">') == 1 and hero12.count('<div class="field field--lit" aria-hidden="true">') == 1
+      and '<div class="lit"><p class="label">Money owed to you</p><p class="fig">' + LIT_FIGURE + '</p></div>' in hero12
+      and f'<p class="label sweep-note">{ILLUSTRATION}</p>' in hero12
+      and hero12.index('class="founder"') < hero12.index('class="sweep"')
+      and '.field--lit{background:var(--lumen);color:var(--klein);clip-path:polygon(' in css and '57.735cqw' in css)
+check('motion: only the light moves: one animation, the beam entering from the left in 900 ms with an ease-out, then holding; '
+      'still for reduced motion; the phone bar keeps its slide',
+      re.findall(r'@keyframes\s+([\w-]+)', all_live) == ['beam'] and re.findall(r'animation:[^;}]+', css) == ['animation:beam .9s ease-out both', 'animation:none']
+      and '@media(prefers-reduced-motion:reduce){.beam{animation:none}}' in css)
+btns = [(b.get('href'), ' '.join((b.get('class') or '').split()[1:])) for b in home.buttons]
+check(f'Home: "{WHATSAPP}" (lumen on ultramarine) in the header, the hero, the close and the bottom bar; "{BOOK}" (white '
+      'outline) in the hero and the close; each in a new tab, each with its Phosphor icon',
+      btns == [(WA_LINK, 'btn--sm'), (WA['hero'], ''), (BOOKING_FROM['hero'], 'btn--ghost'), (WA['close'], ''),
+               (BOOKING_FROM['close'], 'btn--ghost'), (WA_LINK, '')]
+      and all(opens(b, b.get('href')) for b in home.buttons) and home.buttons[5].get('tabindex') == '-1'
+      and '.klein .btn{background:var(--lumen);border-color:var(--lumen);color:var(--klein)}' in css
+      and '<div class="bar klein" id="bar" aria-hidden="true">' in home_l, f'{btns}')
+more12 = re.findall(r'<p class="bd more"><a href="([^"]+)" target="_blank" rel="noopener">([^<]+) <svg', home_l)
+check('the sample Map link: under the weeks and under the closing buttons, white and underlined, with its arrow',
+      more12 == [(WA['sample'], SAMPLE)] * 2)
+lumen_rules = re.findall(r'([^{}]+)\{[^{}]*var\(--lumen(?:-h)?\)[^{}]*\}', css)
+check('lumen is the beam and the main button on ultramarine, nothing else: the lit band and its label, the money map\'s first '
+      'move, the chart\'s latest week, the cut, the buttons; never text, never a reading ground',
+      sorted(s.strip() for s in lumen_rules) == sorted(['.klein .btn', '.klein .btn:hover', '.field--lit', '.lit', '.mm .first', '.chart span:last-child'])
+      and home_l.count('#D9FF3F') == 1 and not re.search(r'(?<!-)color:var\(--lumen', css), f'{lumen_rules}')
+probs12 = between(home_l, '<!-- PROBLEMS -->', '<!-- HOW IT WORKS -->')
+check('the problems: six text cards, the question as Heading and the fix as Body, a 2 px ink rule on top, no pictures; '
+      '"Most owners start here" as a Label in ultramarine, no fill',
+      re.findall(r'<li class="card pc"><h3 class="hd">([^<]+)</h3><p class="bd">([^<]+)</p>(?:<span class="label tag">' + OFTEN_FIRST + r'</span>)?</li>', probs12)
+      == [(q, a) for _, q, a in CARDS] and '<img' not in probs12 and '.tag{color:var(--klein);margin-top:6px}' in css
+      and '.card{display:grid;gap:8px;align-content:start;border-top:2px solid var(--ink);padding-top:16px}' in css)
+how12 = between(home_l, '<!-- HOW IT WORKS -->', '<!-- EXAMPLE -->')
+check('How it works: three white panels on ultramarine with steps; the Map panel carries the money map (twelve cells in the four '
+      'klein tints, Collections the one lumen cell, "First move"), its legend and its label; no pictures',
+      re.findall(r'<li class="card card--panel step"><p class="label">([^<]+)</p><h3 class="hd">(\w+)</h3><p class="bd">([^<]+)</p>', how12)
+      == [(l, n, d) for l, _, n, d in STEPS] and how12.count('<div class="mm">') == 1 and len(re.findall(r'<li[^>]*>', how12.split('<div class="mm">')[1].split('</ul>')[0])) == 12
+      and '<li class="first"><span class="label">First move</span><span>Collections</span></li>' in how12 and '<img' not in how12)
+ex12 = between(home_l, '<!-- EXAMPLE -->', '<!-- SUNDEEP -->')
+check('the example: four numbered cards (number as Figure, title as Heading); the fourth carries the one chart, seven weeks '
+      'falling, the latest the one lumen value, drawn in code and aria-hidden, with its label',
+      len(re.findall(r'<li class="card"><p class="ex-k"><span class="fig">\d</span><span class="label">[^<]+</span></p><h3 class="hd">', ex12)) == 4
+      and ex12.count('<div class="chart" aria-hidden="true">') == 1 and len(re.findall(r'<span class="b\d+"></span>', ex12)) == 7
+      and '<svg' not in ex12 and '<img' not in ex12)
+person12 = between(home_l, '<!-- SUNDEEP -->', '<!-- RULES -->')
+check('the founder: the black and white portrait at 4:5 (512 x 640, lazy, edge to edge of its box on paper), the three facts as '
+      'Figure in ultramarine, the quote and the LinkedIn link with its icon',
+      re.search(r'<img src="/assets/imagery/sundeep-kumar-portrait-bw_512x640\.jpg" width="512" height="640" '
+                rf'alt="{PORTRAIT_ALT}" loading="lazy"', person12) is not None
+      and re.findall(r'<li><b class="fig">([^<]+)</b><span class="bd">([^<]+)</span></li>', person12) == list(zip(FACTS[0::2], FACTS[1::2]))
+      and re.search(rf'<a href="{re.escape(LINKEDIN)}" target="_blank" rel="noopener"><svg class="ic"[^>]*>.*?</svg>{LINKEDIN_TEXT}</a>', person12) is not None
+      and '.person>img{width:100%;aspect-ratio:4/5;object-fit:cover}' in css)
+rules12 = between(home_l, '<!-- RULES -->', '<!-- FAQ -->')
+check('Our rules: four on ultramarine with steps, numbers 01 to 04 as white Figures, none lit, none red',
+      re.findall(r'<li class="card card--line rule"><span class="fig">(\d\d)</span><h3 class="ld">([^<]+)</h3><p class="bd">([^<]+)</p></li>', rules12) == RULES_LIST)
+close12 = between(home_l, '<!-- CLOSE -->', '</main>')
+check('the close: ultramarine, the question plain white in the Statement face, the two buttons, the sample Map link, and the '
+      'cut (the mark cropped off the right edge in #4A4AFF with its cut lumen), hidden under 760 px; no steps',
+      f'<h2 class="st" id="h-close">{QUESTION}</h2>' in close12 and '<section class="klein plate" id="close"' in close12
+      and '<svg class="cut" viewBox="0 0 106.63 206.21" aria-hidden="true"><polygon points="11.6484,137.487 85.1797,95.0342 91.9043,106.681 18.373,149.134" fill="#D9FF3F"/>' in close12
+      and 'fill="#4A4AFF"/></svg>' in close12 and '.cut{display:none}' in css and '@media(min-width:760px){.plate .st,.plate .cta{max-width:62%}' in css)
+check('icons: Phosphor Bold, inline, in the text colour, decorative; the licence is published beside the site\'s assets',
+      len(re.findall(r'<svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">', home_l)) == 16
+      and 'Phosphor Icons' in (DOCS / 'assets/icons/LICENSE-Phosphor.txt').read_text())
+check('Privacy and the 404 page: paper, the ultramarine lockup and button, no sweep, no steps, no lumen',
+      all('klein' not in s and 'sweep' not in s and 'lumen' not in s for f, s in live.items() if f != 'index.html'))
 
 # ---------------------------------------------------------------------------------------------
 # 8. The fallback at the repository root carries the same words as the live pages.
