@@ -112,10 +112,15 @@ main{overflow-x:clip}
 @keyframes beam{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 @media(prefers-reduced-motion:reduce){.beam{animation:none}}
 @media(min-width:600px){.sweep{height:340px}.sweep-note{top:calc(var(--y) - var(--t) - var(--x)*.57735 + 78px)}}
-@media(min-width:1000px){.hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:center;text-align:left;padding-top:56px;padding-bottom:0}
- .hero-text{grid-column:1/8;display:flex;flex-direction:column;align-items:flex-start;padding-bottom:96px}
+/* From 900 px the words and the sweep sit side by side (Round 12.1): the sweep takes columns 7 to 12 up to 1279 px
+   and 8 to 12 from 1280 px. The lit label is set from the right, on the container's edge, so it always clears the
+   gutter, and the band is held high enough that the label and its note stay inside a 768 px first screen. */
+@media(min-width:900px){.hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:center;text-align:left;padding-top:56px;padding-bottom:0}
+ .hero-text{grid-column:1/7;display:flex;flex-direction:column;align-items:flex-start;padding-bottom:96px}
  .hero .st{margin:0}.hero .cta{justify-content:flex-start}
- .sweep{grid-column:8/13;align-self:stretch;height:auto;min-height:560px;margin:-56px calc(-1*max(var(--gut),(100vw - var(--max))/2)) 0 0;--y:92cqh;--t:96px;--x:30cqw}}
+ .sweep{grid-column:7/13;align-self:stretch;height:auto;min-height:560px;margin:-56px calc(-1*max(var(--gut),(100vw - var(--max))/2)) 0 0;--r:max(var(--gut),(100vw - var(--max))/2);--x:calc(100cqw - var(--r) - 380px);--y:min(92cqh,calc(600px + var(--x)*.57735));--t:96px}
+ .lit,.sweep-note{left:auto;right:var(--r)}}
+@media(min-width:1280px){.hero-text{grid-column:1/8}.sweep{grid-column:8/13}}
 
 /* the problems: six text cards */
 .tag{color:var(--klein);margin-top:6px}
