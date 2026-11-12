@@ -188,15 +188,16 @@ main{overflow-x:clip}
 @media(min-width:1000px) and (max-width:1279px){.ex-grid .sub{min-height:2.4em}}
 .ex-k{display:flex;align-items:baseline;gap:10px}
 .ex-k .fig{color:var(--klein)}.ex-k .label{color:var(--muted)}
-/* the one chart: a full-width band under the four steps, its label on the left */
-.chartband{margin-top:40px;display:grid;gap:12px;align-items:end}
+/* the one chart: one block under the four steps, left-aligned to the container: its Label, the chart across the
+   full width, then the section's evidence line */
+.chartband{margin-top:40px;display:grid;gap:12px}
 .chartband .label{color:var(--muted)}
 .chart{background:var(--klein);height:120px;padding:16px 16px 0;display:flex;align-items:flex-end;gap:8px}
-@media(min-width:1000px){.chartband{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}.chartband .label{grid-column:1/4;padding-bottom:4px}.chart{grid-column:4/13;height:160px;padding:20px 24px 0;gap:16px}}
+@media(min-width:1000px){.chartband{margin-top:48px}.chart{padding:20px 24px 0;gap:16px}}
 .chart span{flex:1;background:var(--k2)}
 .chart span:last-child{background:var(--lumen)}
 .b100{height:100%}.b88{height:88%}.b79{height:79%}.b64{height:64%}.b52{height:52%}.b41{height:41%}.b30{height:30%}
-.ex-cap{margin-top:20px;color:var(--muted)}
+.ex-cap{margin-top:12px;color:var(--muted)}
 @media(min-width:1000px){.ex-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--gap)}}
 
 /* the founder: the black and white portrait at 4:5, edge to edge of its box on paper */
