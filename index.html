@@ -94,6 +94,10 @@ main{overflow-x:clip}
 .hdr img{width:152px}
 .hdr .btn{display:none}@media(min-width:900px){.hdr .btn{display:inline-flex}}
 .hdr--always .btn{display:inline-flex}
+/* The lockup never shrinks, and keeps its clear space (one wordmark height or more): below 480 px, where the lockup
+   and the full button do not both fit, the button on Privacy and 404 shows its WhatsApp icon only (Round 12.2). */
+.hdr a:first-child{flex:none}
+@media(max-width:479px){.hdr--always .btn{padding:8px;min-width:44px}.btn-t{display:none}}
 @media(min-width:768px){.hdr{padding-top:28px;padding-bottom:28px}.hdr img{width:176px}}
 
 /* sections and the section header */

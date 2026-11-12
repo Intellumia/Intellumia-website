@@ -1110,6 +1110,14 @@ check('the close: ultramarine, the question plain white in the Statement face, t
 check('icons: Phosphor Bold, inline, in the text colour, decorative; the licence is published beside the site\'s assets',
       len(re.findall(r'<svg class="ic" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true">', home_l)) == 16
       and 'Phosphor Icons' in (DOCS / 'assets/icons/LICENSE-Phosphor.txt').read_text())
+check('Privacy and 404 header (Round 12.2): the lockup never shrinks; below 480 px the button shows its WhatsApp icon only and '
+      'keeps the accessible name "WhatsApp Sundeep"; each font is preloaded once',
+      all(re.search(r'<a class="btn btn--sm" href="[^"]+" target="_blank" rel="noopener" aria-label="' + WHATSAPP + r'"><svg class="ic"[^>]*>.*?</svg>'
+                    r'<span class="btn-t">' + WHATSAPP + r'</span></a>', s, re.S) for f, s in live.items() if f != 'index.html')
+      and '.hdr a:first-child{flex:none}' in css
+      and '@media(max-width:479px){.hdr--always .btn{padding:8px;min-width:44px}.btn-t{display:none}}' in css
+      and all(sorted(re.findall(r'<link rel="preload" href="/assets/fonts/([\w-]+\.woff2)"', s))
+              == ['AnekLatin-latin.woff2', 'IntellumiaDisplay-SemiBold.woff2'] for s in live.values()))
 check('Privacy and the 404 page: paper, the ultramarine lockup and button, no sweep, no steps, no lumen',
       all('klein' not in s and 'sweep' not in s and 'lumen' not in s for f, s in live.items() if f != 'index.html'))
 
