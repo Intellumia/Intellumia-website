@@ -1045,6 +1045,8 @@ check('the hero: ultramarine; the headline plain (no word in a band, no colour o
       and '<div class="lit"><p class="label">Money owed to you</p><p class="fig">' + LIT_FIGURE + '</p></div>' in hero12
       and f'<p class="label sweep-note">{ILLUSTRATION}</p>' in hero12
       and hero12.index('class="founder"') < hero12.index('class="sweep"')
+      and hero12.index('<h1') < hero12.index('class="ld hero-line"') < hero12.index('class="bd hero-for"') < hero12.index('class="cta"')
+      and not re.search(r'(?<![a-z-])order:', css)  # the industries line follows the sub-line at every width (Sundeep, 12 Nov 2026)
       and '.field--lit{background:var(--lumen);color:var(--klein);clip-path:polygon(' in css and '57.735cqw' in css)
 check('motion: only the light moves: one animation, the beam entering from the left in 900 ms with an ease-out, then holding; '
       'still for reduced motion; the phone bar keeps its slide',
