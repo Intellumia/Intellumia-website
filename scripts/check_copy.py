@@ -1012,11 +1012,12 @@ roles = dict(re.findall(r'--fs-([\w-]+):([^;}]+)', root_rule))
 inline = [f for f, s in live.items() if re.search(r'font-size|style="', re.sub(r'<script\b.*?</script>', '', s, flags=re.S))]
 check('text sizes (Round 13): Statement 40 to 100 px, the closing question 32 to 64, Heading 28 to 48, Subhead 20 to 24 (24 to 28 for '
       'Map, Run, Guide and the founder values), Figure 44 to 104 for the lit figure and 40 to 48 in cards, Lead 17 to 20, Body 16 to 18, '
-      'Label 11 to 12; set as custom properties; every font-size is one of them; nothing set inline',
-      set(sizes) == {f'var(--fs-{r})' for r in roles} and sorted(roles) == ['body', 'close', 'figure', 'figure-sm', 'figure-xs', 'heading', 'label', 'lead', 'statement', 'sub', 'sub-lg']
+      'Label 11 to 12, the money map labels 12 px on phones and 16 px from 768 px (Round 14); set as custom properties; every font-size '
+      'is one of them; nothing set inline',
+      set(sizes) == {f'var(--fs-{r})' for r in roles} and sorted(roles) == ['body', 'close', 'figure', 'figure-sm', 'figure-xs', 'heading', 'label', 'lead', 'map', 'statement', 'sub', 'sub-lg']
       and all(re.match(rf'clamp\({a}px,.*,{b}px\)$', roles[r]) for r, a, b in (('statement', 40, 100), ('close', 32, 64),
               ('heading', 28, 48), ('sub', 20, 24), ('sub-lg', 24, 28), ('figure', 44, 104), ('lead', 17, 20), ('body', 16, 18)))
-      and roles['label'] == '11px' and re.findall(r'--fs-[\w-]+:[^;}]+', css.replace(root_rule, '', 1)) == ['--fs-label:12px', '--fs-figure-sm:48px']
+      and roles['label'] == '11px' and roles['map'] == '12px' and re.findall(r'--fs-[\w-]+:[^;}]+', css.replace(root_rule, '', 1)) == ['--fs-label:12px', '--fs-map:16px', '--fs-figure-sm:48px']
       and roles['figure-sm'] == roles['figure-xs'] == '40px'
       and not re.search(r'\bfont:', css) and not inline, f'{sorted(set(sizes))} {roles} {inline}')
 fonts = sorted(p.name for p in DOCS.rglob('*') if p.suffix in ('.woff', '.woff2', '.ttf', '.otf'))
@@ -1038,6 +1039,9 @@ check('the logo is the lockup: white on the ultramarine header, ultramarine in t
       home_l.count('src="/assets/intellumia-lockup-white.svg') == 1 and home_l.count('src="/assets/intellumia-lockup-ultramarine.svg') == 1
       and all(s.count('src="/assets/intellumia-lockup-ultramarine.svg') == 2 and 'lockup-white' not in s
               for f, s in live.items() if f != 'index.html')
+      and all(s.count('src="/assets/intellumia-lockup') == s.count('width="501" height="93"') for s in live.values())
+      and 'viewBox="-3.04 -3.04 851.65 158.08"' in (DOCS / 'assets/intellumia-lockup-white.svg').read_text()
+      and 'viewBox="-3.04 -3.04 851.65 158.08"' in (DOCS / 'assets/intellumia-lockup-ultramarine.svg').read_text()
       and all('theme-color" content="#1A1AFF"' in s for s in live.values())
       and all(int(w) >= 96 for w in re.findall(r'\.(?:hdr|ftr) img\{width:(\d+)px', css)))
 hero12 = between(home_l, '<!-- HERO -->', '<!-- PROBLEMS -->')
