@@ -1016,8 +1016,8 @@ check('text sizes (Round 13): Statement 40 to 100 px, the closing question 32 to
       'is one of them; nothing set inline',
       set(sizes) == {f'var(--fs-{r})' for r in roles} and sorted(roles) == ['body', 'close', 'figure', 'figure-sm', 'figure-xs', 'heading', 'label', 'lead', 'map', 'statement', 'sub', 'sub-lg']
       and all(re.match(rf'clamp\({a}px,.*,{b}px\)$', roles[r]) for r, a, b in (('statement', 40, 100), ('close', 32, 64),
-              ('heading', 28, 48), ('sub', 20, 24), ('sub-lg', 24, 28), ('figure', 44, 104), ('lead', 17, 20), ('body', 16, 18)))
-      and roles['label'] == '11px' and roles['map'] == '12px' and re.findall(r'--fs-[\w-]+:[^;}]+', css.replace(root_rule, '', 1)) == ['--fs-label:12px', '--fs-map:16px', '--fs-figure-sm:48px']
+              ('heading', 28, 48), ('sub', 20, 24), ('sub-lg', 24, 28), ('figure', 44, 104), ('lead', 19, 22), ('body', 16, 18)))
+      and roles['label'] == '12px' and roles['map'] == '12px' and re.findall(r'--fs-[\w-]+:[^;}]+', css.replace(root_rule, '', 1)) == ['--fs-map:16px', '--fs-figure-sm:48px']
       and roles['figure-sm'] == roles['figure-xs'] == '40px'
       and not re.search(r'\bfont:', css) and not inline, f'{sorted(set(sizes))} {roles} {inline}')
 fonts = sorted(p.name for p in DOCS.rglob('*') if p.suffix in ('.woff', '.woff2', '.ttf', '.otf'))
